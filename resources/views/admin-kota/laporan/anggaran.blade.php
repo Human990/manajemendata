@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="card card-headline">
             <div class="card-header">
-                <h5 class="card-title"><b>Rekap Anggaran</b></h5>
+                <h5 class="card-title"><b>Rekap Anggaran Tahun {{ session()->get('tahun_session') }}</b></h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

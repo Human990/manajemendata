@@ -25,6 +25,7 @@ Route::get('/logout',[App\Http\Controllers\AuthController::class,'logout'])->nam
 Route::group(['middleware' => ['auth', 'adminkota']], function () {
     // Rute yang memerlukan autentikasi dan peran admin
     Route::get('/',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'anggaran'])->name('adminkota-dashboard');
+    Route::post('/put/session',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'putsession'])->name('adminkota-putsession');
 
     // pegawai bulanan
     Route::get('/pegawai-bulanan/tpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'tpp'])->name('adminkota-tpp-pegawai');
@@ -60,10 +61,13 @@ Route::group(['middleware' => ['auth', 'adminopd']], function () {
 
     // pegawai bulanan
     Route::get('/admin-opd/pegawai-bulanan/tpp',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'tpp'])->name('adminopd-tpp-pegawai');
+    Route::post('/admin-opd/put/session',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'putsession'])->name('adminopd-putsession');
 
 });
 
 Route::group(['middleware' => ['auth', 'adminjabatan']],function () {
+    Route::post('/admin-jabatan/put/session',[App\Http\Controllers\Adminjabatan\MasterjabatanlamaController::class,'putsession'])->name('adminjabatan-putsession');
+
     // Master Jabatan Lama
     Route::get('/admin-jabatan/master-jabatanlama',[App\Http\Controllers\Adminjabatan\MasterjabatanlamaController::class,'index'])->name('adminjabatan-jabatanlama');
     Route::get('/admin-jabatan/master-jabatanlama/edit/{kode_jabatanlama}',[App\Http\Controllers\Adminjabatan\MasterjabatanlamaController::class,'edit'])->name('adminjabatan-jabatanlama-edit');
