@@ -27,9 +27,10 @@
                     <table class="table table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Tahun</th>
-                                <th>Action</th>
+                                <th width="1%">No</th>
+                                <th width="20%">Tahun</th>
+                                <th width="69%">Keterangan</th>
+                                <th width="9%">Action</th>
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
@@ -37,9 +38,10 @@
                                 <tr>
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $item->tahun }}</td>
+                                    <td>{{ $item->keterangan }}</td>
                                     <td>
                                         <a href="{{ route('adminkota-tahun.edit', $item->id) }}"
-                                            class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Edit</a>
+                                            class="btn btn-sm btn-info btn-block"><i class="fa fa-eye"></i> Edit</a>
                                         {{-- <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button> --}}
                                     </td>
                                 </tr>
@@ -62,7 +64,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="{{ route('adminkota-rupiah.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('adminkota-tahun.store') }}" method="post" enctype="multipart/form-data">
                             <div class="modal-body">
                                 @csrf
                                 <div class="form-group">
@@ -71,6 +73,15 @@
                                         class="form-control @error('tahun') is-invalid @enderror" id="tahun"
                                         placeholder="tahun" value="{{ old('tahun') }}">
                                     @error('tahun')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="keterangan">Keterangan</label>
+                                    <input type="text" name="keterangan"
+                                        class="form-control @error('keterangan') is-invalid @enderror" id="keterangan"
+                                        placeholder="keterangan" value="{{ old('keterangan') }}">
+                                    @error('keterangan')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>

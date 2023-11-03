@@ -36,6 +36,15 @@
                             @enderror
                             <p style="color: red">*wajib diisi</p>
                         </div>
+                        <div class="form-group col-md-12">
+                                    <label for="keterangan">Keterangan</label>
+                                    <input type="text" name="keterangan"
+                                        class="form-control @error('keterangan') is-invalid @enderror" id="keterangan"
+                                        placeholder="keterangan" value="{{ old('keterangan') ?? $tahun->keterangan }}">
+                                    @error('keterangan')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                        </div>
 
                         <div class="form-group col-sm-6 col-md-6 mt-5">
                             <button type="submit" class="form-control btn-primary" id="tombol">Simpan</button>

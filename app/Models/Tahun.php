@@ -12,5 +12,6 @@ class Tahun extends Model
     public $table="master_tahun";
     protected $fillable=[
         'tahun',
+        'keterangan',
     ];
 }

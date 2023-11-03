@@ -20,9 +20,12 @@ class TahunController extends Controller
     {
         $requestData = $request->validate([
             'tahun' => 'required',
+            'keterangan' => 'nullable',
         ]);
+
         Tahun::create($requestData);
-        return redirect()->route('adminkota-master-tahun')->with('success','Data Berhasil Disimpan!');
+
+        return redirect()->back()->with('success','Data Berhasil Disimpan!');
     }
 
     public function edit($id)
@@ -34,11 +37,11 @@ class TahunController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'nama' => 'required',
-            'jumlah' => 'required',
+            'tahun' => 'required',
+            'keterangan' => 'nullable',
         ]);
         Tahun::findorfail($id)
             ->update($validatedData);
-            return redirect()->route('adminkota-master-tahun')->with('success','Data Berhasil Diupdate!');
+            return redirect()->route('adminkota-tahun')->with('success','Data Berhasil Diupdate!');
     }
 }
