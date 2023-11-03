@@ -22,26 +22,30 @@
             <div class="card-body">
                 <form action="{{ route('adminjabatan-jabatanlama') }}" method="GET">
                     <div class="form-group">
-                        <label for="jenis_jabatan">Filter Jenis Jabatan:</label>
-                        <select name="jenis_jabatan" id="jenis_jabatan" class="form-control">
-                            <option value="">Semua Jenis Jabatan</option>
-                            <option value="fungsional" @if (request('jenis_jabatan') == 'fungsional') selected @endif>Fungsional</option>
-                            <option value="struktural" @if (request('jenis_jabatan') == 'struktural') selected @endif>Struktural</option>
-                            <option value="pelaksana" @if (request('jenis_jabatan') == 'pelaksana') selected @endif>Pelaksana</option>
-                        </select>
+                        <label for="search">Cari Nama Jabatan:</label>
+                        <input type="text" name="search" class="form-control" id="search"
+                            placeholder="cari nama jabatan..." value="{{ request('search') }}">
                     </div>
                     <div class="form-group">
-                        <label for="search">Pencarian Nama Jabatan:</label>
-                        <input type="text" name="search" id="search" class="form-control"
-                            value="{{ request('search') }}" placeholder="Nama Jabatan">
+                        <label for="jenis_jabatan">Filter Jenis Jabatan:</label>
+                        <select name="jenis_jabatan" class="form-control" id="jenis_jabatan">
+                            <option value="">Semua</option>
+                            <option value="fungsional" {{ request('jenis_jabatan') == 'fungsional' ? 'selected' : '' }}>
+                                Fungsional</option>
+                            <option value="struktural" {{ request('jenis_jabatan') == 'struktural' ? 'selected' : '' }}>
+                                Struktural</option>
+                            <option value="pelaksana" {{ request('jenis_jabatan') == 'pelaksana' ? 'selected' : '' }}>
+                                Pelaksana</option>
+                        </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Filter & Cari</button>
+                    <button type="submit" class="btn btn-primary">Cari & Filter</button>
+                    <a href="{{ route('adminjabatan-jabatanlama') }}" class="btn btn-secondary">Reset Filter</a>
                 </form>
             </div>
-            <div class="card-body">
+            {{-- <div class="card-body">
                 <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalJabatanlama">Tambah
                     Data</a>
-            </div>
+            </div> --}}
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
@@ -58,7 +62,7 @@
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
-                            @foreach ($jabatanlama as $item)
+                            @forelse ($jabatanlama as $item)
                                 @php
                                     // Mengambil data indeks dari view_indeks berdasarkan jenis_jabatan dan kelas_jabatan
                                     $indeksItem = $viewIndeksData
@@ -80,7 +84,11 @@
                                         {{-- <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button> --}}
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="8">Tidak ada data yang sesuai.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

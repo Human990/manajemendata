@@ -12,22 +12,26 @@ class MasterjabatanlamaController extends Controller
     public function index(Request $request)
     {
         $pagination = 20;
-        $query = Jabatanlama::orderBy('kode_jabatanlama', 'ASC');
+        $query = Jabatanlama::query();
 
-        // Filter berdasarkan jenis jabatan
-        if ($request->has('jenis_jabatan') && in_array($request->jenis_jabatan, ['fungsional', 'struktural', 'pelaksana'])) {
-            $query->where('jenis_jabatan', $request->jenis_jabatan);
-        }
-
-        // Pencarian berdasarkan nama jabatan
+        // Filter berdasarkan nama jabatan
         if ($request->has('search')) {
-            $query->where('nama_jabatan', 'like', '%' . $request->search . '%');
+            $query->where('nama_jabatan', 'like', '%' . $request->input('search') . '%');
         }
 
-        $jabatanlama = $query->paginate($pagination);
+        // Filter berdasarkan jenis jabatan, hanya jika form pencarian tidak diisi
+        if (!$request->has('search') && $request->has('jenis_jabatan')) {
+            $query->where('jenis_jabatan', $request->input('jenis_jabatan'));
+        }
+
+        // Lakukan paginasi dengan menyertakan parameter pencarian dan jenis_jabatan
+        $jabatanlama = $query->orderBy('kode_jabatanlama', 'ASC')->paginate($pagination)
+            ->appends(['search' => $request->input('search'), 'jenis_jabatan' => $request->input('jenis_jabatan')]);
+
         $viewIndeksData = DB::table('view_indeks_jabatanlama')->get();
 
-        return view('admin-jabatan.master.master-jabatanlama', compact(['jabatanlama', 'viewIndeksData']))->with('i', ($request->input('page', 1) - 1) * $pagination);
+        return view('admin-jabatan.master.master-jabatanlama', compact(['jabatanlama', 'viewIndeksData']))
+            ->with('i', ($request->input('page', 1) - 1) * $pagination);
     }
 
     public function edit($kode_jabatanlama)
