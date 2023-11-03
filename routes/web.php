@@ -66,6 +66,8 @@ Route::group(['middleware' => ['auth', 'adminopd']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'adminjabatan']],function () {
+    Route::post('/admin-jabatan/put/session',[App\Http\Controllers\Adminjabatan\MasterjabatanlamaController::class,'putsession'])->name('adminjabatan-putsession');
+
     // Master Jabatan Lama
     Route::get('/admin-jabatan/master-jabatanlama',[App\Http\Controllers\Adminjabatan\MasterjabatanlamaController::class,'index'])->name('adminjabatan-jabatanlama');
     Route::get('/admin-jabatan/master-jabatanlama/edit/{kode_jabatanlama}',[App\Http\Controllers\Adminjabatan\MasterjabatanlamaController::class,'edit'])->name('adminjabatan-jabatanlama-edit');

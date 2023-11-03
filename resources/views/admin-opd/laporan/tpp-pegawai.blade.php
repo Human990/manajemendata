@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="card card-headline">
             <div class="card-header">
-                <h3 class="card-title"><b>Rekap TPP All OPD</b></h3>
+                <h3 class="card-title"><b>Rekap TPP All OPD Tahun {{ session()->get('tahun_session') }}</b></h3>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

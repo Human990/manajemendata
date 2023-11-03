@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Adminjabatan;
 
+use App\Models\Tahun;
 use App\Models\Jabatanlama;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -66,5 +67,16 @@ class MasterjabatanlamaController extends Controller
 
         // Redirect ke halaman index atau halaman lainnya setelah update
         return redirect()->route('adminjabatan-jabatanlama')->with('success', 'Data berhasil diupdate.');
+    }
+
+    public function putsession(Request $request)
+    {
+        session()->forget('tahunid_session');
+        session()->forget('tahun_session');
+
+        session()->put('tahun_id_session', $request->tahun_id);
+        session()->put('tahun_session', Tahun::where('id', $request->tahun_id)->value('tahun'));
+
+        return redirect()->back();
     }
 }
