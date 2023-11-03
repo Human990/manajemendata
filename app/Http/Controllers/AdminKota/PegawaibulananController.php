@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Adminkota;
 
+use App\Models\Tahun;
 use App\Models\Pegbul;
 use App\Models\Rupiah;
 use Illuminate\Http\Request;
@@ -55,5 +56,16 @@ class PegawaibulananController extends Controller
         $rs = DB::table('view_jumlahrs')->first();
         $pppk = DB::table('view_jumlahpppk')->first();
         return view('admin-kota.laporan.anggaran',compact(['pegbul','jumlah_pegbul','rupiah1','rupiah2','rupiah3','rupiah4','jumlahguru','rs','pppk']))->with('i',($request->input('page',1)-1));
+    }
+
+    public function putsession(Request $request)
+    {
+        session()->forget('tahunid_session');
+        session()->forget('tahun_session');
+
+        session()->put('tahun_id_session', $request->tahun_id);
+        session()->put('tahun_session', Tahun::where('id', $request->tahun_id)->value('tahun'));
+
+        return redirect()->back();
     }
 }
