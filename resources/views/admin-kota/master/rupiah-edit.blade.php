@@ -23,7 +23,7 @@
             <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModal">Tambah Data</a>
         </div> --}}
             <div class="card-body">
-                <form action="{{ route('rupiah.update', $rupiah->id) }}" method="post" class=""
+                <form action="{{ route('adminkota-rupiah.update', $rupiah->id) }}" method="post" class=""
                     enctype="multipart/form-data">
                     @csrf
                     <div class="row">
@@ -50,7 +50,7 @@
                             <button type="submit" class="form-control btn-primary" id="tombol">Simpan</button>
                         </div>
                         <div class="form-group col-sm-6 col-md-6 mt-5">
-                            <a href="{{ route('master-rupiah') }}" class="btn btn-warning btn-block">Kembali</a>
+                            <a href="{{ route('adminkota-rupiah') }}" class="btn btn-warning btn-block">Kembali</a>
                         </div>
                     </div>
                 </form>

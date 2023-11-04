@@ -10,10 +10,13 @@ class RupiahController extends Controller
 {
     public function index(Request $request)
     {
-        $pagination=20;
-        // $jumlah_pegawai = Pegawai::count();
-        $rupiah= Rupiah::orderBy('id','ASC')->paginate($pagination);
-        return view('admin-kota.master.master-rupiah',compact('rupiah'))->with('i',($request->input('page',1)-1)*$pagination);
+        $datas= Rupiah::select('master_rupiah.*', 'master_tahun.tahun')
+                     ->leftjoin('master_tahun', 'master_tahun.id', '=', 'master_rupiah.tahun_id')
+                     ->where('master_rupiah.tahun_id', session()->get('tahun_id_session'))
+                     ->orderBy('master_rupiah.nama','ASC')
+                     ->get();
+
+        return view('admin-kota.master.master-rupiah',compact('datas'));
     }
 
     /**
@@ -37,8 +40,11 @@ class RupiahController extends Controller
         $requestData = $request->validate([
             'nama' => 'required',
             'jumlah' => 'required',
+            'tahun_id' => 'required',
         ]);
+
         Rupiah::create($requestData);
+        
         return redirect()->route('adminkota-rupiah')->with('success','Data Berhasil Disimpan!');
     }
 

@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="card card-headline">
             <div class="card-header">
-                <h3 class="card-title">Master Rupiah</h3>
+                <h3 class="card-title">Master Rupiah Tahun {{ session()->get('tahun_session') }}</h3>
             </div>
             {{-- <div class="card-body">
             <form action="{{route('admin.searchDakep')}}" class="form-inline" method="GET">
@@ -27,18 +27,21 @@
                     <table class="table table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Keterangan</th>
-                                <th>Jumlah</th>
-                                <th>Action</th>
+                                <th width="1%">No</th>
+                                <th width="10%">Tahun</th>
+                                <th width="59%">Keterangan</th>
+                                <th width="20%">Jumlah</th>
+                                <th width="10%">Action</th>
                             </tr>
                         </thead>
+                        @php $i=0; @endphp
                         <tbody id="dynamic-row">
-                            @foreach ($rupiah as $item)
+                            @foreach ($datas as $item)
                                 <tr>
                                     <td>{{ ++$i }}</td>
+                                    <td>{{ $item->tahun }}</td>
                                     <td>{{ $item->nama }}</td>
-                                    <td>{{ $item->jumlah }}</td>
+                                    <td align="right">{{ number_format($item->jumlah, 2, ',', '.') }}</td>
                                     <td>
                                         <a href="{{ route('adminkota-rupiah.edit', $item->id) }}"
                                             class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Edit</a>
@@ -51,8 +54,6 @@
                 </div>
             </div>
             <div class="text-center">
-                {{-- <h6>jumlah data :{{$jumlah_pegawai}}</h6> --}}
-                {!! $rupiah->render() !!}
             </div>
             <div class="modal fade" id="createModalRupiah" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">
@@ -67,6 +68,7 @@
                         <form action="{{ route('adminkota-rupiah.store') }}" method="post" enctype="multipart/form-data">
                             <div class="modal-body">
                                 @csrf
+                                <input type="hidden" name="tahun_id" value="{{ session()->get('tahun_id_session') }}">
                                 <div class="form-group">
                                     <label for="nama">Keterangan</label>
                                     <input type="text" name="nama"

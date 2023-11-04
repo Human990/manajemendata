@@ -12,6 +12,7 @@ class Rupiah extends Model
     public $table="master_rupiah";
     protected $fillable=[
         'nama',
-        'jumlah'
+        'jumlah',
+        'tahun_id'
     ];
 }
