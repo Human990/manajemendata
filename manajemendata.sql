@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 127.0.0.1_3306
+ Source Server         : LocalMySQL
  Source Server Type    : MySQL
- Source Server Version : 80030 (8.0.30)
- Source Host           : 127.0.0.1:3306
+ Source Server Version : 100428
+ Source Host           : localhost:3306
  Source Schema         : manajemendata
 
  Target Server Type    : MySQL
- Target Server Version : 80030 (8.0.30)
+ Target Server Version : 100428
  File Encoding         : 65001
 
- Date: 03/11/2023 11:33:55
+ Date: 04/11/2023 12:51:03
 */
 
 SET NAMES utf8mb4;
@@ -28,10 +28,10 @@ CREATE TABLE `failed_jobs`  (
   `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `failed_jobs_uuid_unique`(`uuid` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+  UNIQUE INDEX `failed_jobs_uuid_unique`(`uuid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of failed_jobs
@@ -48,37 +48,38 @@ CREATE TABLE `indeks`  (
   `indeks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `tahun_id` bigint UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`kode_indeks`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of indeks
 -- ----------------------------
-INSERT INTO `indeks` VALUES (1, '1', '8', '0.57', NULL, NULL);
-INSERT INTO `indeks` VALUES (2, '1', '9', '0.634', NULL, NULL);
-INSERT INTO `indeks` VALUES (3, '1', '10', '0.634', NULL, NULL);
-INSERT INTO `indeks` VALUES (4, '1', '11', '0.634', NULL, NULL);
-INSERT INTO `indeks` VALUES (5, '1', '12', '0.634', NULL, NULL);
-INSERT INTO `indeks` VALUES (6, '1', '13', '0.634', NULL, NULL);
-INSERT INTO `indeks` VALUES (7, '1', '14', '0.634', NULL, NULL);
-INSERT INTO `indeks` VALUES (8, '1', '15', '1', NULL, NULL);
-INSERT INTO `indeks` VALUES (9, '2', '5', '0.83', NULL, NULL);
-INSERT INTO `indeks` VALUES (10, '2', '6', '0.565', NULL, NULL);
-INSERT INTO `indeks` VALUES (11, '2', '7', '0.458', NULL, NULL);
-INSERT INTO `indeks` VALUES (12, '2', '8', '0.458', NULL, NULL);
-INSERT INTO `indeks` VALUES (13, '2', '9', '0.447', NULL, NULL);
-INSERT INTO `indeks` VALUES (14, '2', '10', '0.447', NULL, NULL);
-INSERT INTO `indeks` VALUES (15, '2', '11', '0.412', NULL, NULL);
-INSERT INTO `indeks` VALUES (16, '2', '12', '0.412', NULL, NULL);
-INSERT INTO `indeks` VALUES (17, '2', '13', '0.412', NULL, NULL);
-INSERT INTO `indeks` VALUES (18, '2', '14', '0.412', NULL, NULL);
-INSERT INTO `indeks` VALUES (19, '3', '1', '1.7', NULL, NULL);
-INSERT INTO `indeks` VALUES (20, '3', '2', '', NULL, NULL);
-INSERT INTO `indeks` VALUES (21, '3', '3', '0.95', NULL, NULL);
-INSERT INTO `indeks` VALUES (22, '3', '4', '0.75', NULL, NULL);
-INSERT INTO `indeks` VALUES (23, '3', '5', '0.69', NULL, NULL);
-INSERT INTO `indeks` VALUES (24, '3', '6', '0.52', NULL, NULL);
-INSERT INTO `indeks` VALUES (25, '3', '7', '0.45', NULL, NULL);
+INSERT INTO `indeks` VALUES (1, '1', '8', '0.57', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (2, '1', '9', '0.634', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (3, '1', '10', '0.634', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (4, '1', '11', '0.634', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (5, '1', '12', '0.634', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (6, '1', '13', '0.634', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (7, '1', '14', '0.634', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (8, '1', '15', '1', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (9, '2', '5', '0.83', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (10, '2', '6', '0.565', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (11, '2', '7', '0.458', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (12, '2', '8', '0.458', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (13, '2', '9', '0.447', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (14, '2', '10', '0.447', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (15, '2', '11', '0.412', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (16, '2', '12', '0.412', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (17, '2', '13', '0.412', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (18, '2', '14', '0.412', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (19, '3', '1', '1.7', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (20, '3', '2', '', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (21, '3', '3', '0.95', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (22, '3', '4', '0.75', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (23, '3', '5', '0.69', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (24, '3', '6', '0.52', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
+INSERT INTO `indeks` VALUES (25, '3', '7', '0.45', '2023-11-04 08:02:07', '2023-11-04 08:02:07', 1);
 
 -- ----------------------------
 -- Table structure for jabatanbaru
@@ -96,7 +97,7 @@ CREATE TABLE `jabatanbaru`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`kode_jabatanbaru`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4544 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4544 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of jabatanbaru
@@ -2089,7 +2090,7 @@ CREATE TABLE `jabatanlama`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`kode_jabatanlama`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4544 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4544 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of jabatanlama
@@ -4067,6 +4068,2044 @@ INSERT INTO `jabatanlama` VALUES (4542, 'Tenaga Promosi Kesehatan dan Ilmu Peril
 INSERT INTO `jabatanlama` VALUES (4543, 'Terapis Gigi dan Mulut Terampil', 'pelaksana', '0', '0', '0', '185000', '2023', NULL, NULL);
 
 -- ----------------------------
+-- Table structure for jabatans
+-- ----------------------------
+DROP TABLE IF EXISTS `jabatans`;
+CREATE TABLE `jabatans`  (
+  `kode_jabatanlama` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nama_jabatan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenis_jabatan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `kelas_jabatan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `nilai_jabatan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `index` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `tunjab` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '185000',
+  `tahun` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `tahun_id` bigint NULL DEFAULT NULL,
+  `indeks_id` bigint NULL DEFAULT NULL,
+  PRIMARY KEY (`kode_jabatanlama`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4546 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of jabatans
+-- ----------------------------
+INSERT INTO `jabatans` VALUES (2547, 'Analis Pengembangan Kompetensi Ahli Muda / Subkoordinator Pengembangan Kompetensi Manajerial dan Fungsional', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2548, 'Analis Pengembangan Kompetensi Ahli Muda /Subkoordinator Pengembangan Kompetensi Teknis', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2549, 'Analis Kebijakan Ahli Muda / Subkoordinator Pengaduan, Informasi Layanan, Penyuluhan Layanan dan Transmigrasi', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2550, 'JF PUSTAKAWAN PELAKSANA', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2551, 'PENGADMINISTRASI KEUANGAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2552, 'Analis Penegakan Integritas dan Disiplin Sumber Daya Manusia Aparatur', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2553, 'PENGELOLA SARANA DAN PRASARANA TAMAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2554, 'Pranata Hubungan Masyarakat  Ahli Pertama', 'pelaksana', '800', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2555, 'PENGOLAH INFORMASI DAN KOMUNIKASI', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2556, 'TEKNISI PEMELIHARAAN SARANA DAN PRASARANA', 'pelaksana', '5', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2557, 'ANALIS KEUANGAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2558, 'Analis Protokol', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2559, 'JF BIDAN PERTAMA', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2560, 'KOMANDAN PETUGAS KEAMANAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2561, 'JF ASISTEN APOTEKER PENYELIA', 'pelaksana', '8', '1245', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2562, 'JF PERAWAT MUDA', 'pelaksana', '9', '1385', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2563, 'PENGELOLA BARANG MILIK NEGARA', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2564, 'Analis Kepegawaian Ahli Muda / Subkoordinator Formasi dan Pengadaan', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2565, 'JURU PUNGUT RETRIBUSI', 'pelaksana', '3', '340', '0.95', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2566, 'PETUGAS KEAMANAN', 'pelaksana', '3', '340', '0.95', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2567, 'Analis Kebakaran Ahli Muda /Subkoordinator Inspeksi, Sarana dan Prasarana Kebakaran', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2568, 'Analis Kebijakan Ahli Madya /Koordinator Penyelenggaraan Pelayanan Perizinan dan Non Perizinan', 'pelaksana', '11', '2045', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2569, 'Analis Pasar Hasil Perikanan Ahli Muda /Subkoordinator Pengolahan dan Pemasaran Produk Perikanan', 'pelaksana', '9', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2570, 'Perisalah Legislatif Ahli Muda / Subkoordinator Persidangan, Risalah dan Publikasi', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2571, 'Penyuluh Pertanian Ahli Muda / Subkoordinator Penyuluhan, Pengendalian dan Penanggulangan Bencana Pertanian', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2572, 'Surveyor Pemetaan Ahli Muda /Subkoordinator Pertanahan', 'pelaksana', '9', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2573, 'KEPALA SUB BAGIAN KEUANGAN DINAS KESEHATAN, PENGENDALIAN PENDUDUK DAN KELUARGA BERENCANA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2574, 'JF PENYULUH KESEHATAN MASYARAKAT PENYELIA', 'pelaksana', '8', '1260', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2575, 'Pengantar Kerja Ahli Muda / Subkoordinator Perencanaan dan Penempatan Tenaga Kerja', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2576, 'Administrator Kesehatan Ahli Muda / Subkoordinator Penyediaan Fasilitas Pelayanan Kesehatan dan Operasional Puskesmas dan Rumah Sakit', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2577, 'PENGELOLA USAHA PEMASARAN DAN PROMOSI WISATA', 'pelaksana', '6', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2578, 'Adyatama Kepariwisataan dan Ekonomi Kreatif Ahli Muda  /Subkoordinator Pemasaran, Pengembangan Sumber Daya Pariwisata dan Ekonomi Kreatif', 'pelaksana', '9', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2579, 'Analis Kebijakan Ahli Muda / Subkoordinator Perencanaan, Pengembangan Iklim dan Promosi Penanaman Modal', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2580, 'Pengembang Kurikulum Ahli Muda /Subkoordinator Kurikulum Muatan Lokal Pendidikan Anak Usia Dini dan Pendidikan Non Formal', 'pelaksana', '9', '1430', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2581, 'Penyuluh Sosial Ahli Muda / Subkoordinator Perlindungan dan Jaminan Sosial', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2582, 'Administrator Kesehatan Ahli Muda / Subkoordinator Pengendalian Penduduk dan Advokasi Penggerakan dan Informasi Kependudukan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2583, 'Analis Data Ilmiah Ahli Muda / Subkoordinator Inovasi dan Pengembangan Daerah', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2584, 'Perencana Ahli Muda / Subkoordinator Perencanaan Pembangunan Manusia', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2585, 'JF PERAWAT GIGI PENYELIA', 'pelaksana', '8', '1260', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2586, 'Pelaksana/Terampil - Radiografer', 'pelaksana', '6', '770', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2587, 'Pembina Jasa Konstruksi  Ahli Muda /Subkoordinator Pengembangan Jasa Konstruksi', 'pelaksana', '1000', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2588, 'Pengolah Data Penagihan Pajak', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2589, 'PENGELOLA KEGIATAN HARI BESAR KEAGAMAAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2590, 'JF DOKTER GIGI MADYA', 'pelaksana', '12', '2225', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2591, 'JF APOTEKER MUDA', 'pelaksana', '9', '1370', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2592, 'JF APOTEKER PERTAMA', 'pelaksana', '8', '1295', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2593, 'JF PRANATA LABORATORIUM KESEHATAN PENYELIA', 'pelaksana', '8', '1230', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2594, 'JF TEKNISI ELEKTROMEDIS PELAKSANA LANJUTAN', 'pelaksana', '7', '1035', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2595, 'JF PEREKAM MEDIS PELAKSANA LANJUTAN', 'pelaksana', '7', '1035', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2596, 'Penyusun Rencana Kebutuhan Rumah Tangga Dan Perlengkapan', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2597, 'JF BIDAN PELAKSANA LANJUTAN', 'pelaksana', '7', '1005', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2598, 'JF TEKNISI ELEKTROMEDIS PELAKSANA', 'pelaksana', '6', '770', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2599, 'JF PUSTAKAWAN MUDA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2600, 'Analis Kebijakan Ahli Muda / Subkoordinator Lembaga Politik', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2601, 'Analis Data Ilmiah Ahli Muda /Subkoordinator Inovasi dan Pengembangan Daerah', 'pelaksana', '8', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2602, 'ANALIS MONITORING, EVALUASI DAN PELAPORAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2603, 'PENGELOLA DATA PELAYANAN PERPAJAKAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2604, 'Ahli Pertama â€“ Guru Agama Islam', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2605, 'Ahli Pertama - Guru Agama Katolik', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2606, 'Ahli Pertama - Guru Agama Kristen', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2607, 'Ahli Pertama - Guru Bahasa Indonesia', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2608, 'Ahli Pertama - Guru Bimbingan Konseling', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2609, 'Ahli Pertama - Guru Kelas', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2610, 'Ahli Pertama - Guru Penjasorkes', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2611, 'Ahli Pertama - Guru Seni Budaya', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2612, 'Guru Ahli Muda', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2613, 'Guru Pertama', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2614, 'JF DOKTER MADYA / KEPALA UPTD PUSKESMAS TAWANGREJO', 'pelaksana', '12', '2225', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2615, 'Ahli Pertama - Guru Matematika', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2616, 'Ahli Pertama - Guru TIK', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2617, 'Analis Kebijakan Ahli Madya / Koordinator Pengaduan, Kebijakan dan Pelaporan', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2618, 'Analis Kebijakan Ahli Madya / Koordinator Penanaman Modal', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2619, 'JF PENGGERAK SWADAYA MASYARAKAT MUDA', 'pelaksana', '1000', '1355', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2620, 'Penyuluh Tenaga Kerja', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2621, 'Jf Penggerak Swadaya Masyarakat Pertama', 'pelaksana', '1000', '1280', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2622, 'Analis Infrastruktur', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2623, 'ANALIS LAPORAN AKUNTABILITAS KINERJA', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2624, 'ANALIS PEMBERDAYAAN MASYARAKAT DAN KELEMBAGAAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2625, 'ANALIS PEMERINTAHAN UMUM DAN OTONOMI DAERAH', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2626, 'ANALIS PERATURAN PERUNDANG-UNDANGAN DAN RANCANGAN PERATURAN PERUNDANG-UNDANGAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2627, 'ANALIS TATA LAKSANA', 'pelaksana', '7', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2628, 'Analis Kebijakan Ahli Muda /  Subkoordinator Kerjasama Daerah', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2629, 'Ahli Pertama - Pelatih Olahraga', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2630, 'ANALIS TATA PRAJA', 'pelaksana', '7', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2631, 'Penelaah Perkembangan BUMD', 'pelaksana', '7', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2632, 'ANALIS HUMAS DAN PROTOKOL', 'pelaksana', '6', '690', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2633, 'Perencana  Ahli Muda / Subkoordinator Perencanaan dan Kepegawaian', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2634, 'Penyuluh Perikanan Ahli Muda / Subkoordinator Perikanan Budidaya dan Pengelolaan Sumber Daya Ikan', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2635, 'Analis Kebijakan Ahli Muda / Subkoordinator Kepemudaan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2636, 'Perisalah Legislatif Ahli Muda / Subkoordinator Fasilitasi Pengawasan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2637, 'ANALIS KEBIJAKAN AHLI MADYA', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2638, 'ANALIS KEPEGAWAIAN AHLI MUDA', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2639, 'PRANATA HUBUNGAN MASYARAKAT', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2640, 'PERENCANA AHLI MUDA', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2641, 'Pengawas TK', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2642, 'PENYULUH PANGAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2643, 'PENYUSUN ADVOKASI, DAN KOMUNIKASI, INFORMASI, DAN EDUKASI', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2644, 'PENYUSUN BAHAN KEBIJAKAN PENELITIAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2645, 'PENYUSUN RENCANA KEBUTUHAN LOGISTIK', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2646, 'PENYUSUN RENCANA PENINGKATAN PERAN SERTA MASYARAKAT', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2647, 'PENELAAH DAMPAK LINGKUNGAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2648, 'PENGADMINISTRASI AKTA PERKAWINAN, PERCERAIAN, PENGAKUAN, PENGANGKATAN DAN PENGESAHAN ANAK', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2649, 'Pengelola Pengadaan Barang/Jasa Pertama', 'pelaksana', '7', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2650, 'JURU SITA KEKAYAAN NEGARA', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2651, 'PRANATA HUMAS (JFG)', 'pelaksana', '5', '490', '4.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2652, 'PENGADMINISTRASI HUKUM', 'pelaksana', '5', '490', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2653, 'PENGEMUDI VIP', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2654, 'SEKRETARIS', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2655, 'PENGELOLA PEMBINAAN DAN PENGEMBANGAN PEREKONOMIAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2656, 'Analis Kebijakan Ahli Muda  / Subkoordinator Pengembangan Otonomi Daerah', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2657, 'PENGELOLA UNIT LAYANAN PENGADAAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2658, 'Polisi Pamong Praja Ahli Muda / Subkoordinator Pengamanan dan Pengawalan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2659, 'Analis Perdagangan Ahli Muda / Subkoordinator Pengawasan Perizinan dan Pembinaan Usaha Perdagangan', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2660, 'Pengawas Mutu Hasil Pertanian Ahli Muda / Subkoordinator Keamanan dan Kerawanan Pangan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2661, 'Analis Kebijakan Ahli Muda / Subkoordinator Tata Usaha dan Keuangan', 'pelaksana', '1000', '1295', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2662, 'Ahli Pertama - Analis Kepegawaian', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2663, 'Pengelola Karier Pendidik', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2664, 'Ahli Pertama - Polisi Pamong Praja', 'pelaksana', '8', '1270', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2665, 'AHLI PERTAMA - ADMINISTRATOR KESEHATAN', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2666, 'Pranata Hubungan Masyarakat Ahli Muda / Subkoordinator Pengelolaan Komunikasi Publik', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2667, 'Analis Kebijakan Ahli Muda / Subkoordinator  Ketahanan Ekonomi', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2668, 'Analis Kepegawaian Ahli Muda /  Subkoordinator Pembinaan dan Pemberhentian', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2669, 'Analis Kepegawaian Ahli Muda / Subkoordinator Jabatan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2670, 'Analis Kebijakan Ahli Muda /  Subkoordinator Perekonomian', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2671, 'Ahli Pertama - Pengawas Koperasi', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2672, 'Ahli Pertama - Pranata Hubungan Masyarakat', 'pelaksana', '1000', '1280', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2673, 'Perisalah Legislatif Ahli Muda / Subkoordinator Fasilitasi Penganggaran', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2674, 'Analis Kebijakan Ahli Muda / Subkoordinator Manajemen dan Rekayasa Lalu Lintas', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2675, 'Pranata Hubungan Masyarakat Ahli Muda / Subkoordinator Pengelolaan Informasi dan Media Publik', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2676, 'Analis Kebijakan Ahli Muda / Subkoordinator Pengelolaan Wisma, Gedung Olah Raga dan Lapangan Olah Raga', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2677, 'Analis Kepegawaian Ahli Muda / Subkoordinator Informasi', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2678, 'Analis Hukum Ahli Muda /Subkoordinator Dokumentasi dan Publikasi', 'pelaksana', '9', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2679, 'Perisalah Legislatif Ahli Muda /Subkoordinator Persidangan, Risalah dan Publikasi', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2680, 'Analis Kebijakan Ahli Muda / Subkoordinator Organisasi Kemasyarakatan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2681, 'Analis Kebijakan Ahli Muda / Subkoordinator Pembinaan Kecamatan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2682, 'Penggerak Swadaya Masyarakat (S1)', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2683, 'ANALIS PERENCANAAN', 'pelaksana', '6', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2684, 'PRANATA HUMAS', 'pelaksana', '1000', '740', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2685, 'jabatan tidak terdeteksi', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2686, 'PELAKSANA/TERAMPIL - ANALIS KEPEGAWAIAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2687, 'Pranata Komputer (D3)', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2688, 'Ahli Pertama - Arsiparis', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2689, 'Pelaksana Pemula/Pemula - Penguji Kendaraan Bermotor', 'pelaksana', '1000', '490', '0.83', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2690, 'AHLI PERTAMA - PENYULUH KESEHATAN MASYARAKAT', 'pelaksana', '1000', '1310', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2691, 'JF AUDITOR PERTAMA', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2692, 'Ahli Pertama - Dokter Gigi', 'pelaksana', '1000', '1370', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2693, 'JF AUDITOR MUDA', 'pelaksana', '10', '1655', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2694, 'Ahli Pertama - Apoteker', 'pelaksana', '8', '1295', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2695, 'Ahli Pertama - Pranata Komputer', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2696, 'Analis Kebijakan Ahli Muda / Subkoordinator Pembukuan dan Pemberdayaan Pasar Rakyat', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2697, 'Analis Pasar Hasil Perikanan Ahli Muda / Subkoordinator Pengolahan dan Pemasaran Produk Perikanan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2698, 'Pranata Hubungan Masyarakat Pertama', 'pelaksana', '8', '1280', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2699, 'ANALIS PEREKONOMIAN', 'pelaksana', '7', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2700, 'JF PERANCANG PERATURAN PERUNDANG-UNDANGAN PERTAMA', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2701, 'PENGAWAS PENYELENGGARA URUSAN PEMERINTAH DAERAH MUDA', 'pelaksana', '10', '1655', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2702, 'Pelatih Olahraga Ahli Muda / Subkoordinator Olah Raga', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2703, 'Analis Kebijakan Ahli Muda /  Subkoordinator Pembinaan BUMD', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2704, 'Analis Kepegawaian Ahli Muda / Subkoordinator Kepangkatan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2705, 'AUDITOR AHLI PERTAMA', 'pelaksana', '8', '1280', '2.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2706, 'Perancang Peraturan Perundang-Undangan Ahli Muda / Subkoordinator Kajian Perundang-undangan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2707, 'Analis Kebijakan Ahli Muda / Subkoordinator Pengelolaan Sarana Prasarana dan Ketertiban Pasar Rakyat', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2708, 'Pengawas Penyelenggaraan Urusan Pemerintahan di Daerah (Pengawas Pemerintah) Pertama', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2709, 'JF AUDITOR PELAKSANA LANJUTAN', 'pelaksana', '7', '940', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2710, 'Ahli Pertama - Pengawas Penyelenggaraan Urusan Pemerintahan', 'pelaksana', '1000', '1280', '2.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2711, 'Penyuluh Lingkungan Hidup Ahli Muda /Subkoordinator Kebersihan dan Pengangkutan Sampah', 'pelaksana', '9', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2712, 'JF MEDIK VETERINER MUDA', 'pelaksana', '9', '1355', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2713, 'Ahli Pertama - Pengelola Pengadaan Barang Jasa', 'pelaksana', '1000', '1270', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2714, 'KONSELOR', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2715, 'KOORDINATOR', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2716, 'KOORDINATOR PERGUDANGAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2717, 'OPERATOR CONSOLE', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2718, 'OPERATOR TAYANGAN MULTIMEDIA DAN SMS', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2719, 'PEMELIHARA BANGUNAN', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2720, 'PENGADMINISTRASI ANALISIS DAN KEMITRAAN MEDIA', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2721, 'PENGADMINISTRASI PERPUSTAKAAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2722, 'PRANATA PENGAMBILAN SAMPEL', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2723, 'Pengawas Lingkungan Hidup Ahli Muda /Subkoordinator Pengaduan dan Penegakan Hukum Lingkungan Hidup', 'pelaksana', '9', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2724, 'Ahli Pertama - Pamong Budaya', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2725, 'Pelaksana/Terampil - Asisten Apoteker', 'pelaksana', '6', '755', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2726, 'Perencana Ahli Muda / Subkoordinator Program dan Keuangan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2727, 'Analis Kebijakan Ahli Muda / Subkoordinator Pengendalian, Pengelolaan Retribusi dan Perizinan Pasar Rakyat', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2729, 'Pengendali Dampak Lingkungan Ahli Muda /Subkoordinator Pencegahan Pencemaran dan Kerusakan Lingkungan Hidup', 'pelaksana', '9', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2730, 'ANALIS KIMIA', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2731, 'JF ARSIPARIS PELAKSANA LANJUTAN', 'pelaksana', '7', '1005', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2732, 'Medik Veteriner Ahli Muda / Subkoordinator Peternakan dan Kesehatan Hewan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2733, 'Pamong Budaya Ahli Muda / Subkoordinator Pembinaan Sejarah, Nilai Tradisi dan Pelestarian Cagar Budaya', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2734, 'Ahli Pertama - Pekerja Sosial', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2735, 'Pelaksana/Terampil - Bidan', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2736, 'Analis Pasar Hasil Pertanian Ahli Muda / Subkoordinator Ketersediaan dan Pengelolaan Kemandirian Pangan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2737, 'Analis Kebijakan Ahli Muda / Subkoordinator Kesejahteraan Rakyat', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2738, 'Penyuluh Pertanian Ahli Muda /Subkoordinator Penyuluhan, Pengendalian dan Penanggulangan Bencana Pertanian', 'pelaksana', '9', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2739, 'Pengawas Mutu Hasil Pertanian Ahli Muda /Subkoordinator Keamanan dan Kerawanan Pangan', 'pelaksana', '9', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2740, 'Analis Pasar Hasil Pertanian Ahli Muda /Subkoordinator Ketersediaan dan Pengelolaan Kemandirian Pangan', 'pelaksana', '9', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2741, 'Analis Prasarana dan Sarana Pertanian Ahli Muda /Subkoordinator Budidaya, Prasarana dan Sarana Pertanian', 'pelaksana', '9', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2742, 'ANALIS KETAHANAN PANGAN AHLI MUDA', 'pelaksana', '9', '1355', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2743, 'ANALIS PAJAK', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2744, 'PEMELIHARA PERALATAN', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2745, 'PEMERIKSA JALAN DAN JEMBATAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2746, 'PEMULASARAN JENAZAH', 'pelaksana', '1000', '340', '5.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2747, 'PENATA BANGUNAN GEDUNG DAN PERMUKIMAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2748, 'Pelaksana/Terampil - Pranata Komputer', 'pelaksana', '1000', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2749, 'JF PENYULUH PERTANIAN PELAKSANA', 'pelaksana', '6', '770', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2750, 'JF PENGAWAS PERIKANAN PELAKSANA', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2751, 'Analis Kebakaran Ahli Muda /Subkoordinator Inspeksi, Sarana dan Prasarana Kebakaran', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2752, 'Analis Perdagangan Ahli Muda / Subkoordinator Penggunaan dan Pemasaran Produk Dalam Negeri', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2753, 'Pamong Budaya Ahli Muda / Subkoordinator Pengelolaan Kebudayaan dan Kesenian', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2754, 'Pelaksana/Terampil - Fisioterapis', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2755, 'Perencana  Ahli Muda/ Subkoordinator Perencanaan, Evaluasi dan Pelaporan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2756, 'Mediator Hubungan Industrial Ahli Muda / Subkoordinator Hubungan Industrial dan Jaminan Sosial Tenaga Kerja', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2757, 'KEPALA SEKSI TERMINAL PENUMPANG DAN PERPARKIRAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2758, 'PENGELOLA REKAYASA LALU LINTAS', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2759, 'Pelaksana/Terampil - Nutrisionis', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2760, 'Polisi Pamong Praja Ahli Muda / Subkoordinator Pembinaan, Pengawasan dan Penyuluhan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2761, 'Analis Perdagangan Ahli Muda / Subkoordinator Stabilisasi Harga Barang Kebutuhan Pokok dan Barang Penting', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2762, 'Analis Prasarana dan Sarana Pertanian Ahli Muda / Subkoordinator Budidaya, Prasarana dan Sarana Pertanian', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2763, 'Analis Kebijakan Ahli Muda / Subkoordinator Rumah Tangga dan Perlengkapan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2764, 'Analis Kebijakan Ahli Muda / Subkoordinator Ketahanan Sosial Budaya Dan Agama', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2765, 'Analis Kepegawaian Ahli Muda / Subkoordinator Kesejahteraan Rakyat', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2766, 'Widyaprada Ahli Muda / Subkoordinator Pengelolaan Kelembagaan Pendidikan Anak Usia Dini dan Pendidikan Non Formal', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2767, 'Administrator Kesehatan Ahli Muda / Subkoordinator Pengembangan Upaya Kesehatan Bersumberdaya Masyarakat', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2768, 'PENELAAH KEBIJAKAN PENGADAAN BARANG DAN JASA', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2769, 'JF PENGUJI KENDARAAN BERMOTOR PELAKSANA / TERAMPIL', 'pelaksana', '6', '770', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2770, 'PENGELOLA SISTEM PELAYANAN ANGKUTAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2771, 'PENGELOLA PERIZINAN', 'pelaksana', '6', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2772, 'PENGELOLA PERPARKIRAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2773, 'PEMELIHARA SARANA DAN PRASARANA', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2774, 'PEMELIHARA PENERANGAN JALAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2775, 'PRANATA TAMAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2776, 'PEMELIHARA JALAN', 'pelaksana', '5', '490', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2777, 'PETUGAS OPERASI DAN PEMELIHARAAN SUMBER DAYA AIR', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2778, 'OPERATOR ALAT BERAT', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2779, 'PENJAGA PINTU AIR', 'pelaksana', '3', '340', '0.95', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2780, 'Penguji Kendaraan Bermotor Pelaksana Pemula', 'pelaksana', '5', '490', '4.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2781, 'PENGELOLA PERIZINAN ANGKUTAN JALAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2782, 'PENGATUR LALU LINTAS JALAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2783, 'Teknik Penyehatan Lingkungan Ahli Muda /Subkoordinator Pencegahan dan Peningkatan Kualitas Permukiman Kumuh', 'pelaksana', '9', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2784, 'JF SURVEYOR PEMETAAN PELAKSANA LANJUTAN', 'pelaksana', '7', '1005', '2.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2785, 'ANALIS BANGUNAN DAN PERUMAHAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2786, 'Penyusun Rencana Kebutuhan Sarana Dan Prasarana', 'pelaksana', '7', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2787, 'Pelaksana/Terampil - Sanitarian', 'pelaksana', '1000', '755', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2788, 'Pembina Jasa Konstruksi  Ahli Muda /Subkoordinator Pengembangan Jasa Konstruksi', 'pelaksana', '9', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2789, 'Teknik Pengairan Ahli Muda /Subkoordinator Pengelolaan Sumber Daya Air', 'pelaksana', '9', '1430', '3.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2790, 'JF TEKNIK TATA BANGUNAN & PERUMAHAN PERTAMA', 'pelaksana', '9', '1325', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2791, 'PENGAWAS BANGUNAN DAN GEDUNG', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2792, 'JF TEKNIK TATA BANGUNAN DAN PERUMAHAN PELAKSANA', 'pelaksana', '6', '755', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2793, 'TEKNIK JALAN DAN JEMBATAN PELAKSANA', 'pelaksana', '6', '755', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2794, 'TEKNIK PENGAIRAN PELAKSANA', 'pelaksana', '6', '755', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2795, 'PENGELOLA JASA KONSTRUKSI', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2796, 'PENGELOLA PENGENDALIAN PEMANFAATAN RUANG', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2797, 'PENGELOLA PEMELIHARAAN JALAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2798, 'PENGELOLA SUMBER DAYA AIR', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2799, 'PENGELOLA TATA RUANG DAN TATA GUNA BANGUNAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2800, 'Pelaksana/Terampil - Teknik Tata Bangunan Dan Perumahan', 'pelaksana', '1000', '755', '3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2801, 'Pengembang Kurikulum Ahli Muda / Subkoordinator Kurikulum Muatan Lokal Pendidikan Anak Usia Dini dan Pendidikan Non Formal', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2802, 'PENGELOLA EDUKASI', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2803, 'PENGADMINISTRASI DATA PENYAJIAN DAN PUBLIKASI', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2804, 'JF APOTEKER MADYA', 'pelaksana', '11', '1945', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2805, 'OPERATOR RADIO', 'pelaksana', '3', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2806, 'Pranata Hubungan Masyarakat Ahli Muda /Subkoordinator Pengelolaan Komunikasi Publik', 'pelaksana', '9', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2807, 'JF STATISTISI PERTAMA', 'pelaksana', '9', '1280', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2808, 'JF STATISTISI PELAKSANA LANJUTAN', 'pelaksana', '7', '1005', '2.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2809, 'JF PRANATA HUBUNGAN MASYARAKAT PELAKSANA LANJUTAN', 'pelaksana', '7', '1005', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2810, 'Ahli Pertama - Dokter', 'pelaksana', '9', '1570', '2.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2811, 'Pelaksana/Terampil - Terapis Wicara', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2812, 'JF PRANATA HUBUNGAN MASYARAKAT PELAKSANA', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2813, 'PENGELOLA PENGADUAN PUBLIK', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2814, 'Analis Ketahanan Pangan Ahli Muda / Subkoordinator Penganekaragaman Konsumsi Pangan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2815, 'PENGELOLA KEAMANAN SISTEM INFORMASI', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2817, 'JF PERAWAT MADYA', 'pelaksana', '11', '1960', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2818, 'JF DOKTER GIGI MUDA', 'pelaksana', '10', '1670', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2819, 'JF SANITARIAN MADYA', 'pelaksana', '11', '1930', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2820, 'Epidemiolog Kesehatan Ahli Muda /Subkoordinator Pengelolaan Pelayanan Penyakit Menular dan Tidak Menular', 'pelaksana', '9', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2821, 'JF NUTRISIONIS MUDA', 'pelaksana', '9', '1555', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2822, 'JF EPIDEMIOLOG KESEHATAN MUDA', 'pelaksana', '9', '1555', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2823, 'KEPALA SUB BAGIAN UMUM DAN KEPEGAWAIAN DINAS KESEHATAN, PENGENDALIAN PENDUDUK DAN KELUARGA BERENCANA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2824, 'JF PENYULUH KESEHATAN MASYARAKAT MUDA', 'pelaksana', '9', '1385', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2825, 'JF DOKTER GIGI PERTAMA', 'pelaksana', '9', '1370', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2826, 'KEPALA UPTD PUSKESMAS NGEGONG (JFT)', 'pelaksana', '12', '2225', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2827, 'KEPALA UPTD PUSKESMAS SUKOSARI (JFT)', 'pelaksana', '12', '2225', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2828, 'KEPALA UPTD PUSKESMAS DEMANGAN (JFT)', 'pelaksana', '12', '2225', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2829, 'KEPALA UPTD PUSKESMAS MANGUHARJO (JFT)', 'pelaksana', '12', '2225', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2830, 'KEPALA UPTD PUSKESMAS BANJAREJO (JFT)', 'pelaksana', '10', '1720', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2831, 'KEPALA UPTD PUSKESMAS TAWANGREJO (JFT)', 'pelaksana', '10', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2832, 'KA DINAS KESEHATAN, PENGENDALIAN PENDUDUK DAN KELUARGA BERENCANA', 'pelaksana', '14', '2865', '3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2833, 'JFT 4', 'pelaksana', '1000', '1190', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2834, 'Administrator Kesehatan Ahli Pertama / Pertama', 'pelaksana', '8', '1005', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2835, 'ANALIS HUKUM', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2836, 'ANALIS PANGAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2837, 'JFT 3', 'pelaksana', '1000', '1410', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2838, 'PENGELOLA TATA GUNA LAHAN, AIR, SARANA DAN PRASARANA PERTANIAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2839, 'PENGELOLA TATA RUANG', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2840, 'PENGELOLA TATA RUANG DAN KONSERVASI KAWASAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2841, 'PETUGAS PROTOKOL', 'pelaksana', '5', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2842, 'PENGELOLA TERMINAL', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2843, 'PENGELOLA WAJIB PAJAK/ RETRIBUSI DAERAH', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2844, 'PENGEVALUASI PERKEMBANGAN BUMD', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2845, 'PENGOLAH BAHAN REGISTRASI DAN SERTIFIKASI', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2846, 'PENGOLAH DATA INFORMASI DAN HUKUM', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2847, 'PENGOLAH DATA LAPORAN REALISASI ANGGARAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2848, 'JF ANALIS KEPEGAWAIAN PENYELIA', 'pelaksana', '1000', '1230', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2849, 'JF ARSIPARIS MUDA', 'pelaksana', '1000', '1355', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2850, 'ANALIS PENGELOLAAN SUMBER DAYA AIR', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2851, 'ANALIS PENGEMBANGAN SARANA DAN PRASARANA', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2852, 'ANALIS PENYULUHAN DAN LAYANAN INFORMASI', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2853, 'JF PENYULUH PERTANIAN PELAKSANA LANJUTAN', 'pelaksana', '1000', '1035', '2.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2854, 'JF PRANATA KOMPUTER PELAKSANA PEMULA', 'pelaksana', '1000', '490', '4.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2855, 'JF PRANATA KOMPUTER PENYELIA', 'pelaksana', '1000', '1230', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2856, 'SANITARIAN PENYELIA', 'pelaksana', '8', '1245', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2857, 'JF PENYULUH KESEHATAN MASYARAKAT PERTAMA', 'pelaksana', '8', '1310', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2858, 'JF PRANATA LABORATORIUM KESEHATAN MUDA', 'pelaksana', '8', '1355', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2859, 'JF ANALIS KEPEGAWAIAN MUDA', 'pelaksana', '8', '1355', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2860, 'PENYULUH KESEHATAN MASYARAKAT PERTAMA', 'pelaksana', '8', '1310', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2861, 'JF ADMINISTRATOR KESEHATAN PERTAMA', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2862, 'JF NUTRISIONIS PERTAMA', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2863, 'ADMINISTRATOR KESEHATAN PERTAMA', 'pelaksana', '8', '1280', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2864, 'JF NUTRISIONIS PENYELIA', 'pelaksana', '8', '1230', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2865, 'Administrator Kesehatan Ahli Muda / Subkoordinator Pengelolaan Kesehatan Lingkungan, Kerja dan Olah Raga', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2866, 'Pengantar Kerja Ahli Muda / Subkoordinator Pelatihan Kerja dan Produktivitas Tenaga Kerja', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2867, 'JF PERAWAT GIGI PELAKSANA LANJUTAN', 'pelaksana', '7', '1035', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2868, 'Analis Kepegawaian Ahli Muda / Subkoordinator Pembinaan, Peningkatan Sumber Daya Manusia Guru dan Tenaga Kependidikan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2869, 'Analis Kebijakan Ahli Muda / Subkoordinator Penyusunan dan Pengendalian Program', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2870, 'JF PENYULUH KESEHATAN MASYARAKAT PELAKSANA LANJUTAN', 'pelaksana', '7', '1035', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2871, 'JF PRANATA KOMPUTER MUDA', 'pelaksana', '1000', '1355', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2872, 'JF PRANATA LABORATORIUM KESEHATAN MADYA', 'pelaksana', '1000', '1930', '1.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2873, 'Analis Ekonomi Kreatif', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2874, 'Analis Akses Industri', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2875, 'Analis Kebijakan Ahli Muda / Subkoordinator Kebijakan, Pelaporan dan Peningkatan Layanan', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2876, 'Administrator Kesehatan Ahli Muda / Subkoordinator Pemberdayaan Masyarakat Kreatif', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2877, 'PENGELOLA SISTEM DAN JARINGAN', 'pelaksana', '6', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2878, 'Pengelola Pengadaan Barang/Jasa Ahli Muda / Subkoordinator Pengelolaan Pengadaan Barang/Jasa', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2879, 'Analis Kebijakan Ahli Muda / Subkoordinator Layanan Pengadaan Secara Elektronik', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2880, 'JF PERAWAT GIGI PELAKSANA', 'pelaksana', '6', '770', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2881, 'Penyuluh Perindustrian dan Perdagangan  Ahli Muda / Subkoordinator Pengelolaan Sistem Informasi Industri', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2882, 'ANALIS PERENCANAAN, EVALUASI DAN PELAPORAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2883, 'JFU Operasional (PD 1)', 'pelaksana', '1000', '565', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2884, 'JFU Operasional (PD 2)', 'pelaksana', '1000', '555', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2885, 'JFU Administrasi (PD 1)', 'pelaksana', '1000', '535', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2886, 'JFU Administrasi (PD 2)', 'pelaksana', '1000', '505', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2887, 'JFU Pelayanan (PD 1)', 'pelaksana', '1000', '505', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2888, 'ANALIS BANGUNAN GEDUNG DAN PERMUKIMAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2889, 'ANALIS BIMBINGAN USAHA', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2890, 'ANALIS JALAN JEMBATAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2891, 'ANALIS KELEMBAGAAN', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2892, 'ANALIS KEPENDUDUKAN DAN PENCATATAN SIPIL', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2893, 'ANALIS KERJASAMA', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2894, 'ANALIS KONSULTASI DAN BANTUAN HUKUM', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2895, 'ANALIS ORGANISASI DAN TATA LAKSANA', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2896, 'ANALIS PEMBIAYAAN PERTANIAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2897, 'PENGEMUDI AMBULAN', 'pelaksana', '4', '440', '0.75', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2898, 'Analis Kebijakan Ahli Muda / Subkoordinator Pelayanan Perizinan dan Non Perizinan Non Berusaha', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2899, 'Administrator Kesehatan Ahli Muda / Subkoordinator Peningkatan Sumber Daya Manusia dan Pembiayaan Kesehatan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2900, 'Penyuluh Perindustrian dan Perdagangan  Ahli Muda / Subkoordinator Pembinaan dan Pengawasan Perindustrian', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2901, 'TEKNISI LISTRIK DAN JARINGAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2902, 'PENGADMINISTRASI KESENIAN DAN BUDAYA DAERAH', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2903, 'PENGELOLA DOKUMEN DAN INFORMASI HUKUM', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2904, 'Penyuluhan Kemasyarakatan Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2905, 'Perisalah Legislatif Pertama', 'pelaksana', '8', '1310', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2906, 'Polisi Pamong Praja Pelaksana	', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2907, 'Polisi Pamong Praja Pertama', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2908, 'Teknisi Elektro Medis Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2909, 'Teknisi Transfusi Darah Pelaksana', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2910, 'Terapis Wicara Pelaksana', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2911, 'Jf Pranata Kornputer Pelaksana Lanjutan / Mahir', 'pelaksana', '1000', '1005', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2912, 'PENGADMINISTRASI AKTA KELAHIRAN DAN KEMATIAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2913, 'PENGADMINISTRASI KEPENDUDUKAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2914, 'TEKNISI SARANA DAN PRASARANA', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2915, 'JF PRANATA KOMPUTER PERTAMA', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2916, 'FASILITATOR PERDAGANGAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2917, 'PENGELOLA PASAR', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2918, 'PENGELOLA USAHA KEPARIWISATAAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2919, 'PENGELOLA ADAT DAN KESENIAN', 'pelaksana', '6', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2920, 'ANALIS PENGEMBANGAN POTENSI DAERAH', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2921, 'Medik Veteriner Ahli Muda /Subkoordinator Peternakan dan Kesehatan Hewan', 'pelaksana', '9', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2922, 'Analis Kebijakan Ahli Muda / Subkoordinator Pelayanan Perizinan dan Non Perizinan Berusaha', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2923, 'Penyuluh Perindustrian dan Perdagangan  Ahli Muda / Subkoordinator Perencanaan dan Pembangunan Perindustrian', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2924, 'Administrator Kesehatan Ahli Muda / Subkoordinator Farmasi, Alat Kesehatan dan Makanan Minuman', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2925, 'Penyuluh Sosial Ahli Muda /Subkoordinator Penanganan Bencana dan Pengelolaan Taman Makam Pahlawan', 'pelaksana', '9', '1430', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2926, 'Analis Kebijakan Ahli Muda', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2927, 'Analis Kebijakan Ahli Muda  /Subkoordinator Perkawinan, Perceraian, Perubahan Status Anak dan Pewarganegaraan', 'pelaksana', '9', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2928, 'JF ARSIPARIS PELAKSANA', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2929, 'PENGGERAK SWADAYA MASYARAKAT (JFG)', 'pelaksana', '5', '490', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2930, 'PRANATA TAMAN MAKAM PAHLAWAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2931, 'ARSIPARIS AHLI PERTAMA', 'pelaksana', '8', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2932, 'Penata Ruang Ahli Muda / Subkoordinator Pertamanan dan Ruang Terbuka Hijau', 'pelaksana', '1000', '1430', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2933, 'Pekerja Sosial Pertama', 'pelaksana', '9', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2934, 'PENGELOLA PENGUATAN PENGARUSUTAMAAN GENDER', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2935, 'PENGELOLA PEMBERDAYAAN, PERLINDUNGAN PEREMPUAN DAN ANAK', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2936, 'Analis Perdagangan Ahli Muda / Subkoordinator Pemberdayaan Usaha Mikro', 'pelaksana', '1000', '1430', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2937, 'Pelatih Olahraga Ahli', 'pelaksana', '8', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2938, 'KEPALA BIDANG KEPEMUDAAN DAN KEOLAHRAGAAN', 'pelaksana', '11', '2045', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2939, 'Analis Kebijakan Ahli Madya / Koordinator Penyelenggaraan Pelayanan Perizinan dan Non Perizinan', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2940, 'PAMONG BUDAYA PERTAMA', 'pelaksana', '8', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2941, 'Epidemiolog Kesehatan Ahli Muda / Subkoordinator Pengelolaan Pelayanan Penyakit Menular dan Tidak Menular', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2942, 'Analis Kebijakan Ahli Muda / Subkoordinator Pengembangan Kinerja', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2943, 'Analis Kebijakan Ahli Muda', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2944, 'Administrator Kesehatan Ahli Muda / Subkoordinator Pengelolaan Layanan Kesehatan Ibu, Balita, dan Gizi Masyarakat', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2945, 'PENGUJI KESELAMATAN DAN KESEHATAN KERJA PERTAMA (JFG)', 'pelaksana', '5', '490', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2946, 'PENGELOLA DOKUMENTASI', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2947, 'Teknik Tata Bangunan dan Perumahan Pelaksana', 'pelaksana', '6', '755', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2948, 'Analis Kebijakan Ahli Muda / Subkoordinator Pengendalian Pelaksanaan Penanaman Modal', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2949, 'Administrator Kesehatan Ahli Muda / Subkoordinator Pengelolaan Pelayanan Kesehatan Usia Produktif, Usia Lanjut, Jiwa dan Napza', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2950, 'Analis Kebijakan Ahli Muda / Subkoordinator Ketatalaksanaan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2951, 'Analis Dokumen Perizinan', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2952, 'PENGELOLA DOKUMEN PERIZINAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2953, 'PENGELOLA TEKNOLOGI INFORMASI', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2954, 'PENGELOLA KURIKULUM', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2955, 'PENGELOLA DATA PENDIDIKAN DAN EVALUASI', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2956, 'PENGELOLA PENDIDIKAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2957, 'PENGELOLA SARANA DAN PRASARANA PENDIDIKAN DASAR', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2958, 'Analis Kurikulum Dan Pembelajaran', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2959, 'Analis Kebutuhan Pendidik Dan Tenaga Kependidikan', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2960, 'Pengawas Koperasi Ahli Muda / Subkoordinator Pemberdayaan Koperasi', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2961, 'Pengawas Koperasi Ahli Muda / Subkoordinator Kelembagaan Koperasi', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2962, 'Pelatih Olahraga Ahli Muda  /Subkoordinator Olah Raga', 'pelaksana', '9', '1430', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2963, 'Penyuluh Perindustrian dan Perdagangan  Ahli Muda /Subkoordinator Pengelolaan Sistem Informasi Industri', 'pelaksana', '9', '1430', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2964, 'Mediator Hubungan Industrial Ahli Muda /Subkoordinator Hubungan Industrial dan Jaminan Sosial Tenaga Kerja', 'pelaksana', '9', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2965, 'Analis Perdagangan Ahli Muda /Subkoordinator Pemberdayaan Usaha Mikro', 'pelaksana', '9', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2966, 'Penyuluh Sosial Ahli Muda / Subkoordinator Pemberdayaan Sosial', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2967, 'Analis Kebijakan Ahli Muda / Subkoordinator Kelembagaan dan Analisa Jabatan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2968, 'Pengawas Koperasi Ahli Pertama / Pertama', 'pelaksana', '9', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2969, 'Pengantar Kerja Ahli Muda /Subkoordinator Perencanaan dan Penempatan Tenaga Kerja', 'pelaksana', '9', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2970, 'PENGADMINISTRASI KEPENDIDIKAN', 'pelaksana', '5', '490', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2971, 'PENGELOLA FASILITAS SOSIAL DAN UMUM', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2972, 'JF PENILIK MUDA', 'pelaksana', '9', '1355', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2973, 'Widyaprada Ahli Muda /Subkoordinator Pengelolaan Kelembagaan Pendidikan Anak Usia Dini dan Pendidikan Non Formal', 'pelaksana', '9', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2974, 'Penata Ruang Ahli Muda / Subkoordinator Pengendalian Pemanfaatan Ruang', 'pelaksana', '1000', '1430', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2975, 'Penyuluh Sosial Ahli Muda / Subkoordinator Penanganan Bencana dan Pengelolaan Taman Makam Pahlawan', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2976, 'Administrator Kesehatan Ahli Muda / Subkoordinator Pembinaan Keluarga Berencana', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2977, 'Penyuluh Hukum Ahli Muda / Subkoordinator Penyuluhan dan Bantuan Hukum', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2978, 'PENGADMINISTRASI KESISWAAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2979, 'PENGELOLA GEOSPASIAL', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2980, 'PENGELOLA INFORMASI LINGKUNGAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2981, 'Penera Ahli Pertama', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2982, 'PENGADMINISTRASI RAPAT', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2983, 'Penata Ruang Ahli Muda / Subkoordinator Perencanaan Ruang', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2984, 'Analis Hukum Ahli Muda / Subkoordinator Dokumentasi dan Publikasi', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2985, 'Administrator Kesehatan Ahli Muda / Subkoordinator Pemberdayaan dan Peningkatan Keluarga Sejahtera', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2986, 'Pekerja Sosial Ahli Muda / Subkoordinator Rehabilitasi Sosial Pemerlu Pelayanan Kesejahteraan Sosial Lainnya', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2987, 'PENGELOLA INSTALASI AIR DAN LISTRIK', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2988, 'Teknik Jalan dan Jembatan Ahli Muda / Subkoordinator Pemeliharaan Jalan dan Jembatan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2989, 'JFU Teknis (PD 2)', 'pelaksana', '1000', '570', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2990, 'Analis Kebijakan Ahli Muda / Subkoordinator Pengelolaan Data Gender', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2991, 'JFG', 'pelaksana', '5', '490', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2992, 'Pekerja Sosial Ahli Muda / Subkoordinator Rehabilitasi Sosial Disabilitas Terlantar, Anak Terlantar dan Lansia Terlantar Serta Gelandangan Pengemis', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2993, 'Analis Kebijakan Ahli Muda / Subkoordinator Kerjasama dan Inovasi Pelayanan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2994, 'Teknik Jalan dan Jembatan Ahli Muda / Subkoordinator Pembangunan Jalan dan Jembatan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2995, 'Analis Kebijakan Ahli Muda / Subkoordinator Pemenuhan Hak Anak', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2996, 'Analis Data Ilmiah Ahli Muda / Subkoordinator Penelitian dan Kajian', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2997, 'Teknik Tata Bangunan dan Perumahan Ahli Muda / Subkoordinator Penataan Bangunan dan Lingkungan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2998, 'Teknik Jalan dan Jembatan Ahli Muda /Subkoordinator Pembangunan Jalan dan Jembatan', 'pelaksana', '9', '1430', '3.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (2999, 'Analis Kebijakan Ahli Muda / Subkoordinator Perlindungan Perempuan dan Anak', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3000, 'Analis Kebijakan Ahli Muda / Subkoordinator Perkawinan, Perceraian, Perubahan Status Anak dan Pewarganegaraan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3001, 'Pranata Komputer Ahli Muda / Subkoordinator Pengelolaan Informasi Administrasi Kependudukan', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3002, 'Perencana Ahli Muda / Subkoordinator Perencanaan Infrastruktur dan Kewilayahan', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3003, 'Perencana Ahli Muda / Subkoordinator Perencanaan Perekonomian dan Sumber Daya Alam', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3004, 'Teknik Tata Bangunan dan Perumahan Ahli Muda / Subkoordinator Penataan Bangunan Gedung', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3005, 'Analis Kebijakan Ahli Muda / Subkoordinator Kelahiran dan Kematian', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3006, 'Analis Kebijakan Ahli Muda / Subkoordinator Peningkatan Kualitas Keluarga', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3007, 'Teknik Pengairan Ahli Muda / Subkoordinator Pengendalian Banjir', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3008, 'Analis Kebijakan Ahli Muda / Subkoordinator Pindah Datang dan Pendataan Penduduk', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3009, 'Perencana Ahli Muda / Subkoordinator Perencanaan Pemerintahan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3010, 'PELAKSANA/TERAMPIL - PEREKAM MEDIS', 'pelaksana', '6', '770', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3011, 'ADHIKARA SIARAN (PENYIAR) (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3012, 'JF ANALIS KEPEGAWAIAN PELAKSANA', 'pelaksana', '1000', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3013, 'Analis Kebijakan Ahli Muda / Subkoordinator Pengarusutamaan Gender dan Pemberdayaan Perempuan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3014, 'Teknik Pengairan Ahli Muda / Subkoordinator Pengelolaan Sumber Daya Air', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3015, 'Analis Kebijakan Ahli Muda/ Subkoordinator Identitas Penduduk', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3016, 'Perencana Ahli Muda / Subkoordinator Pengendalian dan Evaluasi Pembangunan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3017, 'Analis Kebijakan Ahli Muda / Subkoordinator  Kewaspadaan Nasional dan Penanganan Konflik', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3018, 'Penyuluh Perikanan Ahli Muda /Subkoordinator Perikanan Budidaya dan Pengelolaan Sumber Daya Ikan', 'pelaksana', '9', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3019, 'Penyuluh Lingkungan Hidup Ahli Muda / Subkoordinator Pengelolaan Limbah Bahan Berbahaya dan Beracun', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3020, 'Adyatama Kepariwisataan dan Ekonomi Kreatif Ahli Muda / Subkoordinator Pemasaran, Pengembangan Sumber Daya Pariwisata dan Ekonomi Kreatif', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3021, 'Perencana Ahli Muda / Subkoordinator Perencanaan dan Pendanaan Pembangunan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3022, 'Perencana  Ahli Muda / Subkoordinator Perencanaan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3023, 'Penyuluh Lingkungan Hidup Ahli Muda / Subkoordinator Pengolahan dan Pengurangan Sampah', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3024, 'Adyatama Kepariwisataan dan Ekonomi Kreatif Ahli Muda / Subkoordinator Pengelolaan dan Pengembangan Destinasi Pariwisata', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3025, 'Penilai Pemerintah Ahli Muda / Subkoordinator Pemeriksaan Pajak Daerah', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3026, 'Polisi Pamong Praja Ahli Pertama', 'pelaksana', '8', '1270', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3027, 'PENYIDIK', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3028, 'PENYULUH KEAMANAN MASYARAKAT', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3029, 'Analis Keuangan Pusat dan Daerah Ahli Muda / Subkoordinator Keuangan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3030, 'PENGELOLA KEGIATAN SURVEI DAN PERENCANAAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3031, 'PENGELOLA KELEMBAGAAN KURSUS DAN PELATIHAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3032, 'PENGELOLA KETAHANAN PANGAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3033, 'PENGELOLA KETERSEDIAAN DAN KERAWANAN PANGAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3034, 'PENGELOLA LIMBAH', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3035, 'PENGELOLA MEDIA CETAK', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3036, 'PENGELOLA MUTASI PENDUDUK', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3037, 'PENGELOLA OBAT DAN ALAT-ALAT KESEHATAN', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3038, 'PENGELOLA ORGANISASI POLITIK DAN ORGANISASI KEMASYARAKATAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3039, 'PENGELOLA PELAYANAN KESEHATAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3040, 'PENGELOLA PEMBERANTASAN PENYAKIT BERSUMBER BINATANG', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3041, 'PENGELOLA PEMBERANTASAN PENYAKIT MENULAR LANGSUNG', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3042, 'PENGELOLA PEMBINAAN BANTUAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3043, 'PENGELOLA PEMBINAAN DAN PENGEMBANGAN PEREKONOMIAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3044, 'PENGELOLA PEMBINAAN DAN PENYELENGGARAAN PENDIDIKAN ANAK USIA DINI', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3045, 'PENGELOLA PENGAMATAN PENYAKIT DAN IMUNISASI', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3046, 'PENGELOLA PENGANEKARAGAMAN PANGAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3047, 'PENGELOLA PENGGERAK PERAN SERTA MASYARAKAT DI BIDANG KESEHATAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3048, 'PELAKSANA/TERAMPIL BIDAN', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3049, 'PENGELOLA PENINGKATAN KOMPETENSI PENDIDIK DAN TENAGA KEPENDIDIKAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3050, 'PENGELOLA PENINGKATAN KOMPETENSI PENDIDIK DAN TENAGA KEPENDIDIKAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3051, 'PENGEMUDI MOBIL PEMADAM KEBAKARAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3052, 'PENGELOLA PENYAKIT TIDAK MENULAR', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3053, 'PENGELOLA PERANGKAT KECAMATAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3054, 'PENGELOLA PERLINDUNGAN TANAMAN PANGAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3055, 'PENGELOLA PERPUSTAKAAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3056, 'PENGELOLA PERUMAHAN DAN PERMUKIMAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3057, 'PENGELOLA PETERNAKAN', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3058, 'PENGELOLA PROGRAM GIZI', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3059, 'PENGELOLA PROGRAM KESEHATAN KELUARGA', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3060, 'PENGELOLA PROGRAM PENYULUHAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3061, 'PENGELOLA PUSTAKA ELEKTRONIK', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3062, 'PENGELOLA REHABILITASI DAN PELAYANAN SOSIAL', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3063, 'PENGELOLA SAMPAH', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3064, 'PENGELOLA SIM PENANAMAN MODAL DAN PERIZINAN TERPADU', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3065, 'PENGELOLA SISTEM INFORMASI SARANA DAN PRASARANA JALAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3066, 'PENGELOLA TANAMAN PANGAN DAN HORTIKULTURA', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3067, 'Analis Bahan Pengembangan Informasi Pasar Kerja', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3068, 'JF ANALIS KEPEGAWAIAN PELAKSANA LANJUTAN', 'pelaksana', '1000', '1005', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3069, 'PENGELOLA PENERANGAN JALAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3070, 'Penata Ruang Ahli Muda /Subkoordinator Pengendalian Pemanfaatan Ruang', 'pelaksana', '9', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3071, 'PRANATA PEMADAM KEBAKARAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3072, 'Penyuluh Lingkungan Hidup Ahli Muda / Subkoordinator Kebersihan dan Pengangkutan Sampah', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3073, 'Penilai Pemerintah Ahli Muda / Subkoordinator Pendataan dan Penetapan Pajak Daerah', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3074, 'Penata Ruang Ahli Muda / Subkoordinator Permakaman', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3075, 'Penata Ruang Ahli Muda / Subkoordinator Penerangan Jalan Umum', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3076, 'Pengendali Dampak Lingkungan Ahli Muda / Subkoordinator Keanekaragaman Hayati, Perencanaan dan Penataan Lingkungan Hidup', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3077, 'PENGELOLA KEAMANAN DAN KETERTIBAN', 'pelaksana', '6', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3078, 'PELAKSANA/TERAMPIL - PERAWAT', 'pelaksana', '6', '770', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3079, 'Analis Bahan Penguatan Dan Pemberdayaan Kelembagaan Pelatihan', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3080, 'Analis Bahan Jaminan Sosial Tenaga Kerja', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3081, 'Analis Bahan Pengupahan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3082, 'Analis Lingkungan Hidup', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3083, 'Analis Pertanahan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3084, 'Analis Konservasi Air Dan Lingkungan Hidup', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3085, 'Analis Perlindungan Masyarakat', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3086, 'Analis Kebakaran', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3087, 'PENGOLAH DATA PENYULUHAN DAN LAYANAN INFORMASI', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3088, 'PENYULUH BENCANA', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3089, 'PENYUSUN RENCANA TATA RUANG', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3090, 'PERANCANG GRAFIS', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3091, 'PETUGAS TEKNOLOGI INFORMASI KOMPUTER', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3092, 'JFT 5', 'pelaksana', '1000', '650', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3093, 'PRAMU BENIH IKAN', 'pelaksana', '1000', '190', '9.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3094, 'PRAMU LABORATORIUM', 'pelaksana', '1000', '340', '5.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3095, 'PRAMU PEMAKAMAN', 'pelaksana', '1000', '190', '9.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3096, 'PRAMU TAMAN', 'pelaksana', '1000', '190', '9.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3097, 'PRANATA JAMUAN', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3098, 'PRANATA KEARSIPAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3099, 'PRANATA PENGELOLAAN LEGER JALAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3100, 'PRANATA PROMOSI', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3101, 'PRANATA RESTORASI ARSIP', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3102, 'TEKNISI ELEKTRONIK', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3103, 'TEKNISI JARINGAN INSTALASI', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3104, 'TEKNISI PERALATAN DAN MESIN', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3105, 'VERIFIKATOR ANGGARAN', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3106, 'JF ADMINISTRATOR KESEHATAN MADYA', 'pelaksana', '1000', '1930', '1.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3107, 'JF ADMINISTRATOR KESEHATAN MUDA', 'pelaksana', '1000', '1355', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3108, 'JF DOKTER MADYA', 'pelaksana', '12', '2225', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3109, 'JF NUTRISIONIS MADYA', 'pelaksana', '11', '1930', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3110, 'JF BIDAN MADYA', 'pelaksana', '11', '1930', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3111, 'Analis Kebijakan Ahli Muda / Subkoordinator Bina Ideologi, Bela Negara dan Wawasan Kebangsaan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3112, 'JF PENYULUH PERTANIAN PELAKSANA PEMULA', 'pelaksana', '1000', '570', '4.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3113, 'JF PENYULUH PERTANIAN PENYELIA', 'pelaksana', '1000', '1260', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3114, 'JF PENYULUH PERTANIAN PERTAMA', 'pelaksana', '1000', '1310', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3115, 'JF PERANCANG PERATURAN PERUNDANG-UNDANGAN MUDA', 'pelaksana', '1000', '1355', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3116, 'JF PERAWAT GIGI PELAKSANA PEMULA', 'pelaksana', '1000', '520', '4.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3117, 'JF PERAWAT PELAKSANA PEMULA', 'pelaksana', '1000', '520', '4.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3118, 'JF PRANATA HUBUNGAN MASYARAKAT PELAKSANA PEMULA', 'pelaksana', '1000', '490', '4.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3119, 'JF PRANATA HUBUNGAN MASYARAKAT PENYELIA', 'pelaksana', '1000', '1230', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3120, 'JF PRANATA HUBUNGAN MASYARAKAT PERTAMA', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3121, 'JF STATISTISI PELAKSANA PEMULA (JFG)', 'pelaksana', '1000', '490', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3122, 'JF DOKTER GIGI PERTAMA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3123, 'JF PRANATA KOMPUTER PERTAMA (JFG)', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3124, 'PENGELOLA PERENCANAAN TEKNIS TATA BANGUNAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3125, 'TEKNIK PENYEHATAN LINGKUNGAN PELAKSANA', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3126, 'Analis Penganggaran', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3127, 'Analis Desa Dan Kelurahan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3128, 'Analis Kependidikan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3129, 'Analis Monitoring Dan Evaluasi Dana Rehabilitasi Fasilitas Pendidikan', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3130, 'Analis Kelembagaan Pembinaan Pendidikan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3131, 'Analis Bahan Perencanaan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3132, 'Analis Mitigasi Bencana', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3133, 'ANALIS PENGEMBANGAN KOMPETENSI AHLI MUDA', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3134, 'JF DOKTER MUDA', 'pelaksana', '10', '1720', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3135, 'JF DOKTER PERTAMA', 'pelaksana', '9', '1570', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3136, 'JF RADIOGRAFER MEDIS MUDA', 'pelaksana', '9', '1370', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3137, 'AJUDAN', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3138, 'ANALIS PEMERIKSAAN BUKTI PERMULAAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3139, 'JF PERAWAT PERTAMA', 'pelaksana', '8', '1310', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3140, 'JF TEKNISI ELEKTROMEDIS MUDA', 'pelaksana', '9', '1370', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3141, 'PEMBINA JASA KONSTRUKSI AHLI MUDA', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3142, 'PENGADMINISTRASI PENERIMAAN', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3143, 'PENGADMINISTRASI PENGUJIAN KENDARAAN BERMOTOR', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3144, 'PENGADMINISTRASI PERINDUSTRIAN', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3145, 'PENGADMINISTRASI PERIZINAN', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3146, 'JFU Teknis (PD 1)', 'pelaksana', '1000', '615', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3147, 'PENGADMINISTRASI PROGRAM DAN TATA OPERASIONAL PENELITIAN', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3148, 'PENGADMINISTRASI SARANA PRASARANA', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3149, 'PENGAWAS ANGKUTAN DAN TERMINAL', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3150, 'PENGAWAS HARGA PANGAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3151, 'PENGAWAS JALAN DAN JEMBATAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3152, 'PENGAWAS LALU LINTAS DARAT', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3153, 'PENGAWAS LAPANGAN ANGKUTAN SAMPAH', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3154, 'PENGAWAS LAPANGAN PETUGAS KEBERSIHAN JALAN, SALURAN DAN SELOKAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3155, 'PENGAWAS LAPANGAN PETUGAS KEBERSIHAN TEMPAT PEMBUANGAN AKHIR', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3156, 'PENGAWAS MUTU PAKAN ', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3157, 'PENGAWAS PENYAKIT DAN PENGENDALI PENYAKIT HEWAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3158, 'PENGAWAS PENYAKIT DAN PENGENDALI PENYAKIT IKAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3159, 'PENGAWAS PERIKANAN (PENGGABUNGAN DGN PENGAWAS BENIH IKAN )', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3160, 'JF PENGAWAS MUTU PAKAN PELAKSANA', 'pelaksana', '1000', '740', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3161, 'JF PENGAWAS MUTU PAKAN PELAKSANA PEMULA', 'pelaksana', '1000', '490', '4.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3162, 'JF PENGAWAS MUTU PAKAN PENYELIA', 'pelaksana', '1000', '1230', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3163, 'JF PENGAWAS MUTU PAKAN PERTAMA', 'pelaksana', '1000', '1280', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3164, 'JF PENGAWAS PERIKANAN PELAKSANA LANJUTAN', 'pelaksana', '1000', '1005', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3165, 'JF PENGAWAS PERIKANAN PENYELIA', 'pelaksana', '1000', '1230', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3166, 'JF PENGAWAS PERIKANAN PERTAMA', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3167, 'Analis Kepegawaian Pertama', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3168, 'APOTEKER PERTAMA', 'pelaksana', '8', '1295', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3169, 'JF PENGENDALI DAMPAK LINGKUNGAN MUDA', 'pelaksana', '1000', '1385', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3170, 'JF PENGENDALI DAMPAK LINGKUNGAN PELAKSANA', 'pelaksana', '1000', '770', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3171, 'JF PENGENDALI DAMPAK LINGKUNGAN PELAKSANA LANJUTAN', 'pelaksana', '1000', '1035', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3172, 'JF PENGENDALI DAMPAK LINGKUNGAN PENYELIA', 'pelaksana', '1000', '1260', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3173, 'JF PENGENDALI DAMPAK LINGKUNGAN PERTAMA', 'pelaksana', '1000', '1310', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3174, 'JF PENGGERAK SWADAYA MASYARAKAT PELAKSANA', 'pelaksana', '1000', '805', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3175, 'JF PENGGERAK SWADAYA MASYARAKAT PELAKSANA LANJUTAN', 'pelaksana', '7', '1005', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3176, 'JF PENGGERAK SWADAYA MASYARAKAT PELAKSANA PEMULA', 'pelaksana', '1000', '555', '4.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3177, 'JF PENGGERAK SWADAYA MASYARAKAT PENYELIA', 'pelaksana', '1000', '1230', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3178, 'JF PENGUJI KENDARAAN BERMOTOR PELAKSANA LANJUTAN', 'pelaksana', '1000', '1035', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3179, 'JF PENGUJI KENDARAAN BERMOTOR PELAKSANA PEMULA', 'pelaksana', '1000', '490', '4.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3180, 'JF PENGUJI KENDARAAN BERMOTOR PENYELIA', 'pelaksana', '1000', '1260', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3181, 'JF PENILIK MADYA', 'pelaksana', '1000', '1930', '1.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3182, 'JF PENILIK PERTAMA', 'pelaksana', '1000', '1280', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3183, 'JF PENYULUH KESEHATAN MASYARAKAT MADYA', 'pelaksana', '1000', '2030', '1.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3184, 'JF PENYULUH KESEHATAN MASYARAKAT PELAKSANA', 'pelaksana', '1000', '770', '3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3185, 'JF PENYULUH PERINDUSTRIAN & PERDAGANGAN MUDA', 'pelaksana', '1000', '1385', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3186, 'JF PENYULUH PERINDUSTRIAN & PERDAGANGAN PELAKSANA', 'pelaksana', '1000', '770', '3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3187, 'JF PENYULUH PERINDUSTRIAN & PERDAGANGAN PELAKSANA LANJUTAN', 'pelaksana', '1000', '1035', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3188, 'JF SURVEYOR PEMETAAN PELAKSANA', 'pelaksana', '1000', '740', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3189, 'JF SURVEYOR PEMETAAN PELAKSANA PEMULA', 'pelaksana', '1000', '490', '4.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3190, 'JF SURVEYOR PEMETAAN PENYELIA', 'pelaksana', '1000', '1230', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3191, 'JF TEKNIK TATA BANGUNAN & PERUMAHAN MUDA', 'pelaksana', '1000', '1400', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3192, 'JF TEKNIK TATA BANGUNAN & PERUMAHAN PELAKSANA LANJUTAN', 'pelaksana', '1000', '1050', '2.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3193, 'JF TEKNIK TATA BANGUNAN & PERUMAHAN PENYELIA', 'pelaksana', '1000', '1275', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3194, 'JF TEKNISI ELEKTROMEDIS MADYA', 'pelaksana', '1000', '1930', '1.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3195, 'JF TEKNISI ELEKTROMEDIS MEDIS PENYELIA', 'pelaksana', '1000', '1260', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3196, 'JF TEKNISI ELEKTROMEDIS PENYELIA', 'pelaksana', '1000', '1260', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3197, 'JF TEKNISI ELEKTROMEDIS PERTAMA', 'pelaksana', '1000', '1295', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3198, 'STAF AHLI BIDANG EKONOMI, PEMBANGUNAN DAN KEUANGAN', 'pelaksana', '1000', '2715', '3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3199, 'JF ARSIPARIS PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3200, 'JF PRANATA KOMPUTER PELAKSANA PEMULA (JFG)', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3201, 'JF PRANATA HUBUNGAN MASYARAKAT PELAKSANA PEMULA (JFG)', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3202, 'ADHIKARA SIARAN (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3203, 'PENGAWAS BENIH TANAMAN (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3204, 'PENGUJI KESELAMATAN DAN KESEHATAN KERJA PERTAMA', 'pelaksana', '1000', '1280', '1.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3205, 'JF PERENCANA PERTAMA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3206, 'PENGAWAS MUTU HASIL PERTANIAN (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3207, 'PENYULUH PERINDUSTRIAN PERDAGANGAN (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3208, 'PENYULUH PERTANIAN (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3209, 'PERENCANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3210, 'PUSTAKAWAN (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3211, 'STATISTISI (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3212, 'SURVEYOR PEMETAAN (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3213, 'TEKNIS TATA LETAK BANGUNAN DAN PERUMAHAN (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3214, 'MEDIATOR HUBUNGAN INDUSTRIAL (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3215, 'JF PERAWAT GIGI PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3216, 'JF ADMINISTRATOR KESEHATAN PERTAMA (JFG)', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3217, 'PENGELOLA PAJAK DAERAH', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3218, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS MANGUHARJO', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3219, 'KEPALA BIDANG KESEHATAN MASYARAKAT ', 'pelaksana', '1000', '2045', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3220, 'KEPALA BIDANG PELAYANAN DAN SUMBERDAYA KESEHATAN', 'pelaksana', '1000', '2045', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3221, 'KEPALA UPTD PUSKESMAS ORO-ORO OMBO', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3222, 'KEPALA UPTD PUSKESMAS PATIHAN', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3223, 'KEPALA UPTD PUSKESMAS BANJAREJO', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3224, 'KEPALA UPTD PUSKESMAS TAWANGREJO ', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3225, 'KEPALA UPTD PUSKESMAS MANGUHARJO', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3226, 'KEPALA UPTD PUSKESMAS DEMANGAN', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3227, 'KEPALA UPTD GUDANG PERBEKALAN KESEHATAN ', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3228, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS TAWANGREJO ', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3229, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS ORO-ORO OMBO', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3230, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS DEMANGAN', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3231, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS BANJAREJO', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3232, 'KEPALA SUB BAGIAN TATA USAHA GUDANG PERBEKALAN KESEHATAN ', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3233, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS PATIHAN', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3234, 'KEPALA SEKSI KESEHATAN LINGKUNGAN, KESEHATAN KERJA DAN OLAHRAGA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3235, 'Penyusun Analis Dampak Kependudukan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3236, 'Penyusun Program Kreativitas Dan Inovasi', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3237, 'Pengelola Data Eksplorasi Wisata Dan Cagar Budaya', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3238, 'Penyusun Rencana Promosi', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3239, 'Penyusun Rencana Kerjasama Industri', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3240, 'Penyusun Rencana Bimbingan Teknis Industri', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3241, 'Penyusun Norma, Standar, Prosedur Dan Kriteria', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3242, 'Penyusun Rencana Mutasi', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3243, 'Penyusun Teknis Pelatihan Fungsional Bagi Aparatur Dan Non Aparatur', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3244, 'Penyuluh Peningkatan Kualitas Hidup Perempuan Dan Anak', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3245, 'Penyuluh Bahan Peningkatan Kesejahteraan Keluarga', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3246, 'Penyuluh Koperasi', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3247, 'JF AUDITOR MADYA', 'pelaksana', '12', '2250', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3248, 'Penyuluh Lingkungan Hidup', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3249, 'Pengelola Rehabilitasi Sosial', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3250, 'Pengelola Bantuan Sosial Dan Hibah', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3251, 'Pengelola Permodalan Koperasi Dan Usaha Kecil, Mikro Dan Menengah', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3252, 'Pengelola Bahan Pelatihan Dan Produktivitas', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3253, 'Pengelola Pertanahan', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3254, 'Pengelola Teknis Perikanan Budidaya', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3255, 'Penjaga Taman Makam Pahlawan', 'pelaksana', '1000', '340', '5.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3256, 'Pengawas Penanaman Modal', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3257, 'Pengawas Industri', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3258, 'Pengawas Dan Pembina Angkutan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3259, 'Pengolah Bahan Perencanaan Tenaga Kerja', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3260, 'Pengelola Monitoring Dan Evaluasi', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3261, 'Pengelola Data Kreatifitas Dan Inovasi', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3262, 'Pengelola Rumah Potong Hewan', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3263, 'Penata Penyehatan Lingkungan Permukiman', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3264, 'Juru Survei Permukiman Perumahan', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3265, 'Penelaah Manajemen Lantas (Traffic Management Specialist)', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3266, 'Pengevaluasi Kinerja Prasarana LLAJ', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3267, 'Pengawas Lalu Lintas Jalan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3268, 'Pengolah Data Aplikasi Dan Pengelolaan Data Sistem Keuangan', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3269, 'Juru Sita', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3270, 'Pengevaluasi Hasil Kegiatan Bantuan Sosial Masyarakat', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3271, 'Analis Hibah Daerah', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3272, 'Pengadministrasi Umum Uptd Pkb', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3273, 'Pengawas Kepariwisataan', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3274, 'Pengawas Tata Pertamanan', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3275, 'JF PERAWAT PENYELIA', 'pelaksana', '8', '1260', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3276, 'JF RADIOGRAFER MEDIS PENYELIA', 'pelaksana', '8', '1260', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3277, 'JF SANITARIAN PENYELIA', 'pelaksana', '8', '1245', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3278, 'JF BIDAN PENYELIA', 'pelaksana', '8', '1230', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3279, 'Pengawas Pengoperasian Alat Berat		', 'pelaksana', '1000', NULL, NULL, '185000', '', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3280, 'Pengelola Angkutan Kendaraan', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3281, 'Pengelola Data Bantuan Sosial', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3282, 'Pengelola Dokumentasi Dan Informasi Hukum', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3283, 'Pengelola Keamanan Dan Ketertiban							', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3284, 'Pengelola Kesejahteraan Sosial						', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3285, 'Pengelola Logistik', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3286, 'Pengelola Pemasaran', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3287, 'Pengelola Rencana Penelitian Pengembangan', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3288, 'Pengelola Retribusi Daerah', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3289, 'Pengelola Sarana Olahraga', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3290, 'Pengolah Data Pelayanan', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3291, 'Pengolah Informasi Media', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3292, 'ANALIS APLIKASI DAN PENGELOLAAN DATA SISTEM KEUANGAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3293, 'ANALIS LAPORAN KEUANGAN TRANSFER DAERAH', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3294, 'PEMERIKSA ANGGARAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3295, 'Pengendali Dampak Lingkungan Ahli Muda / Subkoordinator Penanggulangan dan Pemulihan Pencemaran Lingkungan Hidup', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3296, 'Surveyor Pemetaan Ahli Muda / Subkoordinator Pertanahan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3297, 'Penilai Pemerintah Ahli Muda / Subkoordinator Pendayagunaan Aset', 'pelaksana', '1000', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3298, 'Pengelola Pelanggaran Peraturan Daerah', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3299, 'Teknik Penyehatan Lingkungan Ahli Muda / Subkoordinator Pencegahan dan Peningkatan Kualitas Permukiman Kumuh', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3300, 'JF PENGAWAS PERIKANAN MUDA', 'pelaksana', '1000', '1355', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3301, 'ADHIKARA SIARAN (REPORTER) (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3302, 'Pengendali Dampak Lingkungan Ahli Muda / Subkoordinator Pencegahan Pencemaran dan Kerusakan Lingkungan Hidup', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3303, 'Analis Keuangan Pusat dan Daerah Ahli Muda / Subkoordinator Kebijakan Anggaran', 'pelaksana', '1000', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3304, 'PENGELOLA PENATAAN SAMPAH', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3305, 'JF PERAWAT PELAKSANA LANJUTAN', 'pelaksana', '7', '1035', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3306, 'JF RADIOGRAFER PELAKSANA LANJUTAN', 'pelaksana', '7', '1035', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3307, 'JF ASISTEN APOTEKER PELAKSANA LANJUTAN', 'pelaksana', '7', '1020', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3308, 'JF SANITARIAN PELAKSANA LANJUTAN', 'pelaksana', '7', '1020', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3309, 'Sanitarian Mahir / Lanjutan', 'pelaksana', '7', '1020', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3310, 'JF NUTRISIONIS PELAKSANA LANJUTAN', 'pelaksana', '7', '1005', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3311, 'Investigator', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3312, 'JF PRANATA LABORATORIUM KESEHATAN PELAKSANA LANJUTAN', 'pelaksana', '7', '1005', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3313, 'Pengawas Lingkungan Hidup Ahli Muda / Subkoordinator Pembinaan dan Pengawasan Lingkungan Hidup', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3314, 'Teknik Tata Bangunan dan Perumahan Ahli Muda / Subkoordinator Perumahan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3315, 'JF FISIOTERAPIS PELAKSANA LANJUTAN', 'pelaksana', '7', '1005', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3316, 'Penyuluh Hukum Ahli Muda  /Subkoordinator Penyuluhan dan Bantuan Hukum', 'pelaksana', '9', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3317, 'Arsiparis Ahli Muda / Subkoordinator Pengelolaan Arsip Statis', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3318, 'PENYULUH HUKUM PERTAMA', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3319, 'Penyuluh Lingkungan Hidup Ahli Muda / Subkoordinator Peningkatan Kapasitas Lingkungan Hidup', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3320, 'Arsiparis Ahli Muda / Subkoordinator Pengelolaan Arsip Dinamis', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3321, 'Pengawas Lingkungan Hidup Ahli Muda / Subkoordinator Pengaduan dan Penegakan Hukum Lingkungan Hidup', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3322, 'KEPALA SEKSI PELAYANAN KESEHATAN ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3323, 'Penyuluh Kepemudaan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3324, 'Perencana Lalu Lintas (Traffic Planer)						', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3325, 'Petugas Keamanan Uptd Pkb						', 'pelaksana', '1000', '340', '5.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3326, 'Petugas Kebersihan', 'pelaksana', '1000', '340', '5.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3327, 'Pramu Kebersihan', 'pelaksana', '1000', '190', '9.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3328, 'Pramu Kebersihan Uptd Pkb						', 'pelaksana', '1000', '190', '9.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3329, 'Pranata Perlindungan Masyarakat', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3330, 'Psikolog Klinis Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3331, 'Psikolog Klinis Muda', 'pelaksana', '1000', '1355', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3332, 'Pengelola Pengawasan Pengolahan, Pengangkutan Dan Pemasaran Ikan', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3333, 'Analis Pasar Hasil Pertanian Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3334, 'Analis Pasar Hasil Pertanian Muda', 'pelaksana', '1000', '1355', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3335, 'Paramedik Veteriner Pelaksana', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3336, 'Pemadam Kebakaran Pelaksana', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3337, 'Penilai Pajak Bumi Dan Bangunan Pelaksana', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3338, 'Pemeriksa Pajak Pelaksana', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3339, 'Pemeriksa Pajak Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3340, 'Penata Anestesi Pertama', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3341, 'Penata Anestesi Muda', 'pelaksana', '9', '1355', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3342, 'Fisikawan Medis Muda', 'pelaksana', '1000', '1355', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3343, 'Adikara Siaran Pelaksana', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3344, 'Administrator Data Base Kependudukan Pertama', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3345, 'Analis Anggaran Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3346, 'Analis Kebijakan Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3347, 'Analis Ketahanan Pangan Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3348, 'Analis Keuangan Pemerintah Pusat Dan Daerah Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3349, 'Analis Pasar Hasil Perikanan Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3350, 'Epidemiologi Kesehatan Muda', 'pelaksana', '1000', '1355', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3351, 'Operator Siak Pelaksana		', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3352, 'Pamong Budaya Pertama	', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3353, 'Pelatih Olahraga Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3354, 'Penata Laksana Barang Pelaksana					', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3355, 'Penerjemah Pertama						', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3356, 'Pengawas Kemetrologian Pertama', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3357, 'Pengawas Lingkungan Hidup Pertama', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3358, 'PENGAWAS PENYELENGGARA URUSAN PEMERINTAH DAERAH MADYA', 'pelaksana', '12', '2145', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3359, 'Pustakawan Ahli Muda / Subkoordinator Pembudayaan Gemar Membaca', 'pelaksana', '1000', '2090', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3360, 'VERIFIKATOR KEUANGAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3361, 'Pranata Komputer Ahli Muda / Subkoordinator Pengembangan Sumber Daya Teknologi Informasi dan Komunikasi', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3362, 'Pengawas Koperasi Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3363, 'Pengelola Pengadaan Barang Jasa Pertama', 'pelaksana', '1000', '1270', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3364, 'Pengelola Produksi Perikanan Tangkap Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3365, 'Pengendali Organisme Pengganggu Tumbuhan Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3366, 'Penguji Keselamatan Dan Kesejahteraan Kerja Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3367, 'Penilai Pemerintah Pertama													', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3368, 'Penyuluh Hukum Muda', 'pelaksana', '1000', '1355', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3369, 'Penyuluh Perikanan Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3370, 'PENGADMINISTRASI GUDANG', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3371, 'PENGADMINISTRASI IDENTIFIKASI DAN EVALUASI SENTRA PENGOLAHAN PRODUK', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3372, 'PENGADMINISTRASI PELATIHAN', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3373, 'PENGADMINISTRASI PEMELIHARAAN GEDUNG KANTOR', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3374, 'PENGAWAS TATA BANGUNAN DAN PERUMAHAN', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3375, 'PENGELOLA AKUNTANSI', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3376, 'PENGELOLA ANGGARAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3377, 'PENGELOLA BAHAN PUSTAKA', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3378, 'PENGELOLA BUDIDAYA PENGEMBANGAN TERNAK DAN HEWAN LAINNYA', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3379, 'PENGELOLA DATA DAN DOKUMEN PERPAJAKAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3380, 'PENGELOLA DATA EKSPLORASI CAGAR BUDAYA', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3381, 'PENGELOLA DATA HUBUNGAN MASYARAKAT DAN RUMAH TANGGA', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3382, 'PENGELOLA DATA KELEMBAGAAN KURSUS DAN PELATIHAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3383, 'PENGELOLA DATA PAMERAN DAN KEMITRAAN', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3384, 'PENGELOLA DATA STATISTIK', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3385, 'PENGELOLA DATABASE SURAT PERINTAH MEMBAYAR', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3386, 'JF ARSIPARIS PENYELIA', 'pelaksana', '1000', '1230', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3387, 'JF ARSIPARIS PERTAMA', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3388, 'JF ASISTEN APOTEKER PELAKSANA PEMULA', 'pelaksana', '1000', '505', '4.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3389, 'JF AUDITOR PELAKSANA', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3390, 'ANALIS RENCANA PROGRAM DAN KEGIATAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3391, 'BENDAHARA', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3392, 'JF RADIOGRAFER PELAKSANA', 'pelaksana', '6', '770', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3393, 'JF PERAWAT PELAKSANA', 'pelaksana', '6', '770', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3394, 'Radiografer Pelaksana', 'pelaksana', '6', '770', '3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3395, 'JF PEREKAM MEDIS PELAKSANA', 'pelaksana', '6', '770', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3396, 'JF ASISTEN APOTEKER PELAKSANA', 'pelaksana', '6', '755', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3397, 'JF SANITARIAN PELAKSANA', 'pelaksana', '6', '755', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3398, 'PERANCANG PERATURAN PERUNDANG-UNDANGAN AHLI MUDA', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3399, 'JF AUDITOR PENYELIA', 'pelaksana', '1000', '1230', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3400, 'JF BIDAN MUDA', 'pelaksana', '9', '1355', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3401, 'JF BIDAN PELAKSANA PEMULA', 'pelaksana', '1000', '490', '4.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3402, 'JF DOKTER UTAMA', 'pelaksana', '14', '2805', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3403, 'JF EPIDEMIOLOG KESEHATAN MADYA', 'pelaksana', '1000', '1930', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3404, 'JF EPIDEMIOLOG KESEHATAN PELAKSANA', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3405, 'JF EPIDEMIOLOG KESEHATAN PELAKSANA LANJUTAN', 'pelaksana', '1000', '1005', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3406, 'JF EPIDEMIOLOG KESEHATAN PELAKSANA PEMULA', 'pelaksana', '1000', '490', '4.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3407, 'JF EPIDEMIOLOG KESEHATAN PENYELIA', 'pelaksana', '1000', '1230', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3408, 'JF EPIDEMIOLOG KESEHATAN PERTAMA', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3409, 'JF FISIOTERAPIS MADYA', 'pelaksana', '1000', '1930', '1.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3410, 'JF FISIOTERAPIS MUDA', 'pelaksana', '1000', '1555', '1.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3411, 'JF FISIOTERAPIS PELAKSANA', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3412, 'JF FISIOTERAPIS PENYELIA', 'pelaksana', '1000', '1230', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3413, 'JF FISIOTERAPIS PERTAMA', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3414, 'JF MEDIATOR HUBUNGAN INDUSTRIAL MUDA', 'pelaksana', '1000', '1355', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3415, 'JF MEDIATOR HUBUNGAN INDUSTRIAL PERTAMA', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3416, 'JF MEDIK VETERINER PERTAMA', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3417, 'JF PENERA MUDA', 'pelaksana', '1000', '1555', '1.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3418, 'JF PENERA PELAKSANA', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3419, 'JF PENERA PELAKSANA LANJUTAN', 'pelaksana', '1000', '1005', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3420, 'JF PENERA PENYELIA', 'pelaksana', '1000', '1230', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3421, 'JF PENERA PERTAMA', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3422, 'JF PENGANTAR KERJA MUDA', 'pelaksana', '1000', '1355', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3423, 'JF PENGANTAR KERJA PELAKSANA', 'pelaksana', '1000', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3424, 'JF PENGANTAR KERJA PELAKSANA LANJUTAN', 'pelaksana', '1000', '1005', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3425, 'JF PENGANTAR KERJA PENYELIA', 'pelaksana', '1000', '1230', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3426, 'JF PENGANTAR KERJA PERTAMA', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3427, 'JF PENGAWAS BENIH TANAMAN MUDA', 'pelaksana', '1000', '1355', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3428, 'JF PUSTAKAWAN PERTAMA', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3429, 'Pustakawan Ahli Muda / Subkoordinator Pengelolaan Perpustakaan dan Pelestarian Naskah Kuno', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3430, 'Pranata Komputer Ahli Muda /Subkoordinator Pengelolaan Infrastruktur dan Aplikasi Tata Kelola Pemerintahan Elektronik', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3431, 'JF PRANATA LABORATORIUM KESEHATAN PELAKSANA', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3432, 'JF NUTRISIONIS PELAKSANA', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3433, 'JF BIDAN PELAKSANA', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3434, 'PRANATA KOMPUTER (JFG)', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3435, 'ADMINISTRATOR KESEHATAN (JFG)', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3436, 'JF PENGAWAS BENIH TANAMAN PELAKSANA', 'pelaksana', '1000', '740', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3437, 'JF PENGAWAS BENIH TANAMAN PELAKSANA LANJUTAN', 'pelaksana', '1000', '1005', '2.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3438, 'JF PENGAWAS BENIH TANAMAN PELAKSANA PEMULA', 'pelaksana', '1000', '490', '4.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3439, 'JF PENGAWAS BENIH TANAMAN PENYELIA', 'pelaksana', '1000', '1230', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3440, 'JF PENGAWAS BENIH TANAMAN PERTAMA', 'pelaksana', '1000', '1280', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3441, 'PENGADMINISTRASI REKAM MEDIS DAN INFORMASI', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3442, 'BINATU RUMAH SAKIT', 'pelaksana', '5', '340', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3443, 'JF PENGAWAS MUTU HASIL PERTANIAN MUDA', 'pelaksana', '1000', '1355', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3444, 'JF PENGAWAS MUTU HASIL PERTANIAN PELAKSANA', 'pelaksana', '1000', '740', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3445, 'JF PENGAWAS MUTU HASIL PERTANIAN PELAKSANA LANJUTAN', 'pelaksana', '1000', '1005', '2.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3446, 'JF PENGAWAS MUTU HASIL PERTANIAN PELAKSANA PEMULA', 'pelaksana', '1000', '490', '4.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3447, 'JF PENGAWAS MUTU HASIL PERTANIAN PENYELIA', 'pelaksana', '1000', '1230', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3448, 'JF PENGAWAS MUTU HASIL PERTANIAN PERTAMA', 'pelaksana', '1000', '1280', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3449, 'JF PENGAWAS MUTU PAKAN  PELAKSANA LANJUTAN', 'pelaksana', '1000', '1005', '2.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3450, 'JF PENGAWAS MUTU PAKAN MUDA', 'pelaksana', '1000', '1355', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3451, 'JF PENYULUH PERINDUSTRIAN & PERDAGANGAN PENYELIA', 'pelaksana', '1000', '1260', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3452, 'JF PENYULUH PERINDUSTRIAN & PERDAGANGAN PERTAMA', 'pelaksana', '1000', '1310', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3453, 'JF PENYULUH PERTANIAN MUDA', 'pelaksana', '1000', '1385', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3454, 'JF PEREKAM MEDIS PENYELIA', 'pelaksana', '1000', '1260', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3455, 'JF PRANATA HUBUNGAN MASYARAKAT MUDA', 'pelaksana', '1000', '1355', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3456, 'JF PRANATA LABORATORIUM KESEHATAN PERTAMA', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3457, 'PENGELOLA SURAT', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3458, 'PRAMU BAKTI', 'pelaksana', '3', '190', '0.95', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3459, 'PENGEMUDI', 'pelaksana', '3', '340', '0.95', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3460, 'Bidan Terampil / Pelaksana', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3461, 'Fisioterapis Terampil / Pelaksana', 'pelaksana', '6', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3462, 'Nutrisionis Terampil / Pelaksana', 'pelaksana', '6', '740', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3463, 'TERAPIS WICARA PELAKSANA', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3464, 'PELAKSANA-TERAMPIL/BIDAN', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3465, 'Pranata Laboratorium Kesehatan Terampil / Pelaksana', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3466, 'PENGELOLA GUDANG', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3467, 'KEPALA BIDANG PENDIDIKAN DAN PELATIHAN', 'pelaksana', '11', '2045', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3468, 'JFU Pelayanan (PD 2)', 'pelaksana', '6', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3469, 'Analis Kepegawaian Ahli Muda /Subkoordinator Penghargaan dan Kesejahteraan', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3470, 'Perancang Diklat', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3471, 'JF ANALIS KEPEGAWAIAN PERTAMA', 'pelaksana', '8', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3472, 'Analis Kesejahteraan Sumber Daya Manusia Aparatur', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3473, 'JF PRANATA KOMPUTER PELAKSANA LANJUTAN', 'pelaksana', '7', '1005', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3474, 'ANALIS DATA DAN INFORMASI', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3475, 'PRANATA LAPORAN KEUANGAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3476, 'ANALIS JABATAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3477, 'Pranata Diklat', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3478, 'PENYULUH PERINDUSTRIAN DAN PERDAGANGAN AHLI MUDA', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3479, 'Pemadam Kebakaran Pemula', 'pelaksana', '1000', '490', '4.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3480, 'Penilai Pajak Bumi Dan Bangunan Pertama', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3481, 'JF PUSTAKAWAN PELAKSANA LANJUTAN', 'pelaksana', '1000', '1005', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3482, 'JF PUSTAKAWAN PENYELIA', 'pelaksana', '1000', '1230', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3483, 'JF PUSTAKAWAN PERTAMA', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3484, 'JF RADIOGRAFER MEDIS MADYA', 'pelaksana', '1000', '1930', '1.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3485, 'JF RADIOGRAFER MEDIS PERTAMA', 'pelaksana', '1000', '1295', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3486, 'JF SANITARIAN MUDA', 'pelaksana', '1000', '1370', '1.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3487, 'JF SANITARIAN PELAKSANA PEMULA', 'pelaksana', '1000', '505', '4.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3488, 'JF SANITARIAN PERTAMA', 'pelaksana', '1000', '1295', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3489, 'JF STATISTISI MUDA', 'pelaksana', '1000', '1355', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3490, 'JF STATISTISI PELAKSANA', 'pelaksana', '1000', '740', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3491, 'JF STATISTISI PELAKSANA PEMULA', 'pelaksana', '1000', '490', '4.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3492, 'JF STATISTISI PENYELIA', 'pelaksana', '1000', '1230', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3493, 'JF SURVEYOR PEMETAAN MUDA', 'pelaksana', '1000', '1355', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3494, 'JF PRANATA KOMPUTER PELAKSANA', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3495, 'PENGADMINISTRASI PERSURATAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3496, 'PENGADMINISTRASI KEPEGAWAIAN', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3497, 'PRAMU KEBERSIHAN', 'pelaksana', '1', '190', '1.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3498, 'STAF AHLI BIDANG PEMERINTAHAN, HUKUM DAN POLITIK', 'pelaksana', '1000', '2715', '3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3499, 'STAF AHLI BIDANG SUMBER DAYA MANUSIA DAN KEMASYARAKATAN', 'pelaksana', '1000', '2715', '3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3500, 'ANALIS PERLINDUNGAN DAN PEMBERDAYAAN TENAGA KERJA INDONESIA', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3501, 'ANALIS PROGRAM/ KEGIATAN PEMBANGUNAN PERTANIAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3502, 'ANALIS SISTEM INFORMASI', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3503, 'ASISTEN PELELANG', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3504, 'FASILITATOR KEWIRAUSAHAAN', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3505, 'INSPEKTUR SARANA DAN PRASARANA FASILITAS PELAYANAN KESEHATAN', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3506, 'JURNALIS', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3507, 'JURU GAMBAR', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3508, 'JURU INFORMASI DAN KOMUNIKASI', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3509, 'PENGELOLA FORMASI DAN PENGADAAN PEGAWAI', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3510, 'ANALIS WAWASAN KEBANGSAAN', 'pelaksana', '7', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3511, 'PENGELOLA DISIPLIN PEGAWAI', 'pelaksana', '6', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3512, 'PENGELOLA PENELITIAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3513, 'PENGOLAH DATA INTELIJEN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3514, 'JF SURVEYOR PEMETAAN PELAKSANA PEMULA (JFG)', 'pelaksana', '1000', '490', '3.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3515, 'JF PRANATA KOMPUTER PELAKSANA PEMULA (JFG)', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3516, 'JF AUDITOR PERTAMA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3517, 'JF ANALIS KEUANGAN PEMERINTAH PUSAT DAERAH AHLI PERTAMA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3518, 'JF PERAWAT PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3519, 'JF TEKNISI ELEKTROMEDIS PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3520, 'JF PERANCANG PERATURAN PERUNDANG-UNDANGAN PERTAMA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3521, 'PENYULUH HUKUM PERTAMA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3522, 'JF ANALIS KEPEGAWAIAN PERTAMA (JFG)', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3523, 'JF PEREKAM MEDIS PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3524, 'JF DOKTER PERTAMA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3525, 'JF PERAWAT PERTAMA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3526, 'JF BIDAN PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3527, 'JF PRANATA LABORATORIUM KESEHATAN PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3528, 'JF APOTEKER PERTAMA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3529, 'JF ASISTEN APOTEKER PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3530, 'JF NUTRISIONIS PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3531, 'JF PUSTAKAWAN PERTAMA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3532, 'JF PUSTAKAWAN PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3533, 'PENGOLAH DATA', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3534, 'PENGADMINISTRASI PERENCANAAN DAN PROGRAM', 'pelaksana', '5', '490', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3535, 'TEKNIK PENYEHATAN LINGKUNGAN PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3536, 'JF PENGUJI KENDARAAN BERMOTOR PELAKSANA PEMULA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3537, 'JF TEKNIK TATA BANGUNAN & PERUMAHAN PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3538, 'TEKNIK PENGAIRAN PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3539, 'ASN TANPA REMUNISASI', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3540, 'TEKNIK JALAN DAN JEMBATAN PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3541, 'Perencana Ahli Muda', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3542, 'JF SURVEYOR PEMETAAN PERTAMA', 'pelaksana', '8', '1280', '2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3543, 'JF PERENCANA MUDA', 'pelaksana', '10', '1610', '0.447', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3544, 'JF PERENCANA PERTAMA', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3545, 'JF PRANATA HUBUNGAN MASYARAKAT PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3546, 'JF NUTRISIONIS PERTAMA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3547, 'KEPALA SEKSI KESEHATAN KELUARGA DAN GIZI ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3548, 'KEPALA SEKSI PEMBERANTASAN PENYAKIT MENULAR ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3549, 'KEPALA SEKSI FARMASI DAN ALAT KESEHATAN ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3550, 'KEPALA SEKSI PELAYANAN KELUARGA BERENCANA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3551, 'KEPALA SEKSI SUMBERDAYA KESEHATAN ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3552, 'KEPALA SEKSI KETAHANAN DAN KESEJAHTERAAN KELUARGA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3553, 'KEPALA SEKSI PENCEGAHAN DAN PENGENDALIAN PENYAKIT TIDAK MENULAR DAN KESEHATAN JIWA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3554, 'KEPALA SEKSI PROMOSI KESEHATAN DAN PEMBERDAYAAN MASYARAKAT', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3555, 'KEPALA SUB BAGIAN PERENCANAAN DINAS KESEHATAN, PENGENDALIAN PENDUDUK DAN KELUARGA BERENCANA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3556, 'KEPALA SEKSI PENGENDALIAN PENDUDUK, PENYULUHAN DAN PENGGERAKAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3557, 'JF PENGGERAK SWADAYA MASYARAKAT PERTAMA', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3558, 'JF RADIOGRAFER PELAKSANA (JFG)', 'pelaksana', '1000', '490', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3559, 'Analis Ekstensifikasi', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3560, 'Analis Bimbingan Pendataan, Penilaian Dan Pengenaan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3561, 'Analis Penelitian dan Pengembangan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3562, 'Analis Penagihan Pajak', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3563, 'Analis Data Intelijen', 'pelaksana', '1000', '1430', '0.643', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3564, 'Analis Ketahanan Ekonomi', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3565, 'Analis Bina Kehidupan Agama', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3566, 'Analis Partai Politik', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3567, 'PENATA LAPORAN KEUANGAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3568, 'PENYUSUN RENCANA KEGIATAN DAN ANGGARAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3569, 'JF ANALIS KEUANGAN PEMERINTAH PUSAT DAERAH AHLI PERTAMA', 'pelaksana', '8', '1295', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3570, 'Analis Keuangan Pusat dan Daerah Ahli Muda /Subkoordinator Kebijakan Anggaran', 'pelaksana', '9', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3571, 'ANALIS TRANSAKSI KEUANGAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3572, 'ANALIS ASET DAERAH', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3573, 'ANALIS PENDAPATAN DAERAH', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3574, 'ANALIS PERBENDAHARAAN', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3575, 'PENGOLAH DATA LAPORAN KAS', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3576, 'PENGOLAH DAFTAR GAJI', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3577, 'VERIFIKATOR DATA LAPORAN KEUANGAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3578, 'PENGELOLA DATA REKONSILIASI', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3579, 'PENGELOLA DATABASE', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3580, 'PENGELOLA PEMANFAATAN BARANG MILIK DAERAH', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3581, 'Perencana  Ahli Muda /Subkoordinator Perencanaan dan Kepegawaian', 'pelaksana', '9', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3582, 'PENGOLAH DATA PENDATAAN, PEMETAAN, DAN PENILAIAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3583, 'Pengolah Data Pendataan, Pemetaan dan Penilaian', 'pelaksana', '6', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3584, 'Analis Program Kerjasama Lembaga Masyarakat', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3585, 'PENGELOLA DATA DAN POTENSI PAJAK', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3586, 'JF PRANATA KOMPUTER PELAKSANA (JFG)', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3587, 'Analis SAR', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3588, 'Penyusun Rencana Pengawasan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3589, 'Analis Industri', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3590, 'Analis Jalan Dan Jembatan 		', 'pelaksana', '1000', NULL, NULL, '185000', '', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3591, 'Analis Kebutuhan Perlengkapan Jalan', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3592, 'Analis Konten Media Sosial', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3593, 'Analis Lelang', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3594, 'Analis Pajak Daerah', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3595, 'Analis Pariwisata', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3596, 'Analis Pelayanan Publik', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3597, 'Analis Pemasaran Dan Kerjasama', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3598, 'Analis Pemberdayaan Perempuan Dan Anak						', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3599, 'Analis Pengembangan Karir', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3600, 'Analis Perlindungan Dan Pemberdayaan Tenaga Kerja', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3601, 'Analis Road Traffic And Transport Management Centre', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3602, 'Analis Sistem Informasi Dan Jaringan ', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3603, 'Analis Sumber Daya Air ', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3604, 'Analis Toponimi Dan Data Wilayah', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3605, 'Penalaah Mutu Konstruksi		', 'pelaksana', '1000', NULL, NULL, '185000', '', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3606, 'Penata Liputan', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3607, 'Pengadministrasi Sarana Dan Prasarana Kantor', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3608, 'Pengadministrasi Sarana Dan Prasarana Pendidikan Dasar', 'pelaksana', '1000', '490', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3609, 'PENGADMINISTRASI SARANA DAN PRASARANA', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3610, 'PENGELOLA PENYELENGGARAAN DIKLAT', 'pelaksana', '1000', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3611, 'PENGELOLA DATA TRANSPORTASI JALAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3612, 'ANALIS LAPORAN KEUANGAN', 'pelaksana', '1000', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3613, 'KUSTODIAN BARANG MILIK NEGARA', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3614, 'Analis Pelayanan', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3615, 'ANALIS PEMERIKSAAN PAJAK', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3616, 'PENGELOLA DATA TRANSAKSI', 'pelaksana', '6', '690', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3617, 'PENGOLAH DATA PEMERIKSAAN PAJAK', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3618, 'PENGELOLA PBB P2 DAN BPHTB', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3619, 'PENGELOLA BAHAN PERENCANAAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3620, 'PRANATA BENCANA', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3621, 'PENGADMINISTRASI UMUM', 'pelaksana', '5', '490', '0.69', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3622, 'Pranata Komputer Ahli Muda', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3623, 'PENGELOLA DATA BELANJA DAN LAPORAN KEUANGAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3624, 'PENGELOLA SARANA DAN PRASARANA KANTOR', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3625, 'PENGELOLA KEPEGAWAIAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3626, 'PENGELOLA DATA', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3627, 'PENGELOLA KEUANGAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3628, 'Pranata Komputer Pelaksana Lanjutan/Mahir', 'pelaksana', '7', '1005', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3629, 'Penilai Pemerintah Ahli Muda /Subkoordinator Pendataan dan Penetapan Pajak Daerah', 'pelaksana', '9', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3630, 'KEPALA SUB BIDANG INTENSIFIKASI DAN EKSTENSIFIKASI PAJAK DAERAH', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3631, 'KEPALA BIDANG LALU LINTAS', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3632, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN JOSENAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3633, 'KEPALAÂ SEKSIÂ PEMBANGUNAN,Â KETENTRAMANÂ DANÂ KETERTIBANÂ UMUMÂ KELURAHANÂ BANJAREJO OLD', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3634, 'KEPALA BIDANG PENGELOLAAN INFORMASI ADMINISTRASI KEPENDUDUKAN DAN PEMANFAATAN DATA', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3635, 'KEPALA BIDANG PENGELOLAAN SAMPAH DAN LIMBAH BAHAN BERBAHAYA DAN BERACUN DINAS LINGKUNGAN HIDUP', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3636, 'KEPALA SEKSI PELAYANAN KEPERAWATAN DAN KEBIDANAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3637, 'KEPALA SUB BAGIAN KEPEGAWAIAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3638, 'KEPALA BIDANG KURIKULUM, PEMBINAAN BAHASA DAN SASTRA', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3639, 'KEPALA SEKOLAH SMPN 4', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3640, 'INSPEKTUR', 'pelaksana', '11', '3030', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3641, 'KEPALA SUB BAGIAN KELEMBAGAAN DAN ANALISA JABATAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3642, 'KEPALA SUB BAGIAN KETATALAKSANAAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3643, 'KEPALA SUB BAGIAN PENGEMBANGAN OTONOMI DAERAH ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3644, 'KEPALA SUB BAGIAN PEREKONOMIAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3645, 'KEPALA SUB BAGIAN KESEJAHTERAAN RAKYAT', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3646, 'KEPALA SUB BAGIAN TATA USAHA DAN KEUANGAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3647, 'KEPALA SUB BAGIAN RUMAH TANGGA DAN PERLENGKAPAN ', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3648, 'KEPALA BAGIAN UMUM', 'pelaksana', '1000', '2315', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3649, 'SEKRETARIS DAERAH', 'pelaksana', '15', '3555', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3650, 'KEPALA BAGIAN HUKUM', 'pelaksana', '12', '2315', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3651, 'KEPALA BAGIAN ORGANISASI', 'pelaksana', '12', '2315', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3652, 'KEPALA SUB BAGIAN PEMBINAAN BADAN USAHA MILIK DAERAH ', 'pelaksana', '9', '1430', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3653, 'KEPALA BAGIAN FASILITASI PENGANGGARAN DAN PENGAWASAN', 'pelaksana', '11', '2090', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3654, 'KEPALA BAGIAN PERSIDANGAN DAN PERUNDANG', 'pelaksana', '11', '2090', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3655, 'KEPALA DINAS SOSIAL, PEMBERDAYAAN PEREMPUAN DAN PERLINDUNGAN ANAK', 'pelaksana', '1000', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3656, 'KEPALA SUB BAGIAN PERSIDANGAN, RISALAH DAN PUBLIKASI', 'pelaksana', '8', '1295', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3657, 'INSPEKTUR PEMBANTU II', 'pelaksana', '11', '1990', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3658, 'INSPEKTUR PEMBANTU IV', 'pelaksana', '11', '1990', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3659, 'KEPALA SUB BAGIAN ADMINISTRASI UMUM, KEUANGAN DAN KEPEGAWAIAN', 'pelaksana', '8', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3660, 'KEPALA DINAS LINGKUNGAN HIDUP', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3661, 'SEKRETARIS DINAS LINGKUNGAN HIDUP', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3662, 'KEPALA BIDANG PENGENDALIAN PENCEMARAN DAN KERUSAKAN LINGKUNGAN HIDUP', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3663, 'KEPALA SUB BAGIAN  UMUM DAN KEUANGAN DINAS LINGKUNGAN HIDUP', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3664, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN DINAS LINGKUNGAN HIDUP', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3665, 'KEPALA BIDANG PERTANIAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3666, 'SEKRETARIS DPRD', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3667, 'KEPALA SEKSI PENGOLAHAN DAN PENGURANGAN SAMPAH DINAS LINGKUNGAN HIDUP', 'pelaksana', '9', '1430', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3668, 'KEPALA DINAS KETAHANAN PANGAN DAN PERTANIAN', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3669, 'SEKRETARIS DINAS KETAHANAN PANGAN DAN PERTANIAN', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3670, 'KEPALA BIDANG PERIKANAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3671, 'KEPALA SEKOLAH SDN 01 NAMBANGAN LOR', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3672, 'KEPALA SEKOLAH SDN 02 NAMBANGAN LOR', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3673, 'KEPALA SEKOLAH SDN 01 MADIUN LOR', 'pelaksana', '1000', 'NULL', 'NULL', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3674, 'KEPALA SEKOLAH SDN 01 KARTOHARJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3675, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN DINAS KETAHANAN PANGAN DAN PERTANIAN', 'pelaksana', '9', '1430', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3676, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN DINAS KETAHANAN PANGAN DAN PERTANIAN', 'pelaksana', '9', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3677, 'KEPALA DINAS PERHUBUNGAN', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3678, 'SEKRETARIS DINAS PERHUBUNGAN', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3679, 'KEPALA SEKOLAH SDN 02 KLEGEN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3680, 'KEPALA SEKSI PENGAMANAN DAN PENGAWALAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3681, 'KEPALA DINAS KESEHATAN, PENGENDALIAN PENDUDUK DAN KELUARGA BERENCANA', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3682, 'KEPALA BIDANG ANGKUTAN DARAT', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3683, 'KEPALA SEKSI ANGKUTAN ORANG DAN BARANG', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3684, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN DINAS PERHUBUNGAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3685, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN DINAS PERHUBUNGAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3686, 'KEPALA SEKSI SARANA DAN PRASARANA LALU LINTAS', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3687, 'KEPALA UPTD PENGUJIAN KENDARAAN BERMOTOR', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3688, 'KEPALA SEKSI KESELAMATAN LALU LINTAS', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3689, 'KEPALA DINAS PERPUSTAKAAN DAN KEARSIPAN', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3690, 'SEKRETARIS DINAS PERUMAHAN RAKYAT DAN KAWASAN PERMUKIMAN', 'pelaksana', '12', '2115', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3691, 'KEPALA BIDANG PERUMAHAN, PERMUKIMAN DAN PERTANAHAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3692, 'KEPALA BIDANG PRASARANA SARANA DAN UTILITAS RUANG TERBUKA HIJAU, PENERANGAN JALAN UMUM DAN PEMAKAMAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3693, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN DINAS PERUMAHAN RAKYAT  DAN KAWASAN PERMUKIMAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3694, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN DINAS PERUMAHAN RAKYAT  DAN KAWASAN PERMUKIMAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3695, 'KEPALA DINAS PEKERJAAN UMUM DAN PENATAAN RUANG', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3696, 'SEKRETARIS DINAS PEKERJAAN UMUM DAN PENATAAN RUANG', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3697, 'KEPALA BIDANG BINA MARGA', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3698, 'KEPALA BIDANG PENGELOLAAN SUMBER DAYA AIR', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3699, 'KEPALA BIDANG TATA KOTA', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3700, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN DINAS PEKERJAAN UMUM DAN PENATAAN RUANG', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3701, 'KEPALA DINAS KOMUNIKASI DAN INFORMATIKA', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3702, 'SEKRETARIS DINAS KOMUNIKASI DAN INFORMATIKA', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3703, 'KEPALA BIDANG PENGELOLAAN STATISTIK DAN PERSANDIAN DINAS KOMUNIKASI DAN INFORMATIKA', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3704, 'KEPALA BIDANG PENGELOLAAN TEKNOLOGI INFORMASI DAN KOMUNIKASI DINAS KOMUNIKASI DAN INFORMATIKA', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3705, 'KEPALA BIDANG PENGELOLAAN INFORMASI DAN KOMUNIKASI PUBLIK', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3706, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN DINAS KOMUNIKASI DAN INFORMATIKA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3707, 'KEPALA SEKSI PENGELOLAAN DATA DAN STATISTIK DINAS KOMUNIKASI DAN INFORMATIKA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3708, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN DINAS KOMUNIKASI DAN INFORMATIKA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3709, 'KEPALA SEKSI PENGELOLAAN KEAMANAN INFORMASI DAN PERSANDIAN DINAS KOMUNIKASI DAN INFORMATIKA', 'pelaksana', '8', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3710, 'KEPALA BIDANG PEMBERDAYAAN MASYARAKAT BIDANG KESEHATAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3711, 'KEPALA BIDANG PENYEDIAAN LAYANAN KESEHATAN UPAYA KESEHATAN PERSEORANGAN DAN UPAYA KESEHATAN MASYARAKAT', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3712, 'KEPALA BIDANG PENINGKATAN KAPASITAS SUMBER DAYA KESEHATAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3713, 'KEPALA BIDANG PENGENDALIAN PENDUDUK, KELUARGA BERENCANA  DAN KELUARGA SEJAHTERA', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3714, 'KEPALA SEKOLAH SMPN 7', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3715, 'KEPALA SEKOLAH SDN KEJURON', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3716, 'KEPALA SEKOLAH SDN 02 REJOMULYO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3717, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3718, 'KEPALA SUB BAGIAN FASILITASI PENGAWASAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3719, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN BADAN KEUANGAN DAN ASET DAERAH', 'pelaksana', '1000', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3720, 'KEPALA SEKSI PENINGKATAN SUMBER DAYA MANUSIA DAN PEMBIAYAAN KESEHATAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3721, 'KEPALA SUB BAGIAN TATA USAHA, RUMAH TANGGA DAN PERLENGKAPAN SEKRETARIAT DPRD', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3722, 'KEPALA SUB BAGIAN DOKUMENTASI, HUBUNGAN MASYARAKAT DAN PROTOKOL', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3723, 'KEPALA SEKSI PENGELOLAAN KELEMBAGAAN PENDIDIKAN ANAK USIA DINI DAN PENDIDIKAN NON FORMAL  ', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3724, 'KEPALA SUB BIDANG BINA IDEOLOGI BELA NEGARA DAN WAWASAN KEBANGSAAN BADAN KESATUAN BANGSA DAN POLITIK', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3725, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN KANIGORO', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3726, 'KEPALA SUB BIDANG INFORMASI', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3727, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3728, 'KEPALA BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA MANUSIA', 'pelaksana', '13', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3729, 'KEPALA SEKSI PEMENUHAN HAK ANAK', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3730, 'KEPALA SEKSI REHABILITASI SOSIAL DISABILITAS TERLANTAR, ANAK TERLANTAR DAN LANSIA TERLANTAR SERTA GELANDANGAN PENGEMIS', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3731, 'KEPALA SEKSI PENGEMBANGAN SUMBER DAYA TEKNOLOGI INFORMASI DAN KOMUNIKASI DINAS KOMUNIKASI DAN INFORMATIKA', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3732, 'KEPALA SUB BIDANG PERENCANAAN PEMERINTAHAN', 'pelaksana', '1000', '1430', '3.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3733, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN NGEGONG', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3734, 'KEPALA SUB BAGIAN PERENCANAAN DINAS KESEHATAN, PENGENDALIAN PENDUDUK DAN KELUARGA BERENCANA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3735, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KLEGEN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3736, 'KEPALA SEKOLAH SDN PATIHAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3737, 'KEPALA SEKOLAH SDN 02 NAMBANGAN KIDUL', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3738, 'ASISTEN PEMERINTAHAN DAN PEMBANGUNAN', 'pelaksana', '1000', '3030', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3739, 'KEPALA SEKOLAH SMPN 6', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3740, 'KEPALA SEKOLAH SDN 04 KLEGEN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3741, 'KEPALA SEKOLAH SDN ORO ORO OMBO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3742, 'KEPALA SEKOLAH SDN SUKOSARI', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3743, 'KEPALA SEKOLAH SDN 01 KANIGORO', 'pelaksana', '1000', 'NULL', 'NULL', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3744, 'KEPALA SEKOLAH SDN 02 KANIGORO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3745, 'KEPALA SEKOLAH SDN 03 KANIGORO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3746, 'KEPALA SEKOLAH SDN PILANGBANGO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3747, 'KEPALA SEKOLAH SDN 01 TAWANGREJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3748, 'KEPALA SEKOLAH SDN 02 TAWANGREJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3749, 'KEPALA SEKOLAH SDN KELUN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3750, 'KEPALA SEKOLAH SDN 01 MANGUHARJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3751, 'KEPALA SEKOLAH SDN 02 KARTOHARJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3752, 'KEPALA SEKOLAH SDN 01 JOSENAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3753, 'KEPALA SEKOLAH SMPN 5', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3754, 'KEPALA SEKOLAH SDN 03 JOSENAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3755, 'KEPALA SEKOLAH SDN 01 REJOMULYO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3756, 'KEPALA SEKOLAH SDN KUNCEN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3757, 'KEPALA SEKOLAH SMPN 8', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3758, 'KEPALA SEKOLAH SMPN 9', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3759, 'KEPALA SEKOLAH SMPN 10', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3760, 'KEPALA SEKOLAH SDN 01 WINONGO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3761, 'KEPALA SEKOLAH SDN 02 WINONGO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3762, 'KEPALA SEKOLAH SDN 02 NAMBANGAN KIDUL', 'pelaksana', '1000', 'NULL', 'NULL', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3763, 'KEPALA SEKOLAH SDN 03 NAMBANGAN KIDUL', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3764, 'KEPALA SEKSI PENGELOLAAN LAYANAN KESEHATAN IBU, BALITA DAN GIZI MASYARAKAT', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3765, 'KEPALA SUB BAGIAN PERENCANAAN, EVALUASI DAN PELAPORAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3766, 'KEPALA SEKSI PENGELOLAAN INFRASTRUKTUR DAN APLIKASI TATA KELOLA PEMERINTAHAN ELEKTRONIK DINAS KOMUNIKASI DAN INFORMATIKA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3767, 'KEPALA SEKSI PENYEDIAAN FASILITAS PELAYANAN KESEHATAN DAN OPERASIONAL PUSKESMAS DAN RUMAH SAKIT', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3768, 'KEPALA SEKOLAH SDN 01 PANGONGANGAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3769, 'KEPALA SEKOLAH SDN 02 JOSENAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3770, 'KEPALA SEKOLAH SDN 04 NAMBANGAN KIDUL', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3771, 'KEPALA SEKOLAH SDN NGEGONG', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3772, 'KEPALA SEKOLAH SDN SOGATEN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3773, 'KEPALA SEKOLAH SDN 01 TAMAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3774, 'KEPALA SEKOLAH SDN 02 TAMAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3775, 'KEPALA SEKOLAH SDN 03 TAMAN', 'pelaksana', '1000', 'NULL', 'NULL', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3776, 'KEPALA SEKOLAH SDN 01 PANDEAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3777, 'KEPALA SEKOLAH SDN 02 PANDEAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3778, 'KEPALA SEKOLAH SDN BANJAREJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3779, 'KEPALA SEKOLAH SDN 01 MOJOREJO', 'pelaksana', '1000', 'NULL', 'NULL', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3780, 'KEPALA SEKOLAH SDN 02 MOJOREJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3781, 'KEPALA DINAS PERDAGANGAN', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3782, 'SEKRETARIS DINAS PERDAGANGAN', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3783, 'KEPALA BIDANG USAHA  PERDAGANGAN', 'pelaksana', '11', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3784, 'KEPALA SEKSI PENGELOLAAN SARANA PRASARANA DAN KETERTIBAN PASAR RAKYAT', 'pelaksana', '11', '2045', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3785, 'KEPALA BIDANG PENGELOLAAN PASAR RAKYAT', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3786, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN DINAS PERDAGANGAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3787, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN DINAS PERDAGANGAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3788, 'KEPALA UPTD METROLOGI LEGAL', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3789, 'KEPALA DINAS PERUMAHAN RAKYAT DAN KAWASAN PERMUKIMAN', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3790, 'SEKRETARIS DINAS SOSIAL, PEMBERDAYAAN PEREMPUAN DAN PERLINDUNGAN ANAK', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3791, 'KEPALA BIDANG PEMBERDAYAAN PEREMPUAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3792, 'KEPALA BIDANG REHABILITASI SOSIAL', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3793, 'KEPALA BIDANG PERLINDUNGAN PEREMPUAN DAN PEMENUHAN HAK ANAK', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3794, 'KEPALA BIDANG SOSIAL, PENANGANAN BENCANA DAN PENGELOLAAN TAMAN MAKAM PAHLAWAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3795, 'KEPALA SEKOLAH SDN 01 MANISREJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3796, 'KEPALA SEKOLAH SDN 02 MANISREJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3797, 'KEPALA SEKOLAH SDN 03 MANISREJO', 'pelaksana', '1000', 'NULL', 'NULL', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3798, 'KEPALA SEKOLAH SDN 04 MANISREJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3799, 'KEPALA SEKOLAH SDN 01 DEMANGAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3800, 'KEPALA SEKOLAH SDN 02 DEMANGAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3801, 'KEPALA SUB BAGIAN UMUM DAN KEPEGAWAIAN DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3802, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEUANGAN DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3803, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN PERPUSTAKAAN DAN KEARSIPAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3804, 'KEPALA DINAS TENAGA KERJA, KOPERASI USAHA KECIL DAN MENENGAH', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3805, 'SEKRETARIS DINAS TENAGA KERJA, KOPERASI USAHA KECIL DAN MENENGAH', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3806, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3807, 'KEPALA BIDANG KOPERASI USAHA KECIL DAN MENENGAH', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3808, 'KEPALA BIDANG TENAGA KERJA', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3809, 'KEPALA SEKSI SURVEILLANCE DAN IMUNISASI ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3810, 'KEPALA SUB BAGIAN UMUM DAN KEPEGAWAIAN', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3811, 'KEPALA BIDANG KEARSIPAN ', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3812, 'KEPALA BIDANG PERPUSTAKAAN', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3813, 'KEPALA SEKSI KURIKULUM MUATAN LOKAL PENDIDIKAN ANAK USIA DINI DAN PENDIDIKAN NON FORMAL', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3814, 'KEPALA SEKSI PEMBINAAN, PENINGKATAN SUMBER DAYA MANUSIA GURU DAN TENAGA KEPENDIDIKAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3815, 'KEPALA SEKSI PERTANAHAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3816, 'KEPALA SEKSI KAJIAN DAMPAK LINGKUNGAN HIDUP', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3817, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3818, 'KEPALA SEKSI KAJIAN LINGKUNGAN HIDUP STRATEGIS', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3819, 'KEPALA SEKSI PERENCANAAN DAN PENGELOLAAN SAMPAH', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3820, 'KEPALA SUB BIDANG INOVASI DAN PENGEMBANGAN DAERAH', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3821, 'KEPALA SUB BAGIAN UMUM DAN KEPEGAWAIAN DINAS SOSIAL, PEMBERDAYAAN DAN PERLINDUNGAN ANAK', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3822, 'KEPALA UPTD PUSKESMAS SUKOSARI', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3823, 'KEPALA DINAS KEBUDAYAAN, PARIWISATA, KEPEMUDAAN DAN OLAHRAGA', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3824, 'SEKRETARIS DINAS KEBUDAYAAN, PARIWISATA, KEPEMUDAAN DAN OLAHRAGA', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3825, 'KEPALA BIDANG KEBUDAYAAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3826, 'KEPALA BIDANG PARIWISATA', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3827, 'SEKRETARIS DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU', 'pelaksana', '12', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3828, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3829, 'KEPALA DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3830, 'KEPALA BIDANG GURU DAN TENAGA KEPENDIDIKAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3831, 'KEPALA BIDANG PENGELOLAAN PENDIDIKAN ANAK USIA DINI, PENDIDIKAN NON FORMAL DAN PENDIDIKAN DASAR', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3832, 'KEPALA SEKSI PEMETAAN DAN DISTRIBUSI TENAGA KEPENDIDIKAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3833, 'KEPALA SEKSI PENGELOLAAN SARANA PRASARANA PENDIDIKAN ANAK USIA DINI, PENDIDIKAN NON FORMAL, SEKOLAH DASAR DAN SEKOLAH MENENGAH PERTAMA ', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3834, 'KEPALA SEKSI PENGELOLAAN KELEMBAGAAN PENDIDIKAN, SEKOLAH DASAR DAN SEKOLAH MENENGAH PERTAMA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3835, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN DINAS PENDIDIKAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3836, 'KEPALA SEKSI PENINGKATAN KAPASITAS LINGKUNGAN HIDUP DINAS LINGKUNGAN HIDUP', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3837, 'KEPALA SEKSI PENGADUAN, INFORMASI LAYANAN, PENYULUHAN LAYANAN DAN TRANSMIGRASI', 'pelaksana', '9', '1430', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3838, 'KEPALA DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3839, 'SEKRETARIS DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3840, 'KEPALA BIDANG PELAYANAN PENCATATAN SIPIL', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3841, 'KEPALA BIDANG PELAYANAN PENDAFTARAN PENDUDUK', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3842, 'KEPALA DINAS PENDIDIKAN', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3843, 'SEKRETARIS DINAS PENDIDIKAN', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3844, 'KEPALA SEKSI PEMBUDAYAAN GEMAR MEMBACA DINAS PERPUSTAKAAN DAN KEARSIPAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3845, 'KEPALA SUB BIDANG PENELITIAN DAN KAJIAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3846, 'LURAH PANGONGANGAN', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3847, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3848, 'KEPALA SEKSI KURIKULUM MUATAN LOKAL, PEMBINAAN BAHASA DAN SASTRA PENDIDIKAN SEKOLAH DASAR', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3849, 'KEPALA SEKSI KURIKULUM MUATAN LOKAL, PEMBINAAN BAHASA DAN SASTRA PENDIDIKAN SEKOLAH MENENGAH PERTAMA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3850, 'KEPALA SEKSI PEMETAAN DAN DISTRIBUSI GURU', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3851, 'KEPALA SEKSI PERPUSTAKAAN SEKOLAH, PEMBINAAN BAHASA DAN SASTRA DAERAH', 'pelaksana', '8', '1295', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3852, 'KEPALA SUB BIDANG PERENCANAAN PEREKONOMIAN DAN SUMBER DAYA ALAM', 'pelaksana', '1000', '1430', '3.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3853, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS SUKOSARI', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3854, 'KEPALA UPTD PUSKESMAS NGEGONG', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3855, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS NGEGONG', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3856, 'KEPALA SEKSI PENGADUAN DAN PENEGAKAN HUKUM LINGKUNGAN HIDUP DINAS LINGKUNGAN HIDUP', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3857, 'KEPALA SEKSI PENATAAN BANGUNAN DAN GEDUNG', 'pelaksana', '1000', '1430', '3.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3858, 'KEPALA SEKSI PENGEMBANGAN JASA KONSTRUKSI', 'pelaksana', '1000', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3859, 'KEPALA SEKSI PENGELOLAAN SUMBER DAYA AIR', 'pelaksana', '1000', '1430', '3.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3860, 'KEPALA SEKSI PERENCANAAN RUANG', 'pelaksana', '1000', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3861, 'KEPALA SEKSI PENGENDALIAN BANJIR', 'pelaksana', '1000', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3862, 'SEKRETARIS DINAS KESEHATAN, PENGENDALIAN PENDUDUK DAN KELUARGA BERENCANA', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3863, 'KEPALA BIDANG PERINDUSTRIAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3864, 'KEPALA SEKSI PEMBERDAYAAN KOPERASI', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3865, 'KEPALA SEKSI PENGGUNAAN DAN PEMASARAN PRODUK DALAM NEGERI', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3866, 'KEPALA SEKSI PENGAWASAN PERIZINAN DAN PEMBINAAN USAHA PERDAGANGAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3867, 'KEPALA SEKSI PENGARUSUTAMAAN GENDER DAN PEMBERDAYAAN PEREMPUAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3868, 'KEPALA SEKSI PENGELOLAAN PERPUSTAKAAN DAN PELESTARIAN NASKAH KUNO DINAS PERPUSTAKAAN DAN KEARSIPAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3869, 'KEPALA SEKSI PENGELOLAAN ARSIP STATIS DINAS PERPUSTAKAAN DAN KEARSIPAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3870, 'KEPALA SEKSI PENGENDALIAN, PENGELOLAAN RETRIBUSI DAN PERIZINAN PASAR RAKYAT', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3871, 'KEPALA SEKSI PENATAAN BANGUNAN DAN LINGKUNGAN', 'pelaksana', '1000', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3872, 'KEPALA SEKSI PENCEGAHAN PENCEMARAN DAN KERUSAKAN LINGKUNGAN HIDUP DINAS LINGKUNGAN HIDUP ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3873, 'KEPALA SEKSI PENINGKATAN KUALITAS KELUARGA', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3874, 'KEPALA SEKSI PEMBINAAN SEJARAH, NILAI TRADISI DAN PELESTARIAN CAGAR BUDAYA', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3875, 'KEPALA SEKSI PENGELOLAAN DAN PENGEMBANGAN DESTINASI PARIWISATA', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3876, 'KEPALA SUB BAGIAN UMUM DAN KEPEGAWAIAN  BADAN KESATUAN BANGSA DAN POLITIK', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3877, 'KEPALA SEKSI PERENCANAAN DAN PEMBANGUNAN PERINDUSTRIAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3878, 'KEPALA SEKSI PELATIHAN KERJA DAN PRODUKTIVITAS TENAGA KERJA', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3879, 'KEPALA SEKSI PENGELOLAAN PELAYANAN PENYAKIT MENULAR DAN TIDAK MENULAR', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3880, 'KEPALA SEKSI FARMASI, ALAT KESEHATAN DAN MAKANAN MINUMAN ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3881, 'KEPALA SEKSI PENGELOLAAN KESEHATAN LINGKUNGAN, KERJA DAN OLAHRAGA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3882, 'KEPALA SEKSI PENGELOLAAN PELAYANAN KESEHATAN USIA PRODUKTIF, USIA LANJUT, JIWA DAN NAPZA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3883, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3884, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3885, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3886, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3887, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3888, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3889, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3890, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3891, 'KEPALA SEKSI KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3892, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3893, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3894, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3895, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3896, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3897, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3898, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3899, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3900, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1295', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3901, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1295', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3902, 'KEPALA SEKSI PEMBINAAN HUBUNGAN INDUSTRIAL DAN JAMINAN SOSIAL TENAGA KERJA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3903, 'KEPALA BIDANG KEPEMUDAAN DAN OLAH RAGA', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3904, 'KEPALA SEKSI PERKAWINAN, PERCERAIAN, PERUBAHAN STATUS ANAK DAN PEWARGANEGARAAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3905, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3906, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN KANIGORO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3907, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3908, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3909, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3910, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3911, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3912, 'KEPALA SEKSI PENGELOLAAN INFORMASI ADMINISTRASI KEPENDUDUKAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3913, 'KEPALA SEKSI PEMBANGUNAN', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3914, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN TAMAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3915, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3916, 'KEPALA SATUAN POLISI PAMONG PRAJA DAN PEMADAM KEBAKARAN', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3917, 'SEKRETARIS SATUAN POLISI PAMONG PRAJA DAN PEMADAM KEBAKARAN', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3918, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3919, 'KEPALA SEKSI KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3920, 'KEPALA SEKSI PEMBINAAN DAN PENGAWASAN PERINDUSTRIAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3921, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3922, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3923, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3924, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3925, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3926, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3927, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3928, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3929, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3930, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3931, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3932, 'SEKRETARIS CAMAT', 'pelaksana', '1000', '2090', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3933, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3934, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3935, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3936, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3937, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3938, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3939, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3940, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3941, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3942, 'KEPALA SEKSI PEMBANGUNAN', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3943, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3944, 'KEPALA SEKSI KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3945, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3946, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3947, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3948, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3949, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3950, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3951, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3952, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1295', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3953, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1295', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3954, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3955, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3956, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3957, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3958, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3959, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN TAMAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3960, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1296', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3961, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3962, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3963, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3964, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3965, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3966, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3967, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3968, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3969, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3970, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3971, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3972, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3973, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3974, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3975, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3976, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3977, 'KEPALA SEKSI PERENCANAAN DAN PENEMPATAN TENAGA KERJA', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3978, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3979, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3980, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3981, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3982, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3983, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3984, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3985, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3986, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3987, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3988, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3989, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3990, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3991, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3992, 'LURAH PATIHAN', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3993, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3994, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN KARTOHARJO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3995, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN ORO-ORO OMBO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3996, 'KEPALA BIDANG PENEGAKAN PERATURAN PERUNDANG-UNDANGAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3997, 'KEPALA BIDANG KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '11', '2045', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3998, 'KEPALA BIDANG PENANGGULANGAN KEBAKARAN DAN PERLINDUNGAN MASYARAKAT', 'pelaksana', '11', '2045', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (3999, 'KEPALA SEKSI PENCEGAHAN DAN PEMBERDAYAAN MASYARAKAT', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4000, 'KEPALA SEKSI PERLINDUNGAN MASYARAKAT', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4001, 'KEPALA SEKSI KERJASAMA DAN PENGEMBANGAN KAPASITAS', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4002, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN', 'pelaksana', '9', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4003, 'KEPALA SEKSI OPERASIONAL, PENGENDALIAN KETENTRAMAN DAN KETERTIBAN MASYARAKAT', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4004, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN', 'pelaksana', '9', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4005, 'KEPALA SEKSI PENYELIDIKAN DAN PENINDAKAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4006, 'LURAH KANIGORO', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4007, 'LURAH MADIUN LOR', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4008, 'LURAH', 'pelaksana', '9', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4009, 'LURAH', 'pelaksana', '9', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4010, 'LURAH', 'pelaksana', '9', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4011, 'LURAH', 'pelaksana', '9', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4012, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4013, 'LURAH', 'pelaksana', '9', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4014, 'LURAH', 'pelaksana', '9', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4015, 'LURAH', 'pelaksana', '9', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4016, 'LURAH', 'pelaksana', '9', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4017, 'SEKRETARIS LURAH', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4018, 'KEPALA SEKSI PENANGANAN FAKIR MISKIN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4020, 'KEPALA SEKSI PENGELOLAAN WISMA, GEDUNG OLAH RAGA DAN LAPANGAN OLAHRAGA', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4021, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN MANISREJO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4022, 'KEPALA SEKOLAH SMPN 3', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4023, 'KEPALA BIDANG KEUANGAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4024, 'DIREKTUR RSUD', 'pelaksana', '13', '2805', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4025, 'KEPALA BAGIAN TATA USAHA RSUD', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4026, 'KEPALA BIDANG PENUNJANG', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4027, 'KEPALA BIDANG PELAYANAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4028, 'SEKRETARIS LURAH', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4029, 'SEKRETARIS LURAH', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4030, 'SEKRETARIS LURAH', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4031, 'SEKRETARIS LURAH', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4032, 'KEPALA SEKSI PEMBANGUNAN KECAMATAN KARTOHARJO', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4033, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT KECAMATAN KARTOHARJO', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4034, 'SEKRETARIS LURAH', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4035, 'SEKRETARIS LURAH', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4036, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4037, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4038, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4039, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4040, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4041, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4042, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4043, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN SOGATEN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4044, 'SEKRETARIS KELURAHAN TAMAN', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4045, 'KEPALA SUB BAGIAN PERENCANAAN', 'pelaksana', '9', '1430', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4046, 'KEPALA SEKOLAH SDN 02 PANGONGANGAN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4047, 'KEPALA SEKOLAH SMPN 1', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4048, 'KEPALA SEKOLAH SMPN 2', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4049, 'KEPALA SEKOLAH SDN PATIHAN', 'pelaksana', '1000', 'NULL', 'NULL', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4050, 'KEPALA SEKSI PELAYANAN MEDIS', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4051, 'KEPALA SEKSI PENUNJANG NON MEDIS', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4052, 'KEPALA SEKSI PENUNJANG MEDIS', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4053, 'KEPALA SEKOLAH SDN 01 NAMBANGAN KIDUL', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4054, 'KEPALA SEKOLAH SDN 03 KARTOHARJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4055, 'KEPALA SEKOLAH SDN 01 KLEGEN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4056, 'KEPALA SEKOLAH SDN 03 KLEGEN', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4057, 'KEPALA SEKOLAH SMPN 11', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4058, 'KEPALA SEKOLAH SMPN 12', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4059, 'KEPALA SEKOLAH SMPN 13', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4060, 'KEPALA SEKOLAH SMPN 14', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4061, 'KEPALA SEKOLAH', 'pelaksana', '1000', NULL, NULL, '185000', '', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4062, 'KEPALA SEKOLAH', 'pelaksana', '1000', NULL, NULL, '185000', '', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4063, 'KEPALA SEKOLAH SDN 04 MADIUN LOR', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4064, 'KEPALA SEKOLAH SDN 05 MADIUN LOR', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4065, 'KEPALA SEKSI IDENTITAS PENDUDUK', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4066, 'SEKRETARIS CAMAT', 'pelaksana', '1000', '2090', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4067, 'LURAH', 'pelaksana', '1000', '1540', '3.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4068, 'SEKRETARIS LURAH', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4069, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT KREATIF', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4070, 'KEPALA SEKSI PENGEMBANGAN UPAYA KESEHATAN BERSUMBER DAYA MASYARAKAT', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4071, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4072, 'INSPEKTUR PEMBANTU I', 'pelaksana', '1000', '1990', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4073, 'KEPALA SEKSI KETERSEDIAAN DAN PENGELOLAAN KEMANDIRIAN PANGAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4074, 'KEPALA SUB BIDANG PENDAYAGUNAAN ASET', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4075, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS MANGUHARJO', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4076, 'KEPALA BIDANG PENGEMBANGAN SUMBER DAYA MANUSIA', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4077, 'KEPALA SUB BIDANG PENGEMBANGAN KOMPETENSI MANAJERIAL DAN FUNGSIONAL', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4078, 'KEPALA SUB BIDANG PENGEMBANGAN KOMPETENSI TEKNIS', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4079, 'KEPALA SUB BIDANG JABATAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4080, 'KEPALA SUB BIDANG PENGHARGAAN DAN KESEJAHTERAAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4081, 'KEPALA BIDANG PENGADAAN, PEMBERHENTIAN DAN INFORMASI', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4082, 'KEPALA SUB BIDANG FORMASI DAN PENGADAAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4083, 'KEPALA SUB BIDANG PEMBINAAN DAN PEMBERHENTIAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4084, 'KEPALA BAGIAN PERSIDANGAN DAN PERUNDANG-UNDANGAN', 'pelaksana', '1000', '2090', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4085, 'KEPALA UPTD RUMAH POTONG HEWAN', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4086, 'KEPALA SUB BAGIAN TATA USAHA UPTD RUMAH POTONG HEWAN', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4087, 'KEPALA SEKSI KEAMANAN DAN KERAWANAN PANGAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4088, 'KEPALA SUB BIDANG KEBIJAKAN ANGGARAN', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4089, 'KEPALA SEKSI BUDIDAYA, PRASARANA DAN SARANA PERTANIAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4090, 'KEPALA SEKSI PERIKANAN BUDIDAYA DAN PENGELOLAAN SUMBER DAYA IKAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4091, 'KEPALA BIDANG KETENTRAMAN, KETERTIBAN UMUM DAN PERLINDUNGAN MASYARAKAT', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4092, 'KEPALA BIDANG PEMADAM KEBAKARAN DAN PENYELAMATAN', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4093, 'KEPALA SEKSI PETERNAKAN DAN KESEHATAN HEWAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4094, 'KEPALA SEKSI OPERASIONAL DAN PENGENDALIAN KETENTRAMAN KETERTIBAN MASYARAKAT', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4095, 'KEPALA SUB BAGIAN PROGRAM DAN KEUANGAN SEKRETARIAT DPRD', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4096, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN DINAS PENDIDIKAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4097, 'KEPALA BIDANG TATA LINGKUNGAN HIDUP', 'pelaksana', '1000', '2045', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4098, 'KEPALA SUB BAGIAN UMUM DAN KEPEGAWAIAN DINAS LINGKUNGAN HIDUP', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4099, 'KEPALA SEKSI PERLINDUNGAN DAN PENGELOLAAN LINGKUNGAN HIDUP', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4100, 'KEPALA SEKSI ANGKUTAN ORANG', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4101, 'KEPALA SEKSI PENERANGAN JALAN UMUM', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4102, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN PILANGBANGO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4103, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4104, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN REJOMULYO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4105, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN SUKOSARI', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4106, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN TAWANGREJO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4107, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN KARTOHARJO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4108, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN KELUN', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4109, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN ORO-ORO OMBO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4110, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN PILANGBANGO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4111, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN REJOMULYO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4112, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN SUKOSARI', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4113, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN TAWANGREJO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4114, 'LURAH KELUN', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4115, 'LURAH KLEGEN', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4116, 'KEPALA SEKSI PERUMAHAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4117, 'KEPALA SEKSI PERTAMANAN DAN RUANG TERBUKA HIJAU', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4118, 'KEPALA SUB BAGIAN PERENCANAAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4119, 'KEPALA SUB BAGIAN KAJIAN PERUNDANG-UNDANGAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4120, 'KEPALA SUB BAGIAN FASILITASI PENGANGGARAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4121, 'KEPALA SUB BIDANG PERENCANAAN PEMBANGUNAN MANUSIA', 'pelaksana', '1000', '1430', '3.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4122, 'KEPALA SEKSI PEMBINAAN, PENGAWASAN DAN PENYULUHAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4123, 'KEPALA SEKSI PENANGGULANGAN DAN PEMULIHAN PENCEMARAN LINGKUNGAN HIDUP', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4124, 'KEPALA SEKSI PENGOLAHAN DAN PEMASARAN PRODUK PERIKANAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4125, 'KEPALA SUB BIDANG PERENCANAAN DAN PENDANAAN PEMBANGUNAN', 'pelaksana', '1000', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4126, 'KEPALA SEKSI INSPEKSI, SARANA DAN PRASARANA KEBAKARAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4127, 'KEPALA SEKSI KETERSEDIAAN DAN PENGELOLAAN KEMANDIRIAN PANGAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4128, 'KEPALA SEKSI PEMBINAAN DAN PENGAWASAN LINGKUNGAN HIDUP', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4129, 'KEPALA SEKSI PENCEGAHAN DAN PENINGKATAN KUALITAS PERMUKIMAN KUMUH', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4130, 'KEPALA SEKSI PENGELOLAAN LIMBAH BAHAN BERBAHAYA DAN BERACUN DINAS LINGKUNGAN HIDUP ', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4131, 'KEPALA SEKSI MANAJEMEN DAN REKAYASA LALU LINTAS', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4132, 'KEPALA UPTD PENGELOLA GOR, STADION WILIS & WSMA HAJI', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4133, 'KEPALA SEKSI PEMELIHARAAN JALAN DAN JEMBATAN', 'pelaksana', '1000', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4134, 'KEPALA SUB BAGIAN TATA USAHA UPTD PNGELOLA GOR, STD WILIS & WSMA HJ', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4135, 'KEPALA SEKSI PENGELOLAAN KOMUNIKASI PUBLIK', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4136, 'KEPALA UPTD PUSKESMAS BANJAREJO', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4137, 'KEPALA UPTD PUSKESMAS TAWANGREJO ', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4138, 'KEPALA UPTD PUSKESMAS MANGUHARJO', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4139, 'KEPALA UPTD PUSKESMAS DEMANGAN', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4140, 'KEPALA UPTD GUDANG PERBEKALAN KESEHATAN ', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4141, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS TAWANGREJO ', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4142, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS DEMANGAN', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4143, 'KEPALA SUB BAGIAN TATA USAHA PUSKESMAS BANJAREJO', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4144, 'KEPALA SUB BAGIAN TATA USAHA GUDANG PERBEKALAN KESEHATAN ', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4145, 'KEPALA SUB BIDANG PERENCANAAN INFRASTRUKTUR DAN KEWILAYAHAN', 'pelaksana', '1000', '1430', '3.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4147, 'KEPALA SEKSI PROMOSI KESEHATAN DAN PEMBERDAYAAN MASYARAKAT', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4148, 'KEPALA SEKSI PENGAWASAN BARANG BEREDAR, SARANA DISTRIBUSI DAN PERLINDUNGAN KONSUMEN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4149, 'KEPALA UPTD LOKA BINA KARYA', 'pelaksana', '1000', '1430', '3.1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4150, 'KEPALA SUB BAGIAN TATA USAHA UPTD LOKA BINA KARYA', 'pelaksana', '1000', '1295', '3.4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4151, 'KEPALA SEKSI PERLINDUNGAN PEREMPUAN DAN ANAK', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4152, 'KEPALA SEKSI PEMBERDAYAAN SOSIAL', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4153, 'SEKRETARIS LURAH', 'pelaksana', '1000', '1320', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4154, 'KEPALA SEKSI PEMBERDAYAAN LEMBAGA MASYARAKAT', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4155, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN DINAS KEBUDAYAAN, PARIWISATA, KEPEMUDAAN DAN OLAHRAGA', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4156, 'KEPALA SEKSI KEPEMUDAAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4157, 'KEPALA SEKSI PENGELOLAAN KEBUDAYAAN DAN KESENIAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4158, 'KEPALA BIDANG PELAYANAN TERPADU SATU PINTU', 'pelaksana', '1000', '2045', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4159, 'KEPALA SEKSI PELAYANAN PEREKONOMIAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4160, 'KEPALA SEKSI PELAYANAN  KESEJAHTERAAN RAKYAT', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4161, 'KEPALA SEKSI  PELAYANAN PEMBANGUNAN DAN PEMERINTAHAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4162, 'KEPALA SEKSI OLAH RAGA', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4163, 'KEPALA SUB BAGIAN KEUANGAN DINAS KESEHATAN, PENGENDALIAN PENDUDUK DAN KELUARGA BERENCANA', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4164, 'KEPALA SEKSI PEMBERDAYAAN DAN PENINGKATAN KELUARGA SEJAHTERA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4165, 'KEPALA SEKSI PENGENDALIAN PENDUDUK DAN ADVOKASI PENGGERAKAN DAN INFORMASI KEPENDUDUKAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4166, 'KEPALA SEKSI KESEHATAN IBU, BALITA DAN GIZI MASYARAKAT', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4167, 'KEPALA SEKSI PEMBUKUAN DAN PEMBERDAYAAN PASAR RAKYAT', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4168, 'KEPALA SEKSI SUMBER DAYA MANUSIA DAN PEMBIAYAAN KESEHATAN ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4169, 'KEPALA SEKSI KELAHIRAN DAN KEMATIAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4170, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN SATUAN POLISI PAMONG PRAJA DAN PEMADAM KEBAKARAN', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4171, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN DINAS KEBUDAYAAN, PARIWISATA, KEPEMUDAAN DAN OLAHRAGA', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4172, 'KEPALA SEKSI KELEMBAGAAN KOPERASI', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4173, 'KEPALA SEKSI PEMBERDAYAAN USAHA MIKRO', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4174, 'KEPALA SEKSI REHABILITASI SOSIAL ANAK DAN TUMBUH KEMBANG', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4175, 'KEPALA SEKSI PINDAH DATANG DAN PENDATAAN PENDUDUK', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4176, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN BADAN PENDAPATAN DAERAH', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4177, 'SEKRETARIS  BADAN KESATUAN BANGSA DAN POLITIK', 'pelaksana', '1000', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4178, 'KEPALA SUB BIDANG LEMBAGA POLITIK', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4179, 'KEPALA SEKSI KERJA SAMA DAN INOVASI PELAYANAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4180, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4181, 'KEPALA SUB BAGIAN UMUM', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4182, 'KEPALA SEKSI MOBILISASI DANA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4183, 'KEPALA SEKSI PERENCANAAN, PENGEMBANGAN IKLIM DAN PROMOSI PENANAMAN MODAL', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4184, 'KEPALA SEKSI PENGENDALIAN PELAKSANAAN PENANAMAN MODAL', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4185, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN BADAN KESATUAN BANGSA DAN POLITIK', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4186, 'KEPALA SUB BIDANG KETAHANAN SOSIAL, BUDAYA DAN AGAMA BADAN KESATUAN BANGSA DAN POLITIK', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4187, 'KEPALA SUB BAGIAN KEUANGAN DINAS SOSIAL, PEMBERDAYAAN PEREMPUAN DAN PERLINDUNGAN ANAK', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4188, 'KEPALA SUB BIDANG PENDATAAN DAN PENETAPAN PAJAK DAERAH', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4189, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4190, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4191, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4192, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '1000', '1295', '3.2', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4193, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4194, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4195, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4196, 'KEPALA SEKSI PEMERINTAHANKECAMATAN TAMAN', 'pelaksana', '9', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4197, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4198, 'KEPALA SEKSI PEMBANGUNAN', 'pelaksana', '9', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4199, 'KEPALA SEKSI PEMERINTAHAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4200, 'LURAH KARTOHARJO', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4201, 'LURAH ORO-ORO OMBO', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4202, 'LURAH PILANGBANGO', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4203, 'KEPALA SEKSI PERBENDAHARAAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4204, 'LURAH REJOMULYO', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4205, 'LURAH SUKOSARI', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4206, 'LURAH TAWANGREJO', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4207, 'SEKRETARIS KELURAHAN KANIGORO', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4208, 'SEKRETARIS KELURAHAN KARTOHARJO', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4209, 'KEPALA SEKSI PEMASARAN, PENGEMBANGAN SUMBER DAYA PARIWISATA DAN EKONOMI KREATIF', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4210, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN KELUN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4211, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN MADIUN LOR', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4212, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN MANGUHARJO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4213, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN NAMBANGAN LOR', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4214, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN PANGONGANGAN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4215, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN PATIHAN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4216, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN WINONGO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4217, 'LURAH MANGUHARJO', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4218, 'LURAH NAMBANGAN KIDUL', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4219, 'LURAH NAMBANGAN LOR', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4220, 'LURAH NGEGONG', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4221, 'LURAH SOGATEN', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4222, 'LURAH WINONGO', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4223, 'SEKRETARIS KELURAHAN MADIUN LOR', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4224, 'SEKRETARIS KELURAHAN MANGUHARJO', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4225, 'SEKRETARIS KELURAHAN NAMBANGAN KIDUL', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4226, 'SEKRETARIS KELURAHAN NAMBANGAN LOR', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4227, 'SEKRETARIS KELURAHAN NGEGONG', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4228, 'SEKRETARIS KELURAHAN PANGONGANGAN', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4229, 'SEKRETARIS KELURAHAN PATIHAN', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4230, 'SEKRETARIS KELURAHAN SOGATEN', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4231, 'SEKRETARIS KELURAHAN WINONGO', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4232, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN DEMANGAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4233, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN JOSENAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4234, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN KEJURON', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4235, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN KUNCEN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4236, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN MANISREJO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4237, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN KLEGEN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4238, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN SOGATEN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4239, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN PATIHAN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4240, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN MADIUN LOR', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4241, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN NAMBANGAN LOR', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4242, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN KELUN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4243, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN ORO-ORO OMBO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4244, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN PILANGBANGO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4245, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN REJOMULYO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4246, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN SUKOSARI', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4247, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN TAWANGREJO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4248, 'KEPALA SEKSI PENANGANAN FAKIR MISKIN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4249, 'KEPALA SUB BAGIAN PENGENDALIAN KEGIATAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4250, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN MOJOREJO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4251, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN PANDEAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4252, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN TAMAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4253, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN BANJAREJO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4254, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN DEMANGAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4255, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN JOSENAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4256, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN KEJURON', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4257, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN KUNCEN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4258, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN MANISREJO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4259, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN MOJOREJO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4260, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN PANDEAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4261, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN DEMANGAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4262, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN MOJOREJO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4263, 'LURAH BANJAREJO', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4264, 'LURAH DEMANGAN', 'pelaksana', '9', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4265, 'LURAH JOSENAN', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4266, 'LURAH KEJURON', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4267, 'LURAH KUNCEN', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4268, 'LURAH MANISREJO', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4269, 'LURAH MOJOREJO', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4270, 'LURAH PANDEAN', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4271, 'LURAH TAMAN', 'pelaksana', '1000', '1540', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4272, 'SEKRETARIS KELURAHAN BANJAREJO', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4273, 'SEKRETARIS KELURAHAN DEMANGAN', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4274, 'SEKRETARIS KELURAHAN JOSENAN', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4275, 'SEKRETARIS KELURAHAN KEJURON', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4276, 'SEKRETARIS KELURAHAN KUNCEN', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4277, 'SEKRETARIS KELURAHAN MANISREJO', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4278, 'SEKRETARIS KELURAHAN MOJOREJO', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4279, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN NAMBANGAN KIDUL', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4280, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN KUNCEN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4281, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN PANDEAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4282, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN KEJURON', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4283, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN MANISREJO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4284, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN TAMAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4285, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN BANJAREJO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4286, 'KEPALA SEKSI KETENTRAMAN DAN KETERTIBAN UMUM', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4287, 'SEKRETARIS KELURAHAN PANDEAN', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4288, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN MANGUHARJO', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4289, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN NAMBANGAN LOR', 'pelaksana', '1000', '1165', '3.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4290, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN KECAMATAN TAMAN', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4291, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4292, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN BANJAREJO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4293, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN SATUAN POLISI PAMONG PRAJA DAN PEMADAM KEBAKARAN', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4294, 'KEPALA SEKSI PENGENDALIAN PEMANFAATAN RUANG', 'pelaksana', '1000', '1295', '4', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4295, 'KEPALA SEKSI STABILISASI HARGA BARANG KEBUTUHAN POKOK DAN BARANG PENTING', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4296, 'KEPALA BIDANG  PEMBERDAYAAN, PERLINDUNGAN DAN JAMINAN SOSIAL', 'pelaksana', '1000', '2045', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4297, 'KEPALA SEKSI PEMBINAAN KELUARGA BERENCANA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4298, 'KEPALA SEKSI PENGELOLAAN INFORMASI DAN MEDIA PUBLIK DINAS KOMUNIKASI DAN INFORMATIKA', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4299, 'KEPALA SEKSI PENGANEKARAGAMAN KONSUMSI PANGAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4300, 'KEPALA SEKSI PENYULUHAN, PENGENDALIAN DAN PENANGGULANGAN BENCANA PERTANIAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4301, 'KEPALA SUB BAGIAN UMUM DAN KEPEGAWAIAN DINAS KESEHATAN, PENGENDALIAN PENDUDUK DAN KELUARGA BERENCANA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4302, 'KEPALA SUB BIDANG KEPANGKATAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4303, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN PANDEAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4304, 'STAF AHLI WALIKOTA BIDANG PEMERINTAHAN, HUKUM DAN POLITIK', 'pelaksana', '1000', '2715', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4305, 'KEPALA SEKSI REHABILITASI SOSIAL PEMERLU PELAYANAN KESEJAHTERAAN SOSIAL DAN LAINNYA', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4306, 'KEPALA SEKSI PENANGANAN BENCANA DAN PENGELOLAAN TAMAN MAKAM PAHLAWAN', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4307, 'KEPALA SEKSI PENGELOLAAN DATA GENDER', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4308, 'KEPALA BIDANG PENYELENGGARAAN PELAYANAN PERIZINAN DAN NON PERIZINAN', 'pelaksana', '1000', '2045', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4309, 'SEKRETARIS LURAH KUNCEN', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4310, 'KEPALA BIDANG PENGADUAN, KEBIJAKAN DAN PELAPORAN LAYANAN', 'pelaksana', '1000', '2045', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4311, 'KEPALA SEKSI PELAYANAN PERIZINAN DAN NON PERIZINAN BERUSAHA', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4312, 'KEPALA SEKSI PELAYANAN PERIZINAN DAN NON PERIZINAN NON BERUSAHA', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4313, 'KEPALA SEKSI KEANEKARAGAMAN HAYATI, PERENCANAAN DAN PENATAAN LINGKUNGAN HIDUP DINAS LINGKUNGAN HIDUP ', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4314, 'KEPALA SEKSI KEBERSIHAN DAN PENGANGKUTAN SAMPAH DINAS LINGKUNGAN HIDUP ', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4315, 'KEPALA SEKSI PEMBERDAYAAN KOPERASI', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4316, 'KEPALA SEKSI PENGOLAHAN DAN PENGURANGAN SAMPAH DINAS LINGKUNGAN HIDUP ', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4317, 'KEPALA BIDANG KOPERASI USAHA KECIL DAN MENENGAH', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4318, 'ASISTEN ADMINISTRASI PEMBANGUNAN DAN UMUM', 'pelaksana', '14', '3030', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4319, 'ASISTEN PEMERINTAHAN DAN KESEJAHTERAAN RAKYAT', 'pelaksana', '14', '3030', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4320, 'STAF AHLI BIDANG EKONOMI DAN PEMBANGUNAN', 'pelaksana', '13', '2715', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4321, 'STAF AHLI BIDANG SUMBER DAYA MANUSIA DAN KESEJAHTERAAN RAKYAT', 'pelaksana', '13', '2715', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4322, 'KEPALA BAGIAN PENGADAAN BARANG/JASA DAN ADMINISTRASI PEMBANGUNAN', 'pelaksana', '12', '2315', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4323, 'KEPALA BAGIAN UMUM', 'pelaksana', '12', '2315', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4324, 'KEPALA SEKSI KELEMBAGAAN KOPERASI', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4325, 'KEPALA SEKSI PEMBERDAYAAN USAHA MIKRO', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4326, 'KEPALA SEKSI PENGELOLAAN SISTEM INFORMASI INDUSTRI', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4327, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN MANISREJO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4328, 'KEPALA SEKSI PENGELOLAAN ARSIP DINAMIS DINAS PERPUTAKAAN DAN KEARSIPAN ', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4329, 'KEPALA SUB BIDANG KEWASPADAAN NASIONAL DAN PENANGANAN KONFLIK BADAN KESATUAN BANGSA DAN POLITIK', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4330, 'KEPALA SUB BAGIAN PERENCANAAN DINAS SOSIAL, PEMBERDAYAAN PEREMPUAN DAN PERLINDUNGAN ANAK', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4331, 'KEPALA SUB BIDANG KETAHANAN EKONOMI BADAN KESATUAN BANGSA DAN POLITIK', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4332, 'KEPALA SEKSI PERLINDUNGAN DAN JAMINAN SOSIAL', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4333, 'KEPALA SEKSI KEBIJAKAN, PELAPORAN DAN PENINGKATAN LAYANAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4334, 'SEKRETARIS KELURAHAN KELUN', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4335, 'SEKRETARIS KELURAHAN KLEGEN', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4336, 'SEKRETARIS KELURAHAN ORO-ORO OMBO', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4337, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN DINAS PEKERJAAN UMUM DAN PENATAAN RUANG', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4338, 'INSPEKTUR PEMBANTU III', 'pelaksana', '11', '1990', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4339, 'SEKRETARIS KELURAHAN PILANGBANGO', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4340, 'SEKRETARIS KELURAHAN REJOMULYO', 'pelaksana', '1000', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4341, 'SEKRETARIS KELURAHAN SUKOSARI', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4342, 'SEKRETARIS KELURAHAN TAWANGREJO', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4343, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN MANGUHARJO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4344, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN NAMBANGAN KIDUL', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4345, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN NAMBANGAN LOR', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4346, 'KEPALA SUB BAGIAN PENGEMBANGAN KINERJA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4347, 'KEPALA SUB BAGIAN PEMBINAAN KECAMATAN', 'pelaksana', '1000', '1295', '3.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4348, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN NGEGONG', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4349, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN PANGONGANGAN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4350, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN SOGATEN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4351, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN WINONGO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4352, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN MADIUN LOR', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4353, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN MANGUHARJO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4354, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN NAMBANGAN KIDUL', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4355, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN NGEGONG', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4356, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN PANGONGANGAN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4357, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN PATIHAN', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4358, 'Asisten Apoteker Terampil / Pelaksana', 'pelaksana', '6', '755', '0.8', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4359, 'KEPALA SUB BAGIAN KERJASAMA DAERAH', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4360, 'KEPALA SUB BAGIAN PENGENDALIAN KEGIATAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4361, 'KEPALA SUB BAGIAN LAYANAN PENGADAAN SECARA ELEKTRONIK', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4362, 'KEPALA SUB BAGIAN PENGELOLAAN PENGADAAN BARANG/JASA', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4363, 'KEPALA SUB BAGIAN PENYUSUNAN DAN PENGENDALIAN PROGRAM', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4364, 'KEPALA SUB BAGIAN PENYUSUNAN PROGRAM DAN KEGIATAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4365, 'KEPALA SUB BAGIAN EVALUASI PELAKSANAAN KEGIATAN', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4366, 'KEPALA SUB BAGIAN PENGENDALIAN ADMINISTRASI PENGADAAN BARANG DAN JASA ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4367, 'KEPALA BAGIAN PEMERINTAHAN ', 'pelaksana', '12', '2315', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4368, 'KEPALA SUB BAGIAN PROTOKOL DAN KEPEGAWAIAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4369, 'KEPALA BIDANG PENAATAN, PENGAWASAN DAN PENINGKATAN KAPASITAS LINGKUNGAN HIDUP', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4370, 'SEKRETARIS DINAS PERSPUSTAKAAN DAN KEARSIPAN', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4371, 'KEPALA BIDANG  KEARSIPAN', 'pelaksana', '11', '2045', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4372, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN PERPUSTAKAAN DAN KEARSIPAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4373, 'KEPALA BIDANG CIPTA KARYA', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4374, 'KEPALA BADAN KEPEGAWAIAN DAERAH', 'pelaksana', '14', '2865', '3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4375, 'KEPALA BIDANG MUTASI', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4376, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA MANUSIA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4377, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA MANUSIA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4378, 'SEKRETARIS BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA MANUSIA', 'pelaksana', '12', '2115', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4379, 'KEPALA BADAN KESBANGPOL', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4380, 'KEPALA BIDANG LEMBAGA POLITIK DAN ORGANISASI KEMASYARAKATAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4381, 'KEPALA BIDANG IDEOLOGI', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4382, 'KEPALA BIDANG KETAHANAN BANGSA', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4383, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN  BADAN KESATUAN BANGSA DAN POLITIK', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4384, 'KEPALA SUB BIDANG ORGANISASI KEMASYARAKATAN', 'pelaksana', '9', '1430', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4385, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN KANIGORO', 'pelaksana', '1000', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4386, 'KEPALA SUB BAGIAN PERATURAN PERUNDANG-UNDANGAN ', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4387, 'KEPALA SUB BAGIAN PENYULUHAN  DAN BANTUAN HUKUM', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4388, 'KEPALA SUB BAGIAN DOKUMENTASI DAN PUBLIKASI', 'pelaksana', '1000', '1165', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4389, 'KEPALA BADAN PERENCANAAN, PENELITIAN DAN PENGEMBANGAN DAERAH', 'pelaksana', '14', '3030', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4390, 'SEKRETARIS BADAN PERENCANAAN, PENELITIAN DAN PENGEMBANGAN DAERAH', 'pelaksana', '12', '2140', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4391, 'KEPALA BIDANG PERENCANAAN INFRASTRUKTUR, KEWILAYAHAN, PEREKONOMIAN DAN SUMBER DAYA ALAM', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4392, 'KEPALA BIDANG PERENCANAAN, PEMERINTAHAN DAN PEMBANGUNAN MANUSIA', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4393, 'KEPALA SUB BIDANG PENGENDALIAN DAN EVALUASI PEMBANGUNAN', 'pelaksana', '1000', '1430', '3.7', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4394, 'KEPALA SUB BIDANG AKUNTANSI', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4395, 'KEPALA BIDANG PERENCANAAN, PENGENDALIAN DAN EVALUASI PEMBANGUNAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4396, 'KEPALA BIDANG PENELITIAN DAN PENGEMBANGAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4397, 'KEPALA SUB BAGIAN UMUM DAN KEPEGAWAIAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4398, 'KEPALA SUB BAGIAN KEUANGAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4399, 'KEPALA BADAN KEUANGAN DAN ASET DAERAH', 'pelaksana', '14', '3030', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4400, 'SEKRETARIS BADAN KEUANGAN DAN ASET DAERAH', 'pelaksana', '12', '2140', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4401, 'KEPALA BIDANG AKUNTANSI DAN ASET', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4402, 'KEPALA BIDANG PERBENDAHARAAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4403, 'KEPALA BIDANG ANGGARAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4404, 'KEPALA SUB BIDANG PELAKSANAAN ANGGARAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4405, 'KEPALA SUB BIDANG ANGGARAN BELANJA', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4406, 'KEPALA SUB BIDANG PENGELOLAAN KAS DAERAH', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4407, 'KEPALA SUB BIDANG ANGGARAN, PENDAPATAN DAN PEMBIAYAAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4408, 'KEPALA SUB BIDANG PENATAUSAHAAN ASET', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4409, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN BADAN KEUANGAN DAN ASET DAERAH', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4410, 'KEPALA BADAN PENDAPATAN DAERAH', 'pelaksana', '14', '2865', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4411, 'SEKRETARIS BADAN PENDAPATAN DAERAH', 'pelaksana', '12', '2115', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4412, 'KEPALA BIDANG PENAGIHAN, PEMERIKSAAN DAN PEMBUKUAN', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4413, 'KEPALA BIDANG PENGELOLAAN PAJAK DAERAH', 'pelaksana', '11', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4414, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN BADAN PENDAPATAN DAERAH', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4415, 'KEPALA SUB BIDANG PEMBUKUAN, MONITORING DAN EVALUASI', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4416, 'KEPALA SUB BIDANG PENAGIHAN PAJAK DAERAH', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4417, 'KEPALA SUB BIDANG PELAYANAN PAJAK DAERAH', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4418, 'KEPALA PELAKSANA', 'pelaksana', '12', '3030', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4419, 'KEPALA SEKSI REHABILITASI DAN REKONSTRUKSI', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4420, 'KEPALA SEKSI PENCEGAHAN DAN KESIAPSIAGAAN', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4421, 'KEPALA SEKSI KEDARURATAN DAN LOGISTIK', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4422, 'KEPALA SEKRETARIAT', 'pelaksana', '9', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4423, 'CAMAT KARTOHARJO', 'pelaksana', '12', '2315', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4424, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN KLEGEN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4425, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN KANIGORO', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4426, 'SEKRETARIS INSPEKTORAT', 'pelaksana', '12', '2140', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4427, 'CAMAT MANGUHARJO', 'pelaksana', '12', '2315', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4428, 'SEKRETARIS LURAH', 'pelaksana', '8', '1320', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4429, 'CAMAT TAMAN', 'pelaksana', '12', '2315', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4430, 'SEKRETARIS CAMAT', 'pelaksana', '11', '2090', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4431, 'LURAH', 'pelaksana', '9', '1540', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4432, 'KEPALA SEKSI KESEJAHTERAAN SOSIAL KECAMATAN', 'pelaksana', '8', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4433, 'KEPALA SEKSI PEMBANGUNAN KECAMATAN', 'pelaksana', '8', '1320', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4434, 'KEPALA SEKSI KETENTRAMAN DAN KETERTIBAN UMUM KECAMATAN', 'pelaksana', '8', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4435, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT KECAMATAN', 'pelaksana', '8', '1320', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4436, 'KEPALA SEKSI PEMERINTAHAN KELURAHAN', 'pelaksana', '8', '1295', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4437, 'KEPALA SEKSI PEMBERDAYAAN MASYARAKAT DAN KESEJAHTERAAN SOSIAL KELURAHAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4438, 'KEPALA SEKSI PEMBANGUNAN, KETENTRAMAN DAN KETERTIBAN UMUM KELURAHAN', 'pelaksana', '8', '1295', '0.57', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4439, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4440, 'KEPALA SUB BAGIAN UMUM DAN KEUANGAN', 'pelaksana', '8', '1430', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4441, 'KEPALA SUB BIDANG PEMERIKSAAN PAJAK DAERAH', 'pelaksana', '9', '1430', '0.79', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4442, 'Guru Madya', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4443, 'Guru Ahli Pertama', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4444, 'Penata Laporan Keuangan / Subkoordinator Tata Usaha dan Keuangan', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4445, 'Analis Hibah Daerah / Subkoordinator Kesejahteraan Rakyat', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4446, 'Administrator Kesehatan Ahli Pertama / Subkoordinator Pembinaan Keluarga Berencana', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4447, 'Subkoordinator Pembinaan Keluarga Berencana / Subkoordinator Penanganan Bencana dan Pengelolaan Taman Makam Pahlawan', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4448, 'Pengelola Data / Subkoordinator Rehabilitasi Sosial Disabilitas Terlantar, Anak Terlantar dan Lansia Terlantar serta Gelandangan Pengemis', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4449, 'Pengelola Data / Subkoordinator Perlindungan dan Jaminan Sosial', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4450, 'Pranata Komputer Ahli Muda / Subkoordinator Pengelolaan Informasi Administrasi Kependudukan', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4451, 'Pengelola Data / Subkoordinator Pengendalian, Pengelolaan Retribusi dan Perizinan Pasar Rakyat', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4452, 'Pranata Komputer Ahli Muda / Subkoordinator Pengembangan Sumber Daya Teknologi Informasi dan Komunikasi', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4453, 'Pengelola Data Transportasi Jalan / Subkoordinator Manajemen dan Rekayasa Lalu Lintas', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4454, 'Pustakawan Muda / Subkoordinator Pembudayaan Gemar Membaca', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4455, 'Investigator / Subkoordinator Inspeksi, Sarana dan Prasarana Kebakaran', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4458, 'Administrator Kesehatan Ahli Muda / Subkoordinator Pembinaan Keluarga Berencana', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4459, 'Penyuluh Sosial Ahli Muda /Subkoordinator Penanganan Bencana dan Pengelolaan Taman Makam Pahlawan', 'pelaksana', '9', '1430', '4.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4460, 'Analis Kepegawaian Ahli Pertama / Subkoordinator Formasi dan Pengadaan', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4461, 'Analis Data Intelijen / Subkoordinator Kewaspadaan Nasional dan Penanganan Konflik', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4462, 'Analis Hukum Ahli Muda / Subkoordinator Penyuluhan dan Bantuan Hukum', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4463, 'Pranata Hubungan Masyarakat  Ahli Muda / Subkoordinator Persidangan, Risalah dan Publikasi', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4464, 'Analis Kebijakan Ahli Muda / Subkoordinator Pengelolaan Kelembagaan Pendidikan Anak Usia Dini dan Pendidikan Non Formal', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4465, 'Analis Kebijakan Ahli Muda / Subkoordinator Kurikulum Muatan Lokal Pendidikan Anak Usia Dini dan Pendidikan Non Formal', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4466, 'Analis Kebijakan Ahli Muda / Subkoordinator Olahraga', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4467, 'Pengembang Kewirausahaan Ahli Muda / Subkoordinator Pemberdayaan Usaha Mikro', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4468, 'Instruktur  Ahli Muda / Subkoordinator Pelatihan Kerja dan Produktivitas Tenaga Kerja', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4469, 'Teknik Tata Bangunan dan Perumahan Ahli Muda / Subkoordinator Pengembangan Jasa Konstruksi', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4470, 'Teknik Tata Bangunan dan Perumahan Ahli Muda / Subkoordinator Pengendalian Pemanfaatan Ruang', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4471, 'Teknik Tata Bangunan dan Perumahan Ahli Muda / Subkoordinator Pencegahan dan Peningkatan Kualitas Permukiman Kumuh', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4472, 'Teknik Tata Bangunan dan Perumahan Ahli Muda / Subkoordinator Pertamanan dan Ruang Terbuka Hijau', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4473, 'Teknik Tata Bangunan dan Perumahan Ahli Muda / Subkoordinator Penerangan Jalan Umum', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4474, 'Teknik Tata Bangunan dan Perumahan Ahli Muda / Subkoordinator Permakaman', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4475, 'Pengawas Perikanan Ahli Muda / Subkoordinator Perikanan Budidaya dan Pengelolaan Sumber Daya Ikan', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4476, 'Assessor Sumber Daya Manusia Aparatur Ahli Muda / Subkoordinator Pengembangan Kompetensi Manajerial dan Fungsional', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4478, 'Polisi Pamong Praja Ahli Pertama', 'pelaksana', '8', '1270', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4479, 'Pranata Hubungan Masyarakat  Ahli Pertama', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4480, 'Pengawas Penyelenggaraan Urusan Pemerintahan Daerah Ahli Pertama', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4481, 'Pengawas Koperasi Ahli Pertama', 'pelaksana', '9', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4482, 'Ahli Pertama - Pamong Budaya', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4483, 'Ahli Pertama - Pekerja Sosial', 'pelaksana', '1000', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4484, 'Pelaksana/Terampil - Terapis Wicara', 'pelaksana', '6', '740', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4485, 'Pelaksana/Terampil - Teknik Tata Bangunan Dan Perumahan', 'pelaksana', '1000', '755', '3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4486, 'Ahli Pertama - Pelatih Olahraga', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4487, 'PENGELOLA DATA ADMINISTRASI DAN VERIFIKASI', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4488, 'Pranata Komputer Ahli Pertama', 'pelaksana', '1000', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4489, 'Perancang Grafis', 'pelaksana', '1000', '890', '2.5', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4490, 'Pranata Komputer Pelaksana Lanjutan', 'pelaksana', '1000', '1005', '2.3', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4492, 'Administrator Kesehatan Ahli Pertama / Pertama', 'pelaksana', '8', '1280', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4494, 'Perawat Ahli Pertama', 'pelaksana', '8', '1310', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4495, 'Pengelola Pengadaan Barang/Jasa Pertama / Subkoordinator Pengadaan Barang/ Jasa', 'pelaksana', '7', '1280', '1.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4497, 'PENGELOLA DATA PELAYANAN PERPAJAKAN', 'pelaksana', '6', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4498, 'Pengolah Data Ekstensifikasi', 'pelaksana', '1000', '690', '0.52', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4509, 'Pengelola Data Transportasi Jalan', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4510, 'Pengelola Data Transportasi Jalan', 'pelaksana', '1000', '1430', '3.6', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4515, 'Guru Muda', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4516, 'Penyuluh Sosial Ahli Muda', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4517, 'TEKNIK PENGAIRAN PELAKSANA', 'pelaksana', '6', '755', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4518, 'TEKNIK JALAN DAN JEMBATAN PELAKSANA', 'pelaksana', '6', '755', '0.565', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4519, 'Analis Keuangan Pusat dan Daerah Ahli Muda', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4520, 'Penilai Pemerintah Ahli Muda', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4521, 'Analis Keuangan Pemerintah Pusat dan Daerah Ahli Muda', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4522, 'Penilai Pemerintah Ahli Muda', 'pelaksana', '1000', '1430', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4523, 'KEPALA SEKOLAH SDN PANGONGANGAN', 'pelaksana', '0', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4524, 'KEPALA SEKOLAH SDN REJOMULYO', 'pelaksana', '0', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4525, 'KEPALA SEKOLAH SDN MANGUHARJO', 'pelaksana', '0', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4526, 'KEPALA SEKOLAH TK NEGERI PEMBINA', 'pelaksana', '0', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4527, 'KEPALA BIDANG KETAHANAN PANGAN', 'pelaksana', '1000', '2045', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4528, 'KEPALA BAGIAN PEREKONOMIAN DAN KESEJAHTERAAN RAKYAT', 'pelaksana', '1000', '2315', '2.9', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4529, 'Pengawas SMP', 'pelaksana', '0', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4530, 'Pengawas SD', 'pelaksana', '0', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4531, 'PENGAWAS PENYELENGGARA URUSAN PEMERINTAH DAERAH MADYA', 'pelaksana', '12', '2145', '0.412', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4532, 'KEPALA BAGIAN PEREKONOMIAN DAN KESEJAHTERAAN RAKYAT', 'pelaksana', '1000', '2315', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4535, 'Guru', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4536, 'Pengawas Sekolah Ahli Madya', 'pelaksana', '1000', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4537, 'AHLI PERTAMA - GURU PPKN', 'pelaksana', '0', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4538, 'Penyusun Bahan Informasi dan Publikasi', 'pelaksana', '7', '890', '0.45', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4539, 'Asisten Apoteker Mahir', 'pelaksana', '7', '1020', '0.458', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4540, 'KEPALA SUB BAGIAN PERENCANAAN DAN KEPEGAWAIAN', 'pelaksana', '1000', '1455', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4541, 'KEPALA BAGIAN UMUM DAN KEUANGAN', 'pelaksana', '1000', '2090', '0.634', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4542, 'Tenaga Promosi Kesehatan dan Ilmu Perilaku Ahli Pertama', 'pelaksana', '1', '1', '1', '185000', '2023', NULL, NULL, 1, NULL);
+INSERT INTO `jabatans` VALUES (4543, 'Terapis Gigi dan Mulut Terampil', 'pelaksana', '0', '0', '0', '185000', '2023', NULL, NULL, 1, NULL);
+
+-- ----------------------------
+-- Table structure for jabatans_old
+-- ----------------------------
+DROP TABLE IF EXISTS `jabatans_old`;
+CREATE TABLE `jabatans_old`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nama_jabatan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenis_jabatan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `kelas_jabatan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `nilai_jabatan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `index` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `tunjab` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `tahun` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tahun_id` bigint UNSIGNED NULL DEFAULT NULL,
+  `indeks_id` bigint UNSIGNED NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jabatans_old
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for jenis_jabatans
+-- ----------------------------
+DROP TABLE IF EXISTS `jenis_jabatans`;
+CREATE TABLE `jenis_jabatans`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `jenis_jabatan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jenis_jabatans
+-- ----------------------------
+INSERT INTO `jenis_jabatans` VALUES (1, 'Struktural', '2023-11-04 07:31:51', '2023-11-04 07:31:51');
+INSERT INTO `jenis_jabatans` VALUES (2, 'Fungsional', '2023-11-04 07:31:51', '2023-11-04 07:31:51');
+INSERT INTO `jenis_jabatans` VALUES (3, 'Pelaksana', '2023-11-04 07:31:51', '2023-11-04 07:31:51');
+
+-- ----------------------------
 -- Table structure for master_rupiah
 -- ----------------------------
 DROP TABLE IF EXISTS `master_rupiah`;
@@ -4076,16 +6115,17 @@ CREATE TABLE `master_rupiah`  (
   `jumlah` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `tahun_id` bigint UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of master_rupiah
 -- ----------------------------
-INSERT INTO `master_rupiah` VALUES (1, 'bk', '3000', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
-INSERT INTO `master_rupiah` VALUES (2, 'pk', '7000', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
-INSERT INTO `master_rupiah` VALUES (3, 'pagu APBD', '1232967032000', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
-INSERT INTO `master_rupiah` VALUES (4, 'Belanja Pegawai', '498581582234', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
+INSERT INTO `master_rupiah` VALUES (1, 'bk', '3000', '2023-11-01 08:33:35', '2023-11-01 08:33:35', 1);
+INSERT INTO `master_rupiah` VALUES (2, 'pk', '7000', '2023-11-01 08:33:35', '2023-11-01 08:33:35', 1);
+INSERT INTO `master_rupiah` VALUES (3, 'pagu APBD', '1232967032000', '2023-11-01 08:33:35', '2023-11-01 08:33:35', 1);
+INSERT INTO `master_rupiah` VALUES (4, 'Belanja Pegawai', '498581582234', '2023-11-01 08:33:35', '2023-11-01 08:33:35', 1);
 
 -- ----------------------------
 -- Table structure for master_tahun
@@ -4096,20 +6136,21 @@ CREATE TABLE `master_tahun`  (
   `tahun` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `keterangan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of master_tahun
 -- ----------------------------
-INSERT INTO `master_tahun` VALUES (1, '2023', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
-INSERT INTO `master_tahun` VALUES (2, '2024', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
-INSERT INTO `master_tahun` VALUES (3, '2025', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
-INSERT INTO `master_tahun` VALUES (4, '2026', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
-INSERT INTO `master_tahun` VALUES (5, '2027', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
-INSERT INTO `master_tahun` VALUES (6, '2028', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
-INSERT INTO `master_tahun` VALUES (7, '2029', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
-INSERT INTO `master_tahun` VALUES (8, '2030', '2023-11-01 08:33:35', '2023-11-01 08:33:35');
+INSERT INTO `master_tahun` VALUES (1, '2023', '2023-11-01 08:33:35', '2023-11-03 22:58:20', NULL);
+INSERT INTO `master_tahun` VALUES (2, '2024', '2023-11-01 08:33:35', '2023-11-01 08:33:35', '');
+INSERT INTO `master_tahun` VALUES (3, '2025', '2023-11-01 08:33:35', '2023-11-01 08:33:35', '');
+INSERT INTO `master_tahun` VALUES (4, '2026', '2023-11-01 08:33:35', '2023-11-01 08:33:35', '');
+INSERT INTO `master_tahun` VALUES (5, '2027', '2023-11-01 08:33:35', '2023-11-01 08:33:35', '');
+INSERT INTO `master_tahun` VALUES (6, '2028', '2023-11-01 08:33:35', '2023-11-01 08:33:35', '');
+INSERT INTO `master_tahun` VALUES (7, '2029', '2023-11-01 08:33:35', '2023-11-01 08:33:35', '');
+INSERT INTO `master_tahun` VALUES (8, '2030', '2023-11-01 08:33:35', '2023-11-01 08:33:35', '');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -4120,7 +6161,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of migrations
@@ -4137,6 +6178,67 @@ INSERT INTO `migrations` VALUES (9, '2023_10_31_032048_create_jabatanlamas_table
 INSERT INTO `migrations` VALUES (10, '2023_10_31_062051_create_jabatanbarus_table', 1);
 INSERT INTO `migrations` VALUES (11, '2023_11_01_010601_create_indeks_table', 1);
 INSERT INTO `migrations` VALUES (12, '2023_11_01_025459_create_pegawai_bulanan_table', 1);
+INSERT INTO `migrations` VALUES (13, '2023_11_03_090852_add_keterangan_on_master_tahun_table', 2);
+INSERT INTO `migrations` VALUES (14, '2023_11_04_002825_create_jenis_jabatans_table', 3);
+INSERT INTO `migrations` VALUES (16, '2023_11_04_010117_add_tahunid_on_indeks_table', 4);
+INSERT INTO `migrations` VALUES (17, '2023_11_04_025134_create_jabatans_table', 5);
+INSERT INTO `migrations` VALUES (20, '2023_11_04_031303_create_opds_table', 6);
+INSERT INTO `migrations` VALUES (21, '2023_11_04_034437_add_tahunid_on_master_rupiah_table', 7);
+
+-- ----------------------------
+-- Table structure for opds
+-- ----------------------------
+DROP TABLE IF EXISTS `opds`;
+CREATE TABLE `opds`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `kode_opd` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `kode_sub_opd` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `nama_opd` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `tahun_id` bigint UNSIGNED NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of opds
+-- ----------------------------
+INSERT INTO `opds` VALUES (1, '5.03.5.04.0.00.01.0000', '5.03.5.04.0.00.01.0000', 'Badan Kepegawaian dan Pengembangan Sumber Daya Manusia', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (2, '8.01.0.00.0.00.01.0000', '8.01.0.00.0.00.01.0000', 'Badan Kesatuan Bangsa dan Politik', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (3, '5.02.0.00.0.00.02.0000', '5.02.0.00.0.00.02.0000', 'Badan Keuangan dan Aset Daerah', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (4, '1.05.0.00.0.00.04.0000', '1.05.0.00.0.00.04.0000', 'Badan Penanggulangan Bencana Daerah', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (5, '5.02.0.00.0.00.03.0000', '5.02.0.00.0.00.03.0000', 'Badan Pendapatan Daerah', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (6, '5.01.5.05.0.00.02.0000', '5.01.5.05.0.00.02.0000', 'Badan Perencanaan, Penelitian dan Pengembangan Daerah', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (7, '4.01.0.00.0.00.01.0000', '4.01.0.00.0.00.01.0003', 'Bagian Hukum', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (8, '4.01.0.00.0.00.01.0000', '4.01.0.00.0.00.01.0002', 'Bagian Organisasi', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (9, '4.01.0.00.0.00.01.0000', '4.01.0.00.0.00.01.0001', 'Bagian Pemerintahan', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (10, '4.01.0.00.0.00.01.0000', '4.01.0.00.0.00.01.0004', 'Bagian Pengadaan Barang / Jasa dan Administrasi Pembangunan', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (11, '4.01.0.00.0.00.01.0000', '4.01.0.00.0.00.01.0005', 'Bagian Perekonomian dan Kesejahteraan Rakyat', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (12, '4.01.0.00.0.00.01.0000', '4.01.0.00.0.00.01.0006', 'Bagian Umum', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (13, '2.22.2.19.3.26.04.0000', '2.22.2.19.3.26.04.0000', 'Dinas Kebudayaan, Pariwisata, Kepemudaan dan Olah Raga', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (14, '2.12.2.24.0.00.01.0000', '2.12.2.24.0.00.01.0000', 'Dinas Kependudukan dan Pencatatan Sipil', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (15, '1.02.2.14.0.00.03.0000', '1.02.2.14.0.00.03.0000', 'Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (16, '2.09.3.27.3.25.02.0000', '2.09.3.27.3.25.02.0000', 'Dinas Ketahanan Pangan dan Pertanian', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (17, '2.16.2.20.2.21.04.0000', '2.16.2.20.2.21.04.0000', 'Dinas Komunikasi dan Informatika', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (18, '2.11.0.00.0.00.05.0000', '2.11.0.00.0.00.05.0000', 'Dinas Lingkungan Hidup', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (19, '1.03.0.00.0.00.01.0000', '1.03.0.00.0.00.01.0000', 'Dinas Pekerjaan Umum dan Penataan Ruang', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (20, '2.18.3.32.0.00.06.0000', '2.18.3.32.0.00.06.0000', 'Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (21, '1.01.0.00.0.00.01.0000', '1.01.0.00.0.00.01.0000', 'Dinas Pendidikan', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (22, '3.30.0.00.0.00.01.0000', '3.30.0.00.0.00.01.0000', 'Dinas Perdagangan', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (23, '2.15.0.00.0.00.01.0000', '2.15.0.00.0.00.01.0000', 'Dinas Perhubungan', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (24, '2.23.2.24.0.00.02.0000', '2.23.2.24.0.00.02.0000', 'Dinas Perpustakaan dan Kearsipan', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (25, '1.04.2.10.0.00.02.0000', '1.04.2.10.0.00.02.0000', 'Dinas Perumahan Rakyat dan Kawasan Permukiman', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (26, '1.06.2.08.0.00.02.0000', '1.06.2.08.0.00.02.0000', 'Dinas Sosial, Pemberdayaan Perempuan dan Perlindungan Anak', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (27, '2.07.0.00.0.00.72.0000', '2.07.0.00.0.00.72.0000', 'Dinas Tenaga Kerja', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (28, '2.07.2.17.3.31.10.0000', '2.07.2.17.3.31.10.0000', 'Dinas Tenaga Kerja, Koperasi Usaha Kecil Dan Menengah', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (29, '6.01.0.00.0.00.01.0000', '6.01.0.00.0.00.01.0000', 'Inspektorat Daerah', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (30, '7.01.0.00.0.00.02.0000', '7.01.0.00.0.00.02.0000', 'Kecamatan Kartoharjo', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (31, '7.01.0.00.0.00.01.0000', '7.01.0.00.0.00.01.0000', 'Kecamatan Manguharjo', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (32, '7.01.0.00.0.00.03.0000', '7.01.0.00.0.00.03.0000', 'Kecamatan Taman', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (33, '1.02.2.14.0.00.03.0001', '1.02.2.14.0.00.03.0001', 'Rumah Sakit Umum Daerah', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (34, '1.05.0.00.0.00.03.0000', '1.05.0.00.0.00.03.0000', 'Satuan Polisi Pamong Praja dan Pemadam Kebakaran', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (35, '4.01.0.00.0.00.01.0000', '4.01.0.00.0.00.01.0000', 'Sekretariat Daerah', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
+INSERT INTO `opds` VALUES (36, '4.02.0.00.0.00.01.0000', '4.02.0.00.0.00.01.0000', 'Sekretariat DPRD', 1, '2023-11-04 10:37:02', '2023-11-04 10:37:02');
 
 -- ----------------------------
 -- Table structure for password_resets
@@ -4147,7 +6249,7 @@ CREATE TABLE `password_resets`  (
   `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`email`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of password_resets
@@ -4199,11 +6301,11 @@ CREATE TABLE `pegawai_bulanan`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `pegawai_bulanan_kode_jabatanlama_foreign`(`kode_jabatanlama` ASC) USING BTREE,
-  INDEX `pegawai_bulanan_kode_jabatanbaru_foreign`(`kode_jabatanbaru` ASC) USING BTREE,
+  INDEX `pegawai_bulanan_kode_jabatanlama_foreign`(`kode_jabatanlama`) USING BTREE,
+  INDEX `pegawai_bulanan_kode_jabatanbaru_foreign`(`kode_jabatanbaru`) USING BTREE,
   CONSTRAINT `pegawai_bulanan_kode_jabatanbaru_foreign` FOREIGN KEY (`kode_jabatanbaru`) REFERENCES `jabatanbaru` (`kode_jabatanbaru`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `pegawai_bulanan_kode_jabatanlama_foreign` FOREIGN KEY (`kode_jabatanlama`) REFERENCES `jabatanlama` (`kode_jabatanlama`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 3243 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3243 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of pegawai_bulanan
@@ -7467,9 +9569,9 @@ CREATE TABLE `personal_access_tokens`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `personal_access_tokens_token_unique`(`token` ASC) USING BTREE,
-  INDEX `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type` ASC, `tokenable_id` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+  UNIQUE INDEX `personal_access_tokens_token_unique`(`token`) USING BTREE,
+  INDEX `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type`, `tokenable_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of personal_access_tokens
@@ -7485,7 +9587,7 @@ CREATE TABLE `roles`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of roles
@@ -7510,78 +9612,130 @@ CREATE TABLE `users`  (
   `updated_at` timestamp NULL DEFAULT NULL,
   `role_id` bigint UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `users_role_id_foreign`(`role_id` ASC) USING BTREE,
+  INDEX `users_role_id_foreign`(`role_id`) USING BTREE,
   CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES (1, 'adminkota', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'kota', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 1);
-INSERT INTO `users` VALUES (2, 'dindik', '$2y$10$0HP8pqaMiwRmwIg9ZxSNJ.JLisl.U9rBPUI1cn3Yh3xuWYf/ELyOC', 'Dinas Pendidikan', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
-INSERT INTO `users` VALUES (3, 'dinkes', '$2y$10$d7cuI7E3TkH8Ie6B3z/wrOcFrX1AU8phL0agwaeQcBxGYcktGlp9y', 'Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
-INSERT INTO `users` VALUES (4, 'pupr', '$2y$10$w/h9BG9OI.cG9Kxq1MP08OH2UyQkkgF1z6EVl4M0ZuwPYCWpnaCWy', 'Dinas Pekerjaan Umum dan Penataan Ruang', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
-INSERT INTO `users` VALUES (5, 'perkim', '$2y$10$mNc/1Jd6zOvKtmnk7XIBuuXR1cP93FxzjLVc31DqhLEEURG9SyyLK', 'Dinas Perumahan Rakyat dan Kawasan Permukiman', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
-INSERT INTO `users` VALUES (6, 'satpolpp', '$2y$10$sBA68D6trqBfaFJREu7t1uvtfXdYCTAP6KSHcIXixcLVH.7xx0ijG', 'Satuan Polisi Pamong Praja dan Pemadam Kebakaran', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
-INSERT INTO `users` VALUES (7, 'bpbd', '$2y$10$g5AlTiZBPsxJE.8Q6Bv6EOm109YvW0jUZy72lp4aG7ttPYWg67bx.', 'Badan Penanggulangan Bencana Daerah', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
-INSERT INTO `users` VALUES (8, 'dinsos', '$2y$10$zf/8z.1Qimww5FIRZndYkO77XzURmgQ1/GjyiSKjBO7nhRatc3lZS', 'Dinas Sosial, Pemberdayaan Perempuan dan Perlindungan Anak', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
-INSERT INTO `users` VALUES (9, 'naker', '$2y$10$39EzItclz87zGPnF/HHHd.eZRL2zl8wtJxPbKWP6CDwxUo/.l9dCG', 'Dinas Tenaga Kerja, Koperasi Usaha Kecil Dan Menengah', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (10, 'pertanian', '$2y$10$G3wAg5VCzxusLsfnqRnBUOfkIUkHic9r84ymH1eiX.7tk2I.E5POa', 'Dinas Ketahanan Pangan dan Pertanian', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (11, 'dlh', '$2y$10$AXS0wqHSyo5qgzP9IOdcOO1gP1Mmx5dEphhRimQ2wpVSxt/KkCtCm', 'Dinas Lingkungan Hidup', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (12, 'capil', '$2y$10$htU1VJFCJGII9H395iuONO3oyqZTR.SGDTVTKKb.19sZiSDB5r.Oq', 'Dinas Kependudukan dan Pencatatan Sipil', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (13, 'dishub', '$2y$10$ejyxKpKtRtc9xIu3JKJUseOoUX1i/sB7FkgXNROzVBLYJXOELhcvy', 'Dinas Perhubungan', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (14, 'kominfo', '$2y$10$guA13PqEs10VZJUZCb5qVepVcgulhLToa.HuIam83viZkrRmaJ4XW', 'Dinas Komunikasi dan Informatika', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (15, 'ptsp', '$2y$10$28f0WCc4/1XDLTN4QJ28b.QfnhdHuzWlu4Ln42BhHBA00aAP9c/mm', 'Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (16, 'buparpora', '$2y$10$Qgynzce7kAKYSh3S.wXHCellbKRjr3pzI7ReO4B6K6I41zBmAUi9.', 'Dinas Kebudayaan, Pariwisata, Kepemudaan dan Olah Raga', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (17, 'perpus', '$2y$10$Q.mnC/ydJtRSpRSHyt6WRejwWZnHXLi3/fluJVQqU4g8P79KK75lG', 'Dinas Perpustakaan dan Kearsipan', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (18, 'perdagangan', '$2y$10$EPX/RIas6oj03t7zVlnSaOKbgn8xPmgm/Vxh6Hy93S51SSpWjKFKS', 'Dinas Perdagangan', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (19, 'sekda', '$2y$10$8s6uYpHmEFLlwsLrsqgRue/twtN7b76QMmiTMa25EbnWAYC/k3f.m', 'Sekretariat Daerah', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (20, 'dprd', '$2y$10$ZHS4GZkACqGhyShrvEMBX.udWTNqwRh1TkLVI9ubta70.2jVR.fQa', 'Sekretariat DPRD', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (21, 'bapelitbangda', '$2y$10$.DRhGIe53EKq/cqQ703p2Oo6FE6QvFL0NCKNcUSd9FOehBt1g1P6G', 'Badan Perencanaan, Penelitian dan Pengembangan Daerah', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
-INSERT INTO `users` VALUES (22, 'bkad', '$2y$10$aU7X2Rp8/ViIhHQZn7CoCuSyIqq.nOKBRw0EUdRpyG.1CfKEbKfwS', 'Badan Keuangan dan Aset Daerah', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
-INSERT INTO `users` VALUES (23, 'bapenda', '$2y$10$ohND8oq/ClxXufxwF2P.x.G0f.NiJvuZ.BYibq6dPqrP.NhOdj.1K', 'Badan Pendapatan Daerah', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
-INSERT INTO `users` VALUES (24, 'bkpsdm', '$2y$10$mib4/mHRVBzmMrPDn1repOGHiv.7tdxmpjLS/9t/ZUh/JhQDrtOpu', 'Badan Kepegawaian dan Pengembangan Sumber Daya Manusia', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
-INSERT INTO `users` VALUES (25, 'inspektorat', '$2y$10$J5VVCJB.QeMANKztNCvthOf4E7F8KoAFGsA4W3oluvX4maa1jOoQK', 'Inspektorat Daerah', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
-INSERT INTO `users` VALUES (26, 'kecmangu', '$2y$10$J5Z.Vie2JtwLXjJxWTipXu5iD9T07T.TYRzmKpcaB3JT2M/MOMdc6', 'Kecamatan Manguharjo', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
-INSERT INTO `users` VALUES (27, 'keckarto', '$2y$10$gA.lCZWzU.1utf9YCkO8Q.4ZiJCfYGCQCbC12iPUaPuXOZwHHKls.', 'Kecamatan Kartoharjo', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
-INSERT INTO `users` VALUES (28, 'kectaman', '$2y$10$AHvDOZgMy2S6H0RZnPYUEe7hQJKyk.kS.0ztZe.5Ip/GlU3blBmAq', 'Kecamatan Taman', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
-INSERT INTO `users` VALUES (29, 'kesbangpol', '$2y$10$//jQOWVdPr/1Sgl.cZQUOeusj2pwGkkNKWSuaYDjaFsiVWN9xXQiq', 'Badan Kesatuan Bangsa dan Politik', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
-INSERT INTO `users` VALUES (30, 'adminjabatan', '$2y$10$EQqNlUJnRAWNucf1ZgM41uoxbm12kLauPY5B5r/Ow73uVmR8A2sam', 'jabatan', NULL, '2023-11-02 08:01:19', '2023-11-02 08:01:19', 3);
+INSERT INTO `users` VALUES (2, 'dindik', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Pendidikan', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users` VALUES (3, 'dinkes', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users` VALUES (4, 'pupr', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Pekerjaan Umum dan Penataan Ruang', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users` VALUES (5, 'perkim', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Perumahan Rakyat dan Kawasan Permukiman', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users` VALUES (6, 'satpolpp', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Satuan Polisi Pamong Praja dan Pemadam Kebakaran', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users` VALUES (7, 'bpbd', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Badan Penanggulangan Bencana Daerah', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users` VALUES (8, 'dinsos', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Sosial, Pemberdayaan Perempuan dan Perlindungan Anak', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users` VALUES (9, 'naker', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Tenaga Kerja, Koperasi Usaha Kecil Dan Menengah', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (10, 'pertanian', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Ketahanan Pangan dan Pertanian', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (11, 'dlh', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Lingkungan Hidup', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (12, 'capil', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Kependudukan dan Pencatatan Sipil', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (13, 'dishub', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Perhubungan', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (14, 'kominfo', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Komunikasi dan Informatika', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (15, 'ptsp', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (16, 'buparpora', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Kebudayaan, Pariwisata, Kepemudaan dan Olah Raga', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (17, 'perpus', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Perpustakaan dan Kearsipan', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (18, 'perdagangan', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Dinas Perdagangan', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (19, 'sekda', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Sekretariat Daerah', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (20, 'dprd', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Sekretariat DPRD', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (21, 'bapelitbangda', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Badan Perencanaan, Penelitian dan Pengembangan Daerah', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users` VALUES (22, 'bkad', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Badan Keuangan dan Aset Daerah', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users` VALUES (23, 'bapenda', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Badan Pendapatan Daerah', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users` VALUES (24, 'bkpsdm', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Badan Kepegawaian dan Pengembangan Sumber Daya Manusia', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users` VALUES (25, 'inspektorat', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Inspektorat Daerah', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users` VALUES (26, 'kecmangu', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Kecamatan Manguharjo', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users` VALUES (27, 'keckarto', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Kecamatan Kartoharjo', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users` VALUES (28, 'kectaman', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Kecamatan Taman', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users` VALUES (29, 'kesbangpol', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'Badan Kesatuan Bangsa dan Politik', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users` VALUES (30, 'adminjabatan', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'jabatan', NULL, '2023-11-02 08:01:19', '2023-11-02 08:01:19', 3);
+
+-- ----------------------------
+-- Table structure for users_old
+-- ----------------------------
+DROP TABLE IF EXISTS `users_old`;
+CREATE TABLE `users_old`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `opd` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `role_id` bigint UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `users_role_id_foreign`(`role_id`) USING BTREE,
+  CONSTRAINT `users_old_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of users_old
+-- ----------------------------
+INSERT INTO `users_old` VALUES (1, 'adminkota', '$2y$10$jLdq6rG6M1AhvpXVBjX1Au80a.7ky6/igQ0r8/bMhJy1TRM5eoNe6', 'kota', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 1);
+INSERT INTO `users_old` VALUES (2, 'dindik', '$2y$10$0HP8pqaMiwRmwIg9ZxSNJ.JLisl.U9rBPUI1cn3Yh3xuWYf/ELyOC', 'Dinas Pendidikan', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users_old` VALUES (3, 'dinkes', '$2y$10$d7cuI7E3TkH8Ie6B3z/wrOcFrX1AU8phL0agwaeQcBxGYcktGlp9y', 'Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users_old` VALUES (4, 'pupr', '$2y$10$w/h9BG9OI.cG9Kxq1MP08OH2UyQkkgF1z6EVl4M0ZuwPYCWpnaCWy', 'Dinas Pekerjaan Umum dan Penataan Ruang', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users_old` VALUES (5, 'perkim', '$2y$10$mNc/1Jd6zOvKtmnk7XIBuuXR1cP93FxzjLVc31DqhLEEURG9SyyLK', 'Dinas Perumahan Rakyat dan Kawasan Permukiman', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users_old` VALUES (6, 'satpolpp', '$2y$10$sBA68D6trqBfaFJREu7t1uvtfXdYCTAP6KSHcIXixcLVH.7xx0ijG', 'Satuan Polisi Pamong Praja dan Pemadam Kebakaran', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users_old` VALUES (7, 'bpbd', '$2y$10$g5AlTiZBPsxJE.8Q6Bv6EOm109YvW0jUZy72lp4aG7ttPYWg67bx.', 'Badan Penanggulangan Bencana Daerah', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users_old` VALUES (8, 'dinsos', '$2y$10$zf/8z.1Qimww5FIRZndYkO77XzURmgQ1/GjyiSKjBO7nhRatc3lZS', 'Dinas Sosial, Pemberdayaan Perempuan dan Perlindungan Anak', NULL, '2023-11-02 08:01:14', '2023-11-02 08:01:14', 2);
+INSERT INTO `users_old` VALUES (9, 'naker', '$2y$10$39EzItclz87zGPnF/HHHd.eZRL2zl8wtJxPbKWP6CDwxUo/.l9dCG', 'Dinas Tenaga Kerja, Koperasi Usaha Kecil Dan Menengah', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (10, 'pertanian', '$2y$10$G3wAg5VCzxusLsfnqRnBUOfkIUkHic9r84ymH1eiX.7tk2I.E5POa', 'Dinas Ketahanan Pangan dan Pertanian', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (11, 'dlh', '$2y$10$AXS0wqHSyo5qgzP9IOdcOO1gP1Mmx5dEphhRimQ2wpVSxt/KkCtCm', 'Dinas Lingkungan Hidup', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (12, 'capil', '$2y$10$htU1VJFCJGII9H395iuONO3oyqZTR.SGDTVTKKb.19sZiSDB5r.Oq', 'Dinas Kependudukan dan Pencatatan Sipil', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (13, 'dishub', '$2y$10$ejyxKpKtRtc9xIu3JKJUseOoUX1i/sB7FkgXNROzVBLYJXOELhcvy', 'Dinas Perhubungan', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (14, 'kominfo', '$2y$10$guA13PqEs10VZJUZCb5qVepVcgulhLToa.HuIam83viZkrRmaJ4XW', 'Dinas Komunikasi dan Informatika', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (15, 'ptsp', '$2y$10$28f0WCc4/1XDLTN4QJ28b.QfnhdHuzWlu4Ln42BhHBA00aAP9c/mm', 'Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (16, 'buparpora', '$2y$10$Qgynzce7kAKYSh3S.wXHCellbKRjr3pzI7ReO4B6K6I41zBmAUi9.', 'Dinas Kebudayaan, Pariwisata, Kepemudaan dan Olah Raga', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (17, 'perpus', '$2y$10$Q.mnC/ydJtRSpRSHyt6WRejwWZnHXLi3/fluJVQqU4g8P79KK75lG', 'Dinas Perpustakaan dan Kearsipan', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (18, 'perdagangan', '$2y$10$EPX/RIas6oj03t7zVlnSaOKbgn8xPmgm/Vxh6Hy93S51SSpWjKFKS', 'Dinas Perdagangan', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (19, 'sekda', '$2y$10$8s6uYpHmEFLlwsLrsqgRue/twtN7b76QMmiTMa25EbnWAYC/k3f.m', 'Sekretariat Daerah', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (20, 'dprd', '$2y$10$ZHS4GZkACqGhyShrvEMBX.udWTNqwRh1TkLVI9ubta70.2jVR.fQa', 'Sekretariat DPRD', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (21, 'bapelitbangda', '$2y$10$.DRhGIe53EKq/cqQ703p2Oo6FE6QvFL0NCKNcUSd9FOehBt1g1P6G', 'Badan Perencanaan, Penelitian dan Pengembangan Daerah', NULL, '2023-11-02 08:01:15', '2023-11-02 08:01:15', 2);
+INSERT INTO `users_old` VALUES (22, 'bkad', '$2y$10$aU7X2Rp8/ViIhHQZn7CoCuSyIqq.nOKBRw0EUdRpyG.1CfKEbKfwS', 'Badan Keuangan dan Aset Daerah', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users_old` VALUES (23, 'bapenda', '$2y$10$ohND8oq/ClxXufxwF2P.x.G0f.NiJvuZ.BYibq6dPqrP.NhOdj.1K', 'Badan Pendapatan Daerah', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users_old` VALUES (24, 'bkpsdm', '$2y$10$mib4/mHRVBzmMrPDn1repOGHiv.7tdxmpjLS/9t/ZUh/JhQDrtOpu', 'Badan Kepegawaian dan Pengembangan Sumber Daya Manusia', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users_old` VALUES (25, 'inspektorat', '$2y$10$J5VVCJB.QeMANKztNCvthOf4E7F8KoAFGsA4W3oluvX4maa1jOoQK', 'Inspektorat Daerah', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users_old` VALUES (26, 'kecmangu', '$2y$10$J5Z.Vie2JtwLXjJxWTipXu5iD9T07T.TYRzmKpcaB3JT2M/MOMdc6', 'Kecamatan Manguharjo', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users_old` VALUES (27, 'keckarto', '$2y$10$gA.lCZWzU.1utf9YCkO8Q.4ZiJCfYGCQCbC12iPUaPuXOZwHHKls.', 'Kecamatan Kartoharjo', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users_old` VALUES (28, 'kectaman', '$2y$10$AHvDOZgMy2S6H0RZnPYUEe7hQJKyk.kS.0ztZe.5Ip/GlU3blBmAq', 'Kecamatan Taman', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users_old` VALUES (29, 'kesbangpol', '$2y$10$//jQOWVdPr/1Sgl.cZQUOeusj2pwGkkNKWSuaYDjaFsiVWN9xXQiq', 'Badan Kesatuan Bangsa dan Politik', NULL, '2023-11-02 08:01:16', '2023-11-02 08:01:16', 2);
+INSERT INTO `users_old` VALUES (30, 'adminjabatan', '$2y$10$EQqNlUJnRAWNucf1ZgM41uoxbm12kLauPY5B5r/Ow73uVmR8A2sam', 'jabatan', NULL, '2023-11-02 08:01:19', '2023-11-02 08:01:19', 3);
 
 -- ----------------------------
 -- View structure for view_indeks_jabatanbaru
 -- ----------------------------
 DROP VIEW IF EXISTS `view_indeks_jabatanbaru`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_indeks_jabatanbaru` AS select `jabatanbaru`.`jenis_jabatan` AS `jenis_jabatan`,`jabatanbaru`.`kelas_jabatan` AS `kelas_jabatan`,(case when ((`jabatanbaru`.`jenis_jabatan` = 'struktural') and (`jabatanbaru`.`kelas_jabatan` = 8)) then 0.570 when ((`jabatanbaru`.`jenis_jabatan` = 'struktural') and (`jabatanbaru`.`kelas_jabatan` in (9,10,11,12,13,14,15))) then 0.634 when ((`jabatanbaru`.`jenis_jabatan` = 'fungsional') and (`jabatanbaru`.`kelas_jabatan` in (5,6,8,9))) then 0.830 when ((`jabatanbaru`.`jenis_jabatan` = 'fungsional') and (`jabatanbaru`.`kelas_jabatan` in (7,10,11,12,13,14))) then 0.565 when ((`jabatanbaru`.`jenis_jabatan` = 'fungsional') and (`jabatanbaru`.`kelas_jabatan` = 15)) then 0.458 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 1)) then 1.700 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 3)) then 0.950 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 4)) then 0.750 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 5)) then 0.690 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 6)) then 0.520 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 7)) then 0.450 else NULL end) AS `indeks` from `jabatanbaru`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_indeks_jabatanbaru` AS select `jabatanbaru`.`jenis_jabatan` AS `jenis_jabatan`,`jabatanbaru`.`kelas_jabatan` AS `kelas_jabatan`,(case when ((`jabatanbaru`.`jenis_jabatan` = 'struktural') and (`jabatanbaru`.`kelas_jabatan` = 8)) then 0.570 when ((`jabatanbaru`.`jenis_jabatan` = 'struktural') and (`jabatanbaru`.`kelas_jabatan` in (9,10,11,12,13,14,15))) then 0.634 when ((`jabatanbaru`.`jenis_jabatan` = 'fungsional') and (`jabatanbaru`.`kelas_jabatan` in (5,6,8,9))) then 0.830 when ((`jabatanbaru`.`jenis_jabatan` = 'fungsional') and (`jabatanbaru`.`kelas_jabatan` in (7,10,11,12,13,14))) then 0.565 when ((`jabatanbaru`.`jenis_jabatan` = 'fungsional') and (`jabatanbaru`.`kelas_jabatan` = 15)) then 0.458 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 1)) then 1.700 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 3)) then 0.950 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 4)) then 0.750 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 5)) then 0.690 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 6)) then 0.520 when ((`jabatanbaru`.`jenis_jabatan` = 'pelaksana') and (`jabatanbaru`.`kelas_jabatan` = 7)) then 0.450 else NULL end) AS `indeks` from `jabatanbaru` ;
 
 -- ----------------------------
 -- View structure for view_indeks_jabatanlama
 -- ----------------------------
 DROP VIEW IF EXISTS `view_indeks_jabatanlama`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_indeks_jabatanlama` AS select `jabatanlama`.`jenis_jabatan` AS `jenis_jabatan`,`jabatanlama`.`kelas_jabatan` AS `kelas_jabatan`,(case when ((`jabatanlama`.`jenis_jabatan` = 'struktural') and (`jabatanlama`.`kelas_jabatan` = 8)) then 0.570 when ((`jabatanlama`.`jenis_jabatan` = 'struktural') and (`jabatanlama`.`kelas_jabatan` in (9,10,11,12,13,14,15))) then 0.634 when ((`jabatanlama`.`jenis_jabatan` = 'fungsional') and (`jabatanlama`.`kelas_jabatan` in (5,6,8,9))) then 0.830 when ((`jabatanlama`.`jenis_jabatan` = 'fungsional') and (`jabatanlama`.`kelas_jabatan` in (7,10,11,12,13,14))) then 0.565 when ((`jabatanlama`.`jenis_jabatan` = 'fungsional') and (`jabatanlama`.`kelas_jabatan` = 15)) then 0.458 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 1)) then 1.700 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 3)) then 0.950 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 4)) then 0.750 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 5)) then 0.690 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 6)) then 0.520 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 7)) then 0.450 else NULL end) AS `indeks` from `jabatanlama`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_indeks_jabatanlama` AS select `jabatanlama`.`jenis_jabatan` AS `jenis_jabatan`,`jabatanlama`.`kelas_jabatan` AS `kelas_jabatan`,(case when ((`jabatanlama`.`jenis_jabatan` = 'struktural') and (`jabatanlama`.`kelas_jabatan` = 8)) then 0.570 when ((`jabatanlama`.`jenis_jabatan` = 'struktural') and (`jabatanlama`.`kelas_jabatan` in (9,10,11,12,13,14,15))) then 0.634 when ((`jabatanlama`.`jenis_jabatan` = 'fungsional') and (`jabatanlama`.`kelas_jabatan` in (5,6,8,9))) then 0.830 when ((`jabatanlama`.`jenis_jabatan` = 'fungsional') and (`jabatanlama`.`kelas_jabatan` in (7,10,11,12,13,14))) then 0.565 when ((`jabatanlama`.`jenis_jabatan` = 'fungsional') and (`jabatanlama`.`kelas_jabatan` = 15)) then 0.458 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 1)) then 1.700 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 3)) then 0.950 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 4)) then 0.750 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 5)) then 0.690 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 6)) then 0.520 when ((`jabatanlama`.`jenis_jabatan` = 'pelaksana') and (`jabatanlama`.`kelas_jabatan` = 7)) then 0.450 else NULL end) AS `indeks` from `jabatanlama` ;
 
 -- ----------------------------
 -- View structure for view_jumlahguru
 -- ----------------------------
 DROP VIEW IF EXISTS `view_jumlahguru`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_jumlahguru` AS select count(0) AS `total_guru` from `pegawai_bulanan` where (`pegawai_bulanan`.`sts_pegawai` = 'GURU');
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_jumlahguru` AS select count(0) AS `total_guru` from `pegawai_bulanan` where (`pegawai_bulanan`.`sts_pegawai` = 'GURU') ;
 
 -- ----------------------------
 -- View structure for view_jumlahpppk
 -- ----------------------------
 DROP VIEW IF EXISTS `view_jumlahpppk`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_jumlahpppk` AS select count(0) AS `total_pppk` from `pegawai_bulanan` where (`pegawai_bulanan`.`sts_pegawai` = 'PPPK');
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_jumlahpppk` AS select count(0) AS `total_pppk` from `pegawai_bulanan` where (`pegawai_bulanan`.`sts_pegawai` = 'PPPK') ;
 
 -- ----------------------------
 -- View structure for view_jumlahrs
 -- ----------------------------
 DROP VIEW IF EXISTS `view_jumlahrs`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_jumlahrs` AS select count(0) AS `total_rs` from `pegawai_bulanan` where (`pegawai_bulanan`.`sts_pegawai` = 'RS');
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_jumlahrs` AS select count(0) AS `total_rs` from `pegawai_bulanan` where (`pegawai_bulanan`.`sts_pegawai` = 'RS') ;
 
 -- ----------------------------
 -- View structure for view_tpp
 -- ----------------------------
 DROP VIEW IF EXISTS `view_tpp`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_tpp` AS select `pegawai_bulanan`.`ukor_eselon2` AS `ukor_eselon2`,count(`pegawai_bulanan`.`ukor_eselon2`) AS `jumlah_pegawai`,sum(((`pegawai_bulanan`.`jv` * `pegawai_bulanan`.`indeks`) * `bk`.`jumlah`)) AS `bkb`,sum((((`pegawai_bulanan`.`jv` * `pegawai_bulanan`.`indeks`) * `bk`.`jumlah`) * 13)) AS `bkb_13`,sum(((`pegawai_bulanan`.`jv` * `pegawai_bulanan`.`indeks`) * `pk`.`jumlah`)) AS `pkb`,sum((((`pegawai_bulanan`.`jv` * `pegawai_bulanan`.`indeks`) * `pk`.`jumlah`) * 12)) AS `pkb_12` from ((`pegawai_bulanan` join (select `master_rupiah`.`jumlah` AS `jumlah` from `master_rupiah` where (`master_rupiah`.`id` = 1)) `bk`) join (select `master_rupiah`.`jumlah` AS `jumlah` from `master_rupiah` where (`master_rupiah`.`id` = 2)) `pk`) group by `pegawai_bulanan`.`ukor_eselon2`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_tpp` AS select `pegawai_bulanan`.`ukor_eselon2` AS `ukor_eselon2`,count(`pegawai_bulanan`.`ukor_eselon2`) AS `jumlah_pegawai`,sum(((`pegawai_bulanan`.`jv` * `pegawai_bulanan`.`indeks`) * `bk`.`jumlah`)) AS `bkb`,sum((((`pegawai_bulanan`.`jv` * `pegawai_bulanan`.`indeks`) * `bk`.`jumlah`) * 13)) AS `bkb_13`,sum(((`pegawai_bulanan`.`jv` * `pegawai_bulanan`.`indeks`) * `pk`.`jumlah`)) AS `pkb`,sum((((`pegawai_bulanan`.`jv` * `pegawai_bulanan`.`indeks`) * `pk`.`jumlah`) * 12)) AS `pkb_12` from ((`pegawai_bulanan` join (select `master_rupiah`.`jumlah` AS `jumlah` from `master_rupiah` where (`master_rupiah`.`id` = 1)) `bk`) join (select `master_rupiah`.`jumlah` AS `jumlah` from `master_rupiah` where (`master_rupiah`.`id` = 2)) `pk`) group by `pegawai_bulanan`.`ukor_eselon2` ;
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -43,6 +43,12 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
     Route::put('/master-indeks/{indeks}',[App\Http\Controllers\AdminKota\IndeksController::class,'update'])->name('adminkota-indeks.update');
     Route::delete('/master-indeks/{indeks}',[App\Http\Controllers\AdminKota\IndeksController::class,'destroy'])->name('adminkota-indeks.destroy');
 
+    // master jabatan
+    Route::get('/master-jabatan',[App\Http\Controllers\AdminKota\JabatanController::class,'index'])->name('adminkota-jabatan');
+    Route::post('/master-jabatan',[App\Http\Controllers\AdminKota\JabatanController::class,'store'])->name('adminkota-jabatan.store');
+    Route::put('/master-jabatan/{jabatan}',[App\Http\Controllers\AdminKota\JabatanController::class,'update'])->name('adminkota-jabatan.update');
+    Route::delete('/master-jabatan/{jabatan}',[App\Http\Controllers\AdminKota\JabatanController::class,'destroy'])->name('adminkota-jabatan.destroy');
+
     // master rupiah
     Route::get('/master-rupiah',[App\Http\Controllers\AdminKota\RupiahController::class,'index'])->name('adminkota-rupiah');
     Route::post('/master-rupiah',[App\Http\Controllers\AdminKota\RupiahController::class,'store'])->name('adminkota-rupiah.store');
