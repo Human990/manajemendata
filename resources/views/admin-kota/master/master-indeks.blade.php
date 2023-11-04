@@ -56,7 +56,7 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="createModalLabel">Ubah Master Tahun</h5>
+                                                <h5 class="modal-title" id="createModalLabel">Ubah Master Indeks</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -116,7 +116,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="createModalLabel">Tambah Master Tahun</h5>
+                            <h5 class="modal-title" id="createModalLabel">Tambah Master indeks</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

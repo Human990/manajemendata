@@ -23,4 +23,17 @@ class Indeks extends Model
         'indeks',
         'tahun_id'
     ];
+
+    public static function data()
+    {
+        $data = Indeks::select('indeks.*', 'master_tahun.tahun', 'jenis_jabatans.jenis_jabatan AS jenis_jabatan_baru')
+                        ->leftjoin('master_tahun', 'master_tahun.id', '=', 'indeks.tahun_id')
+                        ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', \DB::raw('CAST(indeks.jenis_jabatan AS INTEGER)'))
+                        ->where('indeks.tahun_id', session()->get('tahun_id_session'))
+                        ->orderBy('indeks.jenis_jabatan','ASC')
+                        ->orderBy('indeks.kelas_jabatan','ASC')
+                        ->get();
+
+        return $data;
+    }
 }

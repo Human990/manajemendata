@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('nilai_jabatan')->nullable();
             $table->string('index')->nullable();
             $table->string('tunjab')->nullable();
-            $table->string('tahun');
+            $table->string('tahun')->nullable();
             $table->unsignedBigInteger('tahun_id')->nullable(true);
             $table->unsignedBigInteger('indeks_id')->nullable(true);
             $table->timestamps();
