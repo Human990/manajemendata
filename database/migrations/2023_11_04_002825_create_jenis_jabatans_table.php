@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('master_tahun', function (Blueprint $table) {
-            $table->string('keterangan')->nullable(true);
+        Schema::create('jenis_jabatans', function (Blueprint $table) {
+            $table->id();
+            $table->string('jenis_jabatan');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('master_tahun', function (Blueprint $table) {
-            $table->dropColumn('keterangan');
-        });
+        Schema::dropIfExists('jenis_jabatans');
     }
 };
