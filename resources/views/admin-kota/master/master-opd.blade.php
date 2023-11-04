@@ -1,11 +1,11 @@
 @extends('admin-kota.template.default')
-@section('title', 'Master Tahun')
+@section('title', 'Master OPD')
 @section('master-tahun', 'active')
 @section('content')
     <div class="container-fluid">
         <div class="card card-headline">
             <div class="card-header">
-                <h3 class="card-title">Master Indeks Tahun {{ session()->get('tahun_session') }}</h3>
+                <h3 class="card-title">Master OPD Tahun {{ session()->get('tahun_session') }}</h3>
             </div>
             {{-- <div class="card-body">
             <form action="{{route('admin.searchDakep')}}" class="form-inline" method="GET">
@@ -28,10 +28,10 @@
                         <thead>
                             <tr>
                                 <th width="1%">No</th>
-                                <th width="15%">Tahun</th>
-                                <th width="30%">Jenis Jabatan</th>
-                                <th width="30%">Kelas</th>
-                                <th width="15%">Indeks</th>
+                                <th width="10%">Tahun</th>
+                                <th width="10%">Kode OPD</th>
+                                <th width="10%">Kode Sub OPD</th>
+                                <th width="60%">Nama OPD</th>
                                 <th width="9%">Action</th>
                             </tr>
                         </thead>
@@ -42,9 +42,9 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $data->tahun }}</td>
-                                    <td>{{ $data->jenis_jabatan_baru }}</td>
-                                    <td>{{ $data->kelas_jabatan }}</td>
-                                    <td>{{ $data->indeks}}</td>
+                                    <td>{{ $data->kode_opd }}</td>
+                                    <td>{{ $data->kode_sub_opd }}</td>
+                                    <td>{{ $data->nama_opd }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-info btn-block" data-toggle="modal" data-target="#ubahModalIndeks{{ $i }}"><i class="fa fa-eye"></i> Ubah</button>
                                         {{-- <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button> --}}
@@ -56,41 +56,39 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="createModalLabel">Ubah Master Tahun</h5>
+                                                <h5 class="modal-title" id="createModalLabel">Ubah Master OPD</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="{{ route('adminkota-indeks.update', $data->kode_indeks) }}" method="post" enctype="multipart/form-data">
+                                            <form action="{{ route('adminkota-opd.update', $data->id) }}" method="post" enctype="multipart/form-data">
                                                 <div class="modal-body">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="form-group">
-                                                        <label for="jenis_jabatan">Jenis Jabatan</label>
-                                                        <select name="jenis_jabatan" id="jenis_jabatan" class="form-control">
-                                                            @foreach(\App\Models\Jenis_jabatan::orderBy('id', 'ASC')->get() as $jenis)
-                                                                <option value="{{ $jenis->id }}" @if($jenis->id == (int)$data->jenis_jabatan) selecter @endif>{{ $jenis->jenis_jabatan }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('jenis_jabatan')
+                                                        <label for="kode_opd">Kode OPD</label>
+                                                        <input type="text" name="kode_opd"
+                                                            class="form-control @error('kode_opd') is-invalid @enderror" id="kode_opd"
+                                                            placeholder="Kode OPD . . ." value="{{ $data->kode_opd }}">
+                                                        @error('kode_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="kelas_jabatan">Kelas Jabatan</label>
-                                                        <input type="number" name="kelas_jabatan"
-                                                            class="form-control @error('kelas_jabatan') is-invalid @enderror" id="kelas_jabatan"
-                                                            placeholder="Kelas Jabatan . . ." value="{{ $data->kelas_jabatan }}">
-                                                        @error('kelas_jabatan')
+                                                        <label for="kode_sub_opd">Kode Sub OPD</label>
+                                                        <input type="text" name="kode_sub_opd"
+                                                            class="form-control @error('kode_sub_opd') is-invalid @enderror" id="kode_sub_opd"
+                                                            placeholder="Kode Sub OPD . . ." value="{{ $data->kode_sub_opd }}">
+                                                        @error('kode_sub_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="indeks">Indeks</label>
-                                                        <input type="text" name="indeks"
-                                                            class="form-control @error('indeks') is-invalid @enderror" id="indeks"
-                                                            placeholder="Indeks . . ." value="{{ $data->indeks }}">
-                                                        @error('indeks')
+                                                        <label for="nama_opd">Nama OPD</label>
+                                                        <input type="text" name="nama_opd"
+                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
+                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
+                                                        @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
@@ -116,41 +114,39 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="createModalLabel">Tambah Master Tahun</h5>
+                            <h5 class="modal-title" id="createModalLabel">Tambah Master OPD</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="{{ route('adminkota-indeks.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('adminkota-opd.store') }}" method="post" enctype="multipart/form-data">
                             <div class="modal-body">
                                 @csrf
                                 <input type="hidden" name="tahun_id" value="{{ session()->get('tahun_id_session') }}">
                                 <div class="form-group">
-                                    <label for="jenis_jabatan">Jenis Jabatan</label>
-                                    <select name="jenis_jabatan" id="jenis_jabatan" class="form-control">
-                                        @foreach(\App\Models\Jenis_jabatan::orderBy('id', 'ASC')->get() as $jenis)
-                                            <option value="{{ $jenis->id }}">{{ $jenis->jenis_jabatan }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('jenis_jabatan')
+                                    <label for="kode_opd">Kode OPD</label>
+                                    <input type="text" name="kode_opd"
+                                        class="form-control @error('kode_opd') is-invalid @enderror" id="kode_opd"
+                                        placeholder="Kode OPD . . ." value="{{ old('kode_opd') }}">
+                                    @error('kode_opd')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="kelas_jabatan">Kelas Jabatan</label>
-                                    <input type="number" name="kelas_jabatan"
-                                        class="form-control @error('kelas_jabatan') is-invalid @enderror" id="kelas_jabatan"
-                                        placeholder="Kelas Jabatan . . ." value="{{ old('kelas_jabatan') }}">
-                                    @error('kelas_jabatan')
+                                    <label for="kode_sub_opd">Kode Sub OPD</label>
+                                    <input type="text" name="kode_sub_opd"
+                                        class="form-control @error('kode_sub_opd') is-invalid @enderror" id="kode_sub_opd"
+                                        placeholder="Kode Sub OPD . . ." value="{{ old('kode_sub_opd') }}">
+                                    @error('kode_sub_opd')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="indeks">Indeks</label>
-                                    <input type="text" name="indeks"
-                                        class="form-control @error('indeks') is-invalid @enderror" id="indeks"
-                                        placeholder="Indeks . . ." value="{{ old('indeks') }}">
-                                    @error('indeks')
+                                    <label for="nama_opd">Nama OPD</label>
+                                    <input type="text" name="nama_opd"
+                                        class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
+                                        placeholder="Nama OPD . . ." value="{{ old('nama_opd') }}">
+                                    @error('nama_opd')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\AdminKota;
 
 use App\Models\Indeks;
-use App\Models\Tahun;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -55,7 +54,7 @@ class IndeksController extends Controller
             'kelas_jabatan' => $request->kelas_jabatan,
             'indeks' => $request->indeks,
         ]);
-        
+
         return redirect()->back()->with('success','Data Berhasil Diupdate!');
     }
 }

@@ -31,11 +31,17 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
     Route::get('/pegawai-bulanan/tpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'tpp'])->name('adminkota-tpp-pegawai');
     Route::get('/pegawai-bulanan/totaltpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'totaltpp'])->name('adminkota-tpp-total');
 
+    // master opd
+    Route::get('/master-opd',[App\Http\Controllers\AdminKota\OpdController::class,'index'])->name('adminkota-opd');
+    Route::post('/master-opd',[App\Http\Controllers\AdminKota\OpdController::class,'store'])->name('adminkota-opd.store');
+    Route::put('/master-opd/{opd}',[App\Http\Controllers\AdminKota\OpdController::class,'update'])->name('adminkota-opd.update');
+    Route::delete('/master-opd/{opd}',[App\Http\Controllers\AdminKota\OpdController::class,'destroy'])->name('adminkota-opd.destroy');
+
     // master indeks
     Route::get('/master-indeks',[App\Http\Controllers\AdminKota\IndeksController::class,'index'])->name('adminkota-indeks');
     Route::post('/master-indeks',[App\Http\Controllers\AdminKota\IndeksController::class,'store'])->name('adminkota-indeks.store');
     Route::put('/master-indeks/{indeks}',[App\Http\Controllers\AdminKota\IndeksController::class,'update'])->name('adminkota-indeks.update');
-    Route::delete('/master-rupiah/{id}',[App\Http\Controllers\AdminKota\IndeksController::class,'destroy'])->name('adminkota-indeks.destroy');
+    Route::delete('/master-indeks/{indeks}',[App\Http\Controllers\AdminKota\IndeksController::class,'destroy'])->name('adminkota-indeks.destroy');
 
     // master rupiah
     Route::get('/master-rupiah',[App\Http\Controllers\AdminKota\RupiahController::class,'index'])->name('adminkota-rupiah');

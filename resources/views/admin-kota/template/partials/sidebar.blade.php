@@ -92,9 +92,17 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Master Tahun</span>
         </a>
+        <a href="{{ route('adminkota-opd') }}" class="nav-link">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Master OPD</span>
+        </a>
         <a href="{{ route('adminkota-indeks') }}" class="nav-link">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Master Indeks</span>
+        </a>
+        <a href="{{ route('adminkota-indeks') }}" class="nav-link">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Master Jabatan</span>
         </a>
         <a href="{{ route('adminkota-rupiah') }}" class="nav-link">
             <i class="fas fa-fw fa-chart-area"></i>
