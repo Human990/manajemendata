@@ -9,12 +9,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Indeks extends Model
 {
     use HasFactory;
+
     protected $guarded=[];
+
     public $table="indeks";
+
+    protected $primaryKey = 'kode_indeks';
+    
     protected $fillable = [
         'kode_indeks',
         'jenis_jabatan',
         'kelas_jabatan',
-        'indeks'
+        'indeks',
+        'tahun_id'
     ];
 }
