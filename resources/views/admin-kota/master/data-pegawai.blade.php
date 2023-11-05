@@ -36,6 +36,8 @@
                                 <th width="3%">Nama Jabatan</th>
                                 <th width="3%">Jenis Jabatan</th>
                                 <th width="3%">Status Jabatan</th>
+                                <th width="3%">Nilai Jabatan (JV)</th>
+                                <th width="3%">Indeks</th>
                                 <th width="3%">Pangkat</th>
                                 <th width="3%">Eselon</th>
                                 <th width="3%">Status Penerimaan TPP</th>
@@ -64,11 +66,13 @@
                                     <td>{{ $data->nip }}</td>
                                     <td>{{ $data->nama_pegawai }}</td>
                                     <td>{{ $data->sts_pegawai }}</td>
-                                    {{-- <td>{{ $data->opds->nama_opd }}</td> --}}
-                                    <td>{{ $data->ukor_eselon2}}</td>
+                                    <td>{{ $data->opds ? $data->opds->nama_opd : 'Tidak ditemukan' }}</td>
+                                    {{-- <td>{{ $data->ukor_eselon2}}</td> --}}
                                     <td>{{ $data->jabatans ? $data->jabatans->nama_jabatan : 'Tidak Ada Jabatan' }}</td>
                                     <td>{{ $data->jabatans ? $data->jabatans->jenis_jabatan : 'Tidak Ada Jabatan' }}</td>
                                     <td>{{ $data->sts_jabatan }}</td>
+                                    <td></td>
+                                    <td></td>
                                     <td>{{ $data->pangkat }}</td>
                                     <td>{{ $data->eselon }}</td>
                                     <td>{{ $data->tpp }}</td>

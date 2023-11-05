@@ -2,58 +2,59 @@
 
 namespace App\Http\Controllers\AdminKota;
 
-use App\Models\Pegbul;
+// use App\Models\Pegbul;
 use App\Models\Jabatan;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PegawaiController extends Controller
 {
-    // public function index(Request $request)
-    // {
-    //     $search = $request->input('search');
-    //     $datas = Pegbul::select(
-    //         'pegawai_bulanan.*',
-    //         'master_tahun.tahun',
-    //         'jabatans.nama_jabatan',
-    //         'opds.nama_opd'
-    //     )
-    //     ->leftJoin('master_tahun', 'master_tahun.id', '=', 'pegawai.tahun_id')
-    //     ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawai.kode_jabatanlama')
-    //     ->leftJoin('opds', 'opds.id', '=', 'pegawai.opd_id')
-    //     ->where('pegawai.tahun_id', session()->get('tahun_id_session'))
-    //     ->when($search, function ($query) use ($search) {
-    //         $query->where('nama_pegawai', 'LIKE', '%' . $search . '%')
-    //               ->orWhere('nip', 'LIKE', '%' . $search . '%');
-    //     })
-    //     ->orderBy('pegawai.id', 'ASC')
-    //     ->pagination(10);
-
-    // return view('admin-kota.master.data-pegawai', compact('datas','search'));
-    // }
-    
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $jabatanOptions = Jabatan::all();
+        $datas = Pegawai::select(
+            'pegawais.*',
+            'master_tahun.tahun',
+            'jabatans.nama_jabatan',
+            'opds.nama_opd'
+        )
+        ->leftJoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
+        ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawais.kode_jabatanlama')
+        ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
+        ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
+        ->when($search, function ($query) use ($search) {
+            $query->where('nama_pegawai', 'LIKE', '%' . $search . '%')
+                  ->orWhere('nip', 'LIKE', '%' . $search . '%');
+        })
+        ->orderBy('pegawais.id', 'ASC')
+        ->paginate(10);
 
-    $datas = Pegbul::select(
-        'pegawai_bulanan.*',
-        'master_tahun.tahun',
-        'jabatans.nama_jabatan'
-    )
-    ->leftJoin('master_tahun', 'master_tahun.id', '=', 'pegawai_bulanan.tahun_id')
-    ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawai_bulanan.kode_jabatanlama')
-    ->where('pegawai_bulanan.tahun_id', session()->get('tahun_id_session'))
-    ->when($search, function ($query) use ($search) {
-        $query->where('nama_pegawai', 'LIKE', '%' . $search . '%')
-              ->orWhere('nip', 'LIKE', '%' . $search . '%');
-    })
-    ->orderBy('pegawai_bulanan.id', 'ASC')
-    ->paginate(10);
-
-    return view('admin-kota.master.data-pegawai', compact('datas', 'search','jabatanOptions'));
+    return view('admin-kota.master.data-pegawai', compact('datas','search'));
     }
+    
+    // public function index(Request $request)
+    // {
+    //     $search = $request->input('search');
+    //     $jabatanOptions = Jabatan::all();
+
+    // $datas = Pegbul::select(
+    //     'pegawai_bulanan.*',
+    //     'master_tahun.tahun',
+    //     'jabatans.nama_jabatan'
+    // )
+    // ->leftJoin('master_tahun', 'master_tahun.id', '=', 'pegawai_bulanan.tahun_id')
+    // ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawai_bulanan.kode_jabatanlama')
+    // ->where('pegawai_bulanan.tahun_id', session()->get('tahun_id_session'))
+    // ->when($search, function ($query) use ($search) {
+    //     $query->where('nama_pegawai', 'LIKE', '%' . $search . '%')
+    //           ->orWhere('nip', 'LIKE', '%' . $search . '%');
+    // })
+    // ->orderBy('pegawai_bulanan.id', 'ASC')
+    // ->paginate(10);
+
+    // return view('admin-kota.master.data-pegawai', compact('datas', 'search','jabatanOptions'));
+    // }
 
     public function store(Request $request)
     {
