@@ -8,6 +8,17 @@
                 <h3 class="card-title">Master Jabatan Tahun {{ session()->get('tahun_session') }} <a href="#" style="float:right" class="btn btn-info" data-toggle="modal" data-target="#createModalIndeks">Tambah Data</a> </h3>
             </div>
             <div class="card-body">
+                <form action="{{ route('adminkota-jabatan') }}" method="GET">
+                    <div class="input-group">
+                        <input type="text" name="pencarian" class="form-control " placeholder="Masukkan nama jabatan yang dicari . . ." value="{{ $pencarian ?? '' }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-warning" type="submit">
+                                <i class="fas fa-search fa-sm"></i> Pencarian
+                            </button>
+                        </div>
+                    </div>
+                </form></br>
+
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead>
@@ -109,7 +120,8 @@
                 </div>
             </div>
             <div class="text-center">
-                <span style="float:right">{{ $datas->links() }}</span>
+                <span style="float:right">
+                {{ $datas->appends([ 'pencarian' => $pencarian ])->links() }}</span>
             </div>
             <div class="modal fade" id="createModalIndeks" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">
