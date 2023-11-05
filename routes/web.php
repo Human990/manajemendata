@@ -24,6 +24,9 @@ Route::get('/logout',[App\Http\Controllers\AuthController::class,'logout'])->nam
 
 Route::group(['middleware' => ['auth', 'adminkota']], function () {
     // Rute yang memerlukan autentikasi dan peran admin
+    Route::post('/copy/data',[App\Http\Controllers\AdminKota\CopyController::class,'copy'])->name('adminkota-copy-data');
+
+    // Rute yang memerlukan autentikasi dan peran admin
     Route::get('/',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'anggaran'])->name('adminkota-dashboard');
     Route::post('/put/session',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'putsession'])->name('adminkota-putsession');
 
