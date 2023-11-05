@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Adminkota;
 
+use App\Models\Opd;
+// use App\Models\Pegbul;
 use App\Models\Tahun;
-use App\Models\Pegbul;
 use App\Models\Rupiah;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -45,17 +47,14 @@ class PegawaibulananController extends Controller
 
     public function anggaran(Request $request)
     {
-        $jumlah_pegbul = Pegbul::count();
-        $rupiah1 = Rupiah::where('id',1)->first();
-        $rupiah2 = Rupiah::where('id',2)->first();
+        $jumlah_pegawai = Pegawai::count();
         $rupiah3 = Rupiah::where('id', 3)->first();
         $rupiah4 = Rupiah::where('id', 4)->first();
-        // $pegbul = Pegbul::select('opd')->groupBy('opd')->get();
-        $pegbul = DB::table('view_tpp')->get();
-        $jumlahguru = DB::table('view_jumlahguru')->first();
-        $rs = DB::table('view_jumlahrs')->first();
-        $pppk = DB::table('view_jumlahpppk')->first();
-        return view('admin-kota.laporan.anggaran',compact(['pegbul','jumlah_pegbul','rupiah1','rupiah2','rupiah3','rupiah4','jumlahguru','rs','pppk']))->with('i',($request->input('page',1)-1));
+        // tambahkan rumus untuk total_tpp, belum bisa karena indeks dan jabatan belum fix
+        $jumlahguru = Pegawai::where('sts_pegawai','guru')->count();
+        $rs = Pegawai::where('sts_pegawai','rs')->count();
+        $pppk = Pegawai::where('sts_pegawai','pppk')->count();
+        return view('admin-kota.laporan.anggaran',compact(['jumlah_pegawai','rupiah3','rupiah4','jumlahguru','rs','pppk']))->with('i',($request->input('page',1)-1));
     }
 
     public function putsession(Request $request)

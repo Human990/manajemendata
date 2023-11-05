@@ -25,40 +25,7 @@
                                 </tr>
                             </thead>
                         <tbody id="dynamic-row">
-                            <?php
-                            $jumlah1 = 0;
-                            $jumlah2 = 0;
-                            $jumlah3 = 0;
-                            $jumlah4 = 0;
-                            $jumlah5 = 0;
-                            $jumlah6 = 0;
-                            $jumlahpegawai = 0;
-                            ?>
-                            @foreach ($pegbul as $item)
-                                <tr style="color: black;">
-                                    <?php
-                                    $jumlahpegawai += $item->jumlah_pegawai;
-                                    ?>
-                                    <?php
-                                    $jumlah1 += $item->bkb;
-                                    ?>
-                                    <?php
-                                    $jumlah2 += $item->bkb_13;
-                                    ?>
-                                    <?php
-                                    $jumlah3 += $item->pkb;
-                                    ?>
-                                    <?php
-                                    $jumlah4 += $item->pkb_12;
-                                    ?>
-                                    <?php
-                                    $jumlah5 += $item->bkb + $item->pkb;
-                                    ?>
-                                    <?php
-                                    $jumlah6 += $item->bkb_13 + $item->pkb_12;
-                                    ?>
-                                </tr>
-                            @endforeach
+                            
                         </tbody>
                         <tfoot style="color: black;">
                             <tr>
@@ -69,7 +36,7 @@
                                     {{ number_format($rupiah4->jumlah, 0) }}
                                 </td>
                                 <td>
-                                    {{ number_format($jumlah6, 0) }}
+                                    {{-- total tpp tahunan disini --}}
                                 </td>
                             </tr>
                         </tfoot>
@@ -80,7 +47,8 @@
                     <h5 style="color:black;">Presentase Belanja Pegawai =
                         {{ number_format(($rupiah4->jumlah / $rupiah3->jumlah) * 100, 2) }}%</h5>
                     <h5 style="color:black;">Presentase TPP dari Presentase Belanja Pegawai =
-                        {{ number_format(($jumlah6 / $rupiah4->jumlah) * ($rupiah4->jumlah / $rupiah3->jumlah) * 100, 2) }}%
+                        {{-- rumus presentase disini --}}
+                        {{-- {{ number_format(($jumlah6 / $rupiah4->jumlah) * ($rupiah4->jumlah / $rupiah3->jumlah) * 100, 2) }}% --}}
                     </h5>
                 </div>
             </div>
@@ -92,20 +60,20 @@
             <div class="card-body">
                 <div class="text-left">
                     <p class="ml-3" style="color:black;">Jumlah pegawai : <b style="color:red;">
-                            {{ number_format($jumlahpegawai, 0) }} </b>
+                            {{ number_format($jumlah_pegawai, 0) }} </b>
                         orang
                     </p>
                 </div>
                 <div class="text-left">
                     <p class="ml-3" style="color:black;">Jumlah guru : <b style="color:red;">
-                            {{ $jumlahguru->total_guru }} </b> orang </p>
+                            {{ number_format($jumlahguru,0) }} </b> orang </p>
                 </div>
                 <div class="text-left">
-                    <p class="ml-3" style="color:black;">Jumlah rs : <b style="color:red;"> {{ $rs->total_rs }} </b> orang
+                    <p class="ml-3" style="color:black;">Jumlah rs : <b style="color:red;"> {{ number_format($rs,0) }} </b> orang
                     </p>
                 </div>
                 <div class="text-left">
-                    <p class="ml-3" style="color:black;">Jumlah pppk : <b style="color:red;"> {{ $pppk->total_pppk }} </b>
+                    <p class="ml-3" style="color:black;">Jumlah pppk : <b style="color:red;"> {{ number_format($pppk,0) }} </b>
                         orang </p>
                 </div>
 
@@ -128,7 +96,7 @@
                         data: [
                             {{ $rupiah3->jumlah }},
                             {{ $rupiah4->jumlah }},
-                            {{ $jumlah6 }},
+                            1000000000000, //nanti ambil dari $total_tpp
                         ],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.5)',
