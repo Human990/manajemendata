@@ -7,18 +7,6 @@
             <div class="card-header">
                 <h3 class="card-title">Master Jabatan Tahun {{ session()->get('tahun_session') }} <a href="#" style="float:right" class="btn btn-info" data-toggle="modal" data-target="#createModalIndeks">Tambah Data</a> </h3>
             </div>
-            {{-- <div class="card-body">
-            <form action="{{route('admin.searchDakep')}}" class="form-inline" method="GET">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="search">
-                <button class="btn btn-outline-primary" type="submit">
-                    <i class="fa fa-search"></i>
-                </button>
-            </form>
-        </div> --}}
-            {{-- <div class="card-body">
-            <a href="#" class="btn btn-info" data-toggle="modal" data-target="#importModal">Import</a>
-            <a href="{{route('pegawaiexport')}}" class="btn btn-warning">Export</a>
-        </div> --}}
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\OPD;
 use App\Models\Indeks;
+use App\Models\Jabatan;
 use App\Models\Jabatanbaru;
 use App\Models\Jabatanlama;
 use Illuminate\Database\Eloquent\Model;
@@ -53,8 +54,9 @@ class Pegbul extends Model
         'jenis_evidence_kp',
     ];
 
-    public function jabatanlama() {
-        return $this->belongsTo(Jabatanlama::class);
+    public function jabatans()
+    {
+        return $this->belongsTo(Jabatan::class, 'kode_jabatanlama', 'kode_jabatanlama');
     }
 
     public function jabatanbaru() {

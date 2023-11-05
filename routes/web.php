@@ -27,9 +27,15 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
     Route::get('/',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'anggaran'])->name('adminkota-dashboard');
     Route::post('/put/session',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'putsession'])->name('adminkota-putsession');
 
-    // pegawai bulanan
+    // rekap tpp
     Route::get('/pegawai-bulanan/tpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'tpp'])->name('adminkota-tpp-pegawai');
     Route::get('/pegawai-bulanan/totaltpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'totaltpp'])->name('adminkota-tpp-total');
+
+    // data pegawai
+    Route::get('/data-pegawai',[App\Http\Controllers\AdminKota\PegawaiController::class,'index'])->name('adminkota-pegawai');
+    Route::post('/data-pegawai',[App\Http\Controllers\AdminKota\PegawaiController::class,'store'])->name('adminkota-pegawai.store');
+    Route::put('/data-pegawai/{pegawai}',[App\Http\Controllers\AdminKota\PegawaiController::class,'update'])->name('adminkota-pegawai.update');
+    Route::delete('/data-pegawai/{pegawai}',[App\Http\Controllers\AdminKota\PegawaiController::class,'destroy'])->name('adminkota-pegawai.destroy');
 
     // master opd
     Route::get('/master-opd',[App\Http\Controllers\AdminKota\OpdController::class,'index'])->name('adminkota-opd');

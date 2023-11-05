@@ -23,5 +23,10 @@
         $("#selectStatus").select2({
             placeholder: 'Pilih Status Pegawai',
         });
+
+        $('.select2jabatan').select2({
+            placeholder: 'Pilih Jabatan',
+            allowClear: true // Menambahkan opsi untuk menghapus pilihan
+        });
     });
 </script>

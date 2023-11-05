@@ -7,18 +7,7 @@
             <div class="card-header">
                 <h3 class="card-title">Master OPD Tahun {{ session()->get('tahun_session') }}</h3>
             </div>
-            {{-- <div class="card-body">
-            <form action="{{route('admin.searchDakep')}}" class="form-inline" method="GET">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="search">
-                <button class="btn btn-outline-primary" type="submit">
-                    <i class="fa fa-search"></i>
-                </button>
-            </form>
-        </div> --}}
-            {{-- <div class="card-body">
-            <a href="#" class="btn btn-info" data-toggle="modal" data-target="#importModal">Import</a>
-            <a href="{{route('pegawaiexport')}}" class="btn btn-warning">Export</a>
-        </div> --}}
+            
             <div class="card-body">
                 <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalIndeks">Tambah Data</a>
             </div>

@@ -28,7 +28,7 @@
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label for="tahun">tahun</label>
+                            <label for="tahun">Tahun</label>
                             <input type="text" name="tahun" class="form-control @error('tahun') is-invalid @enderror"
                                 id="tahun" placeholder="tahun" value="{{ $tahun->tahun ?? old('tahun') }}">
                             @error('tahun')

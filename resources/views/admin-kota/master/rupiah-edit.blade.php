@@ -28,7 +28,7 @@
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="nama">nama</label>
+                            <label for="nama">Keterangan</label>
                             <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror"
                                 id="nama" placeholder="nama" value="{{ $rupiah->nama ?? old('nama') }}">
                             @error('nama')
@@ -37,7 +37,7 @@
                             <p style="color: red">*wajib diisi</p>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="jumlah">jumlah</label>
+                            <label for="jumlah">Nominal</label>
                             <input type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror"
                                 id="jumlah" placeholder="jumlah.." value="{{ $rupiah->jumlah ?? old('jumlah') }}">
                             @error('jumlah')
