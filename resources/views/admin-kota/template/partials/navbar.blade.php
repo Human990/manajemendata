@@ -30,8 +30,71 @@
                         <i class="fas fa-check fa-sm"></i> Aktifkan
                     </button>
                 </div>
+                <div class="input-group-append">
+                    @if (session()->has('statusCopy'))
+                        <button class="btn btn-success" type="button" data-toggle="modal" data-target="#createModalIndeks">
+                            <i class="fas fa-check fa-sm"></i> {{ session()->get('statusCopy') }}
+                        </button>
+                    @elseif(session()->has('statusError'))
+                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#createModalIndeks">
+                        <i class="fas fa-times fa-sm"></i> {{ session()->get('statusError') }}
+                        </button>
+                    @else
+                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#createModalIndeks">
+                            <i class="fas fa-folder fa-sm"></i> Copy
+                        </button>
+                    @endif
+
+                    {{ session()->forget('statusError') }}
+                    {{ session()->forget('statusCopy') }}
+                </div>
             </div>
     </form>
+
+            <div class="modal fade" id="createModalIndeks" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+                aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="createModalLabel">Copy Data</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ route('adminkota-copy-data') }}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="tahun_asal">Tahun Asal</label>
+                                            <select name="tahun_asal" id="tahun_asal" class="form-control" style="width:100%">
+                                                @foreach(\App\Models\Tahun::orderBy('id','ASC')->get() as $tahunasal)
+                                                    <option value="{{ $tahunasal->id }}">{{ $tahunasal->tahun }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div></br>
+                                        <div class="form-group">
+                                            <label for="tahun_tujuan">Tahun Tujuan</label>
+                                            <select name="tahun_tujuan" id="tahun_tujuan" class="form-control" style="width:100%">
+                                                @foreach(\App\Models\Tahun::orderBy('id','ASC')->get() as $tahuntujuan)
+                                                    <option value="{{ $tahuntujuan->id }}">{{ $tahuntujuan->tahun }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div></br>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                               <div class="alert alert-danger" role="alert"><b>Peringatan : </b> proses copy akan menghapus data opd, rupiah, indeks, jabatan dan pegawai ditahun tujuan copy lalu diganti dengan data opd, rupiah, indeks, jabatan dan pegawai dari tahun asal copy</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Batalkan</button>
+                                        <button type="submit" class="btn btn-success">Lanjutkan Proses Copy</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">

@@ -13,6 +13,7 @@ class Rupiah extends Model
     protected $fillable=[
         'nama',
         'jumlah',
-        'tahun_id'
+        'tahun_id',
+        'asal_id',
     ];
 }
