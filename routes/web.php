@@ -34,6 +34,12 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
     Route::get('/pegawai-bulanan/tpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'tpp'])->name('adminkota-tpp-pegawai');
     Route::get('/pegawai-bulanan/totaltpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'totaltpp'])->name('adminkota-tpp-total');
 
+    // data catatan
+    Route::get('/data-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'index'])->name('adminkota-catatan');
+    // Route::post('/data-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'store'])->name('adminkota-catatan.store');
+    Route::put('/data-catatan/{catatan}',[App\Http\Controllers\AdminKota\CatatanController::class,'update'])->name('adminkota-catatan.update');
+    // Route::delete('/data-catatan/{catatan}',[App\Http\Controllers\AdminKota\CatatanController::class,'destroy'])->name('adminkota-catatan.destroy');
+
     // data pegawai
     Route::get('/data-pegawai',[App\Http\Controllers\AdminKota\PegawaiController::class,'index'])->name('adminkota-pegawai');
     Route::post('/data-pegawai',[App\Http\Controllers\AdminKota\PegawaiController::class,'store'])->name('adminkota-pegawai.store');
@@ -85,6 +91,9 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
 
 Route::group(['middleware' => ['auth', 'adminopd']], function () {
     // Rute yang memerlukan autentikasi dan peran admin
+
+    // pegawai catatan
+    Route::post('/data-catatan/store',[App\Http\Controllers\Adminopd\CatatanController::class,'store'])->name('adminopd-catatan.store');
 
     // pegawai bulanan
     Route::get('/admin-opd/pegawai-bulanan/tpp',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'tpp'])->name('adminopd-tpp-pegawai');

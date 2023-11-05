@@ -7,6 +7,7 @@ use App\Models\Opd;
 use App\Models\Tahun;
 use App\Models\Rupiah;
 use App\Models\Pegawai;
+use App\Models\Catatan_opd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -54,7 +55,9 @@ class PegawaibulananController extends Controller
         $jumlahguru = Pegawai::where('sts_pegawai','guru')->count();
         $rs = Pegawai::where('sts_pegawai','rs')->count();
         $pppk = Pegawai::where('sts_pegawai','pppk')->count();
-        return view('admin-kota.laporan.anggaran',compact(['jumlah_pegawai','rupiah3','rupiah4','jumlahguru','rs','pppk']))->with('i',($request->input('page',1)-1));
+        $catatan = Catatan_opd::proses();
+
+        return view('admin-kota.laporan.anggaran',compact(['jumlah_pegawai','rupiah3','rupiah4','jumlahguru','rs','pppk', 'catatan']))->with('i',($request->input('page',1)-1));
     }
 
     public function putsession(Request $request)
