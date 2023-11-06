@@ -108,6 +108,10 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Rincian Per OPD</span>
         </a>
+        <a href="{{ route('adminopd-catatan') }}" class="nav-link">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>History Catatan</span>
+        </a>
     </li>
 
     {{-- <hr class="sidebar-divider"> --}}

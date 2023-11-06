@@ -1,18 +1,24 @@
 @extends('admin-kota.template.default')
-@section('title', 'TPP Pegawai Bulanan')
-@section('pegawai-bulanan', 'active')
+@section('title', 'Master Tahun')
+@section('master-tahun', 'active')
 @section('content')
     <div class="container-fluid">
-        @if($catatans->total() >= 1)
         <div class="card card-headline">
             <div class="card-header">
-                <h5 class="card-title">
-                    <b>Catatan OPD <b style="color:Red">( {{ $catatans->total() }} Catatan perlu tindak lanjut )</b></b> 
-                    <a href="{{ route('adminkota-catatan') }}" class="btn btn-warning" type="button" style="float:right; margin-right: 10px;"><i class="fa fa-list-ul"></i> History Catatan</a>
-                    <button class="btn btn-primary" type="button" style="float:right; margin-right: 10px;" id="button_catatan_opd">Tampilkan Daftar</button>
-                </h5>
+                <h3 class="card-title">History Catatan</h3>
             </div>
-            <div class="card-body" id="catatan_opd" style="display:none">
+            <div class="card-body">
+                <form action="{{ route('adminkota-catatan') }}" method="GET">
+                    <div class="input-group">
+                        <input type="text" name="pencarian" class="form-control " placeholder="Masukkan data yang dicari . . ." value="{{ $pencarian ?? '' }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-warning" type="submit">
+                                <i class="fas fa-search fa-sm"></i> Pencarian
+                            </button>
+                        </div>
+                    </div>
+                </form></br>
+
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead style="color: black; background-color: #ffe4a0;">
@@ -22,24 +28,33 @@
                                 <th>OPD</th>
                                 <th>NIP</th>
                                 <th>Nama Pegawai</th>
-                                <th>Catatan OPD</th>
+                                <th>Catatan</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
                             @php $i=0; @endphp
                             @foreach($catatans as $catatan)
-                            @php $i++; @endphp
+                            @php $i++; $no = ($catatans->currentPage() - 1) * ($catatans->perPage()) + $i; @endphp
                             <tr>
-                                <td width="1%">{{ $i }}</td>
+                                <td width="1%">{{ $no }}</td>
                                 <td width="5%">{{ $catatan->tahun }}</td>
-                                <td width="22%">{{ $catatan->nama_opd }}</td>
+                                <td width="20%">{{ $catatan->nama_opd }}</td>
                                 <td width="8%">{{ $catatan->nip }}</td>
                                 <td width="16%">{{ $catatan->nama_pegawai }}</td>
-                                <td width="35%">{{ $catatan->catatan_opd }}</td>
+                                <td width="32%">
+                                    <b>Catatan OPD : </b>{{ $catatan->catatan_opd }}</br>
+                                    @if(!empty($catatan->catatan_admin)) <b>Catatan Admin : </b>{{ $catatan->catatan_admin }} @endif
+                                </td>
+                                <td width="5%">{{ $catatan->status }}</td>
                                 <td width="14%">
-                                    <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalPegawai{{ $i }}"><i class="fa fa-edit"></i> Pegawai</button>
-                                    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-plus"></i> Catatan</button>
+                                    @if(!empty($catatan->status))
+                                        
+                                    @else
+                                        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalPegawai{{ $i }}"><i class="fa fa-edit"></i> Pegawai</button>
+                                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-plus"></i> Catatan</button>
+                                    @endif
                                 </td>
                             </tr>
 
@@ -147,145 +162,64 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div></br>
-        @endif
-
-        <div class="card card-headline">
-            <div class="card-header">
-                <h5 class="card-title"><b>Rekap Anggaran Tahun {{ session()->get('tahun_session') }}</b></h5>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <canvas id="tppChart" width="400" height="200" style="max-width: 150%; height: auto;"></canvas>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <caption
-                            style="caption-side: top; text-align: center; font-weight: bold; font-size: 18px; margin-bottom: 10px; margin-top: 20px;">
-                            Tabel Perbandingan</caption>
-                        <thead style="color: black; background-color: #C5F04A;">
-                            <thead style="color: black; background-color: #C5F04A;">
-                                <tr>
-                                    <th>APBD</th>
-                                    <th>BELANJA PEGAWAI</th>
-                                    <th>TPP</th>
-                                </tr>
-                            </thead>
-                        <tbody id="dynamic-row">
-                            
-                        </tbody>
-                        <tfoot style="color: black;">
-                            <tr>
-                                <td>
-                                    {{ number_format($rupiah3->jumlah, 0) }}
-                                </td>
-                                <td>
-                                    {{ number_format($rupiah4->jumlah, 0) }}
-                                </td>
-                                <td>
-                                    {{-- total tpp tahunan disini --}}
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                <div class="text-center mt-5">
-                    {{-- Display percentage calculation --}}
-                    <h5 style="color:black;">Presentase Belanja Pegawai =
-                        {{ number_format(($rupiah4->jumlah / $rupiah3->jumlah) * 100, 2) }}%</h5>
-                    <h5 style="color:black;">Presentase TPP dari Presentase Belanja Pegawai =
-                        {{-- rumus presentase disini --}}
-                        {{-- {{ number_format(($jumlah6 / $rupiah4->jumlah) * ($rupiah4->jumlah / $rupiah3->jumlah) * 100, 2) }}% --}}
-                    </h5>
-                </div>
-            </div>
-        </div>
-
-        <div class="card card-headline mt-5">
-            <div class="card-header">
-                <h5 class="card-title"><b>Data Pegawai</b></h5>
-            </div>
-            <div class="card-body">
-                <div class="text-left">
-                    <p class="ml-3" style="color:black;">Jumlah pegawai : <b style="color:red;">
-                            {{ number_format($jumlah_pegawai, 0) }} </b>
-                        orang
-                    </p>
-                </div>
-                <div class="text-left">
-                    <p class="ml-3" style="color:black;">Jumlah guru : <b style="color:red;">
-                            {{ number_format($jumlahguru,0) }} </b> orang </p>
-                </div>
-                <div class="text-left">
-                    <p class="ml-3" style="color:black;">Jumlah rs : <b style="color:red;"> {{ number_format($rs,0) }} </b> orang
-                    </p>
-                </div>
-                <div class="text-left">
-                    <p class="ml-3" style="color:black;">Jumlah pppk : <b style="color:red;"> {{ number_format($pppk,0) }} </b>
-                        orang </p>
-                </div>
-
                 <div class="text-center">
-                    {{-- <h6>jumlah data :{{$jumlah_pegbul}}</h6> --}}
+                    <span style="float:right">
+                    {{ $catatans->appends([ 'pencarian' => $pencarian ])->links() }}</span>
+                </div>
+            </div>
+
+            <div class="modal fade" id="createModalIndeks" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createModalLabel">Tambah Master indeks</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{ route('adminkota-indeks.store') }}" method="post" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                @csrf
+                                <input type="hidden" name="tahun_id" value="{{ session()->get('tahun_id_session') }}">
+                                <div class="form-group">
+                                    <label for="jenis_jabatan">Jenis Jabatan</label>
+                                    <select name="jenis_jabatan" id="jenis_jabatan" class="form-control">
+                                        @foreach(\App\Models\Jenis_jabatan::orderBy('id', 'ASC')->get() as $jenis)
+                                            <option value="{{ $jenis->id }}">{{ $jenis->jenis_jabatan }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('jenis_jabatan')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="kelas_jabatan">Kelas Jabatan</label>
+                                    <input type="number" name="kelas_jabatan"
+                                        class="form-control @error('kelas_jabatan') is-invalid @enderror" id="kelas_jabatan"
+                                        placeholder="Kelas Jabatan . . ." value="{{ old('kelas_jabatan') }}">
+                                    @error('kelas_jabatan')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="indeks">Indeks</label>
+                                    <input type="text" name="indeks"
+                                        class="form-control @error('indeks') is-invalid @enderror" id="indeks"
+                                        placeholder="Indeks . . ." value="{{ old('indeks') }}">
+                                    @error('indeks')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var ctx = document.getElementById('tppChart').getContext('2d');
-
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['APBD', 'BELANJA PEGAWAI', 'TPP'],
-                    datasets: [{
-                        label: 'Total Per Tahun',
-                        data: [
-                            {{ $rupiah3->jumlah }},
-                            {{ $rupiah4->jumlah }},
-                            1000000000000, //nanti ambil dari $total_tpp
-                        ],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.5)',
-                            'rgba(54, 162, 235, 0.5)',
-                            'rgba(255, 206, 86, 0.5)',
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        });
-    </script>
-
-    <script>
-        document.getElementById('button_catatan_opd').addEventListener('click', function () {
-            var table = document.getElementById('catatan_opd');
-            var button = document.getElementById('button_catatan_opd');
-
-            if (table.style.display === 'none' || table.style.display === '') {
-                table.style.display = 'table';
-                button.textContent = 'Sembunyikan Daftar';
-            } else {
-                table.style.display = 'none';
-                button.textContent = 'Tampilkan Daftar';
-            }
-        });
-    </script>
-
 @endsection

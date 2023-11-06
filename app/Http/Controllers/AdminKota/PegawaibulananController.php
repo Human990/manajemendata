@@ -87,9 +87,9 @@ class PegawaibulananController extends Controller
         $jumlahguru = Pegawai::where('sts_pegawai','guru')->count();
         $rs = Pegawai::where('sts_pegawai','rs')->count();
         $pppk = Pegawai::where('sts_pegawai','pppk')->count();
-        $catatan = Catatan_opd::proses();
+        $catatans = Catatan_opd::proses()->paginate(10);
 
-        return view('admin-kota.laporan.anggaran',compact(['jumlah_pegawai','rupiah3','rupiah4','jumlahguru','rs','pppk', 'catatan']))->with('i',($request->input('page',1)-1));
+        return view('admin-kota.laporan.anggaran',compact(['jumlah_pegawai','rupiah3','rupiah4','jumlahguru','rs','pppk', 'catatans']))->with('i',($request->input('page',1)-1));
     }
 
     public function putsession(Request $request)
