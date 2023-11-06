@@ -13,24 +13,27 @@ class PegawaiController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $datas = Pegawai::select(
-            'pegawais.*',
-            'master_tahun.tahun',
-            'jabatans.nama_jabatan',
-            'opds.nama_opd'
-        )
-        ->leftJoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
-        ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawais.kode_jabatanlama')
-        ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
-        ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
-        ->when($search, function ($query) use ($search) {
-            $query->where('nama_pegawai', 'LIKE', '%' . $search . '%')
-                  ->orWhere('nip', 'LIKE', '%' . $search . '%');
-        })
-        ->orderBy('pegawais.id', 'ASC')
-        ->paginate(10);
 
-    return view('admin-kota.master.data-pegawai', compact('datas','search'));
+        // $datas = Pegawai::select(
+        //     'pegawais.*',
+        //     'master_tahun.tahun',
+        //     'jabatans.nama_jabatan',
+        //     'opds.nama_opd'
+        // )
+        // ->leftJoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
+        // ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawais.kode_jabatanlama')
+        // ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
+        // ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
+        // ->when($search, function ($query) use ($search) {
+        //     $query->where('nama_pegawai', 'LIKE', '%' . $search . '%')
+        //           ->orWhere('nip', 'LIKE', '%' . $search . '%');
+        // })
+        // ->orderBy('pegawais.id', 'ASC')
+        // ->paginate(10);
+
+        $datas = Pegawai::data();
+
+        return view('admin-kota.master.data-pegawai', compact('datas','search'));
     }
     
     // public function index(Request $request)
