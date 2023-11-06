@@ -111,19 +111,26 @@ class PegawaiController extends Controller
         return redirect()->route('adminkota-pegawai')->with('success','Data Berhasil Disimpan!');
     }
 
-    public function update(Request $request, Opd $opd)
+    public function update(Request $request, Pegawai $pegawai)
     {
         $this->validate($request, 
         [
-            'kode_opd' => 'required',
-            'kode_sub_opd' => 'required',
-            'nama_opd' => 'required',
+            'nip' => 'required',
+            'nama_pegawai' => 'required',
+            'pangkat' => 'required',
+            'golongan' => 'required',
+            'eselon' => 'required',
+            'total_bulan_penerimaan' => 'required',
         ]);
         
-        $opd->update([
-            'kode_opd' => $request->kode_opd,
-            'kode_sub_opd' => $request->kode_sub_opd,
-            'nama_opd' => $request->nama_opd,
+        $pegawai->update([
+            'opd_id' => $request->opd_id,
+            'nip' => $request->nip,
+            'nama_pegawai' => $request->nama_pegawai,
+            'pangkat' => $request->pangkat,
+            'golongan' => $request->golongan,
+            'eselon' => $request->eselon,
+            'total_bulan_penerimaan' => $request->total_bulan_penerimaan,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');
