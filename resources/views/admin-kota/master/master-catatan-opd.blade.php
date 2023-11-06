@@ -40,19 +40,20 @@
                             <tr>
                                 <td width="1%">{{ $no }}</td>
                                 <td width="5%">{{ $catatan->tahun }}</td>
-                                <td width="25%">{{ $catatan->nama_opd }}</td>
+                                <td width="22%">{{ $catatan->nama_opd }}</td>
                                 <td width="8%">{{ $catatan->nip }}</td>
                                 <td width="16%">{{ $catatan->nama_pegawai }}</td>
-                                <td width="33%">
+                                <td width="30%">
                                     <b>Catatan OPD : </b>{{ $catatan->catatan_opd }}</br>
                                     @if(!empty($catatan->catatan_admin)) <b>Catatan Admin : </b>{{ $catatan->catatan_admin }} @endif
                                 </td>
                                 <td width="5%">{{ $catatan->status }}</td>
-                                <td width="8%">
+                                <td width="14%">
                                     @if(!empty($catatan->status))
                                         
                                     @else
-                                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-edit"></i> Ubah</button>
+                                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-edit"></i> Ubah</button>
+                                        <a href="{{ route('adminopd-catatan.destroy', $catatan->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Hapus</a>
                                     @endif
                                 </td>
                             </tr>

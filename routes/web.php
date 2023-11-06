@@ -96,7 +96,7 @@ Route::group(['middleware' => ['auth', 'adminopd']], function () {
     Route::get('/data-catatan',[App\Http\Controllers\Adminopd\CatatanController::class,'index'])->name('adminopd-catatan');
     Route::post('/data-catatan/store',[App\Http\Controllers\Adminopd\CatatanController::class,'store'])->name('adminopd-catatan.store');
     Route::put('/data-catatan/{catatan}/update',[App\Http\Controllers\Adminopd\CatatanController::class,'update'])->name('adminopd-catatan.update');
-    Route::delete('/data-catatan/{catatan}',[App\Http\Controllers\Adminopd\CatatanController::class,'destroy'])->name('adminopd-catatan.destroy');
+    Route::get('/data-catatan/{catatan}/destroy',[App\Http\Controllers\Adminopd\CatatanController::class,'destroy'])->name('adminopd-catatan.destroy');
 
     // pegawai bulanan
     Route::get('/admin-opd/pegawai-bulanan/tpp',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'tpp'])->name('adminopd-tpp-pegawai');

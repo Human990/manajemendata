@@ -44,4 +44,11 @@ class CatatanController extends Controller
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');
     }
+
+    public function destroy(Request $request, Catatan_opd $catatan)
+    {
+        $catatan->delete();
+
+        return redirect()->back()->with('success','Data Berhasil Dihapus!');
+    }
 }
