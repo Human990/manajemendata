@@ -28,5 +28,16 @@
             placeholder: 'Pilih Jabatan',
             allowClear: true // Menambahkan opsi untuk menghapus pilihan
         });
+        $('#opd_filter').val($('#opd_hidden').val());
+        
+        $('.select2').select2();
+
+        $('#filterBtn').click(function(){
+                var opdId = $('#opd_filter').val();
+                var searchQuery = $('#search').val();
+
+                // Redirect to the URL with the selected OPD filter
+                window.location.href = "{{ route('adminkota-tpp-pegawai') }}?opd=" + opdId + "&search=" + searchQuery;
+            });
     });
 </script>

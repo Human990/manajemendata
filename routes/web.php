@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
     Route::post('/put/session',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'putsession'])->name('adminkota-putsession');
 
     // rekap tpp
-    Route::get('/pegawai-bulanan/tpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'tpp'])->name('adminkota-tpp-pegawai');
+    Route::get('/pegawai-bulanan/tppperson',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'tppperson'])->name('adminkota-tpp-pegawai');
     Route::get('/pegawai-bulanan/totaltpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'totaltpp'])->name('adminkota-tpp-total');
 
     // data pegawai
@@ -94,6 +94,18 @@ Route::group(['middleware' => ['auth', 'adminopd']], function () {
 
 Route::group(['middleware' => ['auth', 'adminjabatan']],function () {
     Route::post('/admin-jabatan/put/session',[App\Http\Controllers\Adminjabatan\MasterjabatanlamaController::class,'putsession'])->name('adminjabatan-putsession');
+
+    // master indeks
+    Route::get('/admin-jabatan/master-indeks',[App\Http\Controllers\AdminKota\IndeksController::class,'index'])->name('adminjabatan-indeks');
+    Route::post('/admin-jabatan/master-indeks',[App\Http\Controllers\Adminjabatan\IndeksController::class,'store'])->name('adminjabatan-indeks.store');
+    Route::put('/admin-jabatan/master-indeks/{indeks}',[App\Http\Controllers\Adminjabatan\IndeksController::class,'update'])->name('adminjabatan-indeks.update');
+    Route::delete('/admin-jabatan/master-indeks/{indeks}',[App\Http\Controllers\Adminjabatan\IndeksController::class,'destroy'])->name('adminjabatan-indeks.destroy');
+
+    // master jabatan
+    Route::get('/admin-jabatan/master-jabatan',[App\Http\Controllers\Adminjabatan\JabatanController::class,'index'])->name('adminjabatan-jabatan');
+    Route::post('/admin-jabatan/master-jabatan',[App\Http\Controllers\Adminjabatan\JabatanController::class,'store'])->name('adminjabatan-jabatan.store');
+    Route::put('/admin-jabatan/master-jabatan/{jabatan}',[App\Http\Controllers\Adminjabatan\JabatanController::class,'update'])->name('adminjabatan-jabatan.update');
+    Route::delete('/admin-jabatan/master-jabatan/{jabatan}',[App\Http\Controllers\Adminjabatan\JabatanController::class,'destroy'])->name('adminjabatan-jabatan.destroy');
 
     // Master Jabatan Lama
     Route::get('/admin-jabatan/master-jabatanlama',[App\Http\Controllers\Adminjabatan\MasterjabatanlamaController::class,'index'])->name('adminjabatan-jabatanlama');

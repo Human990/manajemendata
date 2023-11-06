@@ -17,13 +17,21 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a href="{{ route('adminjabatan-jabatanlama') }}" class="nav-link">
+        {{-- <a href="{{ route('adminjabatan-jabatanlama') }}" class="nav-link">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Master Jabatan Lama</span>
         </a>
         <a href="{{ route('adminjabatan-jabatanbaru') }}" class="nav-link">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Master Jabatan Baru</span>
+        </a> --}}
+        <a href="{{ route('adminjabatan-jabatan') }}" class="nav-link">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Master Jabatan</span>
+        </a>
+        <a href="{{ route('adminjabatan-indeks') }}" class="nav-link">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Master Indeks</span>
         </a>
     </li>
     <!-- Divider -->

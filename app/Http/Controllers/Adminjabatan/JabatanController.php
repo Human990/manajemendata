@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\AdminKota;
+namespace App\Http\Controllers\Adminjabatan;
 
 use App\Models\Jabatan;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class JabatanController extends Controller
 {
@@ -54,7 +54,7 @@ class JabatanController extends Controller
                             ->paginate(10);
         }
 
-        return view('admin-kota.master.master-jabatan',compact('datas', 'pencarian'));
+        return view('admin-jabatan.master.master-jabatan',compact('datas', 'pencarian'));
     }
 
     public function store(Request $request)

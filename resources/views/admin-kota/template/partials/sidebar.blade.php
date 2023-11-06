@@ -81,7 +81,7 @@
                 <a href="{{ route('adminkota-tpp-total') }}" class="collapse-item">
                     <span>Rekap TPP All OPD</span>
                 </a>
-                <a href="#" class="collapse-item">
+                <a href="{{ route('adminkota-tpp-pegawai')}}" class="collapse-item">
                     <span>Rekap TPP Per Person</span>
                 </a>
                 {{-- <a href="#" class="collapse-item">
