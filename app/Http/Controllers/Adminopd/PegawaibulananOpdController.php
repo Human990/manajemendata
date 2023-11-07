@@ -20,7 +20,7 @@ class PegawaibulananOpdController extends Controller
     //     $user = Auth::user();
     //     $rupiah1 = Rupiah::where('id',1)->first();
     //     $rupiah2 = Rupiah::where('id',2)->first();
-    //     $pegbul = Pegawai::with('jabatanbaru')->where('ukor_eselon2',$user->opd)->get();
+    //     $pegbul = Pegawai::with('jabatanbaru')->where('opd_id',$user->opd_id)->get();
     //     $jumlah_pegbul = $pegbul->count();
     //     $jabatanbaru = Jabatan::all();
     //     return view('admin-opd.laporan.tpp-pegawai',compact(['pegbul','jumlah_pegbul','rupiah1','rupiah2','request']))->with('i',($request->input('page',1)-1));

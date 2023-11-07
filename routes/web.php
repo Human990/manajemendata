@@ -105,15 +105,16 @@ Route::group(['middleware' => ['auth', 'adminopd']], function () {
 
     // // pegawai bulanan
     // Route::get('/admin-opd/pegawai-bulanan/tpp',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'tpp'])->name('adminopd-tpp-pegawai');
-    // Route::post('/admin-opd/put/session',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'putsession'])->name('adminopd-putsession');
+    Route::post('/admin-opd/put/session',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'putsession'])->name('adminopd-putsession');
 
 });
 
 Route::group(['middleware' => ['auth', 'adminjabatan']],function () {
     Route::post('/admin-jabatan/put/session',[App\Http\Controllers\Adminjabatan\MasterjabatanlamaController::class,'putsession'])->name('adminjabatan-putsession');
+    Route::get('/admin-jabatan/dashboard',[App\Http\Controllers\Adminjabatan\JabatanController::class,'dashboard'])->name('adminjabatan-dashboard');
 
     // master indeks
-    Route::get('/admin-jabatan/master-indeks',[App\Http\Controllers\AdminKota\IndeksController::class,'index'])->name('adminjabatan-indeks');
+    Route::get('/admin-jabatan/master-indeks',[App\Http\Controllers\Adminjabatan\IndeksController::class,'index'])->name('adminjabatan-indeks');
     Route::post('/admin-jabatan/master-indeks',[App\Http\Controllers\Adminjabatan\IndeksController::class,'store'])->name('adminjabatan-indeks.store');
     Route::put('/admin-jabatan/master-indeks/{indeks}',[App\Http\Controllers\Adminjabatan\IndeksController::class,'update'])->name('adminjabatan-indeks.update');
     Route::delete('/admin-jabatan/master-indeks/{indeks}',[App\Http\Controllers\Adminjabatan\IndeksController::class,'destroy'])->name('adminjabatan-indeks.destroy');

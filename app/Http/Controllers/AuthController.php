@@ -32,7 +32,7 @@ class AuthController extends Controller
             }
 
             if(Auth::user()->role_id == 3) {
-                return redirect()->route('adminjabatan-jabatan');
+                return redirect()->route('adminjabatan-dashboard');
             }
             // return redirect();
         }
