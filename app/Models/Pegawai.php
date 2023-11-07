@@ -72,6 +72,7 @@ class Pegawai extends Model
                                 'pegawais.opd_id', 
                                 'pegawais.bulan_bk',
                                 'pegawais.bulan_pk',
+                                'pegawais.pensiun',
                                 'jabatans.kode_jabatanlama', 
                                 'jabatans.nama_jabatan', 
                                 'jabatans.nilai_jabatan', 

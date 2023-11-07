@@ -89,11 +89,12 @@
                             <td>
                                 <label><input type="checkbox" class="toggle-column" data-column="22"> Nip Atasan Penilai</label></br>
                                 <label><input type="checkbox" class="toggle-column" data-column="23"> Nama Atasan Penilai</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="24" checked> Jumlah Bulan Penerimaan BK</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="24"> Pensiun</label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="25" checked> Jumlah Bulan Penerimaan PK</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="26" checked> Tpp Tambahan</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="25" checked> Jumlah Bulan Penerimaan BK</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="26" checked> Jumlah Bulan Penerimaan PK</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="27" checked> Tpp Tambahan</label></br>
                             </td>
                         </tr>
                     </table>
@@ -125,6 +126,7 @@
                                 <th width="3%">Nama Penilai / Atasan Langsung</th>
                                 <th width="3%">Nip Atasan Penilai</th>
                                 <th width="3%">Nama Atasan Penilai</th>
+                                <th width="3%">Pensiun</th>
                                 <th width="3%">Jumlah Bulan Penerimaan BK</th>
                                 <th width="3%">Jumlah Bulan Penerimaan PK</th>
                                 <th width="3%">Tpp Tambahan</th>
@@ -160,6 +162,7 @@
                                     <td>{{ $data->atasan_nama }}</td>
                                     <td>{{ $data->atasannya_atasan_nip }}</td>
                                     <td>{{ $data->atasannya_atasan_nama }}</td>
+                                    <td>{{ $data->pensiun }}</td>
                                     <td align="center">{{ $data->bulan_bk }}</td>
                                     <td align="center">{{ $data->bulan_pk }}</td>
                                     <td>{{ $data->tpp_tambahan }}</td>
@@ -354,6 +357,14 @@
                                                         @enderror
                                                     </div> --}}
                                                     <div class="form-group">
+                                                        <label for="pensiun">Pensiun</label>
+                                                        <select type="text" name="pensiun" class="form-control @error('pensiun') is-invalid @enderror">
+                                                            <option value="58" @if('58' == $data->pensiun) selected @endif>58</option>
+                                                            <option value="60" @if('60' == $data->pensiun) selected @endif>60</option>
+                                                            <option value="65" @if('65' == $data->pensiun) selected @endif>65</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="bulan_bk">Jumlah Bulan Penerimaan BK</label>
                                                         <input type="text" name="bulan_bk"
                                                             class="form-control @error('bulan_bk') is-invalid @enderror" id="bulan_bk"
@@ -504,6 +515,14 @@
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="pensiun">Pensiun</label>
+                                                        <select type="text" name="pensiun" class="form-control @error('pensiun') is-invalid @enderror">
+                                                            <option value="58" >58</option>
+                                                            <option value="60" >60</option>
+                                                            <option value="65" >65</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="bulan_bk">Jumlah Bulan Penerimaan BK</label>
                                                         <input type="text" name="bulan_bk"
                                                             class="form-control @error('bulan_bk') is-invalid @enderror" id="bulan_bk"
@@ -579,6 +598,7 @@
         toggleColumn(21, false);
         toggleColumn(22, false);
         toggleColumn(23, false);
+        toggleColumn(24, false);
 
         const toggleColumnCheckboxes = document.querySelectorAll(".toggle-column");
 
