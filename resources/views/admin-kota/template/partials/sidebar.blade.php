@@ -40,7 +40,7 @@
             {{ Request::is('*master-rupiah*') ? 'show' : '' }}
             {{ Request::is('*master-jabatanlama*') ? 'show' : '' }}
             {{ Request::is('*master-jabatanbaru*') ? 'show' : '' }}
-            {{ Request::is('*master-pegawai*') ? 'show' : '' }}
+            {{ Request::is('*data-pegawai*') ? 'show' : '' }}
             " aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <div class="collapse-divider"></div>
@@ -56,13 +56,13 @@
                 <a href="{{ route('adminkota-jabatan') }}" class="collapse-item {{ Request::is('*master-jabatan*') ? 'active' : '' }}">
                     <span>Master Jabatan</span>
                 </a>
-                <a href="{{ route('adminkota-rupiah') }}" class="collapse-item {{ Request::is('*data-rupiah*') ? 'active' : '' }}">
+                <a href="{{ route('adminkota-rupiah') }}" class="collapse-item {{ Request::is('*master-rupiah*') ? 'active' : '' }}">
                     <span>Master Rupiah</span>
                 </a>
-                <a href="{{ route('adminkota-jabatanlama') }}" class="collapse-item {{ Request::is('*data-jabatanlama*') ? 'active' : '' }}">
+                <a href="{{ route('adminkota-jabatanlama') }}" class="collapse-item {{ Request::is('*master-jabatanlama*') ? 'active' : '' }}">
                     <span>Master Jabatan Lama</span>
                 </a>
-                <a href="{{ route('adminkota-jabatanbaru') }}" class="collapse-item {{ Request::is('*data-jabatanbaru*') ? 'active' : '' }}">
+                <a href="{{ route('adminkota-jabatanbaru') }}" class="collapse-item {{ Request::is('*master-jabatanbaru*') ? 'active' : '' }}">
                     <span>Master Jabatan Baru</span>
                 </a>
                 <a href="{{ route('adminkota-pegawai')}}" class="collapse-item {{ Request::is('*data-pegawai*') ? 'active' : '' }}">
