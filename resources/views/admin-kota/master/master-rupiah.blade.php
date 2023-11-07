@@ -29,7 +29,8 @@
                             <tr>
                                 <th width="1%">No</th>
                                 <th width="10%">Tahun</th>
-                                <th width="59%">Keterangan</th>
+                                <th width="44%">Keterangan</th>
+                                <th width="15%">Flag</th>
                                 <th width="20%">Jumlah</th>
                                 <th width="10%">Action</th>
                             </tr>
@@ -41,6 +42,7 @@
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $item->tahun }}</td>
                                     <td>{{ $item->nama }}</td>
+                                    <td>{{ $item->flag }}</td>
                                     <td align="right">{{ number_format($item->jumlah, 2, ',', '.') }}</td>
                                     <td>
                                         <a href="{{ route('adminkota-rupiah.edit', $item->id) }}"
@@ -84,6 +86,19 @@
                                         class="form-control @error('jumlah') is-invalid @enderror" id="jumlah"
                                         placeholder="jumlah" value="{{ old('jumlah') }}">
                                     @error('jumlah')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="flag">Flag</label>
+                                    <select name="flag" id="flag" class="form-control">
+                                        <option value="-">-</option>
+                                        <option value="beban_kerja">Beban Kerja</option>
+                                        <option value="prestasi_kerja">Prestasi Kerja</option>
+                                        <option value="pagu_apbd">Pagu APBD</option>
+                                        <option value="belanja_pegawai">Belanja Pegawai</option>
+                                    </select>
+                                    @error('flag')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
