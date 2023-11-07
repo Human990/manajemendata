@@ -60,6 +60,7 @@ class CopyController extends Controller
                     'jenis_jabatan' => $indek->jenis_jabatan,
                     'kelas_jabatan' => $indek->kelas_jabatan,
                     'indeks' => $indek->indeks,
+                    'jenis_jabatan_id' => $indek->jenis_jabatan_id,
                     'tahun_id' => $tahun_tujuan,
                     'asal_id' => $indek->kode_indeks,
                 ]);
@@ -79,15 +80,26 @@ class CopyController extends Controller
             }
 
             foreach ($pegawais as $pegawai) {
-                $indeks_id = null;
-                $indeks_id = Indeks::where('tahun_id', $tahun_tujuan)->where('asal_id', $jabatan->indeks_id)->value('kode_indeks');
-                $jabatanCopy = Jabatan::create([
-                    'nama_jabatan' => $jabatan->nama_jabatan,
-                    'nilai_jabatan' => $jabatan->nilai_jabatan,
-                    'tunjab' => $jabatan->tunjab,
-                    'indeks_id' => $indeks_id,
+                $opd_id = null;
+                $jabatan_id = null;
+                $opd_id = Opd::where('tahun_id', $tahun_tujuan)->where('asal_id', $pegawai->opd_id)->value('id');
+                $jabatan_id = Jabatan::where('tahun_id', $tahun_tujuan)->where('asal_id', $pegawai->kode_jabatanlama)->value('kode_jabatanlama');
+
+                $pegawaiCopy = Pegawai::create([
+                    'nip' => $pegawai->nip,
+                    'nama_pegawai' => $pegawai->nama_pegawai,
+                    'sts_pegawai' => $pegawai->sts_pegawai,
+                    'sts_jabatan' => $pegawai->sts_jabatan,
+                    'golongan' => $pegawai->golongan,
+                    'pangkat' => $pegawai->pangkat,
+                    'eselon' => $pegawai->eselon,
+                    'total_bulan_penerimaan' => $pegawai->total_bulan_penerimaan,
+                    'tpp' => $pegawai->tpp,
+                    'tpp_tambahan' => $pegawai->tpp_tambahan,
+                    'jft' => '',
+                    'opd_id' => $opd_id,
+                    'kode_jabatanlama' => $jabatan_id ?? 0,
                     'tahun_id' => $tahun_tujuan,
-                    'asal_id' => $jabatan->kode_jabatanlama,
                 ]);
             }
 

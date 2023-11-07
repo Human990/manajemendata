@@ -237,7 +237,7 @@
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
-                                                    <!-- <div class="form-group">
+                                                    {{-- <div class="form-group">
                                                         <label for="nama_opd">Sertifikasi Guru</label>
                                                         <input type="text" name="nama_opd"
                                                             class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
@@ -245,8 +245,8 @@
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
+                                                    </div>
+                                                     <div class="form-group">
                                                         <label for="nama_opd">Tipe Jabatan</label>
                                                         <input type="text" name="nama_opd"
                                                             class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
@@ -254,8 +254,8 @@
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
+                                                    </div> 
+                                                     <div class="form-group">
                                                         <label for="nama_opd">Subkoor</label>
                                                         <input type="text" name="nama_opd"
                                                             class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
@@ -272,8 +272,8 @@
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
+                                                    </div> 
+                                                     <div class="form-group">
                                                         <label for="nama_opd">Status Subkoor</label>
                                                         <input type="text" name="nama_opd"
                                                             class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
@@ -281,8 +281,8 @@
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
+                                                    </div> 
+                                                     <div class="form-group">
                                                         <label for="nama_opd">Nip Atasan Langsung</label>
                                                         <input type="text" name="nama_opd"
                                                             class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
@@ -290,8 +290,8 @@
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
+                                                    </div> 
+                                                     <div class="form-group">
                                                         <label for="nama_opd">Nama Atasan Langsung</label>
                                                         <input type="text" name="nama_opd"
                                                             class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
@@ -299,8 +299,8 @@
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
+                                                    </div> 
+                                                     <div class="form-group">
                                                         <label for="nama_opd">Nip Atasan Penilai</label>
                                                         <input type="text" name="nama_opd"
                                                             class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
@@ -317,7 +317,7 @@
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
-                                                    </div> -->
+                                                    </div> --}}
                                                     <div class="form-group">
                                                         <label for="total_bulan_penerimaan">Jumlah Bulan Penerimaan</label>
                                                         <input type="text" name="total_bulan_penerimaan"
@@ -457,87 +457,6 @@
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
-                                                    <!-- <div class="form-group">
-                                                        <label for="nama_opd">Sertifikasi Guru</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
-                                                        <label for="nama_opd">Tipe Jabatan</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
-                                                        <label for="nama_opd">Subkoor</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nama_opd">Nama Subkoor</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
-                                                        <label for="nama_opd">Status Subkoor</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
-                                                        <label for="nama_opd">Nip Atasan Langsung</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
-                                                        <label for="nama_opd">Nama Atasan Langsung</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div> -->
-                                                    <!-- <div class="form-group">
-                                                        <label for="nama_opd">Nip Atasan Penilai</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nama_opd">Nama Atasan Penilai</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div> -->
                                                     <div class="form-group">
                                                         <label for="total_bulan_penerimaan">Jumlah Bulan Penerimaan</label>
                                                         <input type="text" name="total_bulan_penerimaan"
