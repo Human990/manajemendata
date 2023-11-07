@@ -17,8 +17,40 @@
                         <div class="input-group-append">
                             <a href="{{ route('adminkota-pegawai') }}" class="btn btn-outline-secondary">Reset</a>
                         </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFilterPegawai" type="button">filter</button>
+                        </div>
                     </div>
                 </form>
+
+                <div class="modal fade" id="createFilterPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="createModalLabel">Filter Data Pegawai</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="{{ route('adminkota-pegawai') }}" method="GET" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="filter">Jenis Jabatan / Kelas / Indeks</label>
+                                        <select type="text" name="filter" class="form-control @error('filter') is-invalid @enderror">
+                                            @foreach(\App\Models\Indeks::data() as $indeks)
+                                                <option value="{{ $indeks->kode_indeks }}">{{ $indeks->jenis_jabatan_baru }} / {{ $indeks->kelas_jabatan }} / {{ $indeks->indeks }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -348,7 +380,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $datas->appends(['search' => $search])->links() }}
+                    {{ $datas->appends([
+                        'search' => $search,
+                        'filter' => $filter,
+                        ])->links() }}
                 </div>
             </div>
             <div class="text-center">

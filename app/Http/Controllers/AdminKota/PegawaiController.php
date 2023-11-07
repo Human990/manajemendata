@@ -31,9 +31,16 @@ class PegawaiController extends Controller
         // ->orderBy('pegawais.id', 'ASC')
         // ->paginate(10);
 
-        $datas = Pegawai::data();
+        $filter = '';
+        $filter = $request->filter;
 
-        return view('admin-kota.master.data-pegawai', compact('datas','search'));
+        if (!empty($filter)) {
+            $datas = Pegawai::filter($filter);
+        }else {
+            $datas = Pegawai::data();
+        }
+
+        return view('admin-kota.master.data-pegawai', compact('datas','search', 'filter'));
     }
     
     // public function index(Request $request)
