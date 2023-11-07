@@ -46,7 +46,7 @@
                     <label for="opd_filter">Filter OPD:</label>
                     <select id="opd_filter" class="form-control select2">
                         <option value="">Semua OPD</option>
-                        @foreach($opds as $opd)
+                        @foreach(\App\Models\Opd::where('tahun_id', session()->get('tahun_id_session'))->get() as $opd)
                             <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
                         @endforeach
                     </select>

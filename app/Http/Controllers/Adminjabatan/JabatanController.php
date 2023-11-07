@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class JabatanController extends Controller
 {
+    public function dashboard()
+    {
+        return view('admin-jabatan.master.dashboard');
+    }
+
     public function index(Request $request)
     {
         $tahunid = session()->get('tahun_id_session');
