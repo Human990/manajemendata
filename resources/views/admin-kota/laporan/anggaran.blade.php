@@ -184,7 +184,7 @@
                                     {{ number_format($rupiah4->jumlah, 0) }}
                                 </td>
                                 <td>
-                                    {{-- total tpp tahunan disini --}}
+                                    {{ number_format($total_tpp, 0) }}
                                 </td>
                             </tr>
                         </tfoot>
@@ -196,7 +196,7 @@
                         {{ number_format(($rupiah4->jumlah / $rupiah3->jumlah) * 100, 2) }}%</h5>
                     <h5 style="color:black;">Presentase TPP dari Presentase Belanja Pegawai =
                         {{-- rumus presentase disini --}}
-                        {{-- {{ number_format(($jumlah6 / $rupiah4->jumlah) * ($rupiah4->jumlah / $rupiah3->jumlah) * 100, 2) }}% --}}
+                        {{ number_format(($total_tpp / $rupiah4->jumlah) * ($rupiah4->jumlah / $rupiah3->jumlah) * 100, 2) }}%
                     </h5>
                 </div>
             </div>
@@ -245,7 +245,7 @@
                         data: [
                             {{ $rupiah3->jumlah }},
                             {{ $rupiah4->jumlah }},
-                            1000000000000, //nanti ambil dari $total_tpp
+                            {{ $total_tpp }}, //nanti ambil dari $total_tpp
                         ],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.5)',

@@ -60,36 +60,109 @@ class PegawaibulananController extends Controller
         $jumlah_plt = $datas->where('sts_jabatan', 'PLT')->count();
         $jumlah_plh = $datas->where('sts_jabatan', 'PLH')->count();
         $jumlah_pengganti_sementara = $datas->where('sts_jabatan', 'Pengganti Sementara')->count();
+        $jumlah_pegawai_definitif = $jumlah_pegawai - $jumlah_plt - $jumlah_plh - $jumlah_pengganti_sementara;
         
         return view('admin-kota.laporan.tpp-pegawai', compact([
             'datas', 'jumlah_pegawai', 'rupiah1', 'rupiah2', 'opds',
-            'jumlah_pppk', 'jumlah_plt', 'jumlah_plh', 'jumlah_pengganti_sementara'
+            'jumlah_pppk', 'jumlah_plt', 'jumlah_plh', 'jumlah_pengganti_sementara',
+            'jumlah_pegawai_definitif'
         ]))->with('i', 0);
     }
 
     public function totaltpp(Request $request)
     {
-        $jumlah_pegawai = Pegawai::count();
-        $rupiah1 = Rupiah::where('id',1)->first();
-        $rupiah2 = Rupiah::where('id',2)->first();
-        $rupiah3 = Rupiah::where('id', 3)->first();
-        $rupiah4 = Rupiah::where('id', 4)->first();
-        // $pegawai = DB::table('view_tpp')->get(); | menunggu master jabatan dan indeks
-        return view('admin-kota.laporan.tpp-total',compact(['jumlah_pegawai','rupiah1','rupiah2','rupiah3','rupiah4']))->with('i',($request->input('page',1)-1));
-    }
+        // Ambil data pegawai dengan left join jabatan dan indeks
+        $pegawais = Pegawai::leftJoin('jabatans', 'pegawais.kode_jabatanlama', '=', 'jabatans.kode_jabatanlama')
+                        ->leftJoin('indeks', 'jabatans.indeks_id', '=', 'indeks.kode_indeks')
+                        ->select('pegawais.*', 'jabatans.nilai_jabatan', 'indeks.indeks')
+                        ->get();
+        $opds = Opd::all();
+        // Inisialisasi variabel untuk total pegawai dan total tpp
+        $totalPegawai = 0;
+        $totalTpp = 0;
+        $totalPegawaiOverall = 0;
+        $totalTppOverall = 0;
+
+        // Inisialisasi array untuk menyimpan jumlah pegawai dan tpp per OPD
+        $totalPegawaiPerOpd = [];
+        $totalTppPerOpd = [];
+
+        // Loop through each pegawai to calculate total pegawai and total tpp per OPD
+        foreach ($pegawais as $pegawai) {
+            $totalPegawaiOverall += 1; // Hitung jumlah pegawai secara keseluruhan
+        
+            // Sesuaikan rumus untuk menghitung total TPP per OPD
+            $nilaiJabatan = (float)($pegawai->jabatans->nilai_jabatan ?? 0);
+            $indeks = (float)($pegawai->jabatans->indeks->indeks ?? 0);
+            $totalBulanPenerimaan = (float)($pegawai->total_bulan_penerimaan ?? 0);
+        
+            // Rumus perhitungan TPP per OPD
+            $tppPerOpd = ($nilaiJabatan * $indeks * ($totalBulanPenerimaan + 1) * Rupiah::find(1)->jumlah) +
+                         ($nilaiJabatan * $indeks * $totalBulanPenerimaan * Rupiah::find(2)->jumlah);
+        
+            // Tambahkan nilai total TPP per OPD ke variabel totalTppPerOpd
+            $opdNama = $pegawai->opds->nama_opd;
+            $totalTppPerOpd[$opdNama] = ($totalTppPerOpd[$opdNama] ?? 0) + $tppPerOpd;
+        
+            // Hitung total tpp secara keseluruhan
+            $totalTppOverall += $tppPerOpd;
+        
+            // Hitung jumlah pegawai per OPD
+            $totalPegawaiPerOpd[$opdNama] = ($totalPegawaiPerOpd[$opdNama] ?? 0) + 1;
+        }        
+
+        // Hitung total tpp secara keseluruhan
+        foreach ($totalTppPerOpd as $tppPerOpd) {
+            $totalTppOverall += $tppPerOpd;
+        }
+
+        return view('admin-kota.laporan.tpp-total', compact('opds','pegawais', 'totalPegawai', 'totalTpp', 'totalPegawaiOverall', 'totalTppOverall', 'totalPegawaiPerOpd', 'totalTppPerOpd'))
+            ->with('i', ($request->input('page', 1) - 1));
+    }      
 
     public function anggaran(Request $request)
     {
         $jumlah_pegawai = Pegawai::count();
         $rupiah3 = Rupiah::where('id', 3)->first();
         $rupiah4 = Rupiah::where('id', 4)->first();
-        // tambahkan rumus untuk total_tpp, belum bisa karena indeks dan jabatan belum fix
         $jumlahguru = Pegawai::where('sts_pegawai','guru')->count();
         $rs = Pegawai::where('sts_pegawai','rs')->count();
         $pppk = Pegawai::where('sts_pegawai','pppk')->count();
         $catatans = Catatan_opd::proses()->paginate(10);
+        
+        $total_tpp = 0;
+        // Ambil data pegawai dengan left join jabatan dan indeks
+        $pegawais = Pegawai::leftJoin('jabatans', 'pegawais.kode_jabatanlama', '=', 'jabatans.kode_jabatanlama')
+                        ->leftJoin('indeks', 'jabatans.indeks_id', '=', 'indeks.kode_indeks')
+                        ->select('pegawais.*', 'jabatans.nilai_jabatan', 'indeks.indeks')
+                        ->get();
+         // Loop through each pegawai to calculate total_tpp
+        foreach ($pegawais as $pegawai) {
+            $nilai_jabatan = (float) ($pegawai->nilai_jabatan ?? 0);
+            $indeks = (float) ($pegawai->indeks ?? 0);
+            $bk = (float)(Rupiah::find(1)->jumlah ?? 0); // Sesuaikan dengan ID yang sesuai
+            $pk = (float)(Rupiah::find(2)->jumlah ?? 0); // Sesuaikan dengan ID yang sesuai
+            $total_bulan_penerimaan = (float)($pegawai->total_bulan_penerimaan ?? 0);
 
-        return view('admin-kota.laporan.anggaran',compact(['jumlah_pegawai','rupiah3','rupiah4','jumlahguru','rs','pppk', 'catatans']))->with('i',($request->input('page',1)-1));
+            // Hitung total_tpp untuk pegawai saat ini
+            $tpp_pegawai = ($nilai_jabatan * $indeks * $bk * ($total_bulan_penerimaan + 1))
+                + ($nilai_jabatan * $indeks * $pk * $total_bulan_penerimaan);
+
+            // Tambahkan nilai total_tpp pegawai ke total_tpp
+            $total_tpp += $tpp_pegawai;
+        }
+
+        return view('admin-kota.laporan.anggaran', compact([
+            'jumlah_pegawai', 
+            'rupiah3', 
+            'rupiah4', 
+            'jumlahguru', 
+            'rs', 
+            'pppk', 
+            'catatans', 
+            'total_tpp'
+            ]))
+        ->with('i', ($request->input('page', 1) - 1));
     }
 
     public function putsession(Request $request)

@@ -15,9 +15,9 @@ class Jabatan extends Model
 
     protected $primaryKey = 'kode_jabatanlama';
 
-    public function pegbul()
+    public function pegawai()
     {
-        return $this->hasMany(Pegbul::class, 'kode_jabatanlama', 'kode_jabatanlama');
+        return $this->hasMany(Pegawai::class, 'kode_jabatanlama', 'kode_jabatanlama');
     }
 
     public function indeks()

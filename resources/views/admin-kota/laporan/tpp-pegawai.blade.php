@@ -71,6 +71,7 @@
                                 <th>Kelas Jabatan</th>
                                 <th>Nilai Jabatan</th>
                                 <th>Indeks Jabatan</th>
+                                <th>Total Bulan Penerimaan</th>
                                 <th>RP Beban Kerja</th>
                                 <th>RP/BLN Beban Kerja</th>
                                 <th>RP Prestasi Kerja</th>
@@ -91,23 +92,32 @@
                                     <td>{{ $data->kelas_jabatan }}</td>
                                     <td>{{ $data->nilai_jabatan }}</td>
                                     <td>{{ $data->nilai_indeks }}</td>
+                                    <td>{{ $data->total_bulan_penerimaan}}</td>
                                     <td>
-                                        {{-- rumus bk btahunan--}}
+                                        {{-- rumus bk btahunan --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah * ($data->total_bulan_penerimaan + 1) }}
                                     </td>
                                     <td>
-                                        {{-- rumus bk bulanan  --}}
+                                        {{-- rumus bk bulanan --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah }}
                                     </td>
                                     <td>
                                         {{-- rumus pk tahunan --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah * $data->total_bulan_penerimaan }}
                                     </td>
                                     <td>
-                                        {{-- rumums pk bulanan --}}
+                                        {{-- rumus pk bulanan --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah }}
                                     </td>
                                     <td>
                                         {{-- rumus total tpp/bulan --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah +
+                                           $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah }}
                                     </td>
                                     <td>
-                                        {{-- rumums total tpp/tahun --}}
+                                        {{-- rumus total tpp/tahun --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah * ($data->total_bulan_penerimaan + 1) +
+                                           $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah * $data->total_bulan_penerimaan }}
                                     </td>
                                     {{-- <td>
                                     <a href="#" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Edit</a>
