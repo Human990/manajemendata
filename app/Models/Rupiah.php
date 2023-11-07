@@ -15,5 +15,6 @@ class Rupiah extends Model
         'jumlah',
         'tahun_id',
         'asal_id',
+        'flag',
     ];
 }
