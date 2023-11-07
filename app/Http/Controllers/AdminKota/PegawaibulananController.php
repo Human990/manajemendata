@@ -145,8 +145,7 @@ class PegawaibulananController extends Controller
             $total_bulan_penerimaan = (float)($pegawai->total_bulan_penerimaan ?? 0);
 
             // Hitung total_tpp untuk pegawai saat ini
-            $tpp_pegawai = ($nilai_jabatan * $indeks * $bk * ($total_bulan_penerimaan + 1))
-                + ($nilai_jabatan * $indeks * $pk * $total_bulan_penerimaan);
+            $tpp_pegawai = (($nilai_jabatan * $indeks * $bk) * ($total_bulan_penerimaan + 1)) + (($nilai_jabatan * $indeks * $pk) * $total_bulan_penerimaan);
 
             // Tambahkan nilai total_tpp pegawai ke total_tpp
             $total_tpp += $tpp_pegawai;

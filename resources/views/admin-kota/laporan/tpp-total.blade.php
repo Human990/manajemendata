@@ -22,21 +22,30 @@
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
+                            @php 
+                                $tppOpdv2 = 0;
+                                $tppTotalv2 = 0;
+                            @endphp
                             @foreach($opds as $opd)
+                            @php
+                                $tppOpdv2 = isset($totalTppPerOpd[$opd->nama_opd]) ? $totalTppPerOpd[$opd->nama_opd] : 0;
+                                $tppTotalv2 = $tppTotalv2 + $tppOpdv2;
+                            @endphp
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $opd->nama_opd }}</td>
-                                    <td>{{ isset($totalPegawaiPerOpd[$opd->nama_opd]) ? $totalPegawaiPerOpd[$opd->nama_opd] : 0 }}</td>
-                                    <td>{{ isset($totalTppPerOpd[$opd->nama_opd]) ? $totalTppPerOpd[$opd->nama_opd] : 0 }}</td>
+                                    <td align="center">{{ isset($totalPegawaiPerOpd[$opd->nama_opd]) ? $totalPegawaiPerOpd[$opd->nama_opd] : 0 }}</td>
+                                    <td align="right">{{ number_format($tppOpdv2, 0, ',', '.') }}</td>
                                 </tr>
+
                             @endforeach
                         </tbody>                                             
                         <tfoot>
                             <tr>
                                 <td>Total</td>
                                 <td></td>
-                                <td>{{ $totalPegawaiOverall }}</td>
-                                <td>{{ $totalTppOverall }}</td>
+                                <td align="center">{{ $totalPegawaiOverall }}</td>
+                                <td align="right">{{ number_format($tppTotalv2, 0, ',', '.') }}</td>
                             </tr>
                         </tfoot>
                     </table>

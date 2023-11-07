@@ -28,7 +28,7 @@ class CopyController extends Controller
             DB::table('jabatans')->where('tahun_id', $tahun_tujuan)->delete();
             DB::table('master_rupiah')->where('tahun_id', $tahun_tujuan)->delete();
             DB::table('opds')->where('tahun_id', $tahun_tujuan)->delete();
-            // DB::table('pegawais')->where('tahun_id', $tahun_tujuan)->delete();
+            DB::table('pegawais')->where('tahun_id', $tahun_tujuan)->delete();
 
             $opds = Opd::where('tahun_id', $tahun_asal)->get();
             $rupiahs = Rupiah::where('tahun_id', $tahun_asal)->get();
@@ -66,6 +66,19 @@ class CopyController extends Controller
             }
 
             foreach ($jabatans as $jabatan) {
+                $indeks_id = null;
+                $indeks_id = Indeks::where('tahun_id', $tahun_tujuan)->where('asal_id', $jabatan->indeks_id)->value('kode_indeks');
+                $jabatanCopy = Jabatan::create([
+                    'nama_jabatan' => $jabatan->nama_jabatan,
+                    'nilai_jabatan' => $jabatan->nilai_jabatan,
+                    'tunjab' => $jabatan->tunjab,
+                    'indeks_id' => $indeks_id,
+                    'tahun_id' => $tahun_tujuan,
+                    'asal_id' => $jabatan->kode_jabatanlama,
+                ]);
+            }
+
+            foreach ($pegawais as $pegawai) {
                 $indeks_id = null;
                 $indeks_id = Indeks::where('tahun_id', $tahun_tujuan)->where('asal_id', $jabatan->indeks_id)->value('kode_indeks');
                 $jabatanCopy = Jabatan::create([
