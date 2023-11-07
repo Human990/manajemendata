@@ -92,15 +92,20 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
 Route::group(['middleware' => ['auth', 'adminopd']], function () {
     // Rute yang memerlukan autentikasi dan peran admin
 
+    // data pegawai
+    Route::get('/admin-opd/data-pegawai',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'index'])->name('adminopd-pegawai');
+    Route::post('/admin-opd/data-pegawai',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'store'])->name('adminopd-pegawai.store');
+    Route::put('/admin-opd/data-pegawai/{pegawai}',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'update'])->name('adminopd-pegawai.update');
+    Route::delete('/admin-opd/data-pegawai/{pegawai}',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'destroy'])->name('adminopd-pegawai.destroy');
     // pegawai catatan
     Route::get('/adminopd/data-catatan',[App\Http\Controllers\Adminopd\CatatanController::class,'index'])->name('adminopd-catatan');
     Route::post('/adminopd/data-catatan/store',[App\Http\Controllers\Adminopd\CatatanController::class,'store'])->name('adminopd-catatan.store');
     Route::put('/adminopd/data-catatan/{catatan}/update',[App\Http\Controllers\Adminopd\CatatanController::class,'update'])->name('adminopd-catatan.update');
     Route::get('/adminopd/data-catatan/{catatan}/destroy',[App\Http\Controllers\Adminopd\CatatanController::class,'destroy'])->name('adminopd-catatan.destroy');
 
-    // pegawai bulanan
-    Route::get('/admin-opd/pegawai-bulanan/tpp',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'tpp'])->name('adminopd-tpp-pegawai');
-    Route::post('/admin-opd/put/session',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'putsession'])->name('adminopd-putsession');
+    // // pegawai bulanan
+    // Route::get('/admin-opd/pegawai-bulanan/tpp',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'tpp'])->name('adminopd-tpp-pegawai');
+    // Route::post('/admin-opd/put/session',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'putsession'])->name('adminopd-putsession');
 
 });
 

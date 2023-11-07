@@ -18,26 +18,25 @@
                                 <th>NO</th>
                                 <th>Perangkat Daerah</th>
                                 <th>Jumlah Pegawai</th>
-                                <th>Total BK+PK Tahunan</th>
+                                <th>Total TPP</th>
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
-                            
-                        </tbody>
+                            @foreach($opds as $opd)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $opd->nama_opd }}</td>
+                                    <td>{{ isset($totalPegawaiPerOpd[$opd->nama_opd]) ? $totalPegawaiPerOpd[$opd->nama_opd] : 0 }}</td>
+                                    <td>{{ isset($totalTppPerOpd[$opd->nama_opd]) ? $totalTppPerOpd[$opd->nama_opd] : 0 }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>                                             
                         <tfoot>
                             <tr>
                                 <td>Total</td>
                                 <td></td>
-                                {{-- <td>{{ number_format($jumlah_pegawai, 0) }}</td> --}}
-                                <td>
-                                    {{-- {{ number_format($jumlah2, 0) }} --}}
-                                </td>
-                                <td>
-                                    {{-- {{ number_format($jumlah4, 0) }} --}}
-                                </td>
-                                <td>
-                                    {{-- {{ number_format($jumlah6, 0) }} --}}
-                                </td>
+                                <td>{{ $totalPegawaiOverall }}</td>
+                                <td>{{ $totalTppOverall }}</td>
                             </tr>
                         </tfoot>
                     </table>

@@ -104,7 +104,7 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Master Jabatan Baru</span>
         </a> --}}
-        <a href="{{ route('adminopd-tpp-pegawai') }}" class="nav-link">
+        <a href="{{ route('adminopd-pegawai') }}" class="nav-link">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Rincian Per OPD</span>
         </a>
