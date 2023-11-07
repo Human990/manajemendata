@@ -28,7 +28,7 @@ class AuthController extends Controller
             }
 
             if(Auth::user()->role_id == 2) {
-                return redirect()->route('adminopd-tpp-pegawai');
+                return redirect()->route('adminopd-pegawai');
             }
 
             if(Auth::user()->role_id == 3) {

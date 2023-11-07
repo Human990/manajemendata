@@ -5,101 +5,124 @@
     <div class="container-fluid">
         <div class="card card-headline">
             <div class="card-header">
-                <h3 class="card-title"><b>Rekap TPP All OPD Tahun {{ session()->get('tahun_session') }}</b></h3>
+                <h3 class="card-title"><b>Rekap TPP</b>/Per Person</h3>
             </div>
+
+            {{-- <div class="card-body">
+            <a href="#" class="btn btn-info" data-toggle="modal" data-target="#importModal">Import</a>
+            <a href="{{route('pegawaiexport')}}" class="btn btn-warning">Export</a>
+        </div> --}}
             <div class="card-body">
+                {{-- <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                        <div class="alert alert-primary text-center mt-3" role="alert">
+                            Jumlah Pegawai: {{ $jumlah_pegawai }}
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="alert alert-success text-center mt-3" role="alert">
+                            Jumlah PPPK: {{ $jumlah_pppk }}
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="alert alert-info text-center mt-3" role="alert">
+                            Jumlah PLT: {{ $jumlah_plt }}
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="alert alert-warning text-center mt-3" role="alert">
+                            Jumlah PLH: {{ $jumlah_plh }}
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="alert alert-danger text-center mt-3" role="alert">
+                            Jumlah Pengganti Sementara: {{ $jumlah_pengganti_sementara }}
+                        </div>
+                    </div>
+                </div> --}}
+                                    
+                <div class="filter">
+                    <input type="hidden" id="opd_hidden" name="opd" value="{{ request('opd') }}">
+                    <label for="opd_filter">Filter OPD:</label>
+                    <select id="opd_filter" class="form-control select2">
+                        <option value="">Semua OPD</option>
+                        @foreach($opds as $opd)
+                            <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
+                        @endforeach
+                    </select>
+                    <label class="mt-2" for="search">Cari:</label>
+                    <input type="text" id="search" name="search" class="form-control" value="{{ request('search') }}">
+                    <div class="text-center mt-2 mb-2">
+                        <button class="btn btn-primary" id="filterBtn">Filter</button>
+                        <a href="{{ route('adminkota-tpp-pegawai')}}" class="btn btn-secondary">Reset</a>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th>NO</th>
+                                
+                                <th width="1%">No</th>
                                 <th>NIP</th>
                                 <th>Nama</th>
                                 <th>OPD</th>
+                                <th>Nama Jabatan</th>
+                                <th>Jenis Jabatan</th>
                                 <th>Kelas Jabatan</th>
-                                <th>JV</th>
-                                <th>Indeks</th>
-                                <th>Beban Kerja Bulanan</th>
-                                <th>BK Bulanan 13</th>
-                                <th>Prestasi Kerja Bulanan</th>
-                                <th>PK Bulanan 12</th>
-                                <th>Aksi</th>
+                                <th>Nilai Jabatan</th>
+                                <th>Indeks Jabatan</th>
+                                <th>Total Bulan Penerimaan</th>
+                                <th>RP Beban Kerja</th>
+                                <th>RP/BLN Beban Kerja</th>
+                                <th>RP Prestasi Kerja</th>
+                                <th>RP/BLN Prestasi Kerja</th>
+                                <th>TOTAL/BLN/ALL JAB</th>
+                                <th>TOTAL/THN/ALL JAB</th>
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
-                            <?php
-                            $jumlah1 = 0;
-                            $jumlah2 = 0;
-                            $jumlah3 = 0;
-                            $jumlah4 = 0;
-                            ?>
-                            @foreach ($pegbul as $item)
+                                @foreach ($datas as $i => $data)
                                 <tr>
-                                    <td>{{ ++$i }}</td>
-                                    <td>{{ $item->nip }}</td>
-                                    <td>{{ $item->nama_pegawai }}</td>
-                                    <td>{{ $item->ukor_eselon2 }}</td>
-                                    <td>{{ $item->jabatanbaru->kelas_jabatan }}</td>
-                                    <td>{{ $item->jv }}</td>
-                                    <td>{{ $item->indeks }}</td>
+                                    <td>{{ $i + 1 + ($datas->currentPage() - 1) * $datas->perPage() }}</td>
+                                    <td>{{ $data->nip }}</td>
+                                    <td>{{ $data->nama_pegawai }}</td>
+                                    <td>{{ $data->nama_opd }}</td>
+                                    <td>{{ $data->nama_jabatan}}</td>
+                                    <td>{{ $data->jenis_jabatan}}</td>
+                                    <td>{{ $data->kelas_jabatan }}</td>
+                                    <td>{{ $data->nilai_jabatan }}</td>
+                                    <td>{{ $data->nilai_indeks }}</td>
+                                    <td>{{ $data->total_bulan_penerimaan}}</td>
                                     <td>
-                                        {{ number_format($item->jv * $item->indeks * $rupiah1->jumlah, 0) }}
-                                        <?php
-                                        $jumlah1 += $item->jv * $item->indeks * $rupiah1->jumlah;
-                                        ?>
+                                        {{-- rumus bk btahunan --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah * ($data->total_bulan_penerimaan + 1) }}
                                     </td>
                                     <td>
-                                        {{ number_format($item->jv * $item->indeks * $rupiah1->jumlah * 13, 0) }}
-                                        <?php
-                                        $jumlah2 += $item->jv * $item->indeks * $rupiah1->jumlah * 13;
-                                        ?>
+                                        {{-- rumus bk bulanan --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah }}
                                     </td>
                                     <td>
-                                        {{ number_format($item->jv * $item->indeks * $rupiah2->jumlah, 0) }}
-                                        <?php
-                                        $jumlah3 += $item->jv * $item->indeks * $rupiah2->jumlah;
-                                        ?>
+                                        {{-- rumus pk tahunan --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah * $data->total_bulan_penerimaan }}
                                     </td>
                                     <td>
-                                        {{ number_format($item->jv * $item->indeks * $rupiah2->jumlah * 12, 0) }}
-                                        <?php
-                                        $jumlah4 += $item->jv * $item->indeks * $rupiah2->jumlah * 12;
-                                        ?>
+                                        {{-- rumus pk bulanan --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah }}
+                                    </td>
+                                    <td>
+                                        {{-- rumus total tpp/bulan --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah +
+                                           $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah }}
+                                    </td>
+                                    <td>
+                                        {{-- rumus total tpp/tahun --}}
+                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah * ($data->total_bulan_penerimaan + 1) +
+                                           $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah * $data->total_bulan_penerimaan }}
                                     </td>
                                     {{-- <td>
                                     <a href="#" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Edit</a>
                                     <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button>
-                                    </td> --}}
-                                    <td>
-                                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-plus"></i> Catatan</button>
-
-                                        <div class="modal fade" id="modalCatatan{{ $i }}" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="createModalLabel">Tambah Catatan</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="{{ route('adminopd-catatan.store') }}" method="post">
-                                                        <div class="modal-body">
-                                                            @csrf
-                                                            <input type="hidden" name="pegawai_id" value="{{ $item->id }}">
-                                                            <div class="form-group">
-                                                                <label for="catatan_opd">Catatan</label>
-                                                                <textarea name="catatan_opd" id="catatan_opd" cols="30" rows="7" class="form-control" placeholder="Masukkan catatan . . ."></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Simpan</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
+                                </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>
@@ -113,16 +136,16 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    {{ number_format($jumlah1, 0) }}
+                                    {{-- {{ number_format($jumlah1, 0) }} --}}
                                 </td>
                                 <td>
-                                    {{ number_format($jumlah2, 0) }}
+                                    {{-- {{ number_format($jumlah2, 0) }} --}}
                                 </td>
                                 <td>
-                                    {{ number_format($jumlah3, 0) }}
+                                    {{-- {{ number_format($jumlah3, 0) }} --}}
                                 </td>
                                 <td>
-                                    {{ number_format($jumlah4, 0) }}
+                                    {{-- {{ number_format($jumlah4, 0) }} --}}
                                 </td>
                             </tr>
                         </tfoot>
@@ -130,9 +153,9 @@
                 </div>
             </div>
             <div class="text-center">
-                <h6>jumlah data :{{ $jumlah_pegbul }}</h6>
+                
                 {{-- {!! $pegbul->render() !!} --}}
-                {{-- {{ $pegbul->links() }} --}}
+                {{ $datas->links() }}
             </div>
         </div>
     </div>
