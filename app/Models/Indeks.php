@@ -23,6 +23,7 @@ class Indeks extends Model
         'indeks',
         'tahun_id',
         'asal_id',
+        'jenis_jabatan_id',
     ];
 
     public static function data()

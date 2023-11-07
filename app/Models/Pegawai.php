@@ -45,6 +45,7 @@ class Pegawai extends Model
                         ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
                         ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
                         ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
+                        ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
                         ->orderBy('pegawais.id','ASC')
                         ->paginate(10);
 
