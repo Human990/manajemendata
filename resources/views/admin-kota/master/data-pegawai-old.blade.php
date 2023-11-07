@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="card card-headline">
             <div class="card-header">
-                <h3 class="card-title">Data Pegawai Tahun {{ session()->get('tahun_session') }} <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalPegawai" style="float:right">Tambah Data</a></h3>
+                <h3 class="card-title">Data Pegawai Tahun {{ session()->get('tahun_session') }}</h3>
             </div>
             <div class="card-body">
                 <form action="{{ route('adminkota-pegawai') }}" method="GET">
@@ -20,52 +20,12 @@
                     </div>
                 </form>
             </div>
+            {{-- <div class="card-body">
+                <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalPegawai">Tambah Data</a>
+            </div> --}}
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-borderless">
-                        <tr>
-                            <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="4" checked> OPD</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="5" checked> Nama Jabatan</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="6" checked> Jenis Jabatan</label></br>
-                            </td>
-                            <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="7"> Status Jabatan</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="8" checked> Nilai Jabatan (JV)</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="9" checked> Indeks</label></br>
-                            </td>
-                            <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="10" checked> Pangkat</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="11" checked> Eselon</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="12"> Status Penerimaan TPP</label></br>
-                            </td>
-                            <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="13"> Sertifikasi Guru</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="14"> PA/KPA</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="15"> Sertifikasi PBJ</label></br>
-                            </td>
-                            <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="16"> Tipe Jabatan</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="17"> Subkoor</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="18"> Nama Subkoor</label></br>
-                            </td>
-                            <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="19"> Status Subkoor</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="20"> NIP Penilai</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="21"> Nama Penilai</label></br>
-                            </td>
-                            <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="22"> Nip Atasan Penilai</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="23"> Nama Atasan Penilai</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="24" checked> Jumlah Bulan Penerimaan</label></br>
-                            </td>
-                            <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="25" checked> Tpp Tambahan</label></br>
-                            </td>
-                        </tr>
-                    </table>
-
-                    <table class="table table-hover table-bordered" id="data-table">
+                    <table class="table table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th width="1%">No</th>
@@ -73,7 +33,7 @@
                                 <th width="3%">Nama Pegawai</th>
                                 <th width="3%">Status Pegawai</th>
                                 <th width="3%">OPD</th>
-                                <th width="15%">Nama Jabatan</th>
+                                <th width="3%">Nama Jabatan</th>
                                 <th width="3%">Jenis Jabatan</th>
                                 <th width="3%">Status Jabatan</th>
                                 <th width="3%">Nilai Jabatan (JV)</th>
@@ -93,8 +53,8 @@
                                 <th width="3%">Nip Atasan Penilai</th>
                                 <th width="3%">Nama Atasan Penilai</th>
                                 <th width="3%">Jumlah Bulan Penerimaan</th>
-                                <th width="3%">Tpp Tambahan</th>
-                                <th width="6%">Action</th>
+                                <th width="4%">Tpp Tambahan</th>
+                                <th width="9%">Action</th>
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
@@ -106,12 +66,13 @@
                                     <td>{{ $data->nip }}</td>
                                     <td>{{ $data->nama_pegawai }}</td>
                                     <td>{{ $data->sts_pegawai }}</td>
-                                    <td>{{ $data->nama_opd }}</td>
-                                    <td>{{ $data->nama_jabatan }}</td>
-                                    <td>{{ $data->jenis_jabatan }}</td>
+                                    <td>{{ $data->opds ? $data->opds->nama_opd : 'Tidak ditemukan' }}</td>
+                                    {{-- <td>{{ $data->ukor_eselon2}}</td> --}}
+                                    <td>{{ $data->jabatans ? $data->jabatans->nama_jabatan : 'Tidak Ada Jabatan' }}</td>
+                                    <td>{{ $data->jabatans ? $data->jabatans->jenis_jabatan : 'Tidak Ada Jabatan' }}</td>
                                     <td>{{ $data->sts_jabatan }}</td>
-                                    <td>{{ $data->nilai_jabatan }}</td>
-                                    <td>{{ $data->indeks }}</td>
+                                    <td></td>
+                                    <td></td>
                                     <td>{{ $data->pangkat }}</td>
                                     <td>{{ $data->eselon }}</td>
                                     <td>{{ $data->tpp }}</td>
@@ -126,15 +87,15 @@
                                     <td>{{ $data->atasan_nama }}</td>
                                     <td>{{ $data->atasannya_atasan_nip }}</td>
                                     <td>{{ $data->atasannya_atasan_nama }}</td>
-                                    <td align="center">{{ $data->total_bulan_penerimaan }}</td>
+                                    <td>{{ $data->bulan }}</td>
                                     <td>{{ $data->tpp_tambahan }}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-edit"></i></button>
-                                        <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i></button>
+                                        {{-- <button class="btn btn-sm btn-info btn-block" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-eye"></i> Ubah</button> --}}
+                                        {{-- <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button> --}}
                                     </td>
                                 </tr>
 
-                                <div class="modal fade" id="ubahModalPegawai{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+                                {{-- <div class="modal fade" id="ubahModalPegawai{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -177,19 +138,23 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="opd_id">OPD</label>
-                                                        <select type="text" name="opd_id" class="form-control @error('opd_id') is-invalid @enderror">
-                                                            @foreach(\App\Models\Opd::orderBy('nama_opd', 'ASC')->get() as $opd)
-                                                                <option value="{{ $opd->opd_id }}" @if($opd->id == $data->opd_id) selected @endif>{{ $opd->nama_opd }}</option>
-                                                            @endforeach
-                                                        </select>
+                                                        <select type="text" name="opd_id"
+                                                            class="form-control @error('opd_id') is-invalid @enderror">
+                                                        <option value="{{ $data->opd_id }}" {{ $data->opd_id == $data->opd->id ? 'selected' : '' }}>
+                                                            {{ $data->opd->nama_opd }}
+                                                        </option>
+                                                        @error('nama_opd')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="opd_id">Jabatan</label>
-                                                        <select type="text" name="opd_id" class="form-control @error('opd_id') is-invalid @enderror">
-                                                            @foreach(\App\Models\Jabatan::data() as $jabatan)
-                                                                <option value="{{ $jabatan->id }}" @if($jabatan->id == $data->kode_jabatanlama) selected @endif>{{ $jabatan->nama_jabatan }}</option>
-                                                            @endforeach
-                                                        </select>
+                                                        <label for="nama_opd">Nama Jabatan</label>
+                                                        <input type="text" name="nama_opd"
+                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
+                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
+                                                        @error('nama_opd')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="nama_opd">Status Jabatan</label>
@@ -334,7 +299,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             @endforeach
                         </tbody>
                     </table>
@@ -585,68 +550,5 @@
             </div> --}}
         </div>
     </div>
-
-    <script>
-        function toggleColumn(columnIndex, checked) {
-            const table = document.getElementById("data-table");
-            const rows = table.querySelectorAll("tr");
-
-            rows.forEach((row) => {
-                const cells = row.querySelectorAll("th, td");
-                if (cells.length > columnIndex) {
-                    const cell = cells[columnIndex];
-                    if (checked) {
-                        cell.classList.remove("d-none");
-                    } else {
-                        cell.classList.add("d-none");
-                    }
-                }
-            });
-        }
-
-        toggleColumn(7, false);
-        toggleColumn(12, false);
-        toggleColumn(13, false);
-        toggleColumn(14, false);
-        toggleColumn(15, false);
-        toggleColumn(16, false);
-        toggleColumn(17, false);
-        toggleColumn(18, false);
-        toggleColumn(19, false);
-        toggleColumn(20, false);
-        toggleColumn(21, false);
-        toggleColumn(22, false);
-        toggleColumn(23, false);
-
-        const toggleColumnCheckboxes = document.querySelectorAll(".toggle-column");
-
-        toggleColumnCheckboxes.forEach((checkbox) => {
-            checkbox.addEventListener("change", function () {
-                const columnIndex = this.getAttribute("data-column");
-                const isChecked = this.checked;
-                toggleColumn(columnIndex, isChecked);
-            });
-        });
-
-        const toggleRowCheckboxes = document.querySelectorAll(".toggle-row");
-
-        toggleRowCheckboxes.forEach((checkbox) => {
-            checkbox.addEventListener("change", function () {
-                const row = this.parentNode.parentNode;
-                const rowColumns = row.querySelectorAll("th, td");
-                const isChecked = this.checked;
-
-                rowColumns.forEach((cell, index) => {
-                    if (index > 0) {
-                        if (isChecked) {
-                            cell.classList.remove("d-none");
-                        } else {
-                            cell.classList.add("d-none");
-                        }
-                    }
-                });
-            });
-        });
-    </script>
     
 @endsection
