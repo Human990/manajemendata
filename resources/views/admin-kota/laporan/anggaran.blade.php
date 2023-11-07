@@ -36,8 +36,8 @@
                                 <td width="22%">{{ $catatan->nama_opd }}</td>
                                 <td width="8%">{{ $catatan->nip }}</td>
                                 <td width="16%">{{ $catatan->nama_pegawai }}</td>
-                                <td width="35%">{{ $catatan->catatan_opd }}</td>
-                                <td width="14%">
+                                <td width="33%">{{ $catatan->catatan_opd }}</td>
+                                <td width="16%">
                                     <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalPegawai{{ $i }}"><i class="fa fa-edit"></i> Pegawai</button>
                                     <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-plus"></i> Catatan</button>
                                 </td>

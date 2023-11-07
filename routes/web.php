@@ -35,9 +35,9 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
     Route::get('/pegawai-bulanan/totaltpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'totaltpp'])->name('adminkota-tpp-total');
 
     // data catatan
-    Route::get('/data-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'index'])->name('adminkota-catatan');
+    Route::get('/adminkota/data-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'index'])->name('adminkota-catatan');
     // Route::post('/data-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'store'])->name('adminkota-catatan.store');
-    Route::put('/data-catatan/{catatan}',[App\Http\Controllers\AdminKota\CatatanController::class,'update'])->name('adminkota-catatan.update');
+    Route::put('/adminkota/data-catatan/{catatan}',[App\Http\Controllers\AdminKota\CatatanController::class,'update'])->name('adminkota-catatan.update');
     // Route::delete('/data-catatan/{catatan}',[App\Http\Controllers\AdminKota\CatatanController::class,'destroy'])->name('adminkota-catatan.destroy');
 
     // data pegawai
@@ -98,10 +98,10 @@ Route::group(['middleware' => ['auth', 'adminopd']], function () {
     Route::put('/admin-opd/data-pegawai/{pegawai}',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'update'])->name('adminopd-pegawai.update');
     Route::delete('/admin-opd/data-pegawai/{pegawai}',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'destroy'])->name('adminopd-pegawai.destroy');
     // pegawai catatan
-    Route::get('/data-catatan',[App\Http\Controllers\Adminopd\CatatanController::class,'index'])->name('adminopd-catatan');
-    Route::post('/data-catatan/store',[App\Http\Controllers\Adminopd\CatatanController::class,'store'])->name('adminopd-catatan.store');
-    Route::put('/data-catatan/{catatan}/update',[App\Http\Controllers\Adminopd\CatatanController::class,'update'])->name('adminopd-catatan.update');
-    Route::get('/data-catatan/{catatan}/destroy',[App\Http\Controllers\Adminopd\CatatanController::class,'destroy'])->name('adminopd-catatan.destroy');
+    Route::get('/adminopd/data-catatan',[App\Http\Controllers\Adminopd\CatatanController::class,'index'])->name('adminopd-catatan');
+    Route::post('/adminopd/data-catatan/store',[App\Http\Controllers\Adminopd\CatatanController::class,'store'])->name('adminopd-catatan.store');
+    Route::put('/adminopd/data-catatan/{catatan}/update',[App\Http\Controllers\Adminopd\CatatanController::class,'update'])->name('adminopd-catatan.update');
+    Route::get('/adminopd/data-catatan/{catatan}/destroy',[App\Http\Controllers\Adminopd\CatatanController::class,'destroy'])->name('adminopd-catatan.destroy');
 
     // // pegawai bulanan
     // Route::get('/admin-opd/pegawai-bulanan/tpp',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'tpp'])->name('adminopd-tpp-pegawai');
