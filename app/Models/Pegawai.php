@@ -43,7 +43,7 @@ class Pegawai extends Model
                         ->leftjoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
                         ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawais.kode_jabatanlama')
                         ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
-                        ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', \DB::raw('CAST(indeks.jenis_jabatan AS INTEGER)'))
+                        ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
                         ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
                         ->orderBy('pegawais.id','ASC')
                         ->paginate(10);
