@@ -27,7 +27,7 @@ class Jabatan extends Model
                                     'jenis_jabatans.jenis_jabatan')
                             ->leftjoin('master_tahun', 'master_tahun.id', '=', 'jabatans.tahun_id')
                             ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
-                            ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', \DB::raw('CAST(indeks.jenis_jabatan AS INTEGER)'))
+                            ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
                             ->where('jabatans.tahun_id', session()->get('tahun_id_session'))
                             ->orderBy('jabatans.nama_jabatan','ASC')
                             ->get();
