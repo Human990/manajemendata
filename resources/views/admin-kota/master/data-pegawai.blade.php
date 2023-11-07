@@ -134,7 +134,7 @@
                                     </td>
                                 </tr>
 
-                                {{-- <div class="modal fade" id="ubahModalPegawai{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+                                <div class="modal fade" id="ubahModalPegawai{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -177,23 +177,19 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="opd_id">OPD</label>
-                                                        <select type="text" name="opd_id"
-                                                            class="form-control @error('opd_id') is-invalid @enderror">
-                                                        <option value="{{ $data->opd_id }}" {{ $data->opd_id == $data->opd->id ? 'selected' : '' }}>
-                                                            {{ $data->opd->nama_opd }}
-                                                        </option>
-                                                        @error('nama_opd')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="opd_id" class="form-control @error('opd_id') is-invalid @enderror">
+                                                            @foreach(\App\Models\Opd::orderBy('nama_opd', 'ASC')->get() as $opd)
+                                                                <option value="{{ $opd->opd_id }}" @if($opd->id == $data->opd_id) selected @endif>{{ $opd->nama_opd }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="nama_opd">Nama Jabatan</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <label for="opd_id">Jabatan</label>
+                                                        <select type="text" name="opd_id" class="form-control @error('opd_id') is-invalid @enderror">
+                                                            @foreach(\App\Models\Jabatan::data() as $jabatan)
+                                                                <option value="{{ $jabatan->id }}" @if($jabatan->id == $data->kode_jabatanlama) selected @endif>{{ $jabatan->nama_jabatan }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="nama_opd">Status Jabatan</label>
@@ -338,7 +334,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                             @endforeach
                         </tbody>
                     </table>

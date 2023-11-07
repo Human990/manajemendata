@@ -28,6 +28,7 @@ class Pegawai extends Model
                                 'pegawais.jumlah_pemangku', 
                                 'pegawais.basic_tpp', 
                                 'pegawais.total_bulan_penerimaan', 
+                                'pegawais.opd_id', 
                                 'jabatans.kode_jabatanlama', 
                                 'jabatans.nama_jabatan', 
                                 'jabatans.nilai_jabatan', 
