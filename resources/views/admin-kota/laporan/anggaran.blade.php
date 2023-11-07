@@ -211,7 +211,7 @@
             <div class="card-body">
                 <div class="text-left">
                     <p class="ml-3" style="color:black;">Jumlah pegawai : <b style="color:red;">
-                            {{ number_format($jumlah_pegawai, 0) }} </b>
+                            {{ number_format($jumlah_pegawai,0) }} </b>
                         orang
                     </p>
                 </div>

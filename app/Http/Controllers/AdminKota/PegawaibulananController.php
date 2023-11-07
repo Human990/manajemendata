@@ -18,8 +18,8 @@ class PegawaibulananController extends Controller
     {
         $opdFilter = $request->input('opd');
         $searchQuery = $request->input('search');
-        $rupiah1 = Rupiah::where('id', 1)->first();
-        $rupiah2 = Rupiah::where('id', 2)->first();
+        $rupiah1 = Rupiah::find(1);
+        $rupiah2 = Rupiah::find(2);
         $opds = Opd::all();
 
         $query = Pegawai::select(
@@ -56,10 +56,10 @@ class PegawaibulananController extends Controller
 
         // Hitung jumlah pegawai berdasarkan kriteria tertentu dari hasil query yang telah difilter
         $jumlah_pegawai = $datas->total();
-        $jumlah_pppk = $datas->where('sts_pegawai', 'PPPK')->count();
-        $jumlah_plt = $datas->where('sts_jabatan', 'PLT')->count();
-        $jumlah_plh = $datas->where('sts_jabatan', 'PLH')->count();
-        $jumlah_pengganti_sementara = $datas->where('sts_jabatan', 'Pengganti Sementara')->count();
+        $jumlah_pppk = \App\Models\Pegawai::where('sts_pegawai', 'PPPK')->count();
+        $jumlah_plt = \App\Models\Pegawai::where('sts_jabatan', 'PLT')->count();
+        $jumlah_plh = \App\Models\Pegawai::where('sts_jabatan', 'PLH')->count();
+        $jumlah_pengganti_sementara = \App\Models\Pegawai::where('sts_jabatan', 'Pengganti Sementara')->count();
         $jumlah_pegawai_definitif = $jumlah_pegawai - $jumlah_plt - $jumlah_plh - $jumlah_pengganti_sementara;
         
         return view('admin-kota.laporan.tpp-pegawai', compact([
@@ -131,8 +131,6 @@ class PegawaibulananController extends Controller
 
     public function anggaran(Request $request)
     {
-        $jumlah_pegawai = Pegawai::count();
-
         $tahun_id = 0;
 
         try {
@@ -143,11 +141,11 @@ class PegawaibulananController extends Controller
 
         $rupiah3 = Rupiah::where('tahun_id', $tahun_id)->where('flag', 'pagu_apbd')->first();
         $rupiah4 = Rupiah::where('tahun_id', $tahun_id)->where('flag', 'belanja_pegawai')->first();
-        $jumlahguru = Pegawai::where('sts_pegawai','guru')->count();
-        $rs = Pegawai::where('sts_pegawai','rs')->count();
-        $pppk = Pegawai::where('sts_pegawai','pppk')->count();
+        $jumlah_pegawai = Pegawai::where('pegawais.tahun_id', $tahun_id)->count();
+        $jumlahguru = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','guru')->count();
+        $rs = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','rs')->count();
+        $pppk = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','pppk')->count();
         $catatans = Catatan_opd::proses()->paginate(10);
-        
         $total_tpp = 0;
         // Ambil data pegawai dengan left join jabatan dan indeks
         $pegawais = Pegawai::leftJoin('jabatans', 'pegawais.kode_jabatanlama', '=', 'jabatans.kode_jabatanlama')
@@ -161,10 +159,11 @@ class PegawaibulananController extends Controller
             $indeks = (float) ($pegawai->indeks ?? 0);
             $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0); // Sesuaikan dengan ID yang sesuai
             $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0); // Sesuaikan dengan ID yang sesuai
-            $total_bulan_penerimaan = (float)($pegawai->total_bulan_penerimaan ?? 0);
+            $bulan_bk = (float)($pegawai->bulan_bk ?? 0);
+            $bulan_pk = (float)($pegawai->bulan_pk ?? 0);
 
             // Hitung total_tpp untuk pegawai saat ini
-            $tpp_pegawai = (($nilai_jabatan * $indeks * $bk) * ($total_bulan_penerimaan + 1)) + (($nilai_jabatan * $indeks * $pk) * $total_bulan_penerimaan);
+            $tpp_pegawai = (($nilai_jabatan * $indeks * $bk) * $bulan_bk) + (($nilai_jabatan * $indeks * $pk) * $bulan_pk);
 
             // Tambahkan nilai total_tpp pegawai ke total_tpp
             $total_tpp += $tpp_pegawai;
@@ -178,7 +177,8 @@ class PegawaibulananController extends Controller
             'rs', 
             'pppk', 
             'catatans', 
-            'total_tpp'
+            'total_tpp',
+            'pegawais'
             ]))
         ->with('i', ($request->input('page', 1) - 1));
     }

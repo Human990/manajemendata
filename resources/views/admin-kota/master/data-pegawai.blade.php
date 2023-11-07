@@ -89,10 +89,11 @@
                             <td>
                                 <label><input type="checkbox" class="toggle-column" data-column="22"> Nip Atasan Penilai</label></br>
                                 <label><input type="checkbox" class="toggle-column" data-column="23"> Nama Atasan Penilai</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="24" checked> Jumlah Bulan Penerimaan</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="24" checked> Jumlah Bulan Penerimaan BK</label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="25" checked> Tpp Tambahan</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="25" checked> Jumlah Bulan Penerimaan PK</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="26" checked> Tpp Tambahan</label></br>
                             </td>
                         </tr>
                     </table>
@@ -124,7 +125,8 @@
                                 <th width="3%">Nama Penilai / Atasan Langsung</th>
                                 <th width="3%">Nip Atasan Penilai</th>
                                 <th width="3%">Nama Atasan Penilai</th>
-                                <th width="3%">Jumlah Bulan Penerimaan</th>
+                                <th width="3%">Jumlah Bulan Penerimaan BK</th>
+                                <th width="3%">Jumlah Bulan Penerimaan PK</th>
                                 <th width="3%">Tpp Tambahan</th>
                                 <th width="6%">Action</th>
                             </tr>
@@ -158,7 +160,8 @@
                                     <td>{{ $data->atasan_nama }}</td>
                                     <td>{{ $data->atasannya_atasan_nip }}</td>
                                     <td>{{ $data->atasannya_atasan_nama }}</td>
-                                    <td align="center">{{ $data->total_bulan_penerimaan }}</td>
+                                    <td align="center">{{ $data->bulan_bk }}</td>
+                                    <td align="center">{{ $data->bulan_pk }}</td>
                                     <td>{{ $data->tpp_tambahan }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-edit"></i></button>
@@ -351,11 +354,19 @@
                                                         @enderror
                                                     </div> --}}
                                                     <div class="form-group">
-                                                        <label for="total_bulan_penerimaan">Jumlah Bulan Penerimaan</label>
-                                                        <input type="text" name="total_bulan_penerimaan"
-                                                            class="form-control @error('total_bulan_penerimaan') is-invalid @enderror" id="total_bulan_penerimaan"
-                                                            placeholder="Jumlah Bulan Penerimaan . . ." value="{{ $data->total_bulan_penerimaan }}">
-                                                        @error('total_bulan_penerimaan')
+                                                        <label for="bulan_bk">Jumlah Bulan Penerimaan BK</label>
+                                                        <input type="text" name="bulan_bk"
+                                                            class="form-control @error('bulan_bk') is-invalid @enderror" id="bulan_bk"
+                                                            placeholder="Jumlah Bulan Penerimaan . . ." value="{{ $data->bulan_bk }}">
+                                                        @error('bulan_bk')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div><div class="form-group">
+                                                        <label for="bulan_pk">Jumlah Bulan Penerimaan PK</label>
+                                                        <input type="text" name="bulan_pk"
+                                                            class="form-control @error('bulan_pk') is-invalid @enderror" id="bulan_pk"
+                                                            placeholder="Jumlah Bulan Penerimaan . . ." value="{{ $data->bulan_pk }}">
+                                                        @error('bulan_pk')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
@@ -493,11 +504,20 @@
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="total_bulan_penerimaan">Jumlah Bulan Penerimaan</label>
-                                                        <input type="text" name="total_bulan_penerimaan"
-                                                            class="form-control @error('total_bulan_penerimaan') is-invalid @enderror" id="total_bulan_penerimaan"
+                                                        <label for="bulan_bk">Jumlah Bulan Penerimaan BK</label>
+                                                        <input type="text" name="bulan_bk"
+                                                            class="form-control @error('bulan_bk') is-invalid @enderror" id="bulan_bk"
                                                             placeholder="Jumlah Bulan Penerimaan . . ." value="">
-                                                        @error('total_bulan_penerimaan')
+                                                        @error('bulan_bk')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="bulan_pk">Jumlah Bulan Penerimaan BK</label>
+                                                        <input type="text" name="bulan_pk"
+                                                            class="form-control @error('bulan_pk') is-invalid @enderror" id="bulan_pk"
+                                                            placeholder="Jumlah Bulan Penerimaan . . ." value="">
+                                                        @error('bulan_pk')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>

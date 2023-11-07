@@ -36,7 +36,12 @@
                     </div>
                     <div class="col-2">
                         <div class="alert alert-danger text-center mt-3" role="alert">
-                            Jumlah Pengganti Sementara: {{ $jumlah_pengganti_sementara }}
+                            Jumlah Pengganti Sementara: {{  $jumlah_pengganti_sementara }}
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="alert alert-secondary text-center mt-3" role="alert">
+                            Jumlah Pegawai Definitif: {{ $jumlah_pegawai_definitif}}
                         </div>
                     </div>
                 </div>
@@ -71,7 +76,8 @@
                                 <th>Kelas Jabatan</th>
                                 <th>Nilai Jabatan</th>
                                 <th>Indeks Jabatan</th>
-                                <th>Total Bulan Penerimaan</th>
+                                <th>Total Bulan Penerimaan BK</th>
+                                <th>Total Bulan Penerimaan PK</th>
                                 <th>RP Beban Kerja</th>
                                 <th>RP/BLN Beban Kerja</th>
                                 <th>RP Prestasi Kerja</th>
@@ -81,6 +87,14 @@
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
+                                @php
+                                    $rumus_bk_tahunan_total = 0;
+                                    $rumus_bk_bulanan_total = 0;
+                                    $rumus_pk_tahunan_total = 0;
+                                    $rumus_pk_bulanan_total = 0;
+                                    $rumus_total_tpp_bulanan_total = 0;
+                                    $rumus_total_tpp_tahunan_total = 0;
+                                @endphp
                                 @foreach ($datas as $i => $data)
                                 <tr>
                                     <td>{{ $i + 1 + ($datas->currentPage() - 1) * $datas->perPage() }}</td>
@@ -92,37 +106,31 @@
                                     <td>{{ $data->kelas_jabatan }}</td>
                                     <td>{{ $data->nilai_jabatan }}</td>
                                     <td>{{ $data->nilai_indeks }}</td>
-                                    <td>{{ $data->total_bulan_penerimaan}}</td>
-                                    <td>
-                                        {{-- rumus bk btahunan --}}
-                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah * ($data->total_bulan_penerimaan + 1) }}
-                                    </td>
-                                    <td>
-                                        {{-- rumus bk bulanan --}}
-                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah }}
-                                    </td>
-                                    <td>
-                                        {{-- rumus pk tahunan --}}
-                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah * $data->total_bulan_penerimaan }}
-                                    </td>
-                                    <td>
-                                        {{-- rumus pk bulanan --}}
-                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah }}
-                                    </td>
-                                    <td>
-                                        {{-- rumus total tpp/bulan --}}
-                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah +
-                                           $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah }}
-                                    </td>
-                                    <td>
-                                        {{-- rumus total tpp/tahun --}}
-                                        {{ $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah * ($data->total_bulan_penerimaan + 1) +
-                                           $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah * $data->total_bulan_penerimaan }}
-                                    </td>
-                                    {{-- <td>
-                                    <a href="#" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Edit</a>
-                                    <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button>
-                                </td> --}}
+                                    <td>{{ $data->bulan_bk}}</td>
+                                    <td>{{ $data->bulan_pk}}</td>
+                                    
+                                    @php
+                                        $rumus_bk_tahunan = $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah * $data->bulan_bk;
+                                        $rumus_bk_bulanan = $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah;
+                                        $rumus_pk_tahunan = $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah * $data->bulan_pk;
+                                        $rumus_pk_bulanan = $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah;
+                                        $rumus_total_tpp_bulanan = $rumus_bk_bulanan + $rumus_pk_bulanan;
+                                        $rumus_total_tpp_tahunan = $rumus_bk_tahunan + $rumus_pk_tahunan;
+                                
+                                        // Menambahkan ke total kolom
+                                        $rumus_bk_tahunan_total += $rumus_bk_tahunan;
+                                        $rumus_bk_bulanan_total += $rumus_bk_bulanan;
+                                        $rumus_pk_tahunan_total += $rumus_pk_tahunan;
+                                        $rumus_pk_bulanan_total += $rumus_pk_bulanan;
+                                        $rumus_total_tpp_bulanan_total += $rumus_total_tpp_bulanan;
+                                        $rumus_total_tpp_tahunan_total += $rumus_total_tpp_tahunan;
+                                    @endphp
+                                    <td>{{ number_format($rumus_bk_tahunan,0,',','.') }}</td>
+                                    <td>{{ number_format($rumus_bk_bulanan,0,',','.') }}</td>
+                                    <td>{{ number_format($rumus_pk_tahunan,0,',','.') }}</td>
+                                    <td>{{ number_format($rumus_pk_bulanan,0,',','.') }}</td>
+                                    <td>{{ number_format($rumus_total_tpp_bulanan,0,',','.') }}</td>
+                                    <td>{{ number_format($rumus_total_tpp_tahunan,0,',','.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -135,18 +143,16 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>
-                                    {{-- {{ number_format($jumlah1, 0) }} --}}
-                                </td>
-                                <td>
-                                    {{-- {{ number_format($jumlah2, 0) }} --}}
-                                </td>
-                                <td>
-                                    {{-- {{ number_format($jumlah3, 0) }} --}}
-                                </td>
-                                <td>
-                                    {{-- {{ number_format($jumlah4, 0) }} --}}
-                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ number_format($rumus_bk_tahunan_total,0,',','.') }}</td>
+                                <td>{{ number_format($rumus_bk_bulanan_total,0,',','.') }}</td>
+                                <td>{{ number_format($rumus_pk_tahunan_total,0,',','.') }}</td>
+                                <td>{{ number_format($rumus_pk_bulanan_total,0,',','.') }}</td>
+                                <td>{{ number_format($rumus_total_tpp_bulanan_total,0,',','.') }}</td>
+                                <td>{{ number_format($rumus_total_tpp_tahunan_total,0,',','.') }}</td>
                             </tr>
                         </tfoot>
                     </table>
