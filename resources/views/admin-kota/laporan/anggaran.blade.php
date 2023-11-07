@@ -151,6 +151,8 @@
         </div></br>
         @endif
 
+        @if(session()->get('tahun_id_session'))
+
         <div class="card card-headline">
             <div class="card-header">
                 <h5 class="card-title"><b>Rekap Anggaran Tahun {{ session()->get('tahun_session') }}</b></h5>
@@ -231,61 +233,65 @@
                 </div>
             </div>
         </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var ctx = document.getElementById('tppChart').getContext('2d');
 
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['APBD', 'BELANJA PEGAWAI', 'TPP'],
-                    datasets: [{
-                        label: 'Total Per Tahun',
-                        data: [
-                            {{ $rupiah3->jumlah }},
-                            {{ $rupiah4->jumlah }},
-                            {{ $total_tpp }}, //nanti ambil dari $total_tpp
-                        ],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.5)',
-                            'rgba(54, 162, 235, 0.5)',
-                            'rgba(255, 206, 86, 0.5)',
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true
+        @endif
+    </div>
+
+    @if(session()->get('tahun_id_session'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var ctx = document.getElementById('tppChart').getContext('2d');
+
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['APBD', 'BELANJA PEGAWAI', 'TPP'],
+                        datasets: [{
+                            label: 'Total Per Tahun',
+                            data: [
+                                {{ $rupiah3->jumlah }},
+                                {{ $rupiah4->jumlah }},
+                                {{ $total_tpp }}, //nanti ambil dari $total_tpp
+                            ],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)',
+                                'rgba(54, 162, 235, 0.5)',
+                                'rgba(255, 206, 86, 0.5)',
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
                         }
                     }
+                });
+            });
+        </script>
+
+        <script>
+            document.getElementById('button_catatan_opd').addEventListener('click', function () {
+                var table = document.getElementById('catatan_opd');
+                var button = document.getElementById('button_catatan_opd');
+
+                if (table.style.display === 'none' || table.style.display === '') {
+                    table.style.display = 'table';
+                    button.textContent = 'Sembunyikan Daftar';
+                } else {
+                    table.style.display = 'none';
+                    button.textContent = 'Tampilkan Daftar';
                 }
             });
-        });
-    </script>
-
-    <script>
-        document.getElementById('button_catatan_opd').addEventListener('click', function () {
-            var table = document.getElementById('catatan_opd');
-            var button = document.getElementById('button_catatan_opd');
-
-            if (table.style.display === 'none' || table.style.display === '') {
-                table.style.display = 'table';
-                button.textContent = 'Sembunyikan Daftar';
-            } else {
-                table.style.display = 'none';
-                button.textContent = 'Tampilkan Daftar';
-            }
-        });
-    </script>
-
+        </script>
+    @endif
 @endsection

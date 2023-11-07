@@ -52,6 +52,7 @@ class CopyController extends Controller
                     'jumlah' => $rupiah->jumlah,
                     'tahun_id' => $tahun_tujuan,
                     'asal_id' => $rupiah->id,
+                    'flag' => $rupiah->flag,
                 ]);
             }
 

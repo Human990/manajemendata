@@ -71,12 +71,21 @@ class PegawaibulananController extends Controller
 
     public function totaltpp(Request $request)
     {
+        $tahun_id = 0;
+
+        try {
+            $tahun_id = session()->get('tahun_id_session');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
         // Ambil data pegawai dengan left join jabatan dan indeks
         $pegawais = Pegawai::leftJoin('jabatans', 'pegawais.kode_jabatanlama', '=', 'jabatans.kode_jabatanlama')
                         ->leftJoin('indeks', 'jabatans.indeks_id', '=', 'indeks.kode_indeks')
                         ->select('pegawais.*', 'jabatans.nilai_jabatan', 'indeks.indeks')
+                        ->where('pegawais.tahun_id', $tahun_id)
                         ->get();
-        $opds = Opd::all();
+        $opds = Opd::where('opds.tahun_id', $tahun_id)->get();
         // Inisialisasi variabel untuk total pegawai dan total tpp
         $totalPegawai = 0;
         $totalTpp = 0;
@@ -97,8 +106,8 @@ class PegawaibulananController extends Controller
             $totalBulanPenerimaan = (float)($pegawai->total_bulan_penerimaan ?? 0);
         
             // Rumus perhitungan TPP per OPD
-            $tppPerOpd = ($nilaiJabatan * $indeks * ($totalBulanPenerimaan + 1) * Rupiah::find(1)->jumlah) +
-                         ($nilaiJabatan * $indeks * $totalBulanPenerimaan * Rupiah::find(2)->jumlah);
+            $tppPerOpd = ($nilaiJabatan * $indeks * ($totalBulanPenerimaan + 1) * Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah')) +
+                         ($nilaiJabatan * $indeks * $totalBulanPenerimaan * Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah'));
         
             // Tambahkan nilai total TPP per OPD ke variabel totalTppPerOpd
             $opdNama = $pegawai->opds->nama_opd;
@@ -123,8 +132,17 @@ class PegawaibulananController extends Controller
     public function anggaran(Request $request)
     {
         $jumlah_pegawai = Pegawai::count();
-        $rupiah3 = Rupiah::where('id', 3)->first();
-        $rupiah4 = Rupiah::where('id', 4)->first();
+
+        $tahun_id = 0;
+
+        try {
+            $tahun_id = session()->get('tahun_id_session');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        $rupiah3 = Rupiah::where('tahun_id', $tahun_id)->where('flag', 'pagu_apbd')->first();
+        $rupiah4 = Rupiah::where('tahun_id', $tahun_id)->where('flag', 'belanja_pegawai')->first();
         $jumlahguru = Pegawai::where('sts_pegawai','guru')->count();
         $rs = Pegawai::where('sts_pegawai','rs')->count();
         $pppk = Pegawai::where('sts_pegawai','pppk')->count();
@@ -135,13 +153,14 @@ class PegawaibulananController extends Controller
         $pegawais = Pegawai::leftJoin('jabatans', 'pegawais.kode_jabatanlama', '=', 'jabatans.kode_jabatanlama')
                         ->leftJoin('indeks', 'jabatans.indeks_id', '=', 'indeks.kode_indeks')
                         ->select('pegawais.*', 'jabatans.nilai_jabatan', 'indeks.indeks')
+                        ->where('pegawais.tahun_id', $tahun_id)
                         ->get();
          // Loop through each pegawai to calculate total_tpp
         foreach ($pegawais as $pegawai) {
             $nilai_jabatan = (float) ($pegawai->nilai_jabatan ?? 0);
             $indeks = (float) ($pegawai->indeks ?? 0);
-            $bk = (float)(Rupiah::find(1)->jumlah ?? 0); // Sesuaikan dengan ID yang sesuai
-            $pk = (float)(Rupiah::find(2)->jumlah ?? 0); // Sesuaikan dengan ID yang sesuai
+            $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0); // Sesuaikan dengan ID yang sesuai
+            $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0); // Sesuaikan dengan ID yang sesuai
             $total_bulan_penerimaan = (float)($pegawai->total_bulan_penerimaan ?? 0);
 
             // Hitung total_tpp untuk pegawai saat ini
