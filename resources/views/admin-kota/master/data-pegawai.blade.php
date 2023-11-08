@@ -515,6 +515,38 @@
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="subkoor">Subkoor / Koord</label>
+                                                        <select type="text" name="subkoor" class="form-control @error('subkoor') is-invalid @enderror">
+                                                            <option value="">--- Pilih Subkoor / Koord ---</option>
+                                                            <option value="Bukan Subkoor / Koord">Bukan Subkoor / Koord</option>
+                                                            <option value="Subkoor">Subkoor</option>
+                                                            <option value="Koor">Koor</option>
+                                                        </select>
+                                                        @error('subkoor')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="nama_subkoor">Nama Subkoor</label>
+                                                        <input type="text" name="nama_subkoor"
+                                                            class="form-control @error('nama_subkoor') is-invalid @enderror" id="nama_subkoor"
+                                                            placeholder="Nama Subkoor . . ." value="">
+                                                        @error('nama_subkoor')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div> 
+                                                     <div class="form-group">
+                                                        <label for="nama_opd">Status Subkoor / Koord</label>
+                                                        <select type="text" name="sts_subkoor" class="form-control @error('sts_subkoor') is-invalid @enderror">
+                                                            <option value="">--- Pilih Status ---</option>
+                                                            <option value="Subkoordinator Bukan Hasil Penyetaraan">Subkoordinator Bukan Hasil Penyetaraan</option>
+                                                            <option value="Subkoordinator Hasil Penyetaraan">Subkoordinator Hasil Penyetaraan</option>
+                                                        </select>
+                                                        @error('nama_opd')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div> 
+                                                    <div class="form-group">
                                                         <label for="pangkat">Pangkat</label>
                                                         <input type="text" name="pangkat"
                                                             class="form-control @error('pangkat') is-invalid @enderror" id="pangkat"
