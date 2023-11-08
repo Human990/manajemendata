@@ -72,20 +72,20 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
     Route::delete('/master-rupiah/{id}',[App\Http\Controllers\AdminKota\RupiahController::class,'destroy'])->name('adminkota-rupiah.destroy');
 
     // master tahun
-    Route::get('/master-tahun',[App\Http\Controllers\Adminkota\TahunController::class,'index'])->name('adminkota-tahun');
-    Route::post('/master-tahun',[App\Http\Controllers\Adminkota\TahunController::class,'store'])->name('adminkota-tahun.store');
-    Route::get('master-tahun/edit/{id}',[App\Http\Controllers\Adminkota\TahunController::class,'edit'])->name('adminkota-tahun.edit');
-    Route::post('/master-tahun/{id}',[App\Http\Controllers\Adminkota\TahunController::class,'update'])->name('adminkota-tahun.update');
+    Route::get('/master-tahun',[App\Http\Controllers\AdminKota\TahunController::class,'index'])->name('adminkota-tahun');
+    Route::post('/master-tahun',[App\Http\Controllers\AdminKota\TahunController::class,'store'])->name('adminkota-tahun.store');
+    Route::get('master-tahun/edit/{id}',[App\Http\Controllers\AdminKota\TahunController::class,'edit'])->name('adminkota-tahun.edit');
+    Route::post('/master-tahun/{id}',[App\Http\Controllers\AdminKota\TahunController::class,'update'])->name('adminkota-tahun.update');
 
     // Master Jabatan Lama
-    Route::get('/master-jabatanlama',[App\Http\Controllers\Adminkota\MasterjabatanlamaController::class,'index'])->name('adminkota-jabatanlama');
-    Route::get('/master-jabatanlama/edit/{kode_jabatanlama}',[App\Http\Controllers\Adminkota\MasterjabatanlamaController::class,'edit'])->name('adminkota-jabatanlama-edit');
-    Route::put('/master-jabatanlama/update/{kode_jabatanlama}',[App\Http\Controllers\Adminkota\MasterjabatanlamaController::class,'update'])->name('adminkota-jabatanlama-update');
+    Route::get('/master-jabatanlama',[App\Http\Controllers\AdminKota\MasterjabatanlamaController::class,'index'])->name('adminkota-jabatanlama');
+    Route::get('/master-jabatanlama/edit/{kode_jabatanlama}',[App\Http\Controllers\AdminKota\MasterjabatanlamaController::class,'edit'])->name('adminkota-jabatanlama-edit');
+    Route::put('/master-jabatanlama/update/{kode_jabatanlama}',[App\Http\Controllers\AdminKota\MasterjabatanlamaController::class,'update'])->name('adminkota-jabatanlama-update');
 
     // Master Jabatan Baru
-    Route::get('/master-jabatanbaru',[App\Http\Controllers\Adminkota\MasterjabatanbaruController::class,'index'])->name('adminkota-jabatanbaru');
-    Route::get('/master-jabatanbaru/edit/{kode_jabatanbaru}',[App\Http\Controllers\Adminkota\MasterjabatanbaruController::class,'edit'])->name('adminkota-jabatanbaru-edit');
-    Route::put('/master-jabatanbaru/update/{kode_jabatanbaru}',[App\Http\Controllers\Adminkota\MasterjabatanbaruController::class,'update'])->name('adminkota-jabatanbaru-update');
+    Route::get('/master-jabatanbaru',[App\Http\Controllers\AdminKota\MasterjabatanbaruController::class,'index'])->name('adminkota-jabatanbaru');
+    Route::get('/master-jabatanbaru/edit/{kode_jabatanbaru}',[App\Http\Controllers\AdminKota\MasterjabatanbaruController::class,'edit'])->name('adminkota-jabatanbaru-edit');
+    Route::put('/master-jabatanbaru/update/{kode_jabatanbaru}',[App\Http\Controllers\AdminKota\MasterjabatanbaruController::class,'update'])->name('adminkota-jabatanbaru-update');
 
 });
 
