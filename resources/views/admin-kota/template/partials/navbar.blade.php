@@ -257,17 +257,15 @@
                     Profile
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();"
-                    class="btn btn-block btn-sm">
-                    <i class="fas fa-sign-out-alt"></i>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" class="d-none">
-                    @csrf
-                </form>
             </div>
+            
+            <form id="logout-form" action="{{ route('logout') }}" class="d-none">
+                @csrf
+            </form>
         </li>
     </ul>
 </nav>
