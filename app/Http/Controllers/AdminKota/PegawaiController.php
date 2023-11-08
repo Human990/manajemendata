@@ -40,6 +40,12 @@ class PegawaiController extends Controller
             $datas = Pegawai::data();
         }
 
+        if (!empty($search)) {
+            $datas = Pegawai::pencarian($search);
+        }else {
+            $datas = Pegawai::data();
+        }
+
         return view('admin-kota.master.data-pegawai', compact('datas','search', 'filter'));
     }
     
