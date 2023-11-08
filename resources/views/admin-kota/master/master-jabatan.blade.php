@@ -22,16 +22,29 @@
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead>
-                            <tr>
-                                <th width="1%">No</th>
-                                <th width="8%">Tahun</th>
-                                <th width="36%">Nama Jabatan</th>
-                                <th width="12%">Jenis Jabatan</th>
-                                <th width="8%">Kelas</th>
-                                <th width="8%">Nilai jabatan</th>
-                                <th width="8%">Indeks</th>
-                                <th width="10%">Tunjab</th>
-                                <th width="9%">Action</th>
+                            <tr style="background-color:#fff0da">
+                                <td width="1%" rowspan="2" align="center"><b>No</b></td>
+                                <td width="3%" rowspan="2" align="center"><b>Tahun</b></td>
+                                <td width="24%" rowspan="2" align="center"><b>Nama Jabatan</b></td>
+                                <td width="20%" colspan="4" align="center"><b>Murni</b></td>
+                                <td width="20%" colspan="4" align="center"><b>Subkoordinator / Koordinator </br> Hasil Penyetaraan</b></td>
+                                <td width="20%" colspan="4" align="center"><b>Subkoordinator / Koordinator </br> Bukan Hasil Penyetaraan</b></td>
+                                <td width="7%" rowspan="2" align="center"><b>Tunjab</b></td>
+                                <td width="5%" rowspan="2" align="center"><b>Action</b></td>
+                            </tr>
+                            <tr style="background-color:#fff0da">
+                                <td><b>Jenis</b></td>
+                                <td><b>Kelas</b></td>
+                                <td><b>Nilai</b></td>
+                                <td><b>Indeks</b></td>
+                                <td><b>Jenis</b></td>
+                                <td><b>Kelas</b></td>
+                                <td><b>Nilai</b></td>
+                                <td><b>Indeks</b></td>
+                                <td><b>Jenis</b></td>
+                                <td><b>Kelas</b></td>
+                                <td><b>Nilai</b></td>
+                                <td><b>Indeks</b></td>
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
@@ -46,9 +59,17 @@
                                     <td>{{ $data->kelas_jabatan }}</td>
                                     <td align="right">{{ number_format((float)$data->nilai_jabatan, 0, ',', '.') }}</td>
                                     <td align="right">{{ $data->indeks }}</td>
+                                    <td>{{ $data->jenis_penyetaraan }}</td>
+                                    <td>{{ $data->kelas_jabatan_subkor_penyetaraan }}</td>
+                                    <td>{{ $data->nilai_jabatan_subkor_penyetaraan }}</td>
+                                    <td>{{ $data->indeks_subkor_penyetaraan }}</td>
+                                    <td>{{ $data->jenis_non_penyetaraan }}</td>
+                                    <td>{{ $data->kelas_jabatan_subkor_non_penyetaraan }}</td>
+                                    <td>{{ $data->nilai_jabatan_subkor_non_penyetaraan }}</td>
+                                    <td>{{ $data->indeks_subkor_non_penyetaraan }}</td>
                                     <td align="right">{{ number_format($data->tunjab, 0, ',', '.') }}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-info btn-block" data-toggle="modal" data-target="#ubahModalIndeks{{ $i }}"><i class="fa fa-eye"></i> Ubah</button>
+                                        <button class="btn btn-sm btn-info btn-block" data-toggle="modal" data-target="#ubahModalIndeks{{ $i }}">Ubah</button>
                                         {{-- <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button> --}}
                                     </td>
                                 </tr>
@@ -76,34 +97,104 @@
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="nilai_jabatan">Nilai Jabatan</label>
-                                                        <input type="text" name="nilai_jabatan"
-                                                            class="form-control @error('nilai_jabatan') is-invalid @enderror" id="nilai_jabatan"
-                                                            placeholder="Nilai Jabatan . . ." value="{{ $data->nilai_jabatan }}">
-                                                        @error('nilai_jabatan')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                    
+                                                    <div class="alert alert-warning" role="alert">
+                                                        <b>JABATAN MURNI</b></br></br>
+                                                        <div class="form-group">
+                                                            <label for="nilai_jabatan">Nilai Jabatan</label>
+                                                            <input type="text" name="nilai_jabatan"
+                                                                class="form-control @error('nilai_jabatan') is-invalid @enderror" id="nilai_jabatan"
+                                                                placeholder="Nilai Jabatan . . ." value="{{ $data->nilai_jabatan }}">
+                                                            @error('nilai_jabatan')
+                                                                <span class="invalid-feedback">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="indeks_id">Jenis Jabatan / Kelas / Indeks</label>
+                                                            <select name="indeks_id" id="indeks_id" class="form-control">
+                                                                @foreach(\App\Models\Indeks::data() as $indeks)
+                                                                    <option value="{{ $indeks->kode_indeks }}" @if($indeks->kode_indeks == $data->indeks_id) selected @endif>{{ $indeks->jenis_jabatan_baru }} / {{ $indeks->kelas_jabatan }} / {{ $indeks->indeks }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('indeks_id')
+                                                                <span class="invalid-feedback">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="prosentase_penerimaan_murni">% Penerimaan</label>
+                                                            <input type="number" name="prosentase_penerimaan_murni"
+                                                                class="form-control @error('prosentase_penerimaan_murni') is-invalid @enderror" id="prosentase_penerimaan_murni"
+                                                                placeholder="% Penerimaan . . ." value="{{ $data->prosentase_penerimaan_murni }}">
+                                                            @error('prosentase_penerimaan_murni')
+                                                                <span class="invalid-feedback">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="tunjab">Tunjangan Jabatan</label>
-                                                        <input type="number" name="tunjab"
-                                                            class="form-control @error('tunjab') is-invalid @enderror" id="tunjab"
-                                                            placeholder="Tunjangan Jabatan . . ." value="{{ $data->tunjab }}">
-                                                        @error('tunjab')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                    
+                                                    <div class="alert alert-success" role="alert">
+                                                        <b>SUB KOOR / KOOR HASIL PENYETARAAN</b></br></br>
+                                                        <div class="form-group">
+                                                            <label for="nilai_jabatan_subkor_penyetaraan">Nilai Jabatan</label>
+                                                            <input type="text" name="nilai_jabatan_subkor_penyetaraan"
+                                                                class="form-control @error('nilai_jabatan_subkor_penyetaraan') is-invalid @enderror" id="nilai_jabatan_subkor_penyetaraan"
+                                                                placeholder="Nilai Jabatan . . ." value="{{ $data->nilai_jabatan_subkor_penyetaraan }}">
+                                                            @error('nilai_jabatan_subkor_penyetaraan')
+                                                                <span class="invalid-feedback">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="indeks_subkor_penyetaraan_id">Jenis Jabatan / Kelas / Indeks</label>
+                                                            <select name="indeks_subkor_penyetaraan_id" id="indeks_subkor_penyetaraan_id" class="form-control">
+                                                                @foreach(\App\Models\Indeks::data() as $indeks)
+                                                                    <option value="{{ $indeks->kode_indeks }}" @if($indeks->kode_indeks == $data->indeks_subkor_penyetaraan_id) selected @endif>{{ $indeks->jenis_jabatan_baru }} / {{ $indeks->kelas_jabatan }} / {{ $indeks->indeks }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('indeks_subkor_penyetaraan_id')
+                                                                <span class="invalid-feedback">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="prosentase_penerimaan_subkor_penyetaraan">% Penerimaan</label>
+                                                            <input type="number" name="prosentase_penerimaan_subkor_penyetaraan"
+                                                                class="form-control @error('prosentase_penerimaan_subkor_penyetaraan') is-invalid @enderror" id="prosentase_penerimaan_subkor_penyetaraan"
+                                                                placeholder="% Penerimaan . . ." value="{{ $data->prosentase_penerimaan_subkor_penyetaraan }}">
+                                                            @error('prosentase_penerimaan_subkor_penyetaraan')
+                                                                <span class="invalid-feedback">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="indeks_id">Jenis Jabatan / Kelas / Indeks</label>
-                                                        <select name="indeks_id" id="indeks_id" class="form-control">
-                                                            @foreach(\App\Models\Indeks::data() as $indeks)
-                                                                <option value="{{ $indeks->kode_indeks }}" @if($indeks->kode_indeks == $data->indeks_id) selected @endif>{{ $indeks->jenis_jabatan_baru }} / {{ $indeks->kelas_jabatan }} / {{ $indeks->indeks }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('indeks_id')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <b>SUB KOOR / KOOR BUKAN HASIL PENYETARAAN</b></br></br>
+                                                        <div class="form-group">
+                                                            <label for="nilai_jabatan_subkor_non_penyetaraan">Nilai Jabatan</label>
+                                                            <input type="text" name="nilai_jabatan_subkor_non_penyetaraan"
+                                                                class="form-control @error('nilai_jabatan_subkor_non_penyetaraan') is-invalid @enderror" id="nilai_jabatan_subkor_non_penyetaraan"
+                                                                placeholder="Nilai Jabatan . . ." value="{{ $data->nilai_jabatan_subkor_non_penyetaraan }}">
+                                                            @error('nilai_jabatan_subkor_non_penyetaraan')
+                                                                <span class="invalid-feedback">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="indeks_subkor_non_penyetaraan_id">Jenis Jabatan / Kelas / Indeks</label>
+                                                            <select name="indeks_subkor_non_penyetaraan_id" id="indeks_subkor_non_penyetaraan_id" class="form-control">
+                                                                @foreach(\App\Models\Indeks::data() as $indeks)
+                                                                    <option value="{{ $indeks->kode_indeks }}" @if($indeks->kode_indeks == $data->indeks_subkor_non_penyetaraan_id) selected @endif>{{ $indeks->jenis_jabatan_baru }} / {{ $indeks->kelas_jabatan }} / {{ $indeks->indeks }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('indeks_subkor_non_penyetaraan_id')
+                                                                <span class="invalid-feedback">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="prosentase_penerimaan_subkor_non_penyetaraan">% Penerimaan</label>
+                                                            <input type="number" name="prosentase_penerimaan_subkor_non_penyetaraan"
+                                                                class="form-control @error('prosentase_penerimaan_subkor_non_penyetaraan') is-invalid @enderror" id="prosentase_penerimaan_subkor_non_penyetaraan"
+                                                                placeholder="% Penerimaan . . ." value="{{ $data->prosentase_penerimaan_subkor_non_penyetaraan }}">
+                                                            @error('prosentase_penerimaan_subkor_non_penyetaraan')
+                                                                <span class="invalid-feedback">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -146,32 +237,112 @@
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label for="nilai_jabatan">Nilai Jabatan</label>
-                                    <input type="text" name="nilai_jabatan"
-                                        class="form-control @error('nilai_jabatan') is-invalid @enderror" id="nilai_jabatan"
-                                        placeholder="Nilai Jabatan . . ." value="{{ old('nilai_jabatan') }}">
-                                    @error('nilai_jabatan')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
+
+                                <div class="alert alert-warning" role="alert">
+                                    <b>JABATAN MURNI</b></br></br>
+                                    <div class="form-group">
+                                        <label for="nilai_jabatan">Nilai Jabatan</label>
+                                        <input type="text" name="nilai_jabatan"
+                                            class="form-control @error('nilai_jabatan') is-invalid @enderror" id="nilai_jabatan"
+                                            placeholder="Nilai Jabatan . . ." value="{{ old('nilai_jabatan') }}">
+                                        @error('nilai_jabatan')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="indeks_id">Jenis Jabatan / Kelas / Indeks</label>
+                                        <select name="indeks_id" id="indeks_id" class="form-control">
+                                            @foreach(\App\Models\Indeks::data() as $indeks)
+                                                <option value="{{ $indeks->kode_indeks }}">{{ $indeks->jenis_jabatan_baru }} / {{ $indeks->kelas_jabatan }} / {{ $indeks->indeks }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('indeks_id')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prosentase_penerimaan_murni">% Penerimaan</label>
+                                        <input type="number" name="prosentase_penerimaan_murni"
+                                            class="form-control @error('prosentase_penerimaan_murni') is-invalid @enderror" id="prosentase_penerimaan_murni"
+                                            placeholder="% Penerimaan . . ." value="{{ old('prosentase_penerimaan_murni') }}">
+                                        @error('prosentase_penerimaan_murni')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
+                                
+                                <div class="alert alert-success" role="alert">
+                                    <b>SUB KOOR / KOOR HASIL PENYETARAAN</b></br></br>
+                                    <div class="form-group">
+                                        <label for="nilai_jabatan_subkor_penyetaraan">Nilai Jabatan</label>
+                                        <input type="text" name="nilai_jabatan_subkor_penyetaraan"
+                                            class="form-control @error('nilai_jabatan_subkor_penyetaraan') is-invalid @enderror" id="nilai_jabatan_subkor_penyetaraan"
+                                            placeholder="Nilai Jabatan . . ." value="{{ old('nilai_jabatan_subkor_penyetaraan') }}">
+                                        @error('nilai_jabatan_subkor_penyetaraan')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="indeks_subkor_penyetaraan_id">Jenis Jabatan / Kelas / Indeks</label>
+                                        <select name="indeks_subkor_penyetaraan_id" id="indeks_subkor_penyetaraan_id" class="form-control">
+                                            @foreach(\App\Models\Indeks::data() as $indeks)
+                                                <option value="{{ $indeks->kode_indeks }}">{{ $indeks->jenis_jabatan_baru }} / {{ $indeks->kelas_jabatan }} / {{ $indeks->indeks }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('indeks_subkor_penyetaraan_id')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prosentase_penerimaan_subkor_penyetaraan">% Penerimaan</label>
+                                        <input type="number" name="prosentase_penerimaan_subkor_penyetaraan"
+                                            class="form-control @error('prosentase_penerimaan_subkor_penyetaraan') is-invalid @enderror" id="prosentase_penerimaan_subkor_penyetaraan"
+                                            placeholder="% Penerimaan . . ." value="{{ old('prosentase_penerimaan_subkor_penyetaraan') }}">
+                                        @error('prosentase_penerimaan_subkor_penyetaraan')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-danger" role="alert">
+                                    <b>SUB KOOR / KOOR BUKAN HASIL PENYETARAAN</b></br></br>
+                                    <div class="form-group">
+                                        <label for="nilai_jabatan_subkor_non_penyetaraan">Nilai Jabatan</label>
+                                        <input type="text" name="nilai_jabatan_subkor_non_penyetaraan"
+                                            class="form-control @error('nilai_jabatan_subkor_non_penyetaraan') is-invalid @enderror" id="nilai_jabatan_subkor_non_penyetaraan"
+                                            placeholder="Nilai Jabatan . . ." value="{{ old('nilai_jabatan_subkor_non_penyetaraan') }}">
+                                        @error('nilai_jabatan_subkor_non_penyetaraan')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="indeks_subkor_non_penyetaraan_id">Jenis Jabatan / Kelas / Indeks</label>
+                                        <select name="indeks_subkor_non_penyetaraan_id" id="indeks_subkor_non_penyetaraan_id" class="form-control">
+                                            @foreach(\App\Models\Indeks::data() as $indeks)
+                                                <option value="{{ $indeks->kode_indeks }}">{{ $indeks->jenis_jabatan_baru }} / {{ $indeks->kelas_jabatan }} / {{ $indeks->indeks }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('indeks_subkor_non_penyetaraan_id')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prosentase_penerimaan_subkor_non_penyetaraan">% Penerimaan</label>
+                                        <input type="number" name="prosentase_penerimaan_subkor_non_penyetaraan"
+                                            class="form-control @error('prosentase_penerimaan_subkor_non_penyetaraan') is-invalid @enderror" id="prosentase_penerimaan_subkor_non_penyetaraan"
+                                            placeholder="% Penerimaan . . ." value="{{ old('prosentase_penerimaan_subkor_non_penyetaraan') }}">
+                                        @error('prosentase_penerimaan_subkor_non_penyetaraan')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="tunjab">Tunjangan Jabatan</label>
                                     <input type="number" name="tunjab"
                                         class="form-control @error('tunjab') is-invalid @enderror" id="tunjab"
                                         placeholder="Tunjangan Jabatan . . ." value="{{ old('tunjab') }}">
                                     @error('tunjab')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="indeks_id">Jenis Jabatan / Kelas / Indeks</label>
-                                    <select name="indeks_id" id="indeks_id" class="form-control">
-                                        @foreach(\App\Models\Indeks::data() as $indeks)
-                                            <option value="{{ $indeks->kode_indeks }}">{{ $indeks->jenis_jabatan_baru }} / {{ $indeks->kelas_jabatan }} / {{ $indeks->indeks }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('indeks_id')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>

@@ -32,15 +32,15 @@
                 </div>
                 <div class="input-group-append">
                     @if (session()->has('statusCopy'))
-                        <button class="btn btn-success" type="button" data-toggle="modal" data-target="#createModalIndeks">
+                        <button class="btn btn-success" type="button" data-toggle="modal" data-target="#copyModalIndeks">
                             <i class="fas fa-check fa-sm"></i> {{ session()->get('statusCopy') }}
                         </button>
                     @elseif(session()->has('statusError'))
-                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#createModalIndeks">
+                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#copyModalIndeks">
                         <i class="fas fa-times fa-sm"></i> {{ session()->get('statusError') }}
                         </button>
                     @else
-                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#createModalIndeks">
+                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#copyModalIndeks">
                             <i class="fas fa-folder fa-sm"></i> Copy
                         </button>
                     @endif
@@ -51,7 +51,7 @@
             </div>
     </form>
 
-            <div class="modal fade" id="createModalIndeks" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+            <div class="modal fade" id="copyModalIndeks" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
