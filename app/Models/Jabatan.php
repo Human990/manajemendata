@@ -88,6 +88,8 @@ class Jabatan extends Model
                             ->where('jabatans.tahun_id', session()->get('tahun_id_session'))
                             ->where('jabatans.nama_jabatan', 'LIKE', '%'.$pencarian.'%')
                             ->orderBy('jabatans.created_at','DESC');
+
+        return $datas;
     }
 
     public static function data(){
