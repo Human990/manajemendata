@@ -81,7 +81,6 @@ class PegawaiController extends Controller
             'pangkat' => 'required',
             'golongan' => 'required',
             'eselon' => 'required',
-            'total_bulan_penerimaan' => 'required',
         ]);
 
         Pegawai::create([
@@ -121,6 +120,9 @@ class PegawaiController extends Controller
             'bulan_pk' => $request->bulan_pk,
             'tpp' => $request->tpp,
             'tpp_tambahan' => $request->tpp_tambahan,
+            'subkoor' => $request->subkoor,
+            'nama_subkoor' => $request->nama_subkoor,
+            'sts_subkoor' => $request->sts_subkoor,
             'jft' => '',
             'tahun_id' => session()->get('tahun_id_session'),
         ]);
@@ -137,7 +139,6 @@ class PegawaiController extends Controller
             'pangkat' => 'required',
             'golongan' => 'required',
             'eselon' => 'required',
-            'total_bulan_penerimaan' => 'required',
         ]);
         
         $pegawai->update([
@@ -154,7 +155,11 @@ class PegawaiController extends Controller
             'bulan_bk' => $request->bulan_bk,
             'bulan_pk' => $request->bulan_pk,
             'tpp' => $request->tpp,
+            // 'tpp' => 'Penerima TPP',
             'tpp_tambahan' => $request->tpp_tambahan,
+            'subkoor' => $request->subkoor,
+            'nama_subkoor' => $request->nama_subkoor,
+            'sts_subkoor' => $request->sts_subkoor,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');
