@@ -143,11 +143,41 @@
                                     <td>{{ $data->nama_pegawai }}</td>
                                     <td>{{ $data->sts_pegawai }}</td>
                                     <td>{{ $data->nama_opd }}</td>
-                                    <td>{{ $data->nama_jabatan }}</td>
-                                    <td>{{ $data->jenis_jabatan }}</td>
+                                    <td>
+                                        @if($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor')
+                                            {{ $data->nama_subkoor }}
+                                        @else
+                                            {{ $data->nama_jabatan }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan'))
+                                            {{ $data->jenis_non_penyetaraan }}
+                                        @elseif(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan'))
+                                            {{ $data->jenis_penyetaraan }}
+                                        @else
+                                            {{ $data->jenis_jabatan }}
+                                        @endif
+                                    </td>
                                     <td>{{ $data->sts_jabatan }}</td>
-                                    <td>{{ $data->nilai_jabatan }}</td>
-                                    <td>{{ $data->indeks }}</td>
+                                    <td>
+                                        @if(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan'))
+                                            {{ $data->nilai_jabatan_subkor_non_penyetaraan }}
+                                        @elseif(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan'))
+                                            {{ $data->nilai_jabatan_subkor_penyetaraan }}
+                                        @else
+                                            {{ $data->nilai_jabatan }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan'))
+                                            {{ $data->indeks_subkor_non_penyetaraan }}
+                                        @elseif(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan'))
+                                            {{ $data->indeks_subkor_penyetaraan }}
+                                        @else
+                                            {{ $data->indeks }}
+                                        @endif
+                                    </td>
                                     <td>{{ $data->pangkat }}</td>
                                     <td>{{ $data->eselon }}</td>
                                     <td>{{ $data->tpp }}</td>
@@ -292,34 +322,40 @@
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
-                                                    </div> 
+                                                    </div> --}}
                                                      <div class="form-group">
-                                                        <label for="nama_opd">Subkoor</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
+                                                        <label for="subkoor">Subkoor / Koord</label>
+                                                        <select type="text" name="subkoor" class="form-control @error('subkoor') is-invalid @enderror">
+                                                            <option value="">--- Pilih Subkoor / Koord ---</option>
+                                                            <option value="Bukan Subkoor / Koord">Bukan Subkoor / Koord</option>
+                                                            <option value="Subkoor" @if('Subkoor' == $data->subkoor) selected @endif>Subkoor</option>
+                                                            <option value="Koor" @if('Koor' == $data->subkoor) selected @endif>Koor</option>
+                                                        </select>
+                                                        @error('subkoor')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="nama_opd">Nama Subkoor</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                        @error('nama_opd')
+                                                        <label for="nama_subkoor">Nama Subkoor</label>
+                                                        <input type="text" name="nama_subkoor"
+                                                            class="form-control @error('nama_subkoor') is-invalid @enderror" id="nama_subkoor"
+                                                            placeholder="Nama Subkoor . . ." value="{{ $data->nama_subkoor }}">
+                                                        @error('nama_subkoor')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div> 
                                                      <div class="form-group">
-                                                        <label for="nama_opd">Status Subkoor</label>
-                                                        <input type="text" name="nama_opd"
-                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                            placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
+                                                        <label for="nama_opd">Status Subkoor / Koord</label>
+                                                        <select type="text" name="sts_subkoor" class="form-control @error('sts_subkoor') is-invalid @enderror">
+                                                            <option value="">--- Pilih Status ---</option>
+                                                            <option value="Subkoordinator Bukan Hasil Penyetaraan" @if('Subkoordinator Bukan Hasil Penyetaraan' == $data->sts_subkoor) selected @endif>Subkoordinator Bukan Hasil Penyetaraan</option>
+                                                            <option value="Subkoordinator Hasil Penyetaraan" @if('Subkoordinator Hasil Penyetaraan' == $data->sts_subkoor) selected @endif>Subkoordinator Hasil Penyetaraan</option>
+                                                        </select>
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div> 
+                                                    {{--
                                                      <div class="form-group">
                                                         <label for="nama_opd">Nip Atasan Langsung</label>
                                                         <input type="text" name="nama_opd"
