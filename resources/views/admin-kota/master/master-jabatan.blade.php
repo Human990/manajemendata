@@ -26,9 +26,9 @@
                                 <td width="1%" rowspan="2" align="center"><b>No</b></td>
                                 <td width="3%" rowspan="2" align="center"><b>Tahun</b></td>
                                 <td width="24%" rowspan="2" align="center"><b>Nama Jabatan</b></td>
-                                <td width="20%" colspan="4" align="center"><b>Murni</b></td>
-                                <td width="20%" colspan="4" align="center"><b>Subkoordinator / Koordinator </br> Hasil Penyetaraan</b></td>
-                                <td width="20%" colspan="4" align="center"><b>Subkoordinator / Koordinator </br> Bukan Hasil Penyetaraan</b></td>
+                                <td width="20%" colspan="5" align="center"><b>Murni</b></td>
+                                <td width="20%" colspan="5" align="center"><b>Subkoordinator / Koordinator </br> Hasil Penyetaraan</b></td>
+                                <td width="20%" colspan="5" align="center"><b>Subkoordinator / Koordinator </br> Bukan Hasil Penyetaraan</b></td>
                                 <td width="7%" rowspan="2" align="center"><b>Tunjab</b></td>
                                 <td width="5%" rowspan="2" align="center"><b>Action</b></td>
                             </tr>
@@ -37,14 +37,17 @@
                                 <td><b>Kelas</b></td>
                                 <td><b>Nilai</b></td>
                                 <td><b>Indeks</b></td>
+                                <td><b>%</b></td>
                                 <td><b>Jenis</b></td>
                                 <td><b>Kelas</b></td>
                                 <td><b>Nilai</b></td>
                                 <td><b>Indeks</b></td>
+                                <td><b>%</b></td>
                                 <td><b>Jenis</b></td>
                                 <td><b>Kelas</b></td>
                                 <td><b>Nilai</b></td>
                                 <td><b>Indeks</b></td>
+                                <td><b>%</b></td>
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
@@ -59,14 +62,17 @@
                                     <td>{{ $data->kelas_jabatan }}</td>
                                     <td align="right">{{ number_format((float)$data->nilai_jabatan, 0, ',', '.') }}</td>
                                     <td align="right">{{ $data->indeks }}</td>
+                                    <td align="center">{{ $data->prosentase_penerimaan_murni }}</td>
                                     <td>{{ $data->jenis_penyetaraan }}</td>
                                     <td>{{ $data->kelas_jabatan_subkor_penyetaraan }}</td>
-                                    <td>{{ $data->nilai_jabatan_subkor_penyetaraan }}</td>
-                                    <td>{{ $data->indeks_subkor_penyetaraan }}</td>
+                                    <td align="right">{{ number_format((float)$data->nilai_jabatan_subkor_penyetaraan, 0, ',', '.') }}</td>
+                                    <td align="right">{{ $data->indeks_subkor_penyetaraan }}</td>
+                                    <td align="center">{{ $data->prosentase_penerimaan_subkor_penyetaraan }}</td>
                                     <td>{{ $data->jenis_non_penyetaraan }}</td>
                                     <td>{{ $data->kelas_jabatan_subkor_non_penyetaraan }}</td>
-                                    <td>{{ $data->nilai_jabatan_subkor_non_penyetaraan }}</td>
-                                    <td>{{ $data->indeks_subkor_non_penyetaraan }}</td>
+                                    <td align="right">{{ number_format((float)$data->nilai_jabatan_subkor_non_penyetaraan, 0, ',', '.') }}</td>
+                                    <td align="right">{{ $data->indeks_subkor_non_penyetaraan }}</td>
+                                    <td align="center">{{ $data->prosentase_penerimaan_subkor_non_penyetaraan }}</td>
                                     <td align="right">{{ number_format($data->tunjab, 0, ',', '.') }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-info btn-block" data-toggle="modal" data-target="#ubahModalIndeks{{ $i }}">Ubah</button>
@@ -195,6 +201,16 @@
                                                                 <span class="invalid-feedback">{{ $message }}</span>
                                                             @enderror
                                                         </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="tunjab">Tunjangan Jabatan</label>
+                                                        <input type="number" name="tunjab"
+                                                            class="form-control @error('tunjab') is-invalid @enderror" id="tunjab"
+                                                            placeholder="Tunjangan Jabatan . . ." value="{{ $data->tunjab }}">
+                                                        @error('tunjab')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
