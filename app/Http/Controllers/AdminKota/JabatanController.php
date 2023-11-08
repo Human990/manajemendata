@@ -14,44 +14,9 @@ class JabatanController extends Controller
         $pencarian = $request->pencarian;
 
         if (!empty($request->pencarian)) {
-            $datas= Jabatan::select('jabatans.kode_jabatanlama AS id', 
-                                    'jabatans.nama_jabatan', 
-                                    'jabatans.nilai_jabatan', 
-                                    'jabatans.indeks_id', 
-                                    'jabatans.tunjab', 
-                                    'master_tahun.tahun', 
-                                    'indeks.kelas_jabatan', 
-                                    'indeks.indeks', 
-                                    'jenis_jabatans.jenis_jabatan')
-                            ->leftjoin('master_tahun', 'master_tahun.id', '=', 'jabatans.tahun_id')
-                            ->leftJoin('indeks', function ($join) use ($tahunid) {
-                                $join->on('indeks.kode_indeks', '=', 'jabatans.indeks_id');
-                                $join->on('indeks.tahun_id', '=', \DB::raw($tahunid));
-                            })
-                            ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
-                            ->where('jabatans.tahun_id', session()->get('tahun_id_session'))
-                            ->where('jabatans.nama_jabatan', 'LIKE', '%'.$pencarian.'%')
-                            ->orderBy('jabatans.created_at','DESC')
-                            ->paginate(10);
+            $datas= Jabatan::pencarian($pencarian)->paginate(10);
         }else {
-            $datas= Jabatan::select('jabatans.kode_jabatanlama AS id', 
-                                    'jabatans.nama_jabatan', 
-                                    'jabatans.nilai_jabatan', 
-                                    'jabatans.indeks_id', 
-                                    'jabatans.tunjab', 
-                                    'master_tahun.tahun', 
-                                    'indeks.kelas_jabatan', 
-                                    'indeks.indeks', 
-                                    'jenis_jabatans.jenis_jabatan')
-                            ->leftjoin('master_tahun', 'master_tahun.id', '=', 'jabatans.tahun_id')
-                            ->leftJoin('indeks', function ($join) use ($tahunid) {
-                                $join->on('indeks.kode_indeks', '=', 'jabatans.indeks_id');
-                                $join->on('indeks.tahun_id', '=', \DB::raw($tahunid));
-                            })
-                            ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
-                            ->where('jabatans.tahun_id', session()->get('tahun_id_session'))
-                            ->orderBy('jabatans.created_at','DESC')
-                            ->paginate(10);
+            $datas= Jabatan::daftar()->paginate(10);
         }
 
         return view('admin-kota.master.master-jabatan',compact('datas', 'pencarian'));
@@ -72,6 +37,13 @@ class JabatanController extends Controller
             'tunjab' => $request->tunjab,
             'indeks_id' => $request->indeks_id,
             'tahun_id' => session()->get('tahun_id_session'),
+            'indeks_subkor_penyetaraan_id' => $request->indeks_subkor_penyetaraan_id,
+            'indeks_subkor_non_penyetaraan_id' => $request->indeks_subkor_non_penyetaraan_id,
+            'nilai_jabatan_subkor_penyetaraan' => $request->nilai_jabatan_subkor_penyetaraan,
+            'nilai_jabatan_subkor_non_penyetaraan' => $request->nilai_jabatan_subkor_non_penyetaraan,
+            'prosentase_penerimaan_murni' => $request->prosentase_penerimaan_murni,
+            'prosentase_penerimaan_subkor_penyetaraan' => $request->prosentase_penerimaan_subkor_penyetaraan,
+            'prosentase_penerimaan_subkor_non_penyetaraan' => $request->prosentase_penerimaan_subkor_non_penyetaraan,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Disimpan!');
@@ -91,6 +63,13 @@ class JabatanController extends Controller
             'nilai_jabatan' => $request->nilai_jabatan,
             'tunjab' => $request->tunjab,
             'indeks_id' => $request->indeks_id,
+            'indeks_subkor_penyetaraan_id' => $request->indeks_subkor_penyetaraan_id,
+            'indeks_subkor_non_penyetaraan_id' => $request->indeks_subkor_non_penyetaraan_id,
+            'nilai_jabatan_subkor_penyetaraan' => $request->nilai_jabatan_subkor_penyetaraan,
+            'nilai_jabatan_subkor_non_penyetaraan' => $request->nilai_jabatan_subkor_non_penyetaraan,
+            'prosentase_penerimaan_murni' => $request->prosentase_penerimaan_murni,
+            'prosentase_penerimaan_subkor_penyetaraan' => $request->prosentase_penerimaan_subkor_penyetaraan,
+            'prosentase_penerimaan_subkor_non_penyetaraan' => $request->prosentase_penerimaan_subkor_non_penyetaraan,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');
