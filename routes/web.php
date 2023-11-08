@@ -25,6 +25,8 @@ Route::get('/logout',[App\Http\Controllers\AuthController::class,'logout'])->nam
 Route::group(['middleware' => ['auth', 'adminkota']], function () {
     // Rute yang memerlukan autentikasi dan peran admin
     Route::post('/copy/data',[App\Http\Controllers\AdminKota\CopyController::class,'copy'])->name('adminkota-copy-data');
+    Route::get('adminkota/profil',[App\Http\Controllers\AdminKota\ProfilController::class,'index'])->name('adminkota-profil');
+    Route::post('adminkota/ubah/password',[App\Http\Controllers\AdminKota\ProfilController::class,'ubah_password'])->name('adminkota-ubahpassword');
 
     // Rute yang memerlukan autentikasi dan peran admin
     Route::get('/',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'anggaran'])->name('adminkota-dashboard');
@@ -91,6 +93,8 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
 
 Route::group(['middleware' => ['auth', 'adminopd']], function () {
     // Rute yang memerlukan autentikasi dan peran admin
+    Route::get('adminopd/profil',[App\Http\Controllers\Adminopd\ProfilController::class,'index'])->name('adminopd-profil');
+    Route::post('adminopd/ubah/password',[App\Http\Controllers\Adminopd\ProfilController::class,'ubah_password'])->name('adminopd-ubahpassword');
 
     // data pegawai
     Route::get('/admin-opd/data-pegawai',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'index'])->name('adminopd-pegawai');
@@ -110,6 +114,9 @@ Route::group(['middleware' => ['auth', 'adminopd']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'adminjabatan']],function () {
+    Route::get('adminjabatan/profil',[App\Http\Controllers\Adminjabatan\ProfilController::class,'index'])->name('adminjabatan-profil');
+    Route::post('adminjabatan/ubah/password',[App\Http\Controllers\Adminjabatan\ProfilController::class,'ubah_password'])->name('adminjabatan-ubahpassword');
+
     Route::post('/admin-jabatan/put/session',[App\Http\Controllers\Adminjabatan\MasterjabatanlamaController::class,'putsession'])->name('adminjabatan-putsession');
     Route::get('/admin-jabatan/dashboard',[App\Http\Controllers\Adminjabatan\JabatanController::class,'dashboard'])->name('adminjabatan-dashboard');
 
