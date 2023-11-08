@@ -25,11 +25,13 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Master Jabatan Baru</span>
         </a> --}}
-        <a href="{{ route('adminjabatan-jabatan') }}" class="nav-link">
+
+
+        <a @if(session()->get('tahun_id_session')) href="{{ route('adminjabatan-jabatan') }}" @endif class="nav-link">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Master Jabatan</span>
         </a>
-        <a href="{{ route('adminjabatan-indeks') }}" class="nav-link">
+        <a @if(session()->get('tahun_id_session')) href="{{ route('adminjabatan-indeks') }}" @endif class="nav-link">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Master Indeks</span>
         </a>
