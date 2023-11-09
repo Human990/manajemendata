@@ -44,6 +44,17 @@ class JabatanController extends Controller
             'prosentase_penerimaan_murni' => $request->prosentase_penerimaan_murni,
             'prosentase_penerimaan_subkor_penyetaraan' => $request->prosentase_penerimaan_subkor_penyetaraan,
             'prosentase_penerimaan_subkor_non_penyetaraan' => $request->prosentase_penerimaan_subkor_non_penyetaraan,
+
+            'indeks_koor_penyetaraan_id' => $request->indeks_koor_penyetaraan_id,
+            'indeks_koor_non_penyetaraan_id' => $request->indeks_koor_non_penyetaraan_id,
+            'nilai_jabatan_koor_penyetaraan' => $request->nilai_jabatan_koor_penyetaraan,
+            'nilai_jabatan_koor_non_penyetaraan' => $request->nilai_jabatan_koor_non_penyetaraan,
+            'prosentase_penerimaan_koor_penyetaraan' => $request->prosentase_penerimaan_koor_penyetaraan,
+            'prosentase_penerimaan_koor_non_penyetaraan' => $request->prosentase_penerimaan_koor_non_penyetaraan,
+
+            'tunjab' => $request->tunjab,
+            'tunjab_subkor' => $request->tunjab_subkor,
+            'tunjab_koor' => $request->tunjab_koor,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Disimpan!');
@@ -70,6 +81,17 @@ class JabatanController extends Controller
             'prosentase_penerimaan_murni' => $request->prosentase_penerimaan_murni,
             'prosentase_penerimaan_subkor_penyetaraan' => $request->prosentase_penerimaan_subkor_penyetaraan,
             'prosentase_penerimaan_subkor_non_penyetaraan' => $request->prosentase_penerimaan_subkor_non_penyetaraan,
+            
+            'indeks_koor_penyetaraan_id' => $request->indeks_koor_penyetaraan_id,
+            'indeks_koor_non_penyetaraan_id' => $request->indeks_koor_non_penyetaraan_id,
+            'nilai_jabatan_koor_penyetaraan' => $request->nilai_jabatan_koor_penyetaraan,
+            'nilai_jabatan_koor_non_penyetaraan' => $request->nilai_jabatan_koor_non_penyetaraan,
+            'prosentase_penerimaan_koor_penyetaraan' => $request->prosentase_penerimaan_koor_penyetaraan,
+            'prosentase_penerimaan_koor_non_penyetaraan' => $request->prosentase_penerimaan_koor_non_penyetaraan,
+
+            'tunjab' => $request->tunjab,
+            'tunjab_subkor' => $request->tunjab_subkor,
+            'tunjab_koor' => $request->tunjab_koor,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');

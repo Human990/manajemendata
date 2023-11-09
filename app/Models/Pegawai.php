@@ -46,6 +46,8 @@ class Pegawai extends Model
                                 'jabatans.tunjab', 
                                 'jabatans.nilai_jabatan_subkor_penyetaraan', 
                                 'jabatans.nilai_jabatan_subkor_non_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_non_penyetaraan', 
                                 'master_tahun.tahun', 
                                 'indeks.kelas_jabatan', 
                                 'indeks.indeks', 
@@ -53,9 +55,15 @@ class Pegawai extends Model
                                 'indeks_subkor_penyetaraan.indeks AS indeks_subkor_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_subkor_non_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.indeks AS indeks_subkor_non_penyetaraan', 
+                                'indeks_koor_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_penyetaraan', 
+                                'indeks_koor_penyetaraan.indeks AS indeks_koor_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_non_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.indeks AS indeks_koor_non_penyetaraan', 
                                 'jenis_jabatans.jenis_jabatan',
                                 'jenis_jabatan_subkor_penyetaraan.jenis_jabatan AS jenis_penyetaraan',
                                 'jenis_jabatan_subkor_non_penyetaraan.jenis_jabatan AS jenis_non_penyetaraan',
+                                'jenis_jabatan_koor_penyetaraan.jenis_jabatan AS jenis_koor_penyetaraan',
+                                'jenis_jabatan_koor_non_penyetaraan.jenis_jabatan AS jenis_koor_non_penyetaraan',
                                 'opds.nama_opd'
                             )
                         ->leftjoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
@@ -63,9 +71,13 @@ class Pegawai extends Model
                         ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
                         ->leftJoin('indeks AS indeks_subkor_penyetaraan', 'indeks_subkor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_penyetaraan_id')
                         ->leftJoin('indeks AS indeks_subkor_non_penyetaraan', 'indeks_subkor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_non_penyetaraan_id')
+                        ->leftJoin('indeks AS indeks_koor_penyetaraan', 'indeks_koor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_penyetaraan_id')
+                        ->leftJoin('indeks AS indeks_koor_non_penyetaraan', 'indeks_koor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_non_penyetaraan_id')
                         ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
                         ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_penyetaraan', 'jenis_jabatan_subkor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
                         ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_non_penyetaraan', 'jenis_jabatan_subkor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
+                        ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_penyetaraan', 'jenis_jabatan_koor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                        ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_non_penyetaraan', 'jenis_jabatan_koor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
                         ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
                         ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
                         ->where('opds.tahun_id', session()->get('tahun_id_session'))
@@ -99,6 +111,8 @@ class Pegawai extends Model
                                 'jabatans.tunjab', 
                                 'jabatans.nilai_jabatan_subkor_penyetaraan', 
                                 'jabatans.nilai_jabatan_subkor_non_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_non_penyetaraan', 
                                 'master_tahun.tahun', 
                                 'indeks.kelas_jabatan', 
                                 'indeks.indeks', 
@@ -106,9 +120,15 @@ class Pegawai extends Model
                                 'indeks_subkor_penyetaraan.indeks AS indeks_subkor_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_subkor_non_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.indeks AS indeks_subkor_non_penyetaraan', 
+                                'indeks_koor_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_penyetaraan', 
+                                'indeks_koor_penyetaraan.indeks AS indeks_koor_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_non_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.indeks AS indeks_koor_non_penyetaraan', 
                                 'jenis_jabatans.jenis_jabatan',
                                 'jenis_jabatan_subkor_penyetaraan.jenis_jabatan AS jenis_penyetaraan',
                                 'jenis_jabatan_subkor_non_penyetaraan.jenis_jabatan AS jenis_non_penyetaraan',
+                                'jenis_jabatan_koor_penyetaraan.jenis_jabatan AS jenis_koor_penyetaraan',
+                                'jenis_jabatan_koor_non_penyetaraan.jenis_jabatan AS jenis_koor_non_penyetaraan',
                                 'opds.nama_opd'
                             )
                         ->leftjoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
@@ -116,9 +136,13 @@ class Pegawai extends Model
                         ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
                         ->leftJoin('indeks AS indeks_subkor_penyetaraan', 'indeks_subkor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_penyetaraan_id')
                         ->leftJoin('indeks AS indeks_subkor_non_penyetaraan', 'indeks_subkor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_non_penyetaraan_id')
+                        ->leftJoin('indeks AS indeks_koor_penyetaraan', 'indeks_koor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_penyetaraan_id')
+                        ->leftJoin('indeks AS indeks_koor_non_penyetaraan', 'indeks_koor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_non_penyetaraan_id')
                         ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
                         ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_penyetaraan', 'jenis_jabatan_subkor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
                         ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_non_penyetaraan', 'jenis_jabatan_subkor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
+                        ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_penyetaraan', 'jenis_jabatan_koor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                        ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_non_penyetaraan', 'jenis_jabatan_koor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
                         ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
                         ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
                         ->where('opds.tahun_id', session()->get('tahun_id_session'))
@@ -216,6 +240,8 @@ class Pegawai extends Model
                                 'jabatans.tunjab', 
                                 'jabatans.nilai_jabatan_subkor_penyetaraan', 
                                 'jabatans.nilai_jabatan_subkor_non_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_non_penyetaraan', 
                                 'master_tahun.tahun', 
                                 'indeks.kelas_jabatan', 
                                 'indeks.indeks', 
@@ -223,9 +249,15 @@ class Pegawai extends Model
                                 'indeks_subkor_penyetaraan.indeks AS indeks_subkor_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_subkor_non_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.indeks AS indeks_subkor_non_penyetaraan', 
+                                'indeks_koor_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_penyetaraan', 
+                                'indeks_koor_penyetaraan.indeks AS indeks_koor_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_non_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.indeks AS indeks_koor_non_penyetaraan', 
                                 'jenis_jabatans.jenis_jabatan',
                                 'jenis_jabatan_subkor_penyetaraan.jenis_jabatan AS jenis_penyetaraan',
                                 'jenis_jabatan_subkor_non_penyetaraan.jenis_jabatan AS jenis_non_penyetaraan',
+                                'jenis_jabatan_koor_penyetaraan.jenis_jabatan AS jenis_koor_penyetaraan',
+                                'jenis_jabatan_koor_non_penyetaraan.jenis_jabatan AS jenis_koor_non_penyetaraan',
                                 'opds.nama_opd'
                             )
                             ->leftjoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
@@ -233,9 +265,13 @@ class Pegawai extends Model
                             ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
                             ->leftJoin('indeks AS indeks_subkor_penyetaraan', 'indeks_subkor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_penyetaraan_id')
                             ->leftJoin('indeks AS indeks_subkor_non_penyetaraan', 'indeks_subkor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_non_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_koor_penyetaraan', 'indeks_koor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_koor_non_penyetaraan', 'indeks_koor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_non_penyetaraan_id')
                             ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
                             ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_penyetaraan', 'jenis_jabatan_subkor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
                             ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_non_penyetaraan', 'jenis_jabatan_subkor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_penyetaraan', 'jenis_jabatan_koor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_non_penyetaraan', 'jenis_jabatan_koor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
                             ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
                         ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
                         ->where('indeks.kode_indeks', $filter)
@@ -269,6 +305,8 @@ class Pegawai extends Model
                                 'jabatans.tunjab', 
                                 'jabatans.nilai_jabatan_subkor_penyetaraan', 
                                 'jabatans.nilai_jabatan_subkor_non_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_non_penyetaraan', 
                                 'master_tahun.tahun', 
                                 'indeks.kelas_jabatan', 
                                 'indeks.indeks', 
@@ -276,9 +314,15 @@ class Pegawai extends Model
                                 'indeks_subkor_penyetaraan.indeks AS indeks_subkor_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_subkor_non_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.indeks AS indeks_subkor_non_penyetaraan', 
+                                'indeks_koor_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_penyetaraan', 
+                                'indeks_koor_penyetaraan.indeks AS indeks_koor_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_non_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.indeks AS indeks_koor_non_penyetaraan', 
                                 'jenis_jabatans.jenis_jabatan',
                                 'jenis_jabatan_subkor_penyetaraan.jenis_jabatan AS jenis_penyetaraan',
                                 'jenis_jabatan_subkor_non_penyetaraan.jenis_jabatan AS jenis_non_penyetaraan',
+                                'jenis_jabatan_koor_penyetaraan.jenis_jabatan AS jenis_koor_penyetaraan',
+                                'jenis_jabatan_koor_non_penyetaraan.jenis_jabatan AS jenis_koor_non_penyetaraan',
                                 'opds.nama_opd'
                             )
                             ->leftjoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
@@ -286,9 +330,13 @@ class Pegawai extends Model
                             ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
                             ->leftJoin('indeks AS indeks_subkor_penyetaraan', 'indeks_subkor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_penyetaraan_id')
                             ->leftJoin('indeks AS indeks_subkor_non_penyetaraan', 'indeks_subkor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_non_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_koor_penyetaraan', 'indeks_koor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_koor_non_penyetaraan', 'indeks_koor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_non_penyetaraan_id')
                             ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
                             ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_penyetaraan', 'jenis_jabatan_subkor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
                             ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_non_penyetaraan', 'jenis_jabatan_subkor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_penyetaraan', 'jenis_jabatan_koor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_non_penyetaraan', 'jenis_jabatan_koor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
                             ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
                         ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
                         ->where('indeks.kode_indeks', $filter)
@@ -388,6 +436,8 @@ class Pegawai extends Model
                                 'jabatans.tunjab', 
                                 'jabatans.nilai_jabatan_subkor_penyetaraan', 
                                 'jabatans.nilai_jabatan_subkor_non_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_non_penyetaraan', 
                                 'master_tahun.tahun', 
                                 'indeks.kelas_jabatan', 
                                 'indeks.indeks', 
@@ -395,9 +445,15 @@ class Pegawai extends Model
                                 'indeks_subkor_penyetaraan.indeks AS indeks_subkor_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_subkor_non_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.indeks AS indeks_subkor_non_penyetaraan', 
+                                'indeks_koor_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_penyetaraan', 
+                                'indeks_koor_penyetaraan.indeks AS indeks_koor_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_non_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.indeks AS indeks_koor_non_penyetaraan', 
                                 'jenis_jabatans.jenis_jabatan',
                                 'jenis_jabatan_subkor_penyetaraan.jenis_jabatan AS jenis_penyetaraan',
                                 'jenis_jabatan_subkor_non_penyetaraan.jenis_jabatan AS jenis_non_penyetaraan',
+                                'jenis_jabatan_koor_penyetaraan.jenis_jabatan AS jenis_koor_penyetaraan',
+                                'jenis_jabatan_koor_non_penyetaraan.jenis_jabatan AS jenis_koor_non_penyetaraan',
                                 'opds.nama_opd'
                             )
                         ->leftjoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
@@ -405,9 +461,13 @@ class Pegawai extends Model
                         ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
                         ->leftJoin('indeks AS indeks_subkor_penyetaraan', 'indeks_subkor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_penyetaraan_id')
                         ->leftJoin('indeks AS indeks_subkor_non_penyetaraan', 'indeks_subkor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_non_penyetaraan_id')
+                        ->leftJoin('indeks AS indeks_koor_penyetaraan', 'indeks_koor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_penyetaraan_id')
+                        ->leftJoin('indeks AS indeks_koor_non_penyetaraan', 'indeks_koor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_non_penyetaraan_id')
                         ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
                         ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_penyetaraan', 'jenis_jabatan_subkor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
                         ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_non_penyetaraan', 'jenis_jabatan_subkor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
+                        ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_penyetaraan', 'jenis_jabatan_koor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                        ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_non_penyetaraan', 'jenis_jabatan_koor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
                         ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
                         ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
                         ->where(function ($query) use ($pencarian) {
@@ -445,6 +505,8 @@ class Pegawai extends Model
                                 'jabatans.tunjab', 
                                 'jabatans.nilai_jabatan_subkor_penyetaraan', 
                                 'jabatans.nilai_jabatan_subkor_non_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_penyetaraan', 
+                                'jabatans.nilai_jabatan_koor_non_penyetaraan', 
                                 'master_tahun.tahun', 
                                 'indeks.kelas_jabatan', 
                                 'indeks.indeks', 
@@ -452,9 +514,15 @@ class Pegawai extends Model
                                 'indeks_subkor_penyetaraan.indeks AS indeks_subkor_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_subkor_non_penyetaraan', 
                                 'indeks_subkor_non_penyetaraan.indeks AS indeks_subkor_non_penyetaraan', 
+                                'indeks_koor_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_penyetaraan', 
+                                'indeks_koor_penyetaraan.indeks AS indeks_koor_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_non_penyetaraan', 
+                                'indeks_koor_non_penyetaraan.indeks AS indeks_koor_non_penyetaraan', 
                                 'jenis_jabatans.jenis_jabatan',
                                 'jenis_jabatan_subkor_penyetaraan.jenis_jabatan AS jenis_penyetaraan',
                                 'jenis_jabatan_subkor_non_penyetaraan.jenis_jabatan AS jenis_non_penyetaraan',
+                                'jenis_jabatan_koor_penyetaraan.jenis_jabatan AS jenis_koor_penyetaraan',
+                                'jenis_jabatan_koor_non_penyetaraan.jenis_jabatan AS jenis_koor_non_penyetaraan',
                                 'opds.nama_opd'
                             )
                         ->leftjoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
@@ -462,9 +530,13 @@ class Pegawai extends Model
                         ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
                         ->leftJoin('indeks AS indeks_subkor_penyetaraan', 'indeks_subkor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_penyetaraan_id')
                         ->leftJoin('indeks AS indeks_subkor_non_penyetaraan', 'indeks_subkor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_non_penyetaraan_id')
+                        ->leftJoin('indeks AS indeks_koor_penyetaraan', 'indeks_koor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_penyetaraan_id')
+                        ->leftJoin('indeks AS indeks_koor_non_penyetaraan', 'indeks_koor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_non_penyetaraan_id')
                         ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
                         ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_penyetaraan', 'jenis_jabatan_subkor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
                         ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_non_penyetaraan', 'jenis_jabatan_subkor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
+                        ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_penyetaraan', 'jenis_jabatan_koor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                        ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_non_penyetaraan', 'jenis_jabatan_koor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
                         ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
                         ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
                         ->where('opds.kode_opd', Auth::user()->opd_id)
