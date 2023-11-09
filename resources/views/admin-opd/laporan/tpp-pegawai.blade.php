@@ -143,11 +143,41 @@
                                 <td>{{ $data->nama_pegawai }}</td>
                                 <td>{{ $data->sts_pegawai }}</td>
                                 <td>{{ $data->nama_opd }}</td>
-                                <td>{{ $data->nama_jabatan }}</td>
-                                <td>{{ $data->jenis_jabatan }}</td>
-                                <td>{{ $data->sts_jabatan }}</td>
-                                <td>{{ $data->nilai_jabatan }}</td>
-                                <td>{{ $data->indeks }}</td>
+                                <td>
+                                        @if($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor')
+                                            {{ $data->nama_subkoor }}
+                                        @else
+                                            {{ $data->nama_jabatan }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan'))
+                                            {{ $data->jenis_non_penyetaraan }}
+                                        @elseif(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan'))
+                                            {{ $data->jenis_penyetaraan }}
+                                        @else
+                                            {{ $data->jenis_jabatan }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $data->sts_jabatan }}</td>
+                                    <td>
+                                        @if(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan'))
+                                            {{ $data->nilai_jabatan_subkor_non_penyetaraan }}
+                                        @elseif(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan'))
+                                            {{ $data->nilai_jabatan_subkor_penyetaraan }}
+                                        @else
+                                            {{ $data->nilai_jabatan }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan'))
+                                            {{ $data->indeks_subkor_non_penyetaraan }}
+                                        @elseif(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan'))
+                                            {{ $data->indeks_subkor_penyetaraan }}
+                                        @else
+                                            {{ $data->indeks }}
+                                        @endif
+                                    </td>
                                 <td>{{ $data->pangkat }}</td>
                                 <td>{{ $data->eselon }}</td>
                                 <td>{{ $data->tpp }}</td>
