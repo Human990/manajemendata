@@ -3,6 +3,12 @@
 @section('pegawai-bulanan', 'active')
 @section('content')
     <div class="container-fluid">
+        @if(!session()->get('tahun_id_session'))
+            <h5 class="card-title; blinking-text">Silahkan pilih tahun lalu klik tombol aktifkan diatas!</h5>
+        @endif
+    </div>
+
+    <div class="container-fluid">
         @if($catatans->total() >= 1)
         <div class="card card-headline">
             <div class="card-header">
