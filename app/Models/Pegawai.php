@@ -30,7 +30,7 @@ class Pegawai extends Model
                                 'pegawais.tpp_tambahan', 
                                 'pegawais.jumlah_pemangku', 
                                 'pegawais.basic_tpp', 
-                                'pegawais.total_bulan_penerimaan', 
+                                 
                                 'pegawais.opd_id', 
                                 'pegawais.bulan_bk',
                                 'pegawais.bulan_pk',
@@ -95,7 +95,7 @@ class Pegawai extends Model
                                 'pegawais.tpp_tambahan', 
                                 'pegawais.jumlah_pemangku', 
                                 'pegawais.basic_tpp', 
-                                'pegawais.total_bulan_penerimaan', 
+                                 
                                 'pegawais.opd_id', 
                                 'pegawais.bulan_bk',
                                 'pegawais.bulan_pk',
@@ -161,7 +161,7 @@ class Pegawai extends Model
                                 'pegawais.tpp_tambahan', 
                                 'pegawais.jumlah_pemangku', 
                                 'pegawais.basic_tpp', 
-                                'pegawais.total_bulan_penerimaan', 
+                                 
                                 'pegawais.opd_id', 
                                 'pegawais.bulan_bk',
                                 'pegawais.bulan_pk',
@@ -224,7 +224,7 @@ class Pegawai extends Model
                                 'pegawais.tpp_tambahan', 
                                 'pegawais.jumlah_pemangku', 
                                 'pegawais.basic_tpp', 
-                                'pegawais.total_bulan_penerimaan', 
+                                 
                                 'pegawais.opd_id', 
                                 'pegawais.bulan_bk',
                                 'pegawais.bulan_pk',
@@ -289,7 +289,7 @@ class Pegawai extends Model
                                 'pegawais.tpp_tambahan', 
                                 'pegawais.jumlah_pemangku', 
                                 'pegawais.basic_tpp', 
-                                'pegawais.total_bulan_penerimaan', 
+                                 
                                 'pegawais.opd_id', 
                                 'pegawais.bulan_bk',
                                 'pegawais.bulan_pk',
@@ -356,7 +356,7 @@ class Pegawai extends Model
                                 'pegawais.tpp_tambahan', 
                                 'pegawais.jumlah_pemangku', 
                                 'pegawais.basic_tpp', 
-                                'pegawais.total_bulan_penerimaan', 
+                                 
                                 'pegawais.opd_id', 
                                 'pegawais.bulan_bk',
                                 'pegawais.bulan_pk',
@@ -420,7 +420,7 @@ class Pegawai extends Model
                                 'pegawais.tpp_tambahan', 
                                 'pegawais.jumlah_pemangku', 
                                 'pegawais.basic_tpp', 
-                                'pegawais.total_bulan_penerimaan', 
+                                 
                                 'pegawais.opd_id', 
                                 'pegawais.bulan_bk',
                                 'pegawais.bulan_pk',
@@ -489,7 +489,7 @@ class Pegawai extends Model
                                 'pegawais.tpp_tambahan', 
                                 'pegawais.jumlah_pemangku', 
                                 'pegawais.basic_tpp', 
-                                'pegawais.total_bulan_penerimaan', 
+                                 
                                 'pegawais.opd_id', 
                                 'pegawais.bulan_bk',
                                 'pegawais.bulan_pk',
@@ -560,7 +560,7 @@ class Pegawai extends Model
                                 'pegawais.tpp_tambahan', 
                                 'pegawais.jumlah_pemangku', 
                                 'pegawais.basic_tpp', 
-                                'pegawais.total_bulan_penerimaan', 
+                                 
                                 'pegawais.opd_id', 
                                 'pegawais.bulan_bk',
                                 'pegawais.bulan_pk',
