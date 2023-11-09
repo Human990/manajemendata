@@ -151,29 +151,41 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan'))
+                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                             {{ $data->jenis_non_penyetaraan }}
-                                        @elseif(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan'))
+                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
                                             {{ $data->jenis_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->jenis_koor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                            {{ $data->jenis_koor_penyetaraan }}
                                         @else
                                             {{ $data->jenis_jabatan }}
                                         @endif
                                     </td>
                                     <td>{{ $data->sts_jabatan }}</td>
                                     <td>
-                                        @if(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan'))
+                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                             {{ $data->nilai_jabatan_subkor_non_penyetaraan }}
-                                        @elseif(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan'))
+                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
                                             {{ $data->nilai_jabatan_subkor_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_koor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_koor_penyetaraan }}
                                         @else
                                             {{ $data->nilai_jabatan }}
                                         @endif
                                     </td>
                                     <td>
-                                        @if(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan'))
+                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                             {{ $data->indeks_subkor_non_penyetaraan }}
-                                        @elseif(($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor') && ($data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan'))
+                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
                                             {{ $data->indeks_subkor_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->indeks_koor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                            {{ $data->indeks_koor_penyetaraan }}
                                         @else
                                             {{ $data->indeks }}
                                         @endif
@@ -350,6 +362,8 @@
                                                             <option value="">--- Pilih Status ---</option>
                                                             <option value="Subkoordinator Bukan Hasil Penyetaraan" @if('Subkoordinator Bukan Hasil Penyetaraan' == $data->sts_subkoor) selected @endif>Subkoordinator Bukan Hasil Penyetaraan</option>
                                                             <option value="Subkoordinator Hasil Penyetaraan" @if('Subkoordinator Hasil Penyetaraan' == $data->sts_subkoor) selected @endif>Subkoordinator Hasil Penyetaraan</option>
+                                                            <option value="Koordinator Bukan Hasil Penyetaraan" @if('Koordinator Bukan Hasil Penyetaraan' == $data->sts_subkoor) selected @endif>Koordinator Bukan Hasil Penyetaraan</option>
+                                                            <option value="Koordinator Hasil Penyetaraan" @if('Koordinator Hasil Penyetaraan' == $data->sts_subkoor) selected @endif>Koordinator Hasil Penyetaraan</option>
                                                         </select>
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
@@ -541,6 +555,8 @@
                                                             <option value="">--- Pilih Status ---</option>
                                                             <option value="Subkoordinator Bukan Hasil Penyetaraan">Subkoordinator Bukan Hasil Penyetaraan</option>
                                                             <option value="Subkoordinator Hasil Penyetaraan">Subkoordinator Hasil Penyetaraan</option>
+                                                            <option value="Koordinator Bukan Hasil Penyetaraan">Koordinator Bukan Hasil Penyetaraan</option>
+                                                            <option value="Koordinator Hasil Penyetaraan">Koordinator Hasil Penyetaraan</option>
                                                         </select>
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
