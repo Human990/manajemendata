@@ -3,15 +3,9 @@
 namespace App\Http\Controllers\Adminopd;
 
 use App\Models\Tahun;
-use App\Models\Pegbul;
-use App\Models\Rupiah;
-use App\Models\Jabatan;
 use App\Models\Pegawai;
-use App\Models\Jabatanbaru;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class PegawaibulananOpdController extends Controller
 {
@@ -19,23 +13,6 @@ class PegawaibulananOpdController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-
-        // $datas = Pegawai::select(
-        //     'pegawais.*',
-        //     'master_tahun.tahun',
-        //     'jabatans.nama_jabatan',
-        //     'opds.nama_opd'
-        // )
-        // ->leftJoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
-        // ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawais.kode_jabatanlama')
-        // ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
-        // ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
-        // ->when($search, function ($query) use ($search) {
-        //     $query->where('nama_pegawai', 'LIKE', '%' . $search . '%')
-        //           ->orWhere('nip', 'LIKE', '%' . $search . '%');
-        // })
-        // ->orderBy('pegawais.id', 'ASC')
-        // ->paginate(10);
 
         $filter = '';
         $filter = $request->filter;
@@ -79,27 +56,6 @@ class PegawaibulananOpdController extends Controller
         ]);
 
         Pegawai::create([
-            // 'nip' => $request->nip,
-            // 'nama_pegawai' => $request->nama_pegawai,
-            // 'sts_pegawai' => $request->sts_pegawai,
-            // 'ukor_eselon2' => $request->ukor_eselon2,
-            // 'kode_jabatanlama' => $request->kode_jabatanlama,
-            // 'pangkat' => $request->pangkat,
-            // 'eselon' => $request->eselon,
-            // 'tpp' => $request->tpp,
-            // 'sertifikasi_guru' => $request->sertifikasi_guru,
-            // 'pa_kpa' => $request->pa_kpa,
-            // 'pbj' => $request->pbj,
-            // 'jft' => $request->jft,
-            // 'subkoor' => $request->subkoor,
-            // 'nama_subkoor' => $request->nama_subkoor,
-            // 'sts_subkoor' => $request->sts_subkoor,
-            // 'atasan_nip' => $request->atasan_nip,
-            // 'atasan_nama' => $request->atasan_nama,
-            // 'atasannya_atasan_nip' => $request->atasannya_atasan_nip,
-            // 'atasannya_atasan_nama' => $request->atasannya_atasan_nama,
-            // 'bulan' => $request->bulan,
-            // 'tpp_tambahan' => $request->tpp_tambahan,
 
             'opd_id' => $request->opd_id,
             'nip' => $request->nip,
