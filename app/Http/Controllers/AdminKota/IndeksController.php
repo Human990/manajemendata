@@ -33,6 +33,7 @@ class IndeksController extends Controller
         Indeks::create([
             'jenis_jabatan' => $request->jenis_jabatan,
             'kelas_jabatan' => $request->kelas_jabatan,
+            'jenis_jabatan_id' => $request->jenis_jabatan,
             'indeks' => $request->indeks,
             'tahun_id' => session()->get('tahun_id_session'),
         ]);
@@ -53,6 +54,7 @@ class IndeksController extends Controller
             'jenis_jabatan' => $request->jenis_jabatan,
             'kelas_jabatan' => $request->kelas_jabatan,
             'indeks' => $request->indeks,
+            'jenis_jabatan_id' => $request->jenis_jabatan,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');
