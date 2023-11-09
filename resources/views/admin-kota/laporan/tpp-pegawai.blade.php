@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="card card-headline">
             <div class="card-header">
-                <h3 class="card-title"><b>Rekap TPP</b>/Per Person</h3>
+                <h3 class="card-title"><b>Rekap TPP</b>/Per Person {{ session()->get('tahun_session') }}</h3>
             </div>
 
             {{-- <div class="card-body">
@@ -13,7 +13,7 @@
             <a href="{{route('pegawaiexport')}}" class="btn btn-warning">Export</a>
         </div> --}}
             <div class="card-body">
-                <div class="row d-flex align-items-center">
+                {{-- <div class="row d-flex align-items-center">
                     <div class="col-2">
                         <div class="alert alert-primary text-center mt-3" role="alert">
                             Jumlah Pegawai: {{ $jumlah_pegawai }}
@@ -44,22 +44,50 @@
                             Jumlah Pegawai Definitif: {{ $jumlah_pegawai_definitif}}
                         </div>
                     </div>
-                </div>
-                                    
-                <div class="filter">
-                    <input type="hidden" id="opd_hidden" name="opd" value="{{ request('opd') }}">
-                    <label for="opd_filter">Filter OPD:</label>
-                    <select id="opd_filter" class="form-control select2">
-                        <option value="">Semua OPD</option>
-                        @foreach($opds as $opd)
-                            <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
-                        @endforeach
-                    </select>
-                    <label class="mt-2" for="search">Cari:</label>
-                    <input type="text" id="search" name="search" class="form-control" value="{{ request('search') }}">
-                    <div class="text-center mt-2 mb-2">
-                        <button class="btn btn-primary" id="filterBtn">Filter</button>
-                        <a href="{{ route('adminkota-tpp-pegawai')}}" class="btn btn-secondary">Reset</a>
+                </div> --}}
+                <div class="card-body">
+                    <form action="{{ route('adminkota-tpp-pegawai') }}" method="GET">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Cari nama atau nip Pegawai . . ." name="search" value="{{ request('search') }}">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Cari</button>
+                            </div>
+                            <div class="input-group-append">
+                                <a href="{{ route('adminkota-tpp-pegawai') }}" class="btn btn-outline-secondary">Reset</a>
+                            </div>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFilterPegawai" type="button">filter</button>
+                            </div>
+                        </div>
+                    </form>
+    
+                    <div class="modal fade" id="createFilterPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="createModalLabel">Filter Data Pegawai</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ route('adminkota-tpp-pegawai') }}" method="GET" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="filterOpd">Nama Opd</label>
+                                            <select type="text" name="filterOpd" class="form-control @error('filterOpd') is-invalid @enderror">
+                                                @foreach($opds as $opd)
+                                                    <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -101,19 +129,61 @@
                                     <td>{{ $data->nip }}</td>
                                     <td>{{ $data->nama_pegawai }}</td>
                                     <td>{{ $data->nama_opd }}</td>
-                                    <td>{{ $data->nama_jabatan}}</td>
-                                    <td>{{ $data->jenis_jabatan}}</td>
+                                    <td>
+                                        @if($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor')
+                                            {{ $data->nama_subkoor }}
+                                        @else
+                                            {{ $data->nama_jabatan }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->jenis_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                            {{ $data->jenis_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->jenis_koor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                            {{ $data->jenis_koor_penyetaraan }}
+                                        @else
+                                            {{ $data->jenis_jabatan }}
+                                        @endif
+                                    </td>
                                     <td>{{ $data->kelas_jabatan }}</td>
-                                    <td>{{ $data->nilai_jabatan }}</td>
-                                    <td>{{ $data->nilai_indeks }}</td>
+                                    <td>
+                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_subkor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_subkor_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_koor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_koor_penyetaraan }}
+                                        @else
+                                            {{ $data->nilai_jabatan }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->indeks_subkor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                            {{ $data->indeks_subkor_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->indeks_koor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                            {{ $data->indeks_koor_penyetaraan }}
+                                        @else
+                                            {{ $data->indeks }}
+                                        @endif
+                                    </td>
                                     <td>{{ $data->bulan_bk}}</td>
                                     <td>{{ $data->bulan_pk}}</td>
                                     
-                                    @php
-                                        $rumus_bk_tahunan = $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah * $data->bulan_bk;
-                                        $rumus_bk_bulanan = $data->nilai_jabatan * $data->nilai_indeks * $rupiah1->jumlah;
-                                        $rumus_pk_tahunan = $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah * $data->bulan_pk;
-                                        $rumus_pk_bulanan = $data->nilai_jabatan * $data->nilai_indeks * $rupiah2->jumlah;
+                                    {{-- @php
+                                        $rumus_bk_tahunan = $nilai_jabatan * $indeks * $bk * $data->bulan_bk;
+                                        $rumus_bk_bulanan = $nilai_jabatan * $indeks * $bk;
+                                        $rumus_pk_tahunan = $nilai_jabatan * $indeks * $pk * $data->bulan_pk;
+                                        $rumus_pk_bulanan = $nilai_jabatan * $indeks * $pk;
                                         $rumus_total_tpp_bulanan = $rumus_bk_bulanan + $rumus_pk_bulanan;
                                         $rumus_total_tpp_tahunan = $rumus_bk_tahunan + $rumus_pk_tahunan;
                                 
@@ -123,8 +193,8 @@
                                         $rumus_pk_tahunan_total += $rumus_pk_tahunan;
                                         $rumus_pk_bulanan_total += $rumus_pk_bulanan;
                                         $rumus_total_tpp_bulanan_total += $rumus_total_tpp_bulanan;
-                                        $rumus_total_tpp_tahunan_total += $rumus_total_tpp_tahunan;
-                                    @endphp
+                                        $rumus_total_tpp_tahunan_total += $rumus_total_tpp_tahunan; --}}
+                                    {{-- @endphp --}}
                                     <td>{{ number_format($rumus_bk_tahunan,0,',','.') }}</td>
                                     <td>{{ number_format($rumus_bk_bulanan,0,',','.') }}</td>
                                     <td>{{ number_format($rumus_pk_tahunan,0,',','.') }}</td>
@@ -161,7 +231,10 @@
             <div class="text-center">
                 
                 {{-- {!! $pegbul->render() !!} --}}
-                {{ $datas->links() }}
+                {{ $datas->appends([
+                    'search' => $search,
+                    'filterOpd' => $filterOpd,
+                    ])->links() }}
             </div>
         </div>
     </div>
