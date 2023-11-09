@@ -68,33 +68,36 @@
                             </td>
                             <td>
                                 <label><input type="checkbox" class="toggle-column" data-column="10" checked> Pangkat</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="11" checked> Eselon</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="12"> Status Penerimaan TPP</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="11" checked> Golongan</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="12" checked> Eselon</label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="13"> Sertifikasi Guru</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="14"> PA/KPA</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="15"> Sertifikasi PBJ</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="13"> Status Penerimaan TPP</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="14"> Sertifikasi Guru</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="15"> PA/KPA</label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="16"> Tipe Jabatan</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="17"> Subkoor</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="18"> Nama Subkoor</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="16"> Sertifikasi PBJ</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="17"> Tipe Jabatan</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="18"> Subkoor</label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="19"> Status Subkoor</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="20"> NIP Penilai</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="21"> Nama Penilai</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="19"> Nama Subkoor</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="20"> Status Subkoor</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="21"> NIP Penilai</label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="22"> Nip Atasan Penilai</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="23"> Nama Atasan Penilai</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="24"> Pensiun</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="22"> Nama Penilai</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="23"> Nip Atasan Penilai</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="24"> Nama Atasan Penilai</label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="25" checked> Jumlah Bulan Penerimaan BK</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="26" checked> Jumlah Bulan Penerimaan PK</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="27" checked> Tpp Tambahan</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="25"> Pensiun</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="26" checked> Jumlah Bulan Penerimaan BK</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="27" checked> Jumlah Bulan Penerimaan PK</label></br>
+                            </td>
+                            <td>
+                                <label><input type="checkbox" class="toggle-column" data-column="28" checked> Tpp Tambahan</label></br>
                             </td>
                         </tr>
                     </table>
@@ -113,6 +116,7 @@
                                 <th width="3%">Nilai Jabatan (JV)</th>
                                 <th width="3%">Indeks</th>
                                 <th width="3%">Pangkat</th>
+                                <th width="3%">Golongan PPPK</th>
                                 <th width="3%">Eselon</th>
                                 <th width="3%">Status Penerimaan TPP</th>
                                 <th width="3%">Sertifikasi Guru</th>
@@ -179,6 +183,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $data->pangkat }}</td>
+                                    <td>{{ $data->golongan }}</td>
                                     <td>{{ $data->eselon }}</td>
                                     <td>{{ $data->tpp }}</td>
                                     <td>{{ $data->sertifikasi_guru }}</td>
@@ -271,21 +276,49 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="pangkat">Pangkat</label>
-                                                        <input type="text" name="pangkat"
-                                                            class="form-control @error('pangkat') is-invalid @enderror" id="pangkat"
-                                                            placeholder="Pangkat . . ." value="{{ $data->pangkat }}">
-                                                        @error('pangkat')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="pangkat" class="form-control @error('pangkat') is-invalid @enderror">
+                                                            <option value="Juru Muda - I/a" @if('Juru Muda - I/a' == $data->pangkat) selected @endif>Juru Muda - I/a</option>
+                                                            <option value="Juru Muda Tk.I - I/b" @if('Juru Muda Tk.I - I/b' == $data->pangkat) selected @endif>Juru Muda Tk.I - I/b</option>
+                                                            <option value="Juru Muda Tk.I - I/c" @if('Juru Muda Tk.I - I/c' == $data->pangkat) selected @endif>Juru Muda Tk.I - I/c</option>
+                                                            <option value="Juru Tk.I - I/d" @if('Juru Tk.I - I/d' == $data->pangkat) selected @endif>Juru Tk.I - I/d</option>
+                                                            <option value="Pengatur Muda - II/a" @if('Pengatur Muda - II/a' == $data->pangkat) selected @endif>Pengatur Muda - II/a</option>
+                                                            <option value="Pengatur Muda Tk.I - II/b" @if('Pengatur Muda Tk.I - II/b' == $data->pangkat) selected @endif>Pengatur Muda Tk.I - II/b</option>
+                                                            <option value="Pengatur - II/c" @if('Pengatur - II/c' == $data->pangkat) selected @endif>Pengatur - II/c</option>
+                                                            <option value="Pengatu Tk.I - II/d" @if('Pengatu Tk.I - II/d' == $data->pangkat) selected @endif>Pengatu Tk.I - II/d</option>
+                                                            <option value="Penata Muda - III/a" @if('Penata Muda - III/a' == $data->pangkat) selected @endif>Penata Muda - III/a</option>
+                                                            <option value="Penata Muda Tk.I - III/b" @if('Penata Muda Tk.I - III/b' == $data->pangkat) selected @endif>Penata Muda Tk.I - III/b</option>
+                                                            <option value="Penata - III/c" @if('Penata - III/c' == $data->pangkat) selected @endif>Penata - III/c</option>
+                                                            <option value="Penata Tk.I - III/d" @if('Penata Tk.I - III/d' == $data->pangkat) selected @endif>Penata Tk.I - III/d</option>
+                                                            <option value="Pembina - IV/a" @if('Pembina - IV/a' == $data->pangkat) selected @endif>Pembina - IV/a</option>
+                                                            <option value="Pembina Tk.I - IV/b" @if('Pembina Tk.I - IV/b' == $data->pangkat) selected @endif>Pembina Tk.I - IV/b</option>
+                                                            <option value="Pembina Utama Muda - IV/c" @if('Pembina Utama Muda - IV/c' == $data->pangkat) selected @endif>Pembina Utama Muda - IV/c</option>
+                                                            <option value="Pembina Utama Madya - IV/d" @if('Pembina Utama Madya - IV/d' == $data->pangkat) selected @endif>Pembina Utama Madya - IV/d</option>
+                                                            <option value="Pembina Utama - IV/e" @if('Pembina Utama - IV/e' == $data->pangkat) selected @endif>Pembina Utama - IV/e</option>
+                                                            <option value="Tidak Ada Pangkat--" @if('--Tidak Ada Pangkat--' == $data->pangkat) selected @endif>--Tidak Ada Pangkat--</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="golongan">Golongan</label>
-                                                        <input type="text" name="golongan"
-                                                            class="form-control @error('golongan') is-invalid @enderror" id="golongan"
-                                                            placeholder="Golongan . . ." value="{{ $data->golongan }}">
-                                                        @error('golongan')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <label for="golongan">Golongan PPPK</label>
+                                                        <select type="text" name="golongan" class="form-control @error('golongan') is-invalid @enderror">
+                                                            <option value="0" @if('0' == $data->golongan) selected @endif>0</option>
+                                                            <option value="I" @if('I' == $data->golongan) selected @endif>I</option>
+                                                            <option value="II" @if('II' == $data->golongan) selected @endif>II</option>
+                                                            <option value="III" @if('III' == $data->golongan) selected @endif>III</option>
+                                                            <option value="IV" @if('IV' == $data->golongan) selected @endif>IV</option>
+                                                            <option value="V" @if('V' == $data->golongan) selected @endif>V</option>
+                                                            <option value="VI" @if('VI' == $data->golongan) selected @endif>VI</option>
+                                                            <option value="VII" @if('VII' == $data->golongan) selected @endif>VII</option>
+                                                            <option value="VIII" @if('VIII' == $data->golongan) selected @endif>VIII</option>
+                                                            <option value="IX" @if('IX' == $data->golongan) selected @endif>IX</option>
+                                                            <option value="X" @if('X' == $data->golongan) selected @endif>X</option>
+                                                            <option value="XI" @if('XI' == $data->golongan) selected @endif>XI</option>
+                                                            <option value="XII" @if('XII' == $data->golongan) selected @endif>XII</option>
+                                                            <option value="XIII" @if('XIII' == $data->golongan) selected @endif>XIII</option>
+                                                            <option value="XIV" @if('XIV' == $data->golongan) selected @endif>XIV</option>
+                                                            <option value="XV" @if('XV' == $data->golongan) selected @endif>XV</option>
+                                                            <option value="XVI" @if('XVI' == $data->golongan) selected @endif>XVI</option>
+                                                            <option value="XVII" @if('XVII' == $data->golongan) selected @endif>XVII</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="eselon">Eselon</label>
@@ -548,18 +581,52 @@
                                                     </div> 
                                                     <div class="form-group">
                                                         <label for="pangkat">Pangkat</label>
-                                                        <input type="text" name="pangkat"
-                                                            class="form-control @error('pangkat') is-invalid @enderror" id="pangkat"
-                                                            placeholder="Pangkat . . ." value="">
+                                                        <select type="text" name="pangkat" class="form-control @error('pangkat') is-invalid @enderror">
+                                                            <option value="Juru Muda - I/a">Juru Muda - I/a</option>
+                                                            <option value="Juru Muda Tk.I - I/b">Juru Muda Tk.I - I/b</option>
+                                                            <option value="Juru Muda Tk.I - I/c">Juru Muda Tk.I - I/c</option>
+                                                            <option value="Juru Tk.I - I/d">Juru Tk.I - I/d</option>
+                                                            <option value="Pengatur Muda - II/a">Pengatur Muda - II/a</option>
+                                                            <option value="Pengatur Muda Tk.I - II/b">Pengatur Muda Tk.I - II/b</option>
+                                                            <option value="Pengatur - II/c">Pengatur - II/c</option>
+                                                            <option value="Pengatu Tk.I - II/d">Pengatu Tk.I - II/d</option>
+                                                            <option value="Penata Muda - III/a">Penata Muda - III/a</option>
+                                                            <option value="Penata Muda Tk.I - III/b">Penata Muda Tk.I - III/b</option>
+                                                            <option value="Penata - III/c">Penata - III/c</option>
+                                                            <option value="Penata Tk.I - III/d">Penata Tk.I - III/d</option>
+                                                            <option value="Pembina - IV/a">Pembina - IV/a</option>
+                                                            <option value="Pembina Tk.I - IV/b">Pembina Tk.I - IV/b</option>
+                                                            <option value="Pembina Utama Muda - IV/c">Pembina Utama Muda - IV/c</option>
+                                                            <option value="Pembina Utama Madya - IV/d">Pembina Utama Madya - IV/d</option>
+                                                            <option value="Pembina Utama - IV/e">Pembina Utama - IV/e</option>
+                                                            <option value="Tidak Ada Pangkat--">--Tidak Ada Pangkat--</option>
+                                                        </select>
                                                         @error('pangkat')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="golongan">Golongan</label>
-                                                        <input type="text" name="golongan"
-                                                            class="form-control @error('golongan') is-invalid @enderror" id="golongan"
-                                                            placeholder="Golongan . . ." value="">
+                                                        <select type="text" name="golongan" class="form-control @error('golongan') is-invalid @enderror">
+                                                            <option value="0">0</option>
+                                                            <option value="I">I</option>
+                                                            <option value="II">II</option>
+                                                            <option value="III">III</option>
+                                                            <option value="IV">IV</option>
+                                                            <option value="V">V</option>
+                                                            <option value="VI">VI</option>
+                                                            <option value="VII">VII</option>
+                                                            <option value="VIII">VIII</option>
+                                                            <option value="IX">IX</option>
+                                                            <option value="X">X</option>
+                                                            <option value="XI">XI</option>
+                                                            <option value="XII">XII</option>
+                                                            <option value="XIII">XIII</option>
+                                                            <option value="XIV">XIV</option>
+                                                            <option value="XV">XV</option>
+                                                            <option value="XVI">XVI</option>
+                                                            <option value="XVII">XVII</option>
+                                                        </select>
                                                         @error('golongan')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
@@ -654,7 +721,6 @@
         }
 
         toggleColumn(7, false);
-        toggleColumn(12, false);
         toggleColumn(13, false);
         toggleColumn(14, false);
         toggleColumn(15, false);
@@ -667,6 +733,7 @@
         toggleColumn(22, false);
         toggleColumn(23, false);
         toggleColumn(24, false);
+        toggleColumn(25, false);
 
         const toggleColumnCheckboxes = document.querySelectorAll(".toggle-column");
 

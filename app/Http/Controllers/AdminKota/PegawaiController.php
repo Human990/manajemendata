@@ -39,7 +39,6 @@ class PegawaiController extends Controller
             'nip' => 'required',
             'nama_pegawai' => 'required',
             'pangkat' => 'required',
-            'golongan' => 'required',
             'eselon' => 'required',
         ]);
 
@@ -76,7 +75,6 @@ class PegawaiController extends Controller
             'nip' => 'required',
             'nama_pegawai' => 'required',
             'pangkat' => 'required',
-            'golongan' => 'required',
             'eselon' => 'required',
         ]);
         
