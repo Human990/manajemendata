@@ -89,7 +89,7 @@
                             <td>
                                 <label><input type="checkbox" class="toggle-column" data-column="22"> Nip Atasan Penilai</label></br>
                                 <label><input type="checkbox" class="toggle-column" data-column="23"> Nama Atasan Penilai</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="24"> Pensiun</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="24" checked> Pensiun</label></br>
                             </td>
                             <td>
                                 <label><input type="checkbox" class="toggle-column" data-column="25" checked> Jumlah Bulan Penerimaan BK</label></br>
@@ -682,7 +682,7 @@
         toggleColumn(21, false);
         toggleColumn(22, false);
         toggleColumn(23, false);
-        toggleColumn(24, false);
+        // toggleColumn(24, false);
 
         const toggleColumnCheckboxes = document.querySelectorAll(".toggle-column");
 
