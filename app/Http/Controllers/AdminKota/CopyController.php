@@ -71,10 +71,14 @@ class CopyController extends Controller
                 $indeks_id = null;
                 $indeks_subkor_penyetaraan_id = null;
                 $indeks_subkor_non_penyetaraan_id = null;
+                $indeks_koor_penyetaraan_id = null;
+                $indeks_koor_non_penyetaraan_id = null;
                 
                 $indeks_id = Indeks::where('tahun_id', $tahun_tujuan)->where('asal_id', $jabatan->indeks_id)->value('kode_indeks');
                 $indeks_subkor_penyetaraan_id = Indeks::where('tahun_id', $tahun_tujuan)->where('asal_id', $jabatan->indeks_subkor_penyetaraan_id)->value('kode_indeks');
                 $indeks_subkor_non_penyetaraan_id = Indeks::where('tahun_id', $tahun_tujuan)->where('asal_id', $jabatan->indeks_subkor_non_penyetaraan_id)->value('kode_indeks');
+                $indeks_koor_penyetaraan_id = Indeks::where('tahun_id', $tahun_tujuan)->where('asal_id', $jabatan->indeks_koor_penyetaraan_id)->value('kode_indeks');
+                $indeks_koor_non_penyetaraan_id = Indeks::where('tahun_id', $tahun_tujuan)->where('asal_id', $jabatan->indeks_koor_non_penyetaraan_id)->value('kode_indeks');
 
                 $jabatanCopy = Jabatan::create([
                     'nama_jabatan' => $jabatan->nama_jabatan,
@@ -91,6 +95,15 @@ class CopyController extends Controller
                     'prosentase_penerimaan_murni' => $jabatan->prosentase_penerimaan_murni,
                     'prosentase_penerimaan_subkor_penyetaraan' => $jabatan->prosentase_penerimaan_subkor_penyetaraan,
                     'prosentase_penerimaan_subkor_non_penyetaraan' => $jabatan->prosentase_penerimaan_subkor_non_penyetaraan,
+                    
+                    'indeks_koor_penyetaraan_id' => $indeks_koor_penyetaraan_id,
+                    'indeks_koor_non_penyetaraan_id' => $indeks_koor_non_penyetaraan_id,
+                    'nilai_jabatan_koor_penyetaraan' => $jabatan->nilai_jabatan_koor_penyetaraan,
+                    'nilai_jabatan_koor_non_penyetaraan' => $jabatan->nilai_jabatan_koor_non_penyetaraan,
+                    'prosentase_penerimaan_koor_penyetaraan' => $jabatan->prosentase_penerimaan_koor_penyetaraan,
+                    'prosentase_penerimaan_koor_non_penyetaraan' => $jabatan->prosentase_penerimaan_koor_non_penyetaraan,
+                    'tunjab_subkor' => $jabatan->tunjab_subkor,
+                    'tunjab_koor' => $jabatan->tunjab_koor,
                 ]);
             }
 
