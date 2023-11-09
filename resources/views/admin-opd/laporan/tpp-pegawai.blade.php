@@ -5,7 +5,9 @@
 <div class="container-fluid">
     <div class="card card-headline">
         <div class="card-header">
-            <h3 class="card-title">Data Pegawai Tahun {{ session()->get('tahun_session') }} <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalPegawai" style="float:right">Tambah Data</a></h3>
+            <h3 class="card-title">Data Pegawai Tahun {{ session()->get('tahun_session') }} 
+                <!-- <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalPegawai" style="float:right">Tambah Data</a> -->
+            </h3>
         </div>
         <div class="card-body">
             <form action="{{ route('adminopd-pegawai') }}" method="GET">
