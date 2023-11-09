@@ -69,7 +69,13 @@ class CopyController extends Controller
 
             foreach ($jabatans as $jabatan) {
                 $indeks_id = null;
+                $indeks_subkor_penyetaraan_id = null;
+                $indeks_subkor_non_penyetaraan_id = null;
+                
                 $indeks_id = Indeks::where('tahun_id', $tahun_tujuan)->where('asal_id', $jabatan->indeks_id)->value('kode_indeks');
+                $indeks_subkor_penyetaraan_id = Indeks::where('tahun_id', $tahun_tujuan)->where('asal_id', $jabatan->indeks_subkor_penyetaraan_id)->value('kode_indeks');
+                $indeks_subkor_non_penyetaraan_id = Indeks::where('tahun_id', $tahun_tujuan)->where('asal_id', $jabatan->indeks_subkor_non_penyetaraan_id)->value('kode_indeks');
+
                 $jabatanCopy = Jabatan::create([
                     'nama_jabatan' => $jabatan->nama_jabatan,
                     'nilai_jabatan' => $jabatan->nilai_jabatan,
@@ -77,6 +83,14 @@ class CopyController extends Controller
                     'indeks_id' => $indeks_id,
                     'tahun_id' => $tahun_tujuan,
                     'asal_id' => $jabatan->kode_jabatanlama,
+
+                    'indeks_subkor_penyetaraan_id' => $indeks_subkor_penyetaraan_id,
+                    'indeks_subkor_non_penyetaraan_id' => $indeks_subkor_non_penyetaraan_id,
+                    'nilai_jabatan_subkor_penyetaraan' => $jabatan->nilai_jabatan_subkor_penyetaraan,
+                    'nilai_jabatan_subkor_non_penyetaraan' => $jabatan->nilai_jabatan_subkor_non_penyetaraan,
+                    'prosentase_penerimaan_murni' => $jabatan->prosentase_penerimaan_murni,
+                    'prosentase_penerimaan_subkor_penyetaraan' => $jabatan->prosentase_penerimaan_subkor_penyetaraan,
+                    'prosentase_penerimaan_subkor_non_penyetaraan' => $jabatan->prosentase_penerimaan_subkor_non_penyetaraan,
                 ]);
             }
 
@@ -87,19 +101,24 @@ class CopyController extends Controller
                 $jabatan_id = Jabatan::where('tahun_id', $tahun_tujuan)->where('asal_id', $pegawai->kode_jabatanlama)->value('kode_jabatanlama');
 
                 $pegawaiCopy = Pegawai::create([
+                    'opd_id' => $opd_id,
                     'nip' => $pegawai->nip,
                     'nama_pegawai' => $pegawai->nama_pegawai,
                     'sts_pegawai' => $pegawai->sts_pegawai,
+                    'kode_jabatanlama' => $jabatan_id ?? 0,
                     'sts_jabatan' => $pegawai->sts_jabatan,
                     'golongan' => $pegawai->golongan,
                     'pangkat' => $pegawai->pangkat,
                     'eselon' => $pegawai->eselon,
-                    'total_bulan_penerimaan' => $pegawai->total_bulan_penerimaan,
+                    'pensiun' => $pegawai->pensiun,
+                    'bulan_bk' => $pegawai->bulan_bk,
+                    'bulan_pk' => $pegawai->bulan_pk,
                     'tpp' => $pegawai->tpp,
                     'tpp_tambahan' => $pegawai->tpp_tambahan,
+                    'subkoor' => $pegawai->subkoor,
+                    'nama_subkoor' => $pegawai->nama_subkoor,
+                    'sts_subkoor' => $pegawai->sts_subkoor,
                     'jft' => '',
-                    'opd_id' => $opd_id,
-                    'kode_jabatanlama' => $jabatan_id ?? 0,
                     'tahun_id' => $tahun_tujuan,
                 ]);
             }
