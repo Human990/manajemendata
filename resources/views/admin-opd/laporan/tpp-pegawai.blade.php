@@ -70,33 +70,36 @@
                         </td>
                         <td>
                             <label><input type="checkbox" class="toggle-column" data-column="10" checked> Pangkat</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="11" checked> Eselon</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="12"> Status Penerimaan TPP</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="11" checked> Golongan</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="12" checked> Eselon</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="13"> Sertifikasi Guru</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="14"> PA/KPA</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="15"> Sertifikasi PBJ</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="13"> Status Penerimaan TPP</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="14"> Sertifikasi Guru</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="15"> PA/KPA</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="16"> Tipe Jabatan</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="17"> Subkoor</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="18"> Nama Subkoor</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="16"> Sertifikasi PBJ</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="17"> Tipe Jabatan</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="18"> Subkoor</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="19"> Status Subkoor</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="20"> NIP Penilai</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="21"> Nama Penilai</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="19"> Nama Subkoor</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="20"> Status Subkoor</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="21"> NIP Penilai</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="22"> Nip Atasan Penilai</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="23"> Nama Atasan Penilai</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="24"> Pensiun</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="22"> Nama Penilai</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="23"> Nip Atasan Penilai</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="24"> Nama Atasan Penilai</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="25" checked> Jumlah Bulan Penerimaan BK</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="26" checked> Jumlah Bulan Penerimaan PK</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="27" checked> Tpp Tambahan</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="25"> Pensiun</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="26" checked> Jumlah Bulan Penerimaan BK</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="27" checked> Jumlah Bulan Penerimaan PK</label></br>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" class="toggle-column" data-column="28" checked> Tpp Tambahan</label></br>
                         </td>
                     </tr>
                 </table>
@@ -661,7 +664,6 @@
     }
 
     toggleColumn(7, false);
-    toggleColumn(12, false);
     toggleColumn(13, false);
     toggleColumn(14, false);
     toggleColumn(15, false);
@@ -674,6 +676,7 @@
     toggleColumn(22, false);
     toggleColumn(23, false);
     toggleColumn(24, false);
+    toggleColumn(25, false);
 
     const toggleColumnCheckboxes = document.querySelectorAll(".toggle-column");
 
