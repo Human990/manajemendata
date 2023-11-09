@@ -116,7 +116,7 @@
                                 <th width="3%">Nilai Jabatan (JV)</th>
                                 <th width="3%">Indeks</th>
                                 <th width="3%">Pangkat</th>
-                                <th width="3%">Golongan PPPK</th>
+                                <th width="3%">Golongan</th>
                                 <th width="3%">Eselon</th>
                                 <th width="3%">Status Penerimaan TPP</th>
                                 <th width="3%">Sertifikasi Guru</th>
