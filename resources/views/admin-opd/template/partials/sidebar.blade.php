@@ -104,11 +104,11 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Master Jabatan Baru</span>
         </a> --}}
-        <a href="{{ route('adminopd-pegawai') }}" class="nav-link">
+        <a @if(session()->get('tahun_id_session')) href="{{ route('adminopd-pegawai') }}" @endif class="nav-link">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Rincian Per OPD</span>
         </a>
-        <a href="{{ route('adminopd-catatan') }}" class="nav-link">
+        <a @if(session()->get('tahun_id_session')) href="{{ route('adminopd-catatan') }}" @endif class="nav-link">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>History Catatan</span>
         </a>

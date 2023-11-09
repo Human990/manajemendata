@@ -44,28 +44,28 @@
             " aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <div class="collapse-divider"></div>
-                <a href="{{ route('adminkota-tahun') }}" class="collapse-item {{ Request::is('*master-tahun*') ? 'active' : '' }}">
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-tahun') }}" @endif class="collapse-item {{ Request::is('*master-tahun*') ? 'active' : '' }}">
                     <span>Master Tahun</span>
                 </a>
-                <a href="{{ route('adminkota-opd') }}" class="collapse-item {{ Request::is('*master-opd*') ? 'active' : '' }}">
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-opd') }}" @endif class="collapse-item {{ Request::is('*master-opd*') ? 'active' : '' }}">
                     <span>Master OPD</span>
                 </a>
-                <a href="{{ route('adminkota-indeks') }}" class="collapse-item {{ Request::is('*master-indeks*') ? 'active' : '' }}">
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-indeks') }}" @endif class="collapse-item {{ Request::is('*master-indeks*') ? 'active' : '' }}">
                     <span>Master Indeks</span>
                 </a>
-                <a href="{{ route('adminkota-jabatan') }}" class="collapse-item {{ Request::is('*master-jabatan*') ? 'active' : '' }}">
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-jabatan') }}" @endif class="collapse-item {{ Request::is('*master-jabatan*') ? 'active' : '' }}">
                     <span>Master Jabatan</span>
                 </a>
-                <a href="{{ route('adminkota-rupiah') }}" class="collapse-item {{ Request::is('*master-rupiah*') ? 'active' : '' }}">
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-rupiah') }}" @endif class="collapse-item {{ Request::is('*master-rupiah*') ? 'active' : '' }}">
                     <span>Master Rupiah</span>
                 </a>
                 {{-- <a href="{{ route('adminkota-jabatanlama') }}" class="collapse-item {{ Request::is('*master-jabatanlama*') ? 'active' : '' }}">
                     <span>Master Jabatan Lama</span>
                 </a>
-                <a href="{{ route('adminkota-jabatanbaru') }}" class="collapse-item {{ Request::is('*master-jabatanbaru*') ? 'active' : '' }}">
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-jabatanbaru') }}" @endif class="collapse-item {{ Request::is('*master-jabatanbaru*') ? 'active' : '' }}">
                     <span>Master Jabatan Baru</span>
                 </a> --}}
-                <a href="{{ route('adminkota-pegawai')}}" class="collapse-item {{ Request::is('*data-pegawai*') ? 'active' : '' }}">
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-pegawai')}}" @endif class="collapse-item {{ Request::is('*data-pegawai*') ? 'active' : '' }}">
                     <span>Data Pegawai</span>
                 </a>
             </div>
@@ -87,10 +87,10 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a href="{{ route('adminkota-tpp-total') }}" class="collapse-item">
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-tpp-total') }}" @endif class="collapse-item">
                     <span>Rekap TPP All OPD</span>
                 </a>
-                <a href="{{ route('adminkota-tpp-pegawai')}}" class="collapse-item">
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-tpp-pegawai')}}" @endif class="collapse-item">
                     <span>Rekap TPP Per Person</span>
                 </a>
                 {{-- <a href="#" class="collapse-item">

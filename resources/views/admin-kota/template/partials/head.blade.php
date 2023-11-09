@@ -18,4 +18,21 @@
     <link href="{{asset('assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    <style>
+        @keyframes blink {
+            30% {
+                color: red;
+            }
+            70% {
+                color: transparent;
+            }
+            100% {
+                color: red;
+            }
+        }
+    
+        .blinking-text {
+            animation: blink 3s linear infinite;
+        }
+    </style>
 </head>
