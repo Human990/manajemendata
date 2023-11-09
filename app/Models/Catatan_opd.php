@@ -13,7 +13,7 @@ class Catatan_opd extends Model
 
     public static function data()
     {
-        $data = Catatan_opd::select('catatan_opds.*', 'pegawais.nip', 'pegawais.nama_pegawai', 'opds.nama_opd', 'master_tahun.tahun', 'pegawais.opd_id', 'pegawais.pangkat', 'pegawais.golongan', 'pegawais.eselon', 'pegawais.total_bulan_penerimaan')
+        $data = Catatan_opd::select('catatan_opds.*', 'pegawais.nip', 'pegawais.nama_pegawai', 'opds.nama_opd', 'master_tahun.tahun', 'pegawais.opd_id', 'pegawais.pangkat', 'pegawais.golongan', 'pegawais.eselon')
                             ->join('pegawais', 'pegawais.id', '=', 'catatan_opds.pegawai_id')
                             ->join('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
                             ->join('opds', 'opds.id', '=', 'pegawais.opd_id')
@@ -24,7 +24,7 @@ class Catatan_opd extends Model
 
     public static function pencarian($pencarian)
     {
-        $data = Catatan_opd::select('catatan_opds.*', 'pegawais.nip', 'pegawais.nama_pegawai', 'opds.nama_opd', 'master_tahun.tahun', 'pegawais.opd_id', 'pegawais.pangkat', 'pegawais.golongan', 'pegawais.eselon', 'pegawais.total_bulan_penerimaan')
+        $data = Catatan_opd::select('catatan_opds.*', 'pegawais.nip', 'pegawais.nama_pegawai', 'opds.nama_opd', 'master_tahun.tahun', 'pegawais.opd_id', 'pegawais.pangkat', 'pegawais.golongan', 'pegawais.eselon')
                             ->join('pegawais', 'pegawais.id', '=', 'catatan_opds.pegawai_id')
                             ->join('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
                             ->join('opds', 'opds.id', '=', 'pegawais.opd_id')
@@ -40,7 +40,7 @@ class Catatan_opd extends Model
 
     public static function proses()
     {
-        $data = Catatan_opd::select('catatan_opds.*', 'pegawais.nip', 'pegawais.nama_pegawai', 'opds.nama_opd', 'master_tahun.tahun', 'pegawais.opd_id', 'pegawais.pangkat', 'pegawais.golongan', 'pegawais.eselon', 'pegawais.total_bulan_penerimaan')
+        $data = Catatan_opd::select('catatan_opds.*', 'pegawais.nip', 'pegawais.nama_pegawai', 'opds.nama_opd', 'master_tahun.tahun', 'pegawais.opd_id', 'pegawais.pangkat', 'pegawais.golongan', 'pegawais.eselon')
                             ->join('pegawais', 'pegawais.id', '=', 'catatan_opds.pegawai_id')
                             ->join('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
                             ->join('opds', 'opds.id', '=', 'pegawais.opd_id')
@@ -52,7 +52,7 @@ class Catatan_opd extends Model
 
     public static function ditindak_lanjuti()
     {
-        $data = Catatan_opd::select('catatan_opds.*', 'pegawais.nip', 'pegawais.nama_pegawai', 'opds.nama_opd', 'master_tahun.tahun', 'pegawais.opd_id', 'pegawais.pangkat', 'pegawais.golongan', 'pegawais.eselon', 'pegawais.total_bulan_penerimaan')
+        $data = Catatan_opd::select('catatan_opds.*', 'pegawais.nip', 'pegawais.nama_pegawai', 'opds.nama_opd', 'master_tahun.tahun', 'pegawais.opd_id', 'pegawais.pangkat', 'pegawais.golongan', 'pegawais.eselon')
                             ->join('pegawais', 'pegawais.id', '=', 'catatan_opds.pegawai_id')
                             ->join('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
                             ->join('opds', 'opds.id', '=', 'pegawais.opd_id')
@@ -64,7 +64,7 @@ class Catatan_opd extends Model
 
     public static function history($id)
     {
-        $data = Catatan_opd::select('catatan_opds.*', 'pegawais.nip', 'pegawais.nama_pegawai', 'opds.nama_opd', 'master_tahun.tahun', 'pegawais.opd_id', 'pegawais.pangkat', 'pegawais.golongan', 'pegawais.eselon', 'pegawais.total_bulan_penerimaan')
+        $data = Catatan_opd::select('catatan_opds.*', 'pegawais.nip', 'pegawais.nama_pegawai', 'opds.nama_opd', 'master_tahun.tahun', 'pegawais.opd_id', 'pegawais.pangkat', 'pegawais.golongan', 'pegawais.eselon')
                             ->join('pegawais', 'pegawais.id', '=', 'catatan_opds.pegawai_id')
                             ->join('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
                             ->join('opds', 'opds.id', '=', 'pegawais.opd_id')
