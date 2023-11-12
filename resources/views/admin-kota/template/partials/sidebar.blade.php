@@ -119,15 +119,12 @@
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-catatan') }}" @endif class="collapse-item">
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-history-catatan') }}" @endif class="collapse-item">
                     <span>History Catatan</span>
                 </a>
-                {{-- <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-tpp-pegawai')}}" @endif class="collapse-item">
-                    <span>Rekap TPP Per Person</span>
-                </a> --}}
-                {{-- <a href="#" class="collapse-item">
-                    <span>Rekap Per Jenis Tunjangan</span>
-                </a> --}}
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-daftar-catatan') }}" @endif class="collapse-item">
+                    <span>Daftar Catatan</span>
+                </a>
             </div>
         </div>
     </li>
