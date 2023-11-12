@@ -37,7 +37,8 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
     Route::get('/pegawai-bulanan/totaltpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'totaltpp'])->name('adminkota-tpp-total');
 
     // data catatan
-    Route::get('/adminkota/data-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'index'])->name('adminkota-catatan');
+    Route::get('/adminkota/daftar-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'daftar'])->name('adminkota-daftar-catatan');
+    Route::get('/adminkota/history-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'history'])->name('adminkota-history-catatan');
     // Route::post('/data-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'store'])->name('adminkota-catatan.store');
     Route::put('/adminkota/data-catatan/{catatan}',[App\Http\Controllers\AdminKota\CatatanController::class,'update'])->name('adminkota-catatan.update');
     // Route::delete('/data-catatan/{catatan}',[App\Http\Controllers\AdminKota\CatatanController::class,'destroy'])->name('adminkota-catatan.destroy');

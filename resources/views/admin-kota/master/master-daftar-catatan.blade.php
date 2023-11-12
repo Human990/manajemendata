@@ -8,7 +8,7 @@
                 <h3 class="card-title">History Catatan</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('adminkota-history-catatan') }}" method="GET">
+                <form action="{{ route('adminkota-daftar-catatan') }}" method="GET">
                     <div class="input-group">
                         <input type="text" name="pencarian" class="form-control " placeholder="Masukkan data yang dicari . . ." value="{{ $pencarian ?? '' }}">
                         <div class="input-group-append">
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                 </form></br>
-                <form action="{{ route('adminkota-history-catatan') }}" method="GET" class="form-inline">
+                <form action="{{ route('adminkota-daftar-catatan') }}" method="GET" class="form-inline">
                     <label for="recordsPerPage" class="mr-2">show:</label>
                     <select name="recordsPerPage" id="recordsPerPage" class="form-control mr-2" onchange="this.form.submit()">
                         <option value="10" {{ request('recordsPerPage', 10) == 10 ? 'selected' : '' }}>10</option>
