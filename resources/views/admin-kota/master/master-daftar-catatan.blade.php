@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="card card-headline">
             <div class="card-header">
-                <h3 class="card-title">History Catatan</h3>
+                <h3 class="card-title">Daftar Catatan</h3>
             </div>
             <div class="card-body">
                 <form action="{{ route('adminkota-daftar-catatan') }}" method="GET">
