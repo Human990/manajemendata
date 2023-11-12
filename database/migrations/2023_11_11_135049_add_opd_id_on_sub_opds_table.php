@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('sub_opds', function (Blueprint $table) {
+            $table->unsignedBigInteger('opd_id')->nullable(true);
             $table->string('kode_opd')->nullable(true);
         });
     }

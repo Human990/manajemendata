@@ -12,6 +12,17 @@
                 <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalIndeks">Tambah Data</a>
             </div>
             <div class="card-body">
+                <form action="{{ route('adminkota-sub-opd') }}" method="GET" class="form-inline">
+                    <label for="recordsPerPage" class="mr-2">show:</label>
+                    <select name="recordsPerPage" id="recordsPerPage" class="form-control mr-2" onchange="this.form.submit()">
+                        <option value="10" {{ request('recordsPerPage', 10) == 10 ? 'selected' : '' }}>10</option>
+                        <option value="20" {{ request('recordsPerPage', 10) == 20 ? 'selected' : '' }}>20</option>
+                        <option value="50" {{ request('recordsPerPage', 10) == 50 ? 'selected' : '' }}>50</option>
+                        <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
+                    </select>
+                </form>
+            </div>
+            <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead>
@@ -21,7 +32,7 @@
                                 <th width="20%">Kode Sub OPD</th>
                                 <th width="20%">Nama Sub OPD</th>
                                 <th width="20%">Level</th>
-                                <th width="20%">Asal OPD</th>
+                                <th width="20%">Asal</th>
                                 <th width="9%">Action</th>
                             </tr>
                         </thead>
@@ -83,17 +94,6 @@
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="opd_id">Asal OPD</label>
-                                                        <select name="opd_id" id="opd_id" class="form-control">
-                                                            @foreach(\App\Models\Opd::data() as $opds)
-                                                                <option value="{{ $opds->id }}" @if($opds->id == $data->opd_id) selected @endif>{{ $opds->nama_opd }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('opd_id')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="text-center">
-                {{-- <h6>jumlah data :{{$jumlah_pegawai}}</h6> --}}
+                {{ $datas->appends(['recordsPerPage' => $pagination])->links() }}
             </div>
             <div class="modal fade" id="createModalIndeks" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">
@@ -152,7 +152,7 @@
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="opd_id">Asal OPD</label>
                                     <select name="opd_id" id="opd_id" class="form-control">
                                         @foreach(\App\Models\Opd::data() as $opds)
@@ -162,7 +162,7 @@
                                     @error('opd_id')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -12,24 +12,32 @@ class PegawaibulananOpdController extends Controller
 
     public function index(Request $request)
     {
+        $tahun_id = 0;
+
+        try {
+            $tahun_id = session()->get('tahun_id_session');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        $pagination = $request->input('recordsPerPage', 10);
         $search = $request->input('search');
 
         $filter = '';
         $filter = $request->filter;
 
         if (!empty($filter)) {
-            $datas = Pegawai::filter($filter);
+            $datas = Pegawai::filter($filter)->paginate($pagination);
         }else {
-            $datas = Pegawai::data();
+            $datas = Pegawai::data()->paginate($pagination);
         }
 
         if (!empty($search)) {
-            $datas = Pegawai::pencarian($search);
+            $datas = Pegawai::pencarian($search)->paginate($pagination);
         }else {
-            $datas = Pegawai::data();
+            $datas = Pegawai::data()->paginate($pagination);
         }
 
-        return view('admin-opd.laporan.tpp-pegawai', compact('datas', 'search', 'filter'));
+        return view('admin-opd.laporan.tpp-pegawai', compact('datas', 'search', 'filter','pagination'));
     }
 
     public function putsession(Request $request)

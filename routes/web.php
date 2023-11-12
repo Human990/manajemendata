@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
     Route::put('/master-opd/{opd}',[App\Http\Controllers\AdminKota\OpdController::class,'update'])->name('adminkota-opd.update');
     Route::delete('/master-opd/{opd}',[App\Http\Controllers\AdminKota\OpdController::class,'destroy'])->name('adminkota-opd.destroy');
 
-    // master opd
+    // master sub opd
     Route::get('/master-sub-opd',[App\Http\Controllers\AdminKota\SubopdController::class,'index'])->name('adminkota-sub-opd');
     Route::post('/master-sub-opd',[App\Http\Controllers\AdminKota\SubopdController::class,'store'])->name('adminkota-sub-opd.store');
     Route::put('/master-sub-opd/{opd}',[App\Http\Controllers\AdminKota\SubopdController::class,'update'])->name('adminkota-sub-opd.update');

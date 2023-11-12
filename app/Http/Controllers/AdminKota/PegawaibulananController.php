@@ -14,6 +14,117 @@ use App\Http\Controllers\Controller;
 
 class PegawaibulananController extends Controller
 {
+    // public function tppperson(Request $request)
+    // {
+    //     $tahun_id = 0;
+
+    //     try {
+    //         $tahun_id = session()->get('tahun_id_session');
+    //     } catch (\Throwable $th) {
+    //         //throw $th;
+    //     }
+    //     $pagination = $request->input('recordsPerPage', 10);
+    //     $search = $request->input('search');
+
+    //     $filter = '';
+    //     $filter = $request->filter;
+
+    //     if (!empty($filter)) {
+    //         $datas = Pegawai::filter($filter)->paginate($pagination);
+    //     }else {
+    //         $datas = Pegawai::data()->paginate($pagination);
+    //     }
+
+    //     if (!empty($search)) {
+    //         $datas = Pegawai::pencarian($search)->paginate($pagination);
+    //     }else {
+    //         $datas = Pegawai::data()->paginate($pagination);
+    //     }
+    //     $opds=Opd::all();
+        
+    //     $rumus_bk_tahunan = 0;
+    //     $rumus_bk_bulanan = 0;
+    //     $rumus_pk_tahunan = 0;
+    //     $rumus_pk_bulanan = 0;
+    //     $rumus_total_tpp_bulanan = 0;
+    //     $rumus_total_tpp_tahunan = 0;
+    //     $rumus_bk_tahunan_total = 0;
+    //     $rumus_bk_bulanan_total = 0;
+    //     $rumus_pk_tahunan_total = 0;
+    //     $rumus_pk_bulanan_total = 0;
+    //     $rumus_total_tpp_bulanan_total = 0;
+    //     $rumus_total_tpp_tahunan_total = 0;
+        
+    //     foreach ($datas as $pegawai) {
+    //         if ($pegawai->subkoor == "Subkoor") {
+    //             if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
+    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_non_penyetaraan;
+    //             } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
+    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_penyetaraan;
+    //             }
+    //         } elseif ($pegawai->subkoor == "Koor") {
+    //             if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
+    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_non_penyetaraan;
+    //             } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
+    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_penyetaraan;
+    //             }
+    //         } else {
+    //             $nilai_jabatan = (float) $pegawai->nilai_jabatan;
+    //         }
+        
+    //         // Determine the appropriate indeks
+    //         if ($pegawai->subkoor == "Subkoor") {
+    //             if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
+    //                 $indeks = (float) $pegawai->indeks_subkoor_non_penyetaraan;
+    //             } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
+    //                 $indeks = (float) $pegawai->indeks_subkoor_penyetaraan;
+    //             }
+    //         } elseif ($pegawai->subkoor == "Koor") {
+    //             if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
+    //                 $indeks = (float) $pegawai->indeks_koor_non_penyetaraan;
+    //             } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
+    //                 $indeks = (float) $pegawai->indeks_koor_penyetaraan;
+    //             }
+    //         } else {
+    //             $indeks = (float) $pegawai->indeks;
+    //         }
+
+    //         // Rest of your calculation remains the same
+    //         $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0);
+    //         $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);
+    //         $bulan_bk = (float)($pegawai->bulan_bk ?? 0);
+    //         $bulan_pk = (float)($pegawai->bulan_pk ?? 0);
+
+    //         $rumus_bk_tahunan = $nilai_jabatan * $indeks *$bk * $bulan_bk;
+    //         $rumus_bk_bulanan = $nilai_jabatan * $indeks *$bk;
+    //         $rumus_pk_tahunan = $nilai_jabatan * $indeks *$pk * $bulan_pk;
+    //         $rumus_pk_bulanan = $nilai_jabatan * $indeks *$pk;
+    //         $rumus_total_tpp_bulanan = $rumus_bk_bulanan + $rumus_bk_bulanan;
+    //         $rumus_total_tpp_tahunan = $rumus_bk_tahunan + $rumus_pk_tahunan;
+
+    //         $rumus_bk_tahunan_total += $rumus_bk_tahunan;
+    //         $rumus_bk_bulanan_total += $rumus_bk_bulanan;
+    //         $rumus_pk_tahunan_total += $rumus_pk_tahunan;
+    //         $rumus_pk_bulanan_total += $rumus_pk_bulanan;
+    //         $rumus_total_tpp_bulanan_total += $rumus_total_tpp_bulanan;
+    //         $rumus_total_tpp_tahunan_total += $rumus_total_tpp_tahunan;
+    //     }
+        
+    //     return view('admin-kota.laporan.tpp-pegawai', compact([
+    //         'datas',
+    //         'opds',
+    //         'search',
+    //         'filter',
+    //         'pagination',
+    //         'rumus_bk_tahunan',
+    //         'rumus_pk_tahunan',
+    //         'rumus_bk_bulanan',
+    //         'rumus_pk_bulanan',
+    //         'rumus_total_tpp_bulanan',
+    //         'rumus_total_tpp_tahunan',
+    //     ]))->with('i', 0);
+    //     }
+
     public function tppperson(Request $request)
     {
         $tahun_id = 0;
@@ -23,26 +134,42 @@ class PegawaibulananController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
         }
-        $search = $request->input('search');
 
-        $filterOpd = '';
-        $filterOpd = $request->filterOpd;
+        $pagination = $request->input('recordsPerPage', 10);
+        $search = $request->input('search'); // Data pencarian
+        $filteropd = $request->input('filteropd'); // Data filter
+        $filtersubopd = $request->input('filtersubopd'); // Data filter
+        $query = Pegawai::data();
 
-        if (!empty($filterOpd)) {
-            $datas = Pegawai::filterOpd($filterOpd);
-        } elseif (!empty($search)) {
-            $datas = Pegawai::pencarian($search);
-        } else {
-            $datas = Pegawai::data();
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('pegawais.nip', 'like', "%$search%")
+                    ->orWhere('pegawais.nama_pegawai', 'like', "%$search%")
+                    ->orWhere('opds.nama_opd', 'like', "%$search%");
+            });
         }
+
+         // Menambahkan kondisi where untuk filter jika ada
+        if ($filteropd) {
+            $query->where('pegawais.opd_id', $filteropd);
+            // Tambahkan kondisi filter untuk kolom lainnya
+        }
+        if ($filtersubopd) {
+            $query->where('pegawais.subopd_id',$filtersubopd);
+            // Tambahkan kondisi filter untuk kolom lainnya
+        }
+
+        // Memanggil metode data() pada model Pegawai
+        $datas = $query->paginate($pagination);
+
         $opds=Opd::all();
         
-        // $rumus_bk_tahunan = 0;
-        // $rumus_bk_bulanan = 0;
-        // $rumus_pk_tahunan = 0;
-        // $rumus_bk_bulanan = 0;
-        // $rumus_total_tpp_bulanan = 0;
-        // $rumus_total_tpp_tahunan = 0;
+        $rumus_bk_tahunan = [];
+        $rumus_bk_bulanan = [];
+        $rumus_pk_tahunan = [];
+        $rumus_pk_bulanan = [];
+        $rumus_total_tpp_bulanan = [];
+        $rumus_total_tpp_tahunan = [];
         $rumus_bk_tahunan_total = 0;
         $rumus_bk_bulanan_total = 0;
         $rumus_pk_tahunan_total = 0;
@@ -50,7 +177,7 @@ class PegawaibulananController extends Controller
         $rumus_total_tpp_bulanan_total = 0;
         $rumus_total_tpp_tahunan_total = 0;
         
-        foreach ($datas as $pegawai) {
+        foreach ($query as $pegawai) {
             if ($pegawai->subkoor == "Subkoor") {
                 if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
                     $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_non_penyetaraan;
@@ -109,7 +236,9 @@ class PegawaibulananController extends Controller
             'datas',
             'opds',
             'search',
-            'filterOpd',
+            'filteropd',
+            'filtersubopd',
+            'pagination',
             'rumus_bk_tahunan',
             'rumus_pk_tahunan',
             'rumus_bk_bulanan',
@@ -117,7 +246,9 @@ class PegawaibulananController extends Controller
             'rumus_total_tpp_bulanan',
             'rumus_total_tpp_tahunan',
         ]))->with('i', 0);
-        }
+        
+    }
+
     public function totaltpp(Request $request)
     {
         $tahun_id = 0;

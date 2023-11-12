@@ -39,7 +39,7 @@ class CopyController extends Controller
             foreach ($opds as $opd) {
                 $opdCopy = Opd::create([
                     'kode_opd' => $opd->kode_opd,
-                    'kode_sub_opd' => $opd->kode_sub_opd,
+                    'subopd_id' => $opd->subopd_id,
                     'nama_opd' => $opd->nama_opd,
                     'tahun_id' => $tahun_tujuan,
                     'asal_id' => $opd->id,
