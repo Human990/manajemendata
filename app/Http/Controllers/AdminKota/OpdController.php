@@ -10,13 +10,21 @@ class OpdController extends Controller
 {
     public function index(Request $request)
     {
-        $datas= Opd::select('opds.*', 'master_tahun.tahun')
-                     ->leftjoin('master_tahun', 'master_tahun.id', '=', 'opds.tahun_id')
-                     ->where('opds.tahun_id', session()->get('tahun_id_session'))
-                     ->orderBy('opds.nama_opd','ASC')
-                     ->get();
+        $pagination = $request->input('recordsPerPage', 10);
+        $search = $request->input('search'); // Data pencarian
+        $query = Opd::select('opds.*', 'master_tahun.tahun', 'sub_opds.nama_sub_opd')
+                ->leftjoin('master_tahun', 'master_tahun.id', '=', 'opds.tahun_id')
+                ->leftJoin('sub_opds', 'sub_opds.id', '=', 'opds.subopd_id')
+                ->where('opds.tahun_id', session()->get('tahun_id_session'))
+                ->orderBy('opds.nama_opd', 'ASC');
 
-        return view('admin-kota.master.master-opd',compact('datas'));
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('opds.nama_opd', 'like', "%$search%");
+            });
+        }
+        $datas = $query->paginate($pagination)->appends(['search' => $search]);
+        return view('admin-kota.master.master-opd',compact('datas','pagination','search'));
     }
 
     public function store(Request $request)
@@ -24,13 +32,12 @@ class OpdController extends Controller
         $this->validate($request, 
         [
             'kode_opd' => 'required',
-            'kode_sub_opd' => 'required',
             'nama_opd' => 'required',
         ]);
 
         Opd::create([
             'kode_opd' => $request->kode_opd,
-            'kode_sub_opd' => $request->kode_sub_opd,
+            'subopd_id' => $request->subopd_id,
             'nama_opd' => $request->nama_opd,
             'tahun_id' => session()->get('tahun_id_session'),
         ]);
@@ -43,13 +50,12 @@ class OpdController extends Controller
         $this->validate($request, 
         [
             'kode_opd' => 'required',
-            'kode_sub_opd' => 'required',
             'nama_opd' => 'required',
         ]);
         
         $opd->update([
             'kode_opd' => $request->kode_opd,
-            'kode_sub_opd' => $request->kode_sub_opd,
+            'subopd_id' => $request->subopd_id,
             'nama_opd' => $request->nama_opd,
         ]);
 

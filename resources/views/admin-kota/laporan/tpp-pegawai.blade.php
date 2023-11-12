@@ -53,15 +53,18 @@
                                 <button class="btn btn-outline-secondary" type="submit">Cari</button>
                             </div>
                             <div class="input-group-append">
-                                <a href="{{ route('adminkota-tpp-pegawai') }}" class="btn btn-outline-secondary">Reset</a>
+                                <a href="{{ route('adminkota-pegawai') }}" class="btn btn-outline-secondary">Reset</a>
                             </div>
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFilterPegawai" type="button">filter</button>
+                                <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFilteropdPegawai" type="button">filter OPD</button>
+                            </div>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFiltersubopdPegawai" type="button">filter SUBOPD</button>
                             </div>
                         </div>
                     </form>
     
-                    <div class="modal fade" id="createFilterPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="createFilteropdPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -73,9 +76,9 @@
                                 <form action="{{ route('adminkota-tpp-pegawai') }}" method="GET" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label for="filterOpd">Nama Opd</label>
-                                            <select type="text" name="filterOpd" class="form-control @error('filterOpd') is-invalid @enderror">
-                                                @foreach($opds as $opd)
+                                            <label for="filteropd">OPD</label>
+                                            <select type="text" name="filteropd" class="form-control @error('filteropd') is-invalid @enderror">
+                                                @foreach(\App\Models\Opd::data() as $opd)
                                                     <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
                                                 @endforeach
                                             </select>
@@ -89,6 +92,45 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="createFiltersubopdPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="createModalLabel">Filter Data Pegawai</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ route('adminkota-tpp-pegawai') }}" method="GET" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="filtersubopd">SUB OPD</label>
+                                            <select type="text" name="filtersubopd" class="form-control @error('filtersubopd') is-invalid @enderror">
+                                                @foreach(\App\Models\Subopd::data() as $subopd)
+                                                    <option value="{{ $subopd->id }}">{{ $subopd->nama_sub_opd }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('adminkota-tpp-pegawai') }}" method="GET" class="form-inline">
+                        <label for="recordsPerPage" class="mr-2">show:</label>
+                        <select name="recordsPerPage" id="recordsPerPage" class="form-control mr-2" onchange="this.form.submit()">
+                            <option value="10" {{ request('recordsPerPage', 10) == 10 ? 'selected' : '' }}>10</option>
+                            <option value="20" {{ request('recordsPerPage', 10) == 20 ? 'selected' : '' }}>20</option>
+                            <option value="50" {{ request('recordsPerPage', 10) == 50 ? 'selected' : '' }}>50</option>
+                            <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
+                        </select>
+                    </form>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
@@ -195,12 +237,12 @@
                                         $rumus_total_tpp_bulanan_total += $rumus_total_tpp_bulanan;
                                         $rumus_total_tpp_tahunan_total += $rumus_total_tpp_tahunan; --}}
                                     {{-- @endphp --}}
-                                    <td>{{ number_format($rumus_bk_tahunan,0,',','.') }}</td>
-                                    <td>{{ number_format($rumus_bk_bulanan,0,',','.') }}</td>
-                                    <td>{{ number_format($rumus_pk_tahunan,0,',','.') }}</td>
-                                    <td>{{ number_format($rumus_pk_bulanan,0,',','.') }}</td>
-                                    <td>{{ number_format($rumus_total_tpp_bulanan,0,',','.') }}</td>
-                                    <td>{{ number_format($rumus_total_tpp_tahunan,0,',','.') }}</td>
+                                    <td>{{ number_format($data->rumus_bk_tahunan, 0, ',', '.') }}</td>
+                                    <td>{{ number_format($data->rumus_bk_bulanan, 0, ',', '.') }}</td>
+                                    <td>{{ number_format($data->rumus_pk_tahunan, 0, ',', '.') }}</td>
+                                    <td>{{ number_format($data->rumus_pk_bulanan, 0, ',', '.') }}</td>
+                                    <td>{{ number_format($data->rumus_total_tpp_bulanan, 0, ',', '.') }}</td>
+                                    <td>{{ number_format($data->rumus_total_tpp_tahunan, 0, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -233,7 +275,9 @@
                 {{-- {!! $pegbul->render() !!} --}}
                 {{ $datas->appends([
                     'search' => $search,
-                    'filterOpd' => $filterOpd,
+                    'filteropd' => $filteropd,
+                    'pagination' => $pagination,
+                    'filtersubopd' => $filtersubopd,
                     ])->links() }}
             </div>
         </div>

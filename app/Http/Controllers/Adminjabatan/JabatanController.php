@@ -17,14 +17,15 @@ class JabatanController extends Controller
     {
         $tahunid = session()->get('tahun_id_session');
         $pencarian = $request->pencarian;
+        $pagination = $request->input('recordsPerPage', 10);
 
         if (!empty($request->pencarian)) {
-            $datas= Jabatan::pencarian($pencarian)->paginate(10);
+            $datas= Jabatan::pencarian($pencarian)->paginate($pagination);
         }else {
-            $datas= Jabatan::daftar()->paginate(10);
+            $datas= Jabatan::daftar()->paginate($pagination);
         }
 
-        return view('admin-jabatan.master.master-jabatan',compact('datas', 'pencarian'));
+        return view('admin-jabatan.master.master-jabatan',compact('datas', 'pencarian','pagination'));
     }
 
     public function store(Request $request)

@@ -13,12 +13,45 @@ class Catatan_opd extends Model
 
     public static function data()
     {
-        $data = Catatan_opd::select('catatan_opds.*', 'pegawais.nip', 'pegawais.nama_pegawai', 'opds.nama_opd', 'master_tahun.tahun', 'pegawais.opd_id', 'pegawais.pangkat', 'pegawais.golongan', 'pegawais.eselon')
+        $data = Catatan_opd::select('catatan_opds.*',
+                                    'pegawais.kode_jabatanlama',
+                                    'pegawais.nip', 
+                                    'pegawais.nama_pegawai',
+                                    'pegawais.sts_pegawai', 
+                                    'master_tahun.tahun', 
+                                    'pegawais.opd_id',
+                                    'pegawais.subopd_id', 
+                                    'pegawais.pangkat',
+                                    'pegawais.sts_jabatan',
+                                    'pegawais.subkoor',
+                                    'pegawais.nama_subkoor',
+                                    'pegawais.sts_subkoor',
+                                    'pegawais.bulan_bk',
+                                    'pegawais.bulan_pk',
+                                    'pegawais.golongan',
+                                    'pegawais.pensiun', 
+                                    'pegawais.eselon',
+                                    'pegawais.tpp',
+                                    'pegawais.sertifikasi_guru',
+                                    'pegawais.pa_kpa',
+                                    'pegawais.pbj',
+                                    'pegawais.jft',)
                             ->join('pegawais', 'pegawais.id', '=', 'catatan_opds.pegawai_id')
                             ->join('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
                             ->join('opds', 'opds.id', '=', 'pegawais.opd_id')
+                            ->leftJoin('sub_opds', 'sub_opds.id', '=', 'pegawais.subopd_id')
+                            ->join('jabatans','jabatans.kode_jabatanlama','=','pegawais.kode_jabatanlama')
+                            ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
+                            ->leftJoin('indeks AS indeks_subkor_penyetaraan', 'indeks_subkor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_subkor_non_penyetaraan', 'indeks_subkor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_non_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_koor_penyetaraan', 'indeks_koor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_koor_non_penyetaraan', 'indeks_koor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_non_penyetaraan_id')
+                            ->leftJoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
+                            ->leftJoin('jenis_jabatans AS jenis_jabatan_subkor_penyetaraan', 'jenis_jabatan_subkor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                            ->leftJoin('jenis_jabatans AS jenis_jabatan_subkor_non_penyetaraan', 'jenis_jabatan_subkor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
+                            ->leftJoin('jenis_jabatans AS jenis_jabatan_koor_penyetaraan', 'jenis_jabatan_koor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                            ->leftJoin('jenis_jabatans AS jenis_jabatan_koor_non_penyetaraan', 'jenis_jabatan_koor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
                             ->orderBy('catatan_opds.created_at','ASC');
-
         return $data;
     }
 

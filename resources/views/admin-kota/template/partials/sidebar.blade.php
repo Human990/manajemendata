@@ -107,6 +107,34 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
+    <div class="sidebar-heading">
+        Catatan
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+            aria-expanded="true" aria-controls="collapseThree">
+            <i class="fas fa-fw fa-file-excel"></i>
+            <span>Catatan</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-catatan') }}" @endif class="collapse-item">
+                    <span>History Catatan</span>
+                </a>
+                {{-- <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-tpp-pegawai')}}" @endif class="collapse-item">
+                    <span>Rekap TPP Per Person</span>
+                </a> --}}
+                {{-- <a href="#" class="collapse-item">
+                    <span>Rekap Per Jenis Tunjangan</span>
+                </a> --}}
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
