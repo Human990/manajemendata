@@ -41,8 +41,9 @@
                                 <th width="1%">No</th>
                                 <th width="20%">Tahun</th>
                                 <th width="20%">Kode OPD</th>
-                                <th width="25%">Nama OPD</th>
-                                <th width="25%">Nama Sub OPD</th>
+                                <th width="20%">Nama OPD</th>
+                                <th width="20%">Nama Sub OPD</th>
+                                <th width="10%">Status</th>
                                 <th width="9%">Action</th>
                             </tr>
                         </thead>
@@ -56,6 +57,13 @@
                                     <td>{{ $data->kode_opd }}</td>
                                     <td>{{ $data->nama_opd }}</td>
                                     <td>{{ $data->nama_sub_opd }}</td>
+                                    <td>
+                                        @if(\App\Models\lock::status($data->id) == '1')
+                                            <b style="color:red">Locked</b>
+                                        @else
+                                            <b style="color:green">Open</b>
+                                        @endif
+                                    </td>
                                     <td>
                                         <button class="btn btn-sm btn-info btn-block" data-toggle="modal" data-target="#ubahModalIndeks{{ $i }}"><i class="fa fa-eye"></i> Ubah</button>
                                         {{-- <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button> --}}
@@ -101,6 +109,13 @@
                                                             @foreach(\App\Models\Subopd::orderBy('nama_sub_opd', 'ASC')->get() as $subopd)
                                                                 <option value="{{ $subopd->id }}" @if($subopd->id == $data->subopd_id) selected @endif>{{ $subopd->nama_sub_opd }}</option>
                                                             @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="lock">Kunci OPD</label>
+                                                        <select type="text" name="lock" class="form-control @error('lock') is-invalid @enderror">
+                                                            <option value="0" @if($data->lock == 0) selected @endif>Buka Kunci</option>
+                                                            <option value="1" @if($data->lock == 1) selected @endif>Kunci</option>
                                                         </select>
                                                     </div>
                                                 </div>

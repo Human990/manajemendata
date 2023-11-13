@@ -100,6 +100,7 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
 
 Route::group(['middleware' => ['auth', 'adminopd']], function () {
     // Rute yang memerlukan autentikasi dan peran admin
+    Route::post('adminopd/lock/data',[App\Http\Controllers\Adminopd\PegawaibulananOpdController::class,'lock'])->name('adminopd-lockdata');
     Route::get('adminopd/profil',[App\Http\Controllers\Adminopd\ProfilController::class,'index'])->name('adminopd-profil');
     Route::post('adminopd/ubah/password',[App\Http\Controllers\Adminopd\ProfilController::class,'ubah_password'])->name('adminopd-ubahpassword');
 

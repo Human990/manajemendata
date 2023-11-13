@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Adminopd;
 
+use App\Models\Opd;
 use App\Models\Tahun;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
@@ -131,5 +132,20 @@ class PegawaibulananOpdController extends Controller
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');
+    }
+
+    public function lock()
+    {
+        $opd = Opd::where('kode_sub_opd', Auth::user()->kode_sub_opd)->where('tahun_id', session()->get('tahun_id_session'));
+
+        $opd->update([
+            'lock' => 1,
+        ]);
+
+        if ($opd) {
+            session()->put('statusLock', 'Data berhasil dikunci');
+        }
+
+        return redirect()->back();
     }
 }
