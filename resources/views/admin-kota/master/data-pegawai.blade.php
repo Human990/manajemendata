@@ -264,7 +264,7 @@
                                                     <div class="form-group">
                                                         <label for="opd_id">OPD</label>
                                                         <select type="text" name="opd_id" class="form-control @error('opd_id') is-invalid @enderror">
-                                                            @foreach(\App\Models\Opd::orderBy('nama_opd', 'ASC')->get() as $opd)
+                                                            @foreach(\App\Models\Opd::where('tahun_id', session()->get('tahun_id_session'))->orderBy('nama_opd', 'ASC')->get() as $opd)
                                                                 <option value="{{ $opd->id }}" @if($opd->id == $data->opd_id) selected @endif>{{ $opd->nama_opd }}</option>
                                                             @endforeach
                                                         </select>
@@ -539,7 +539,7 @@
                                                     <div class="form-group">
                                                         <label for="opd_id">OPD</label>
                                                         <select type="text" name="opd_id" class="form-control @error('opd_id') is-invalid @enderror">
-                                                            @foreach(\App\Models\Opd::orderBy('nama_opd', 'ASC')->get() as $opd)
+                                                            @foreach(\App\Models\Opd::where('tahun_id', session()->get('tahun_id_session'))->orderBy('nama_opd', 'ASC')->get() as $opd)
                                                                 <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
                                                             @endforeach
                                                         </select>
