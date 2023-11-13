@@ -152,7 +152,9 @@
                             <th width="3%">Jumlah Bulan Penerimaan BK</th>
                             <th width="3%">Jumlah Bulan Penerimaan PK</th>
                             <th width="3%">Tpp Tambahan</th>
-                            <th width="6%">Action</th>
+                            @if(\App\Models\lock::data() != '1')
+                                <th width="6%">Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody id="dynamic-row">
@@ -231,41 +233,43 @@
                                 <td align="center">{{ $data->bulan_bk }}</td>
                                 <td align="center">{{ $data->bulan_pk }}</td>
                                 <td>{{ $data->tpp_tambahan }}</td>
-                                <td>
-                                    @if(Auth::user()->role_id == 1)
-                                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-edit"></i></button>
-                                        <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i></button>
-                                    @elseif(Auth::user()->role_id == 2)
-                                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-plus"></i> Catatan</button>
+                                @if(\App\Models\lock::data() != '1')
+                                    <td>
+                                        @if(Auth::user()->role_id == 1)
+                                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-edit"></i></button>
+                                            <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i></button>
+                                        @elseif(Auth::user()->role_id == 2)
+                                            <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-plus"></i> Catatan</button>
 
-                                        <div class="modal fade" id="modalCatatan{{ $i }}" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="createModalLabel">Tambah Catatan</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="{{ route('adminopd-catatan.store') }}" method="post">
-                                                        <div class="modal-body">
-                                                            @csrf
-                                                            <input type="hidden" name="pegawai_id" value="{{ $data->id }}">
-                                                            <div class="form-group">
-                                                                <label for="catatan_opd">Catatan</label>
-                                                                <textarea name="catatan_opd" id="catatan_opd" cols="30" rows="7" class="form-control" placeholder="Masukkan catatan . . ."></textarea>
+                                            <div class="modal fade" id="modalCatatan{{ $i }}" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="createModalLabel">Tambah Catatan</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('adminopd-catatan.store') }}" method="post">
+                                                            <div class="modal-body">
+                                                                @csrf
+                                                                <input type="hidden" name="pegawai_id" value="{{ $data->id }}">
+                                                                <div class="form-group">
+                                                                    <label for="catatan_opd">Catatan</label>
+                                                                    <textarea name="catatan_opd" id="catatan_opd" cols="30" rows="7" class="form-control" placeholder="Masukkan catatan . . ."></textarea>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Simpan</button>
-                                                        </div>
-                                                    </form>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endif
-                                </td>
+                                        @endif
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

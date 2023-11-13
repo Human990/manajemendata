@@ -30,11 +30,64 @@
                         <i class="fas fa-check fa-sm"></i> Aktifkan
                     </button>
                 </div>
+
+                @if(session()->get('tahun_session'))
+                    @if(\App\Models\lock::data() != '1')
+                        <div class="input-group-append">
+                            <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#lockModal">
+                                <i class="fas fa-lock fa-sm"></i> Kunci
+                            </button>
+                        </div>
+                    @elseif(\App\Models\lock::data() == '1')
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button">
+                                <i class="fas fa-lock fa-sm"></i> Data Dikunci
+                            </button>
+                        </div>
+                    @endif
+                @endif
+
+                <div class="input-group-append">
+                    @if (session()->has('statusLock'))
+                        <button class="btn btn-success" type="button">
+                            <i class="fas fa-lock fa-sm"></i> {{ session()->get('statusLock') }}
+                        </button>
+                    @endif
+
+                    {{ session()->forget('statusLock') }}
+                </div>
             </div>
     </form>
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
+        <div class="modal fade" id="lockModal" role="dialog" aria-labelledby="lockModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="lockModal">Kunci Data Tahun {{ session()->get('tahun_session') }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('adminopd-lockdata') }}" method="post">  
+                        <div class="modal-body">
+                            @csrf
+                            <input type="hidden" name="pegawai_id" value="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                   <div class="alert alert-danger" role="alert"><b>Peringatan : </b> Setelah data di kunci maka data tidak akan dapat dilakukan perubahan atau ditambahkan catatan, anda dapat menghubungi admin kota untuk membuka kunci</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Kunci Data</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
         {{-- <li class="nav-item dropdown no-arrow d-sm-none">

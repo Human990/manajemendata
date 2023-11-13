@@ -30,7 +30,9 @@
                                 <th>Nama Pegawai</th>
                                 <th>Catatan</th>
                                 <th>Status</th>
-                                <th>Aksi</th>
+                                @if(\App\Models\lock::data() != '1')
+                                    <th>Aksi</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
@@ -48,14 +50,16 @@
                                     @if(!empty($catatan->catatan_admin)) <b>Catatan Admin : </b>{{ $catatan->catatan_admin }} @endif
                                 </td>
                                 <td width="5%">{{ $catatan->status }}</td>
-                                <td width="14%">
-                                    @if(!empty($catatan->status))
-                                        
-                                    @else
-                                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-edit"></i> Ubah</button>
-                                        <a href="{{ route('adminopd-catatan.destroy', $catatan->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Hapus</a>
-                                    @endif
-                                </td>
+                                @if(\App\Models\lock::data() != '1')
+                                    <td width="14%">
+                                        @if(!empty($catatan->status))
+                                            
+                                        @else
+                                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-edit"></i> Ubah</button>
+                                            <a href="{{ route('adminopd-catatan.destroy', $catatan->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Hapus</a>
+                                        @endif
+                                    </td>
+                                @endif
                             </tr>
 
                                 <div class="modal fade" id="modalCatatan{{ $i }}" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
