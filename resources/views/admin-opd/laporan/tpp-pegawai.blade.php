@@ -25,9 +25,9 @@
                     <div class="input-group-append">
                         <a href="{{ route('adminopd-pegawai') }}" class="btn btn-outline-secondary">Reset</a>
                     </div>
-                    <div class="input-group-append">
+                    {{-- <div class="input-group-append">
                         <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFilterPegawai" type="button">filter</button>
-                    </div>
+                    </div> --}}
                 </div>
             </form>
 
@@ -66,50 +66,60 @@
                     <tr>
                         <td>
                             <label><input type="checkbox" class="toggle-column" data-column="4" checked> OPD</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="5" checked> Nama Jabatan</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="6" checked> Jenis Jabatan</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="5" checked> SUB OPD</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="6" checked> Nama Jabatan</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="7"> Status Jabatan</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="8" checked> Nilai Jabatan (JV)</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="9" checked> Indeks</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="7" checked> Jenis Jabatan</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="8" checked> Status Jabatan</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="9" checked> Nilai Jabatan (JV)</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="10" checked> Pangkat</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="11" checked> Golongan</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="12" checked> Eselon</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="10" checked> Indeks</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="11" checked> Pangkat</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="12" checked> Golongan</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="13"> Status Penerimaan TPP</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="14"> Sertifikasi Guru</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="15"> PA/KPA</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="13" checked> Eselon</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="14" checked> Status Penerimaan TPP</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="15" checked> Sertifikasi Guru</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="16"> Sertifikasi PBJ</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="17"> Tipe Jabatan</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="18"> Subkoor</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="16" checked> PA/KPA</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="17" checked> Sertifikasi PBJ</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="18" checked> Tipe Jabatan</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="19"> Nama Subkoor</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="20"> Status Subkoor</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="21"> NIP Penilai</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="19" checked> Subkoor</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="20" checked> Nama Subkoor</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="21" checked> Status Subkoor</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="22"> Nama Penilai</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="23"> Nip Atasan Penilai</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="24"> Nama Atasan Penilai</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="22"> NIP Penilai</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="23"> Nama Penilai</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="24"> Nip Atasan Penilai</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="25" checked> Pensiun</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="26" checked> Jumlah Bulan Penerimaan BK</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="27" checked> Jumlah Bulan Penerimaan PK</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="25"> Nama Atasan Penilai</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="26" checked> Pensiun</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="27" checked> Jumlah Bulan Penerimaan BK</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="28" checked> Tpp Tambahan</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="28" checked> Jumlah Bulan Penerimaan PK</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="29" checked> Jumlah Bulan Penerimaan PK</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="30" checked> Tpp Tambahan</label></br>
                         </td>
                     </tr>
                 </table>
-
+                <form action="{{ route('adminopd-pegawai') }}" method="GET" class="form-inline">
+                    <label for="recordsPerPage" class="mr-2">show:</label>
+                    <select name="recordsPerPage" id="recordsPerPage" class="form-control mr-2" onchange="this.form.submit()">
+                        <option value="10" {{ request('recordsPerPage', 10) == 10 ? 'selected' : '' }}>10</option>
+                        <option value="20" {{ request('recordsPerPage', 10) == 20 ? 'selected' : '' }}>20</option>
+                        <option value="50" {{ request('recordsPerPage', 10) == 50 ? 'selected' : '' }}>50</option>
+                        <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
+                    </select>
+                </form>
                 <table class="table table-hover table-bordered" id="data-table">
                     <thead>
                         <tr>
@@ -257,402 +267,17 @@
                                     @endif
                                 </td>
                             </tr>
-
-                            <div class="modal fade" id="ubahModalPegawai{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
-            aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="createModalLabel">Ubah Data Pegawai</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form action="{{ route('adminopd-pegawai.update', $data->id) }}" method="post" enctype="multipart/form-data">
-                                            <div class="modal-body">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="form-group">
-                                                    <label for="nip">NIP</label>
-                                                    <input type="text" name="nip"
-                                                        class="form-control @error('nip') is-invalid @enderror" id="nip"
-                                                        placeholder="NIP . . ." value="{{ $data->nip }}">
-                                                    @error('nip')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="nama_pegawai">Nama Pegawai</label>
-                                                    <input type="text" name="nama_pegawai"
-                                                        class="form-control @error('nama_pegawai') is-invalid @enderror" id="nama_pegawai"
-                                                        placeholder="Nama Pegawai . . ." value="{{ $data->nama_pegawai }}">
-                                                    @error('nama_pegawai')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="sts_pegawai">Status Pegawai</label>
-                                                    <select type="text" name="sts_pegawai" class="form-control @error('sts_pegawai') is-invalid @enderror">
-                                                        <option value="PNS" @if('PNS' == $data->sts_pegawai) selected @endif>PNS</option>
-                                                        <option value="CPNS" @if('CPNS' == $data->sts_pegawai) selected @endif>CPNS</option>
-                                                        <option value="PPPK" @if('PPPK' == $data->sts_pegawai) selected @endif>PPPK</option>
-                                                        <option value="GURU" @if('GURU' == $data->sts_pegawai) selected @endif>GURU</option>
-                                                        <option value="RS" @if('RS' == $data->sts_pegawai) selected @endif>RS</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="opd_id">OPD</label>
-                                                    <select type="text" name="opd_id" class="form-control @error('opd_id') is-invalid @enderror">
-                                                        @foreach(\App\Models\Opd::orderBy('nama_opd', 'ASC')->get() as $opd)
-                                                            <option value="{{ $opd->id }}" @if($opd->id == $data->opd_id) selected @endif>{{ $opd->nama_opd }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="kode_jabatanlama">Jabatan</label>
-                                                    <select type="text" name="kode_jabatanlama" class="form-control @error('kode_jabatanlama') is-invalid @enderror">
-                                                        @foreach(\App\Models\Jabatan::data() as $jabatan)
-                                                            <option value="{{ $jabatan->id }}" @if($jabatan->id == $data->kode_jabatanlama) selected @endif>{{ $jabatan->nama_jabatan }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="sts_jabatan">Status Jabatan</label>
-                                                    <input type="text" name="sts_jabatan"
-                                                        class="form-control @error('sts_jabatan') is-invalid @enderror" id="sts_jabatan"
-                                                        placeholder="Status Jabatan . . ." value="{{ $data->sts_jabatan }}">
-                                                    @error('sts_jabatan')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="pangkat">Pangkat</label>
-                                                    <input type="text" name="pangkat"
-                                                        class="form-control @error('pangkat') is-invalid @enderror" id="pangkat"
-                                                        placeholder="Pangkat . . ." value="{{ $data->pangkat }}">
-                                                    @error('pangkat')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="golongan">Golongan</label>
-                                                    <input type="text" name="golongan"
-                                                        class="form-control @error('golongan') is-invalid @enderror" id="golongan"
-                                                        placeholder="Golongan . . ." value="{{ $data->golongan }}">
-                                                    @error('golongan')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="eselon">Eselon</label>
-                                                    <input type="text" name="eselon"
-                                                        class="form-control @error('eselon') is-invalid @enderror" id="eselon"
-                                                        placeholder="Eselon . . ." value="{{ $data->eselon }}">
-                                                    @error('eselon')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tpp">Status Penerimaan TPP</label>
-                                                    <input type="text" name="tpp"
-                                                        class="form-control @error('tpp') is-invalid @enderror" id="tpp"
-                                                        placeholder="Status Penerimaan TPP . . ." value="{{ $data->tpp }}">
-                                                    @error('tpp')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                {{-- <div class="form-group">
-                                                    <label for="nama_opd">Sertifikasi Guru</label>
-                                                    <input type="text" name="nama_opd"
-                                                        class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                        placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                    @error('nama_opd')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                 <div class="form-group">
-                                                    <label for="nama_opd">Tipe Jabatan</label>
-                                                    <input type="text" name="nama_opd"
-                                                        class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                        placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                    @error('nama_opd')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div> 
-                                                 <div class="form-group">
-                                                    <label for="nama_opd">Subkoor</label>
-                                                    <input type="text" name="nama_opd"
-                                                        class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                        placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                    @error('nama_opd')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="nama_opd">Nama Subkoor</label>
-                                                    <input type="text" name="nama_opd"
-                                                        class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                        placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                    @error('nama_opd')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div> 
-                                                 <div class="form-group">
-                                                    <label for="nama_opd">Status Subkoor</label>
-                                                    <input type="text" name="nama_opd"
-                                                        class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                        placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                    @error('nama_opd')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div> 
-                                                 <div class="form-group">
-                                                    <label for="nama_opd">Nip Atasan Langsung</label>
-                                                    <input type="text" name="nama_opd"
-                                                        class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                        placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                    @error('nama_opd')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div> 
-                                                 <div class="form-group">
-                                                    <label for="nama_opd">Nama Atasan Langsung</label>
-                                                    <input type="text" name="nama_opd"
-                                                        class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                        placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                    @error('nama_opd')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div> 
-                                                 <div class="form-group">
-                                                    <label for="nama_opd">Nip Atasan Penilai</label>
-                                                    <input type="text" name="nama_opd"
-                                                        class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                        placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                    @error('nama_opd')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="nama_opd">Nama Atasan Penilai</label>
-                                                    <input type="text" name="nama_opd"
-                                                        class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
-                                                        placeholder="Nama OPD . . ." value="{{ $data->nama_opd }}">
-                                                    @error('nama_opd')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div> --}}
-                                                <div class="form-group">
-                                                    <label for="pensiun">Pensiun</label>
-                                                    <select type="text" name="pensiun" class="form-control @error('pensiun') is-invalid @enderror">
-                                                        <option value="58" @if('58' == $data->pensiun) selected @endif>58</option>
-                                                        <option value="60" @if('60' == $data->pensiun) selected @endif>60</option>
-                                                        <option value="65" @if('65' == $data->pensiun) selected @endif>65</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="bulan_bk">Jumlah Bulan Penerimaan BK</label>
-                                                    <input type="text" name="bulan_bk"
-                                                        class="form-control @error('bulan_bk') is-invalid @enderror" id="bulan_bk"
-                                                        placeholder="Jumlah Bulan Penerimaan . . ." value="{{ $data->bulan_bk }}">
-                                                    @error('bulan_bk')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div><div class="form-group">
-                                                    <label for="bulan_pk">Jumlah Bulan Penerimaan PK</label>
-                                                    <input type="text" name="bulan_pk"
-                                                        class="form-control @error('bulan_pk') is-invalid @enderror" id="bulan_pk"
-                                                        placeholder="Jumlah Bulan Penerimaan . . ." value="{{ $data->bulan_pk }}">
-                                                    @error('bulan_pk')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tpp_tambahan">Tpp Tambahan</label>
-                                                    <input type="text" name="tpp_tambahan"
-                                                        class="form-control @error('tpp_tambahan') is-invalid @enderror" id="tpp_tambahan"
-                                                        placeholder="Tpp Tambahan . . ." value="{{ $data->tpp_tambahan }}">
-                                                    @error('tpp_tambahan')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                         @endforeach
                     </tbody>
                 </table>
                 {{ $datas->appends([
                     'search' => $search,
-                    'filter' => $filter,
+                    'pagination' => $pagination,
                     ])->links() }}
-            </div>
-        </div>
-        <div class="text-center">
-            {{-- <h6>jumlah data :{{$jumlah_pegawai}}</h6> --}}
-        </div>
-        <div class="modal fade" id="createModalPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="createModalLabel">Tambah Data Pegawai</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="{{ route('adminopd-pegawai.store') }}" method="post" enctype="multipart/form-data">
-                        <div class="modal-body">
-                            @csrf
-                            <input type="hidden" name="tahun_id" value="{{ session()->get('tahun_id_session') }}">
-                                                <div class="form-group">
-                                                    <label for="nip">NIP</label>
-                                                    <input type="text" name="nip"
-                                                        class="form-control @error('nip') is-invalid @enderror" id="nip"
-                                                        placeholder="NIP . . ." value="">
-                                                    @error('nip')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="nama_pegawai">Nama Pegawai</label>
-                                                    <input type="text" name="nama_pegawai"
-                                                        class="form-control @error('nama_pegawai') is-invalid @enderror" id="nama_pegawai"
-                                                        placeholder="Nama Pegawai . . ." value="">
-                                                    @error('nama_pegawai')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="sts_pegawai">Status Pegawai</label>
-                                                    <select type="text" name="sts_pegawai" class="form-control @error('sts_pegawai') is-invalid @enderror">
-                                                        <option value="PNS" >PNS</option>
-                                                        <option value="CPNS" >CPNS</option>
-                                                        <option value="PPPK" >PPPK</option>
-                                                        <option value="GURU" >GURU</option>
-                                                        <option value="RS" >RS</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="opd_id">OPD</label>
-                                                    <select type="text" name="opd_id" class="form-control @error('opd_id') is-invalid @enderror">
-                                                        @foreach(\App\Models\Opd::orderBy('nama_opd', 'ASC')->get() as $opd)
-                                                            <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="kode_jabatanlama">Jabatan</label>
-                                                    <select type="text" name="kode_jabatanlama" class="form-control @error('kode_jabatanlama') is-invalid @enderror">
-                                                        @foreach(\App\Models\Jabatan::data() as $jabatan)
-                                                            <option value="{{ $jabatan->id }}">{{ $jabatan->nama_jabatan }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="sts_jabatan">Status Jabatan</label>
-                                                    <input type="text" name="sts_jabatan"
-                                                        class="form-control @error('sts_jabatan') is-invalid @enderror" id="sts_jabatan"
-                                                        placeholder="Status Jabatan . . ." value="">
-                                                    @error('sts_jabatan')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="pangkat">Pangkat</label>
-                                                    <input type="text" name="pangkat"
-                                                        class="form-control @error('pangkat') is-invalid @enderror" id="pangkat"
-                                                        placeholder="Pangkat . . ." value="">
-                                                    @error('pangkat')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="golongan">Golongan</label>
-                                                    <input type="text" name="golongan"
-                                                        class="form-control @error('golongan') is-invalid @enderror" id="golongan"
-                                                        placeholder="Golongan . . ." value="">
-                                                    @error('golongan')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="eselon">Eselon</label>
-                                                    <input type="text" name="eselon"
-                                                        class="form-control @error('eselon') is-invalid @enderror" id="eselon"
-                                                        placeholder="Eselon . . ." value="">
-                                                    @error('eselon')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tpp">Status Penerimaan TPP</label>
-                                                    <input type="text" name="tpp"
-                                                        class="form-control @error('tpp') is-invalid @enderror" id="tpp"
-                                                        placeholder="Status Penerimaan TPP . . ." value="">
-                                                    @error('tpp')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="pensiun">Pensiun</label>
-                                                    <select type="text" name="pensiun" class="form-control @error('pensiun') is-invalid @enderror">
-                                                        <option value="58" >58</option>
-                                                        <option value="60" >60</option>
-                                                        <option value="65" >65</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="bulan_bk">Jumlah Bulan Penerimaan BK</label>
-                                                    <input type="text" name="bulan_bk"
-                                                        class="form-control @error('bulan_bk') is-invalid @enderror" id="bulan_bk"
-                                                        placeholder="Jumlah Bulan Penerimaan . . ." value="">
-                                                    @error('bulan_bk')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="bulan_pk">Jumlah Bulan Penerimaan BK</label>
-                                                    <input type="text" name="bulan_pk"
-                                                        class="form-control @error('bulan_pk') is-invalid @enderror" id="bulan_pk"
-                                                        placeholder="Jumlah Bulan Penerimaan . . ." value="">
-                                                    @error('bulan_pk')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tpp_tambahan">Tpp Tambahan</label>
-                                                    <input type="text" name="tpp_tambahan"
-                                                        class="form-control @error('tpp_tambahan') is-invalid @enderror" id="tpp_tambahan"
-                                                        placeholder="Tpp Tambahan . . ." value="">
-                                                    @error('tpp_tambahan')
-                                                        <span class="invalid-feedback">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
 </div>
-
-<form action="" method="post" id="deleteForm">
-    @csrf
-    @method("DELETE")
-<button type="submit" style="display:none">Hapus</button>
-</form>
-
 <script>
     function toggleColumn(columnIndex, checked) {
         const table = document.getElementById("data-table");
@@ -671,19 +296,10 @@
         });
     }
 
-    toggleColumn(7, false);
-    toggleColumn(13, false);
-    toggleColumn(14, false);
-    toggleColumn(15, false);
-    toggleColumn(16, false);
-    toggleColumn(17, false);
-    toggleColumn(18, false);
-    toggleColumn(19, false);
-    toggleColumn(20, false);
-    toggleColumn(21, false);
     toggleColumn(22, false);
     toggleColumn(23, false);
     toggleColumn(24, false);
+    toggleColumn(25, false);
     //toggleColumn(25, false);
 
     const toggleColumnCheckboxes = document.querySelectorAll(".toggle-column");

@@ -12,24 +12,35 @@ class PegawaiController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->input('search');
+        $pagination = $request->input('recordsPerPage', 10);
+        $search = $request->input('search'); // Data pencarian
+        $filteropd = $request->input('filteropd'); // Data filter
+        $filtersubopd = $request->input('filtersubopd'); // Data filter
+        $query = Pegawai::data();
 
-        $filter = '';
-        $filter = $request->filter;
-
-        if (!empty($filter)) {
-            $datas = Pegawai::filter($filter);
-        }else {
-            $datas = Pegawai::data();
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('pegawais.nip', 'like', "%$search%")
+                    ->orWhere('pegawais.nama_pegawai', 'like', "%$search%")
+                    ->orWhere('opds.nama_opd', 'like', "%$search%")
+                    ->orWhere('jabatans.nama_jabatan', 'LIKE', '%'.$search.'%');
+            });
         }
 
-        if (!empty($search)) {
-            $datas = Pegawai::pencarian($search);
-        }else {
-            $datas = Pegawai::data();
+         // Menambahkan kondisi where untuk filter jika ada
+        if ($filteropd) {
+            $query->where('pegawais.opd_id', $filteropd);
+            // Tambahkan kondisi filter untuk kolom lainnya
+        }
+        if ($filtersubopd) {
+            $query->where('pegawais.subopd_id',$filtersubopd);
+            // Tambahkan kondisi filter untuk kolom lainnya
         }
 
-        return view('admin-kota.master.data-pegawai', compact('datas','search', 'filter'));
+        // Memanggil metode data() pada model Pegawai
+        $datas = $query->paginate($pagination);
+
+        return view('admin-kota.master.data-pegawai', compact('datas', 'pagination', 'search','filteropd','filtersubopd'));
     }
 
     public function store(Request $request)
@@ -84,6 +95,7 @@ class PegawaiController extends Controller
             'nama_pegawai' => $request->nama_pegawai,
             'sts_pegawai' => $request->sts_pegawai,
             'kode_jabatanlama' => $request->kode_jabatanlama,
+            'subopd_id' => $request->subopd_id,
             'sts_jabatan' => $request->sts_jabatan,
             'golongan' => $request->golongan,
             'pangkat' => $request->pangkat,
@@ -97,6 +109,9 @@ class PegawaiController extends Controller
             'subkoor' => $request->subkoor,
             'nama_subkoor' => $request->nama_subkoor,
             'sts_subkoor' => $request->sts_subkoor,
+            'sertifikasi_guru' => $request->sertifikasi_guru,
+            'pa_kpa' => $request->pa_kpa,
+            'pbj' => $request->pbj,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');

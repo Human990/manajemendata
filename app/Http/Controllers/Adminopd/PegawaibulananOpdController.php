@@ -6,30 +6,47 @@ use App\Models\Tahun;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PegawaibulananOpdController extends Controller
 {
 
     public function index(Request $request)
     {
+        $tahun_id = 0;
+
+        try {
+            $tahun_id = session()->get('tahun_id_session');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        $pagination = $request->input('recordsPerPage', 10);
         $search = $request->input('search');
-
-        $filter = '';
-        $filter = $request->filter;
-
-        if (!empty($filter)) {
-            $datas = Pegawai::filter($filter);
-        }else {
-            $datas = Pegawai::data();
+        // $filter = $request->input('filter');
+        $page = $request->input('page', 1);
+        $query = Pegawai::data();
+        
+        if (Auth::user()->role_id == 2 && Auth::user()->username == 'sekda') {
+            $query = Pegawai::data()->where('pegawais.opd_id', '35')->whereNull(Auth::user()->kode_sub_opd);
+        } elseif (Auth::user()->role_id == 2 && Auth::user()->opd == 'guru'){
+            $query = Pegawai::data()->where('pegawais.sts_pegawai', 'GURU');
+        } elseif (Auth::user()->role_id == 6 && Auth::user()->opd == 'bagian') {
+            $query = Pegawai::data()->whereNull('sub_opds.kode_sub_opd', Auth::user()->kode_sub_opd);
+        } else {
+            $query = Pegawai::data()->where('opds.kode_opd', Auth::user()->kode_opd);
         }
 
-        if (!empty($search)) {
-            $datas = Pegawai::pencarian($search);
-        }else {
-            $datas = Pegawai::data();
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('pegawais.nip', 'like', "%$search%")
+                    ->orWhere('pegawais.nama_pegawai', 'like', "%$search%")
+                    ->orWhere('opds.nama_opd', 'like', "%$search%")
+                    ->orWhere('jabatans.nama_jabatan', 'LIKE', '%'.$search.'%');
+            });
         }
+        $datas = $query->paginate($pagination, ['*'], 'page', $page);
 
-        return view('admin-opd.laporan.tpp-pegawai', compact('datas', 'search', 'filter'));
+        return view('admin-opd.laporan.tpp-pegawai', compact('datas', 'search','pagination'));
     }
 
     public function putsession(Request $request)

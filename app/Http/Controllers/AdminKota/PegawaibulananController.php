@@ -14,59 +14,239 @@ use App\Http\Controllers\Controller;
 
 class PegawaibulananController extends Controller
 {
+    // public function tppperson(Request $request)
+    // {
+    //     $tahun_id = 0;
+
+    //     try {
+    //         $tahun_id = session()->get('tahun_id_session');
+    //     } catch (\Throwable $th) {
+    //         //throw $th;
+    //     }
+    //     $pagination = $request->input('recordsPerPage', 10);
+    //     $search = $request->input('search');
+
+    //     $filter = '';
+    //     $filter = $request->filter;
+
+    //     if (!empty($filter)) {
+    //         $datas = Pegawai::filter($filter)->paginate($pagination);
+    //     }else {
+    //         $datas = Pegawai::data()->paginate($pagination);
+    //     }
+
+    //     if (!empty($search)) {
+    //         $datas = Pegawai::pencarian($search)->paginate($pagination);
+    //     }else {
+    //         $datas = Pegawai::data()->paginate($pagination);
+    //     }
+    //     $opds=Opd::all();
+        
+    //     $rumus_bk_tahunan = 0;
+    //     $rumus_bk_bulanan = 0;
+    //     $rumus_pk_tahunan = 0;
+    //     $rumus_pk_bulanan = 0;
+    //     $rumus_total_tpp_bulanan = 0;
+    //     $rumus_total_tpp_tahunan = 0;
+    //     $rumus_bk_tahunan_total = 0;
+    //     $rumus_bk_bulanan_total = 0;
+    //     $rumus_pk_tahunan_total = 0;
+    //     $rumus_pk_bulanan_total = 0;
+    //     $rumus_total_tpp_bulanan_total = 0;
+    //     $rumus_total_tpp_tahunan_total = 0;
+        
+    //     foreach ($datas as $pegawai) {
+    //         if ($pegawai->subkoor == "Subkoor") {
+    //             if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
+    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_non_penyetaraan;
+    //             } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
+    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_penyetaraan;
+    //             }
+    //         } elseif ($pegawai->subkoor == "Koor") {
+    //             if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
+    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_non_penyetaraan;
+    //             } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
+    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_penyetaraan;
+    //             }
+    //         } else {
+    //             $nilai_jabatan = (float) $pegawai->nilai_jabatan;
+    //         }
+        
+    //         // Determine the appropriate indeks
+    //         if ($pegawai->subkoor == "Subkoor") {
+    //             if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
+    //                 $indeks = (float) $pegawai->indeks_subkoor_non_penyetaraan;
+    //             } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
+    //                 $indeks = (float) $pegawai->indeks_subkoor_penyetaraan;
+    //             }
+    //         } elseif ($pegawai->subkoor == "Koor") {
+    //             if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
+    //                 $indeks = (float) $pegawai->indeks_koor_non_penyetaraan;
+    //             } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
+    //                 $indeks = (float) $pegawai->indeks_koor_penyetaraan;
+    //             }
+    //         } else {
+    //             $indeks = (float) $pegawai->indeks;
+    //         }
+
+    //         // Rest of your calculation remains the same
+    //         $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0);
+    //         $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);
+    //         $bulan_bk = (float)($pegawai->bulan_bk ?? 0);
+    //         $bulan_pk = (float)($pegawai->bulan_pk ?? 0);
+
+    //         $rumus_bk_tahunan = $nilai_jabatan * $indeks *$bk * $bulan_bk;
+    //         $rumus_bk_bulanan = $nilai_jabatan * $indeks *$bk;
+    //         $rumus_pk_tahunan = $nilai_jabatan * $indeks *$pk * $bulan_pk;
+    //         $rumus_pk_bulanan = $nilai_jabatan * $indeks *$pk;
+    //         $rumus_total_tpp_bulanan = $rumus_bk_bulanan + $rumus_bk_bulanan;
+    //         $rumus_total_tpp_tahunan = $rumus_bk_tahunan + $rumus_pk_tahunan;
+
+    //         $rumus_bk_tahunan_total += $rumus_bk_tahunan;
+    //         $rumus_bk_bulanan_total += $rumus_bk_bulanan;
+    //         $rumus_pk_tahunan_total += $rumus_pk_tahunan;
+    //         $rumus_pk_bulanan_total += $rumus_pk_bulanan;
+    //         $rumus_total_tpp_bulanan_total += $rumus_total_tpp_bulanan;
+    //         $rumus_total_tpp_tahunan_total += $rumus_total_tpp_tahunan;
+    //     }
+        
+    //     return view('admin-kota.laporan.tpp-pegawai', compact([
+    //         'datas',
+    //         'opds',
+    //         'search',
+    //         'filter',
+    //         'pagination',
+    //         'rumus_bk_tahunan',
+    //         'rumus_pk_tahunan',
+    //         'rumus_bk_bulanan',
+    //         'rumus_pk_bulanan',
+    //         'rumus_total_tpp_bulanan',
+    //         'rumus_total_tpp_tahunan',
+    //     ]))->with('i', 0);
+    //     }
+
     public function tppperson(Request $request)
     {
-        $opdFilter = $request->input('opd');
-        $searchQuery = $request->input('search');
-        $rupiah1 = Rupiah::find(1);
-        $rupiah2 = Rupiah::find(2);
-        $opds = Opd::all();
+        $tahun_id = 0;
 
-        $query = Pegawai::select(
-            'pegawais.*',
-            'master_tahun.tahun',
-            'jabatans.nama_jabatan',
-            'jabatans.jenis_jabatan',
-            'jabatans.kelas_jabatan',
-            'jabatans.nilai_jabatan',
-            'opds.nama_opd',
-            'indeks.indeks as nilai_indeks'
-        )
-            ->leftJoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
-            ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawais.kode_jabatanlama')
-            ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
-            ->leftJoin('indeks', 'jabatans.indeks_id', '=', 'indeks.kode_indeks')
-            ->where('pegawais.tahun_id', session()->get('tahun_id_session'));
-
-        // Tambahkan filter berdasarkan OPD jika dipilih
-        if ($opdFilter) {
-            $query->where('pegawais.opd_id', $opdFilter);
+        try {
+            $tahun_id = session()->get('tahun_id_session');
+        } catch (\Throwable $th) {
+            //throw $th;
         }
 
-        // Tambahkan kondisi pencarian
-        if ($searchQuery) {
-            $query->where(function ($q) use ($searchQuery) {
-                $q->where('pegawais.nip', 'like', '%' . $searchQuery . '%')
-                    ->orWhere('pegawais.nama_pegawai', 'like', '%' . $searchQuery . '%');
-                // Tambahkan kolom lain yang ingin dicari sesuai kebutuhan
+        $pagination = $request->input('recordsPerPage', 10);
+        $search = $request->input('search'); // Data pencarian
+        $filteropd = $request->input('filteropd'); // Data filter
+        $filtersubopd = $request->input('filtersubopd'); // Data filter
+        $query = Pegawai::data();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('pegawais.nip', 'like', "%$search%")
+                    ->orWhere('pegawais.nama_pegawai', 'like', "%$search%")
+                    ->orWhere('opds.nama_opd', 'like', "%$search%");
             });
         }
 
-        $datas = $query->orderBy('pegawais.id', 'ASC')->paginate(10);
+         // Menambahkan kondisi where untuk filter jika ada
+        if ($filteropd) {
+            $query->where('pegawais.opd_id', $filteropd);
+            // Tambahkan kondisi filter untuk kolom lainnya
+        }
+        if ($filtersubopd) {
+            $query->where('pegawais.subopd_id',$filtersubopd);
+            // Tambahkan kondisi filter untuk kolom lainnya
+        }
 
-        // Hitung jumlah pegawai berdasarkan kriteria tertentu dari hasil query yang telah difilter
-        $jumlah_pegawai = $datas->total();
-        $jumlah_pppk = \App\Models\Pegawai::where('sts_pegawai', 'PPPK')->count();
-        $jumlah_plt = \App\Models\Pegawai::where('sts_jabatan', 'PLT')->count();
-        $jumlah_plh = \App\Models\Pegawai::where('sts_jabatan', 'PLH')->count();
-        $jumlah_pengganti_sementara = \App\Models\Pegawai::where('sts_jabatan', 'Pengganti Sementara')->count();
-        $jumlah_pegawai_definitif = $jumlah_pegawai - $jumlah_plt - $jumlah_plh - $jumlah_pengganti_sementara;
+        // Memanggil metode data() pada model Pegawai
+        $datas = $query->paginate($pagination);
+
+        $opds=Opd::all();
+        
+        $rumus_bk_tahunan = [];
+        $rumus_bk_bulanan = [];
+        $rumus_pk_tahunan = [];
+        $rumus_pk_bulanan = [];
+        $rumus_total_tpp_bulanan = [];
+        $rumus_total_tpp_tahunan = [];
+        $rumus_bk_tahunan_total = 0;
+        $rumus_bk_bulanan_total = 0;
+        $rumus_pk_tahunan_total = 0;
+        $rumus_pk_bulanan_total = 0;
+        $rumus_total_tpp_bulanan_total = 0;
+        $rumus_total_tpp_tahunan_total = 0;
+        
+        foreach ($query as $pegawai) {
+            if ($pegawai->subkoor == "Subkoor") {
+                if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_penyetaraan;
+                }
+            } elseif ($pegawai->subkoor == "Koor") {
+                if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_penyetaraan;
+                }
+            } else {
+                $nilai_jabatan = (float) $pegawai->nilai_jabatan;
+            }
+        
+            // Determine the appropriate indeks
+            if ($pegawai->subkoor == "Subkoor") {
+                if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_subkoor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_subkoor_penyetaraan;
+                }
+            } elseif ($pegawai->subkoor == "Koor") {
+                if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_koor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_koor_penyetaraan;
+                }
+            } else {
+                $indeks = (float) $pegawai->indeks;
+            }
+
+            // Rest of your calculation remains the same
+            $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0);
+            $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);
+            $bulan_bk = (float)($pegawai->bulan_bk ?? 0);
+            $bulan_pk = (float)($pegawai->bulan_pk ?? 0);
+
+            $rumus_bk_tahunan = $nilai_jabatan * $indeks *$bk * $bulan_bk;
+            $rumus_bk_bulanan = $nilai_jabatan * $indeks *$bk;
+            $rumus_pk_tahunan = $nilai_jabatan * $indeks *$pk * $bulan_pk;
+            $rumus_pk_bulanan = $nilai_jabatan * $indeks *$pk;
+            $rumus_total_tpp_bulanan = $rumus_bk_bulanan + $rumus_bk_bulanan;
+            $rumus_total_tpp_tahunan = $rumus_bk_tahunan + $rumus_pk_tahunan;
+
+            $rumus_bk_tahunan_total += $rumus_bk_tahunan;
+            $rumus_bk_bulanan_total += $rumus_bk_bulanan;
+            $rumus_pk_tahunan_total += $rumus_pk_tahunan;
+            $rumus_pk_bulanan_total += $rumus_pk_bulanan;
+            $rumus_total_tpp_bulanan_total += $rumus_total_tpp_bulanan;
+            $rumus_total_tpp_tahunan_total += $rumus_total_tpp_tahunan;
+        }
         
         return view('admin-kota.laporan.tpp-pegawai', compact([
-            'datas', 'jumlah_pegawai', 'rupiah1', 'rupiah2', 'opds',
-            'jumlah_pppk', 'jumlah_plt', 'jumlah_plh', 'jumlah_pengganti_sementara',
-            'jumlah_pegawai_definitif'
+            'datas',
+            'opds',
+            'search',
+            'filteropd',
+            'filtersubopd',
+            'pagination',
+            'rumus_bk_tahunan',
+            'rumus_pk_tahunan',
+            'rumus_bk_bulanan',
+            'rumus_pk_bulanan',
+            'rumus_total_tpp_bulanan',
+            'rumus_total_tpp_tahunan',
         ]))->with('i', 0);
+        
     }
 
     public function totaltpp(Request $request)
@@ -80,9 +260,65 @@ class PegawaibulananController extends Controller
         }
 
         // Ambil data pegawai dengan left join jabatan dan indeks
-        $pegawais = Pegawai::leftJoin('jabatans', 'pegawais.kode_jabatanlama', '=', 'jabatans.kode_jabatanlama')
-                        ->leftJoin('indeks', 'jabatans.indeks_id', '=', 'indeks.kode_indeks')
-                        ->select('pegawais.*', 'jabatans.nilai_jabatan', 'indeks.indeks')
+        $pegawais = Pegawai::select('pegawais.id',
+                                    'pegawais.nip', 
+                                    'pegawais.nama_pegawai', 
+                                    'pegawais.sts_pegawai', 
+                                    'pegawais.sts_jabatan', 
+                                    'pegawais.pangkat', 
+                                    'pegawais.eselon', 
+                                    'pegawais.pensiun', 
+                                    'pegawais.tpp_tambahan', 
+                                    'pegawais.jumlah_pemangku', 
+                                    'pegawais.basic_tpp',
+                                    'pegawais.opd_id', 
+                                    'pegawais.bulan_bk',
+                                    'pegawais.bulan_pk',
+                                    'pegawais.pensiun',
+                                    'pegawais.subkoor',
+                                    'pegawais.nama_subkoor',
+                                    'pegawais.sts_subkoor',
+                                    'pegawais.golongan','pegawais.tpp',
+                                    'jabatans.kode_jabatanlama', 
+                                    'jabatans.nama_jabatan', 
+                                    'jabatans.nilai_jabatan', 
+                                    'jabatans.indeks_id', 
+                                    'jabatans.tunjab', 
+                                    'jabatans.nilai_jabatan_subkor_penyetaraan', 
+                                    'jabatans.nilai_jabatan_subkor_non_penyetaraan', 
+                                    'jabatans.nilai_jabatan_koor_penyetaraan', 
+                                    'jabatans.nilai_jabatan_koor_non_penyetaraan', 
+                                    'master_tahun.tahun', 
+                                    'indeks.kelas_jabatan', 
+                                    'indeks.indeks', 
+                                    'indeks_subkor_penyetaraan.kelas_jabatan AS kelas_jabatan_subkor_penyetaraan', 
+                                    'indeks_subkor_penyetaraan.indeks AS indeks_subkor_penyetaraan', 
+                                    'indeks_subkor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_subkor_non_penyetaraan', 
+                                    'indeks_subkor_non_penyetaraan.indeks AS indeks_subkor_non_penyetaraan', 
+                                    'indeks_koor_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_penyetaraan', 
+                                    'indeks_koor_penyetaraan.indeks AS indeks_koor_penyetaraan', 
+                                    'indeks_koor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_non_penyetaraan', 
+                                    'indeks_koor_non_penyetaraan.indeks AS indeks_koor_non_penyetaraan', 
+                                    'jenis_jabatans.jenis_jabatan',
+                                    'jenis_jabatan_subkor_penyetaraan.jenis_jabatan AS jenis_penyetaraan',
+                                    'jenis_jabatan_subkor_non_penyetaraan.jenis_jabatan AS jenis_non_penyetaraan',
+                                    'jenis_jabatan_koor_penyetaraan.jenis_jabatan AS jenis_koor_penyetaraan',
+                                    'jenis_jabatan_koor_non_penyetaraan.jenis_jabatan AS jenis_koor_non_penyetaraan',
+                                    'opds.nama_opd'
+                                )
+                            ->leftjoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
+                            ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawais.kode_jabatanlama')
+                            ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
+                            ->leftJoin('indeks AS indeks_subkor_penyetaraan', 'indeks_subkor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_subkor_non_penyetaraan', 'indeks_subkor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_non_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_koor_penyetaraan', 'indeks_koor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_koor_non_penyetaraan', 'indeks_koor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_non_penyetaraan_id')
+                            ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_penyetaraan', 'jenis_jabatan_subkor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_non_penyetaraan', 'jenis_jabatan_subkor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_penyetaraan', 'jenis_jabatan_koor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_non_penyetaraan', 'jenis_jabatan_koor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
+                            ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
                         ->where('pegawais.tahun_id', $tahun_id)
                         ->get();
         $opds = Opd::where('opds.tahun_id', $tahun_id)->get();
@@ -100,17 +336,56 @@ class PegawaibulananController extends Controller
         foreach ($pegawais as $pegawai) {
             $totalPegawaiOverall += 1; // Hitung jumlah pegawai secara keseluruhan
         
-            // Sesuaikan rumus untuk menghitung total TPP per OPD
-            $nilaiJabatan = (float)($pegawai->jabatans->nilai_jabatan ?? 0);
-            $indeks = (float)($pegawai->jabatans->indeks->indeks ?? 0);
-            $totalBulanPenerimaan = (float)($pegawai->total_bulan_penerimaan ?? 0);
+            if ($pegawai->subkoor == "Subkoor") {
+                if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_penyetaraan;
+                }
+            } elseif ($pegawai->subkoor == "Koor") {
+                if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_penyetaraan;
+                }
+            } else {
+                $nilai_jabatan = (float) $pegawai->nilai_jabatan;
+            }
         
-            // Rumus perhitungan TPP per OPD
-            $tppPerOpd = ($nilaiJabatan * $indeks * ($totalBulanPenerimaan + 1) * Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah')) +
-                         ($nilaiJabatan * $indeks * $totalBulanPenerimaan * Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah'));
+            // Determine the appropriate indeks
+            if ($pegawai->subkoor == "Subkoor") {
+                if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_subkoor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_subkoor_penyetaraan;
+                }
+            } elseif ($pegawai->subkoor == "Koor") {
+                if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_koor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_koor_penyetaraan;
+                }
+            } else {
+                $indeks = (float) $pegawai->indeks;
+            }
+
+            // Rest of your calculation remains the same
+            $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0);
+            $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);
+            $bulan_bk = (float)($pegawai->bulan_bk ?? 0);
+            $bulan_pk = (float)($pegawai->bulan_pk ?? 0);
+
+            // Hitung total_tpp untuk pegawai saat ini
+            $tppPerOpd = (($nilai_jabatan * $indeks * $bk) * $bulan_bk) + (($nilai_jabatan * $indeks * $pk) * $bulan_pk);
         
-            // Tambahkan nilai total TPP per OPD ke variabel totalTppPerOpd
+            if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan' && $pegawai->sts_koor == 'Koordinator Bukan Hasil Penyetaraan') {
+                $tppPerOpd *= 0.85; // 85% adjustment
+            } else {
+                $tppPerOpd *= 1.00; // 100% adjustment
+            }
+
             $opdNama = $pegawai->opds->nama_opd;
+            
             $totalTppPerOpd[$opdNama] = ($totalTppPerOpd[$opdNama] ?? 0) + $tppPerOpd;
         
             // Hitung total tpp secara keseluruhan
@@ -147,24 +422,118 @@ class PegawaibulananController extends Controller
         $pppk = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','pppk')->count();
         $catatans = Catatan_opd::proses()->paginate(10);
         $total_tpp = 0;
-        // Ambil data pegawai dengan left join jabatan dan indeks
-        $pegawais = Pegawai::leftJoin('jabatans', 'pegawais.kode_jabatanlama', '=', 'jabatans.kode_jabatanlama')
-                        ->leftJoin('indeks', 'jabatans.indeks_id', '=', 'indeks.kode_indeks')
-                        ->select('pegawais.*', 'jabatans.nilai_jabatan', 'indeks.indeks')
+        $pegawais = Pegawai::select('pegawais.id',
+                                    'pegawais.nip', 
+                                    'pegawais.nama_pegawai', 
+                                    'pegawais.sts_pegawai', 
+                                    'pegawais.sts_jabatan', 
+                                    'pegawais.pangkat', 
+                                    'pegawais.eselon', 
+                                    'pegawais.pensiun', 
+                                    'pegawais.tpp_tambahan', 
+                                    'pegawais.jumlah_pemangku', 
+                                    'pegawais.basic_tpp',
+                                    'pegawais.opd_id', 
+                                    'pegawais.bulan_bk',
+                                    'pegawais.bulan_pk',
+                                    'pegawais.pensiun',
+                                    'pegawais.subkoor',
+                                    'pegawais.nama_subkoor',
+                                    'pegawais.sts_subkoor',
+                                    'pegawais.golongan','pegawais.tpp',
+                                    'jabatans.kode_jabatanlama', 
+                                    'jabatans.nama_jabatan', 
+                                    'jabatans.nilai_jabatan', 
+                                    'jabatans.indeks_id', 
+                                    'jabatans.tunjab', 
+                                    'jabatans.nilai_jabatan_subkor_penyetaraan', 
+                                    'jabatans.nilai_jabatan_subkor_non_penyetaraan', 
+                                    'jabatans.nilai_jabatan_koor_penyetaraan', 
+                                    'jabatans.nilai_jabatan_koor_non_penyetaraan', 
+                                    'master_tahun.tahun', 
+                                    'indeks.kelas_jabatan', 
+                                    'indeks.indeks', 
+                                    'indeks_subkor_penyetaraan.kelas_jabatan AS kelas_jabatan_subkor_penyetaraan', 
+                                    'indeks_subkor_penyetaraan.indeks AS indeks_subkor_penyetaraan', 
+                                    'indeks_subkor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_subkor_non_penyetaraan', 
+                                    'indeks_subkor_non_penyetaraan.indeks AS indeks_subkor_non_penyetaraan', 
+                                    'indeks_koor_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_penyetaraan', 
+                                    'indeks_koor_penyetaraan.indeks AS indeks_koor_penyetaraan', 
+                                    'indeks_koor_non_penyetaraan.kelas_jabatan AS kelas_jabatan_koor_non_penyetaraan', 
+                                    'indeks_koor_non_penyetaraan.indeks AS indeks_koor_non_penyetaraan', 
+                                    'jenis_jabatans.jenis_jabatan',
+                                    'jenis_jabatan_subkor_penyetaraan.jenis_jabatan AS jenis_penyetaraan',
+                                    'jenis_jabatan_subkor_non_penyetaraan.jenis_jabatan AS jenis_non_penyetaraan',
+                                    'jenis_jabatan_koor_penyetaraan.jenis_jabatan AS jenis_koor_penyetaraan',
+                                    'jenis_jabatan_koor_non_penyetaraan.jenis_jabatan AS jenis_koor_non_penyetaraan',
+                                    'opds.nama_opd'
+                                )
+                            ->leftjoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
+                            ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawais.kode_jabatanlama')
+                            ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
+                            ->leftJoin('indeks AS indeks_subkor_penyetaraan', 'indeks_subkor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_subkor_non_penyetaraan', 'indeks_subkor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_subkor_non_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_koor_penyetaraan', 'indeks_koor_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_penyetaraan_id')
+                            ->leftJoin('indeks AS indeks_koor_non_penyetaraan', 'indeks_koor_non_penyetaraan.kode_indeks', '=', 'jabatans.indeks_koor_non_penyetaraan_id')
+                            ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_penyetaraan', 'jenis_jabatan_subkor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_non_penyetaraan', 'jenis_jabatan_subkor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_penyetaraan', 'jenis_jabatan_koor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
+                            ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_non_penyetaraan', 'jenis_jabatan_koor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
+                            ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
                         ->where('pegawais.tahun_id', $tahun_id)
                         ->get();
-         // Loop through each pegawai to calculate total_tpp
+
         foreach ($pegawais as $pegawai) {
-            $nilai_jabatan = (float) ($pegawai->nilai_jabatan ?? 0);
-            $indeks = (float) ($pegawai->indeks ?? 0);
-            $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0); // Sesuaikan dengan ID yang sesuai
-            $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0); // Sesuaikan dengan ID yang sesuai
+            // nilai_jabatan
+            if ($pegawai->subkoor == "Subkoor") {
+                if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_penyetaraan;
+                }
+            } elseif ($pegawai->subkoor == "Koor") {
+                if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
+                    $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_penyetaraan;
+                }
+            } else {
+                $nilai_jabatan = (float) $pegawai->nilai_jabatan;
+            }
+        
+            // Determine the appropriate indeks
+            if ($pegawai->subkoor == "Subkoor") {
+                if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_subkoor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_subkoor_penyetaraan;
+                }
+            } elseif ($pegawai->subkoor == "Koor") {
+                if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_koor_non_penyetaraan;
+                } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
+                    $indeks = (float) $pegawai->indeks_koor_penyetaraan;
+                }
+            } else {
+                $indeks = (float) $pegawai->indeks;
+            }
+
+            // Rest of your calculation remains the same
+            $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0);
+            $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);
             $bulan_bk = (float)($pegawai->bulan_bk ?? 0);
             $bulan_pk = (float)($pegawai->bulan_pk ?? 0);
 
             // Hitung total_tpp untuk pegawai saat ini
             $tpp_pegawai = (($nilai_jabatan * $indeks * $bk) * $bulan_bk) + (($nilai_jabatan * $indeks * $pk) * $bulan_pk);
 
+            if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan' && $pegawai->sts_koor == 'Koordinator Bukan Hasil Penyetaraan') {
+                $tpp_pegawai *= 0.85; // 85% adjustment
+            } else {
+                $tpp_pegawai *= 1.00; // 100% adjustment
+            }
+        
             // Tambahkan nilai total_tpp pegawai ke total_tpp
             $total_tpp += $tpp_pegawai;
         }

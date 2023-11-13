@@ -14,11 +14,11 @@
             <div class="card-header">
                 <h5 class="card-title">
                     <b>Catatan OPD <b style="color:Red">( {{ $catatans->total() }} Catatan perlu tindak lanjut )</b></b> 
-                    <a href="{{ route('adminkota-catatan') }}" class="btn btn-warning" type="button" style="float:right; margin-right: 10px;"><i class="fa fa-list-ul"></i> History Catatan</a>
-                    <button class="btn btn-primary" type="button" style="float:right; margin-right: 10px;" id="button_catatan_opd">Tampilkan Daftar</button>
+                    {{-- <a href="{{ route('adminkota-catatan') }}" class="btn btn-warning" type="button" style="float:right; margin-right: 10px;"><i class="fa fa-list-ul"></i> History Catatan</a> --}}
+                    {{-- <button class="btn btn-primary" type="button" style="float:right; margin-right: 10px;" id="button_catatan_opd">Tampilkan Daftar</button> --}}
                 </h5>
             </div>
-            <div class="card-body" id="catatan_opd" style="display:none">
+            {{-- <div class="card-body" id="catatan_opd" style="display:none">
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead style="color: black; background-color: #ffe4a0;">
@@ -153,7 +153,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> --}}
         </div></br>
         @endif
 

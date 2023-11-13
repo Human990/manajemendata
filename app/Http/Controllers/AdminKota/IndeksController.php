@@ -10,15 +10,16 @@ class IndeksController extends Controller
 {
     public function index(Request $request)
     {
+        $pagination = $request->input('recordsPerPage', 10);
         $datas= Indeks::select('indeks.*', 'master_tahun.tahun', 'jenis_jabatans.jenis_jabatan AS jenis_jabatan_baru')
-                     ->leftjoin('master_tahun', 'master_tahun.id', '=', 'indeks.tahun_id')
-                     ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
-                     ->where('indeks.tahun_id', session()->get('tahun_id_session'))
-                     ->orderBy('indeks.jenis_jabatan','ASC')
-                     ->orderBy('indeks.kelas_jabatan','ASC')
-                     ->get();
+                    ->leftjoin('master_tahun', 'master_tahun.id', '=', 'indeks.tahun_id')
+                    ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
+                    ->where('indeks.tahun_id', session()->get('tahun_id_session'))
+                    ->orderBy('indeks.jenis_jabatan','ASC')
+                    ->orderBy('indeks.kelas_jabatan','ASC')
+                    ->paginate($pagination);
 
-        return view('admin-kota.master.master-indeks',compact('datas'));
+        return view('admin-kota.master.master-indeks',compact('datas','pagination'));
     }
 
     public function store(Request $request)

@@ -10,10 +10,10 @@ class TahunController extends Controller
 {
     public function index(Request $request)
     {
-        $pagination=20;
+        $pagination = $request->input('recordsPerPage', 10);
         // $jumlah_pegawai = Pegawai::count();
         $tahun= Tahun::orderBy('id','ASC')->paginate($pagination);
-        return view('admin-kota.master.master-tahun',compact('tahun'))->with('i',($request->input('page',1)-1)*$pagination);
+        return view('admin-kota.master.master-tahun',compact('tahun','pagination'))->with('i',($request->input('page',1)-1)*$pagination);
     }
 
     public function store(Request $request)
