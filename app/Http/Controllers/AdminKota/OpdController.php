@@ -57,6 +57,7 @@ class OpdController extends Controller
             'kode_opd' => $request->kode_opd,
             'subopd_id' => $request->subopd_id,
             'nama_opd' => $request->nama_opd,
+            'lock' => $request->lock,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');
