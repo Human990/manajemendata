@@ -26,14 +26,20 @@ class PegawaibulananOpdController extends Controller
         $page = $request->input('page', 1);
         $query = Pegawai::data();
         
-        if (Auth::user()->role_id == 2 && Auth::user()->username == 'sekda') {
-            $query = Pegawai::data()->where('pegawais.opd_id', '35')->whereNull(Auth::user()->kode_sub_opd);
-        } elseif (Auth::user()->role_id == 2 && Auth::user()->opd == 'guru'){
+        // if (Auth::user()->role_id == 2 && Auth::user()->username == 'sekda') {
+        //     $query = Pegawai::data()->where('pegawais.opd_id', '35')->whereNull(Auth::user()->kode_sub_opd);
+        // } elseif (Auth::user()->role_id == 2 && Auth::user()->opd == 'guru'){
+        //     $query = Pegawai::data()->where('pegawais.sts_pegawai', 'GURU');
+        // } elseif (Auth::user()->role_id == 6 && Auth::user()->opd == 'bagian') {
+        //     $query = Pegawai::data()->whereNull('sub_opds.kode_sub_opd', Auth::user()->kode_sub_opd);
+        // } else {
+        //     $query = Pegawai::data()->where('opds.kode_opd', Auth::user()->kode_opd);
+        // }
+
+        if (Auth::user()->role_id == 2 && Auth::user()->opd == 'guru'){
             $query = Pegawai::data()->where('pegawais.sts_pegawai', 'GURU');
-        } elseif (Auth::user()->role_id == 6 && Auth::user()->opd == 'bagian') {
-            $query = Pegawai::data()->whereNull('sub_opds.kode_sub_opd', Auth::user()->kode_sub_opd);
         } else {
-            $query = Pegawai::data()->where('opds.kode_opd', Auth::user()->kode_opd);
+            $query = Pegawai::data()->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd);
         }
 
         if ($search) {
