@@ -2,21 +2,30 @@
 
 namespace App\Http\Controllers\Adminopd;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Catatan_opd;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CatatanController extends Controller
 {
     public function index(Request $request)
     {
-        $pencarian = $request->pencarian;
+        $pagination = $request->input('recordsPerPage', 10);
+        $pencarian = $request->input('pencarian');
+        $query = Catatan_opd::data()->where('opds.kode_opd', Auth::user()->kode_opd);
 
-        if (!empty($request->pencarian)) {
-            $catatans= Catatan_opd::pencarian($pencarian)->paginate(10);
-        }else {
-            $catatans= Catatan_opd::data()->paginate(10);
+        if ($pencarian) {
+            $query->where(function ($q) use ($pencarian) {
+                    $q->where('catatan_opds.catatan_opd', 'LIKE', '%'.$pencarian.'%')
+                    ->orWhere('catatan_opds.catatan_admin', 'LIKE', '%'.$pencarian.'%')
+                    ->orWhere('pegawais.nip', 'LIKE', '%'.$pencarian.'%')
+                    ->orWhere('pegawais.nama_pegawai', 'LIKE', '%'.$pencarian.'%')
+                    ->orWhere('opds.nama_opd', 'LIKE', '%'.$pencarian.'%');
+            });
         }
+        
+        $catatans = $query->paginate($pagination);
 
         return view('admin-kota.master.master-catatan-opd',compact('catatans', 'pencarian'));
     }

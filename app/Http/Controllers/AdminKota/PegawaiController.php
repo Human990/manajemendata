@@ -22,7 +22,8 @@ class PegawaiController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('pegawais.nip', 'like', "%$search%")
                     ->orWhere('pegawais.nama_pegawai', 'like', "%$search%")
-                    ->orWhere('opds.nama_opd', 'like', "%$search%");
+                    ->orWhere('opds.nama_opd', 'like', "%$search%")
+                    ->orWhere('jabatans.nama_jabatan', 'LIKE', '%'.$search.'%');
             });
         }
 
