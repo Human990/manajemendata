@@ -84,7 +84,9 @@ class Pegawai extends Model
                                 'jenis_jabatan_koor_penyetaraan.jenis_jabatan AS jenis_koor_penyetaraan',
                                 'jenis_jabatan_koor_non_penyetaraan.jenis_jabatan AS jenis_koor_non_penyetaraan',
                                 'opds.nama_opd',
-                                'sub_opds.nama_sub_opd'
+                                'opds.kode_opd',
+                                'sub_opds.nama_sub_opd',
+                                'sub_opds.kode_sub_opd'
                             )
                         ->leftjoin('master_tahun', 'master_tahun.id', '=', 'pegawais.tahun_id')
                         ->leftJoin('jabatans', 'jabatans.kode_jabatanlama', '=', 'pegawais.kode_jabatanlama')
@@ -103,29 +105,5 @@ class Pegawai extends Model
                         ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
                         ->orderBy('pegawais.id','ASC');
         return $data;
-    }
-
-    public static function adminopd($opdID)
-    {
-        return self::with(['opd', 'subopd','jabatan'])
-            ->where('opd_id', $opdID)
-            ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
-            ->get();
-    }
-
-    public static function adminguru()
-    {
-        return self::with(['opd', 'subopd','jabatan'])
-            ->where('sts_pegawai', 'guru')
-            ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
-            ->get();
-    }
-
-    public static function adminsubopd($subopdID)
-    {
-        return self::with(['opd', 'subopd','jabatan'])
-            ->where('subopd_id', $subopdID)
-            ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
-            ->get();
     }
 }

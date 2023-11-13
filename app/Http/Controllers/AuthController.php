@@ -34,6 +34,9 @@ class AuthController extends Controller
             if(Auth::user()->role_id == 3) {
                 return redirect()->route('adminjabatan-dashboard');
             }
+            if(Auth::user()->role_id == 6) {
+                return redirect()->route('adminopd-pegawai');
+            }
             // return redirect();
         }
         Alert::error('Login Gagal!', 'Akun Tidak Valid!');
