@@ -100,7 +100,7 @@
                             <td>
                                 <label><input type="checkbox" class="toggle-column" data-column="10" checked> Indeks</label></br>
                                 <label><input type="checkbox" class="toggle-column" data-column="11" checked> Pangkat</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="12" checked> Golongan</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="12" checked> Golongan PPPK</label></br>
                             </td>
                             <td>
                                 <label><input type="checkbox" class="toggle-column" data-column="13" checked> Eselon</label></br>
@@ -158,7 +158,7 @@
                                 <th width="3%">Nilai Jabatan (JV)</th>
                                 <th width="3%">Indeks</th>
                                 <th width="3%">Pangkat</th>
-                                <th width="3%">Golongan</th>
+                                <th width="3%">Golongan PPPK</th>
                                 <th width="3%">Eselon</th>
                                 <th width="3%">Status Penerimaan TPP</th>
                                 <th width="3%">Sertifikasi Guru</th>
