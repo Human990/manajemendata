@@ -384,7 +384,7 @@ class PegawaibulananController extends Controller
                 $tppPerOpd *= 1.00; // 100% adjustment
             }
 
-            $opdNama = $pegawai->nama_opd;
+            $opdNama = $pegawai->opds->nama_opd;
             
             $totalTppPerOpd[$opdNama] = ($totalTppPerOpd[$opdNama] ?? 0) + $tppPerOpd;
         
