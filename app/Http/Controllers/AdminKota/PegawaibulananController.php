@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Adminkota;
 
 use App\Models\Opd;
-use App\Models\Pegbul;
+use App\Models\Tpp;
 use App\Models\Tahun;
+use App\Models\Pegbul;
 use App\Models\Rupiah;
 use App\Models\Pegawai;
 use App\Models\Catatan_opd;
@@ -125,6 +126,13 @@ class PegawaibulananController extends Controller
     //     ]))->with('i', 0);
     //     }
 
+    public function penjabaran(Request $request)
+    {
+        $datas = Tpp::penjabaran(17);
+
+        return view('admin-kota.laporan.tpp-penjabaran', compact('datas'));
+    }
+    
     public function tppperson(Request $request)
     {
         $tahun_id = 0;

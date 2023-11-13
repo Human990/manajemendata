@@ -97,6 +97,9 @@
                 <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-tpp-pegawai')}}" @endif class="collapse-item">
                     <span>Rekap TPP Per Person</span>
                 </a>
+                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-penjabaran')}}" @endif class="collapse-item">
+                    <span>Penjabaran TPP</span>
+                </a>
                 {{-- <a href="#" class="collapse-item">
                     <span>Rekap Per Jenis Tunjangan</span>
                 </a> --}}
