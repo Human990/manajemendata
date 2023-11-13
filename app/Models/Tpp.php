@@ -22,6 +22,7 @@ class Tpp extends Model
                                 opds.nama_opd,
                                 jenis_jabatans.jenis_jabatan,
                                 indeks.kelas_jabatan,
+                                indeks.basic_tpp,
                                 COUNT(pegawais.id) AS jumlah_pemangku 
                             FROM
                                 pegawais
@@ -48,7 +49,8 @@ class Tpp extends Model
                                 opds.kode_opd,
                                 opds.nama_opd,
                                 jenis_jabatans.jenis_jabatan,
-                                indeks.kelas_jabatan
+                                indeks.kelas_jabatan,
+                                indeks.basic_tpp
                             ORDER BY
                                 pegawais.id ASC;
                     ");

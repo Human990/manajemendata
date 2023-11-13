@@ -22,6 +22,7 @@
                                 <th>Jenis Jabatan</th>
                                 <th>Kelas</th>
                                 <th>Jumlah Pemangku</th>
+                                <th>Basic TPP</th>
                             </tr>
                         </thead>
                         @php $i=0; @endphp
@@ -37,6 +38,7 @@
                                     <td>{{ $data->jenis_jabatan }}</td>
                                     <td>{{ $data->kelas_jabatan }}</td>
                                     <td>{{ $data->jumlah_pemangku }}</td>
+                                    <td align="right">{{ number_format($data->basic_tpp, 2, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
