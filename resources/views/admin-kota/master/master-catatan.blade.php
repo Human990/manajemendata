@@ -33,35 +33,25 @@
                             <tr>
                                 <th>No</th>
                                 <th>Tahun</th>
-                                <th>NIP</th>
-                                <th>Nama Pegawai</th>
-                                <th>Status Pegawai</th>
-                                <th>OPD</th>
-                                <th>Sub OPD</th>
-                                <th>Nama Jabatan</th>
-                                <th>Jenis Jabatan</th>
-                                <th>Status Jabatan</th>
-                                <th>Nilai Jabatan (JV)</th>
-                                <th>Indeks</th>
-                                <th>Pangkat</th>
-                                <th>Golongan</th>
-                                <th>Eselon</th>
-                                <th>Status Penerimaan TPP</th>
-                                <th>Sertifikasi Guru</th>
-                                <th>PA/KPA</th>
-                                <th>Sertifikasi PBJ</th>
-                                <th>Tipe Jabatan</th>
-                                <th>Subkoor</th>
-                                <th>Nama Subkoor</th>
-                                <th>Status Subkoor</th>
-                                <th>Nip Penilai / Atasan Langsung</th>
-                                <th>Nama Penilai / Atasan Langsung</th>
-                                <th>Nip Atasan Penilai</th>
-                                <th>Nama Atasan Penilai</th>
-                                <th>Pensiun</th>
-                                <th>Jumlah Bulan Penerimaan BK</th>
-                                <th>Jumlah Bulan Penerimaan PK</th>
-                                <th>Tpp Tambahan</th>
+                            
+                                <!-- Informasi Pegawai -->
+                                <th colspan="5" class="merged-cell">Informasi Pegawai</th>
+                            
+                                <!-- Informasi Jabatan -->
+                                <th colspan="6" class="merged-cell">Informasi Jabatan</th>
+                            
+                                <!-- Informasi Tambahan -->
+                                <th colspan="4" class="merged-cell">Informasi Kepangkatan</th>
+
+                                <th colspan="4" class="merged-cell">Informasi Sertifikasi</th>
+                            
+                                <!-- Subkoor -->
+                                <th colspan="3" class="merged-cell">Informasi Subkoor/Koordinator</th>
+                            
+                                <!-- Pensiun -->
+                                <th colspan="4" class="merged-cell">Informasi Tambahan</th>
+                            
+                                <!-- Catatan -->
                                 <th>Catatan</th>
                                 <th>Status</th>
                             </tr>
@@ -73,25 +63,24 @@
                             <tr>
                                 <td width="1%">{{ $no }}</td>
                                 <td width="5%">{{ $catatan->tahun }}</td>
-                                <td width="20%">{{ $catatan->nip }}</td>
-                                <td width="8%">{{ $catatan->nama_pegawai }}</td>
-                                <td width="16%">{{ $catatan->sts_pegawai }}</td>
-                                <td>{{ $catatan->nama_opd }}</td>
-                                <td>
+                                <td colspan="5" class="merged-cell">
+                                    {{ $catatan->nip }} <br> 
+                                    {{ $catatan->nama_pegawai }} <br> 
+                                    {{ $catatan->sts_pegawai }} <br> 
+                                    {{ $catatan->nama_opd }} <br> 
                                     @if ($catatan->subopd_id == null)
                                         {{ "-" }}
                                     @else
                                         {{ $catatan->nama_sub_opd }}
                                     @endif
                                 </td>
-                                <td>
+                                <td colspan ="6">
                                     @if($catatan->subkoor == 'Subkoor' || $catatan->subkoor == 'Koor')
                                         {{ $catatan->nama_subkoor }}
                                     @else
                                         {{ $catatan->nama_jabatan }}
-                                    @endif
-                                </td>
-                                <td>
+                                    @endif <br>
+
                                     @if($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                         {{ $catatan->jenis_non_penyetaraan }}
                                     @elseif($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
@@ -102,10 +91,10 @@
                                         {{ $catatan->jenis_koor_penyetaraan }}
                                     @else
                                         {{ $catatan->jenis_jabatan }}
-                                    @endif
-                                </td>
-                                <td>{{ $catatan->sts_jabatan }}</td>
-                                <td>
+                                    @endif <br>
+
+                                    {{ $catatan->sts_jabatan }} <br>
+
                                     @if($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                         {{ $catatan->nilai_jabatan_subkor_non_penyetaraan }}
                                     @elseif($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
@@ -115,10 +104,9 @@
                                     @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Hasil Penyetaraan')
                                         {{ $catatan->nilai_jabatan_koor_penyetaraan }}
                                     @else
-                                        {{ $catatan->nilai_jabatan }}
-                                    @endif
-                                </td>
-                                <td>
+                                        o{{ $catatan->nilai_jabatan }}
+                                    @endif <br>
+
                                     @if($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                         {{ $catatan->indeks_subkor_non_penyetaraan }}
                                     @elseif($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
@@ -129,27 +117,38 @@
                                         {{ $catatan->indeks_koor_penyetaraan }}
                                     @else
                                         {{ $catatan->indeks }}
-                                    @endif
+                                    @endif <br>
+                                    {{ $catatan->jft }} <br>
                                 </td>
-                                <td>{{ $catatan->pangkat }}</td>
-                                <td>{{ $catatan->golongan }}</td>
-                                <td>{{ $catatan->eselon }}</td>
-                                <td>{{ $catatan->tpp }}</td>
-                                <td>{{ $catatan->sertifikasi_guru }}</td>
-                                <td>{{ $catatan->pa_kpa }}</td>
-                                <td>{{ $catatan->pbj }}</td>
-                                <td>{{ $catatan->jft }}</td>
-                                <td>{{ $catatan->subkoor }}</td>
-                                <td>{{ $catatan->nama_subkoor }}</td>
-                                <td>{{ $catatan->sts_subkoor }}</td>
-                                <td>{{ $catatan->atasan_nip }}</td>
-                                <td>{{ $catatan->atasan_nama }}</td>
-                                <td>{{ $catatan->atasannya_atasan_nip }}</td>
-                                <td>{{ $catatan->atasannya_atasan_nama }}</td>
-                                <td>{{ $catatan->pensiun }}</td>
-                                <td align="center">{{ $catatan->bulan_bk }}</td>
-                                <td align="center">{{ $catatan->bulan_pk }}</td>
-                                <td>{{ $catatan->tpp_tambahan }}</td>
+
+                                <td colspan="4">
+                                    {{ $catatan->pangkat }} <br>
+                                    {{ $catatan->golongan }} <br>
+                                    {{ $catatan->eselon }} <br>
+                                    {{ $catatan->tpp }} <br>
+                                </td>
+                                <td colspan="4">
+                                    {{ $catatan->sertifikasi_guru }} <br>
+                                    {{ $catatan->pa_kpa }} <br>
+                                    {{ $catatan->pbj }} <br>
+                                    
+                                </td>
+
+                                <td colspan="3">
+                                    {{ $catatan->subkoor }} <br>
+                                    {{ $catatan->nama_subkoor }} <br>
+                                    {{ $catatan->sts_subkoor }} <br>
+                                </td>
+                                <td colspan="4">
+                                    <b>Pensiun :</b>{{ $catatan->pensiun }} <br>
+                                    <b>Bulan Penerimaan Beban Kerja :</b>{{ $catatan->bulan_bk }} <br>
+                                    <b>Bulan Penerimaan Prestasi Kerja :</b>{{ $catatan->bulan_pk }} <br>
+                                    <b>Tpp Tambahan :</b>{{ $catatan->tpp_tambahan }} <br>
+                                </td>
+                                <td width="32%">
+                                    <b>Catatan OPD : </b>{{ $catatan->catatan_opd }}</br>
+                                    @if(!empty($catatan->catatan_admin)) <b>Catatan Admin : </b>{{ $catatan->catatan_admin }} @endif
+                                </td>
                                 <td width="32%">
                                     <b>Catatan OPD : </b>{{ $catatan->catatan_opd }}</br>
                                     @if(!empty($catatan->catatan_admin)) <b>Catatan Admin : </b>{{ $catatan->catatan_admin }} @endif
