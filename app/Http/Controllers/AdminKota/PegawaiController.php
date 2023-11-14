@@ -50,7 +50,6 @@ class PegawaiController extends Controller
             'nip' => 'required',
             'nama_pegawai' => 'required',
             'pangkat' => 'required',
-            'eselon' => 'required',
         ]);
 
         Pegawai::create([
@@ -115,5 +114,14 @@ class PegawaiController extends Controller
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');
+    }
+
+    public function destroy($id)
+    {
+        $pegawai = Pegawai::find($id);
+
+        $pegawai->delete();
+
+        return redirect()->back()->with('success','Data Berhasil Dihapus!');
     }
 }

@@ -12,6 +12,7 @@ class CatatanController extends Controller
     {
         $pagination = $request->input('recordsPerPage', 10);
         $pencarian = $request->input('pencarian');
+        $filteropd = $request->input('filteropd'); // Data filter
         $query = Catatan_opd::data();
 
         if ($pencarian) {
@@ -23,10 +24,13 @@ class CatatanController extends Controller
                     ->orWhere('opds.nama_opd', 'LIKE', '%'.$pencarian.'%');
             });
         }
-
+        if ($filteropd) {
+            $query->where('pegawais.opd_id', $filteropd);
+            // Tambahkan kondisi filter untuk kolom lainnya
+        }
         $catatans = $query->whereNull('status')->paginate($pagination);
 
-        return view('admin-kota.master.master-daftar-catatan',compact('catatans', 'pencarian','pagination'));
+        return view('admin-kota.master.master-daftar-catatan',compact('catatans', 'pencarian','pagination','filteropd'));
     }
 
     public function history(Request $request)
@@ -34,7 +38,7 @@ class CatatanController extends Controller
         $pagination = $request->input('recordsPerPage', 10);
         $pencarian = $request->input('pencarian');
         $query = Catatan_opd::data();
-
+        $filteropd = $request->input('filteropd');
         if ($pencarian) {
             $query->where(function ($q) use ($pencarian) {
                     $q->where('catatan_opds.catatan_opd', 'LIKE', '%'.$pencarian.'%')
@@ -44,10 +48,13 @@ class CatatanController extends Controller
                     ->orWhere('opds.nama_opd', 'LIKE', '%'.$pencarian.'%');
             });
         }
-
+        if ($filteropd) {
+            $query->where('pegawais.opd_id', $filteropd);
+            // Tambahkan kondisi filter untuk kolom lainnya
+        }
         $catatans = $query->where('status','selesai')->paginate($pagination);
 
-        return view('admin-kota.master.master-catatan', compact('catatans', 'pencarian', 'pagination'));
+        return view('admin-kota.master.master-catatan', compact('filteropd','catatans', 'pencarian', 'pagination'));
     }
 
     public function update(Request $request, Catatan_opd $catatan)
