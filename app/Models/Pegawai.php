@@ -106,4 +106,17 @@ class Pegawai extends Model
                         ->orderBy('pegawais.id','ASC');
         return $data;
     }
+
+    public static function jumlah_bulan($jenis, $pegawai)
+    {
+        if($jenis == 'bk'){
+            $data = Pegawai::where('id', $pegawai)->value('bulan_bk');
+        }
+
+        if ($jenis == 'pk') {
+            $data = Pegawai::where('id', $pegawai)->value('bulan_pk');
+        }
+
+        return $data;
+    }
 }

@@ -36,6 +36,7 @@ class IndeksController extends Controller
             'kelas_jabatan' => $request->kelas_jabatan,
             'jenis_jabatan_id' => $request->jenis_jabatan,
             'indeks' => $request->indeks,
+            'basic_tpp' => $request->basic_tpp,
             'tahun_id' => session()->get('tahun_id_session'),
         ]);
 
@@ -56,6 +57,7 @@ class IndeksController extends Controller
             'kelas_jabatan' => $request->kelas_jabatan,
             'indeks' => $request->indeks,
             'jenis_jabatan_id' => $request->jenis_jabatan,
+            'basic_tpp' => $request->basic_tpp,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');

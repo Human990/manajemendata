@@ -64,6 +64,7 @@ class CopyController extends Controller
                     'jenis_jabatan_id' => $indek->jenis_jabatan_id,
                     'tahun_id' => $tahun_tujuan,
                     'asal_id' => $indek->kode_indeks,
+                    'basic_tpp' => $indek->basic_tpp,
                 ]);
             }
 

@@ -24,6 +24,7 @@ class Indeks extends Model
         'tahun_id',
         'asal_id',
         'jenis_jabatan_id',
+        'basic_tpp',
     ];
 
     public static function data()
