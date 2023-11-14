@@ -16,8 +16,42 @@
                                 <i class="fas fa-search fa-sm"></i> Pencarian
                             </button>
                         </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#createFilteropdPegawai" type="button">filter OPD</button>
+                        </div>
+                        <div class="input-group-append">
+                            <a href="{{ route('adminkota-daftar-catatan') }}" class="btn btn-outline-secondary">Reset</a>
+                        </div>
                     </div>
                 </form></br>
+                <div class="modal fade" id="createFilteropdPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="createModalLabel">Filter Data Pegawai</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="{{ route('adminkota-daftar-catatan') }}" method="GET" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="filteropd">OPD</label>
+                                        <select type="text" name="filteropd" class="form-control @error('filteropd') is-invalid @enderror">
+                                            @foreach(\App\Models\Opd::data() as $opd)
+                                                <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <form action="{{ route('adminkota-daftar-catatan') }}" method="GET" class="form-inline">
                     <label for="recordsPerPage" class="mr-2">show:</label>
                     <select name="recordsPerPage" id="recordsPerPage" class="form-control mr-2" onchange="this.form.submit()">
@@ -111,7 +145,7 @@
                                     @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Hasil Penyetaraan')
                                         {{ $catatan->nilai_jabatan_koor_penyetaraan }}
                                     @else
-                                        o{{ $catatan->nilai_jabatan }}
+                                        {{ $catatan->nilai_jabatan }}
                                     @endif <br>
 
                                     @if($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
@@ -446,7 +480,11 @@
                 </div>
                 <div class="text-center">
                     <span style="float:right">
-                    {{ $catatans->appends([ 'pencarian' => $pencarian , 'pagination' => $pagination])->links() }}</span>
+                    {{ $catatans->appends([ 
+                        'pencarian' => $pencarian , 
+                        'pagination' => $pagination,
+                        'filteropd' => $filteropd,
+                        ])->links() }}</span>
                 </div>
             </div>
 

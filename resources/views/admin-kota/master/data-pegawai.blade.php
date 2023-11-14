@@ -264,10 +264,13 @@
                                     <td>{{ $data->tpp_tambahan }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-edit"></i></button>
-                                        <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i></button>
+                                        {{-- <form action="{{ route('adminkota-pegawai.destroy', $data->id) }}" method="POST" style="display: inline;" id="deleteForm{{ $i }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-sm btn-danger" onclick="hapusData({{ $i }})"><i class="fa fa-times"></i> Hapus</button>
+                                        </form> --}}
                                     </td>
                                 </tr>
-
                                 <div class="modal fade" id="ubahModalPegawai{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -787,12 +790,6 @@
         </div>
     </div>
 
-    <form action="" method="post" id="deleteForm">
-        @csrf
-        @method("DELETE")
-    <button type="submit" style="display:none">Hapus</button>
-    </form>
-
     <script>
         function toggleColumn(columnIndex, checked) {
             const table = document.getElementById("data-table");
@@ -847,12 +844,14 @@
         });
     </script>
 
+    @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script>
         $('button#delete').on('click', function(e){
                 e.preventDefault();
 
                 var href = $(this).attr('href');
+                var catatanId = $(this).attr('id').replace('delete', ''); // Ambil id catatan dari id tombol
 
                 Swal.fire({
                     title: 'Apakah anda yakin hapus data?',
@@ -862,18 +861,14 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Ya, Hapus!'
-                    }).then((result) => {
-                    if (result.value) {
-                        document.getElementById('deleteForm').action = href;
-                        document.getElementById('deleteForm').submit();
-
-                        // Swal.fire(
-                        //     'Berhasil!',
-                        //     'Data telah dihapus.',
-                        //     'success'
-                        // )
-                    }
-                })
-            })
+                }).then((result) => {
+                if (result.value) {
+                    document.getElementById('deleteForm'+catatanId).action = href;
+                    document.getElementById('deleteButton'+catatanId).click();
+                }
+            });
+        });
     </script>
+    @endpush
+    
 @endsection

@@ -1,4 +1,5 @@
 <!-- Bootstrap core JavaScript-->
+@stack('scripts')
 <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -17,6 +18,36 @@
 <script src="{{ asset('assets/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('assets/js/demo/chart-pie-demo.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+    $('button#delete').on('click', function(e){
+            e.preventDefault();
+
+            var href = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Apakah anda yakin hapus data?',
+                text: "Data yang dihapus tidak bisa dikembalikan!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus!'
+                }).then((result) => {
+                if (result.value) {
+                    document.getElementById('deleteForm').action = href;
+                    document.getElementById('deleteForm').submit();
+
+                    // Swal.fire(
+                    //     'Berhasil!',
+                    //     'Data telah dihapus.',
+                    //     'success'
+                    // )
+                }
+            })
+        })
+</script>
 
 <script>
     $(document).ready(function() {
