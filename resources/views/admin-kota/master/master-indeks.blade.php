@@ -40,9 +40,10 @@
                             <tr>
                                 <th width="1%">No</th>
                                 <th width="15%">Tahun</th>
-                                <th width="30%">Jenis Jabatan</th>
-                                <th width="30%">Kelas</th>
-                                <th width="15%">Indeks</th>
+                                <th width="23%">Jenis Jabatan</th>
+                                <th width="18%">Kelas</th>
+                                <th width="14%">Indeks</th>
+                                <th width="18%">Basic TPP</th>
                                 <th width="9%">Action</th>
                             </tr>
                         </thead>
@@ -55,7 +56,8 @@
                                     <td>{{ $data->tahun }}</td>
                                     <td>{{ $data->jenis_jabatan_baru }}</td>
                                     <td>{{ $data->kelas_jabatan }}</td>
-                                    <td>{{ $data->indeks}}</td>
+                                    <td>{{ $data->indeks }}</td>
+                                    <td align="right">{{ number_format($data->basic_tpp, 2, ',', '.') }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-info btn-block" data-toggle="modal" data-target="#ubahModalIndeks{{ $i }}"><i class="fa fa-eye"></i> Ubah</button>
                                         {{-- <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button> --}}
@@ -102,6 +104,15 @@
                                                             class="form-control @error('indeks') is-invalid @enderror" id="indeks"
                                                             placeholder="Indeks . . ." value="{{ $data->indeks }}">
                                                         @error('indeks')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="basic_tpp">Basic TPP</label>
+                                                        <input type="text" name="basic_tpp"
+                                                            class="form-control @error('basic_tpp') is-invalid @enderror" id="basic_tpp"
+                                                            placeholder="Basic TPP . . ." value="{{ $data->basic_tpp }}">
+                                                        @error('basic_tpp')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
@@ -162,6 +173,15 @@
                                         class="form-control @error('indeks') is-invalid @enderror" id="indeks"
                                         placeholder="Indeks . . ." value="{{ old('indeks') }}">
                                     @error('indeks')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="basic_tpp">Basic TPP</label>
+                                    <input type="text" name="basic_tpp"
+                                        class="form-control @error('basic_tpp') is-invalid @enderror" id="basic_tpp"
+                                        placeholder="Basic TPP . . ." value="">
+                                    @error('basic_tpp')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>

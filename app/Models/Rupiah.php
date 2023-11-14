@@ -17,4 +17,20 @@ class Rupiah extends Model
         'asal_id',
         'flag',
     ];
+
+    public static function bk()
+    {
+        $tahun = session()->get('tahun_id_session');
+        $data = Rupiah::where('flag', 'beban_kerja')->where('tahun_id', $tahun)->value('jumlah');
+
+        return $data;
+    }
+
+    public static function pk()
+    {
+        $tahun = session()->get('tahun_id_session');
+        $data = Rupiah::where('flag', 'prestasi_kerja')->where('tahun_id', $tahun)->value('jumlah');
+
+        return $data;
+    }
 }

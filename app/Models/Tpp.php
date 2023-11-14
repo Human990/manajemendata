@@ -22,7 +22,10 @@ class Tpp extends Model
                                 opds.nama_opd,
                                 jenis_jabatans.jenis_jabatan,
                                 indeks.kelas_jabatan,
-                                COUNT(pegawais.id) AS jumlah_pemangku 
+                                indeks.basic_tpp,
+                                COUNT(pegawais.id) AS jumlah_pemangku, 
+                                indeks.indeks, 
+                                jabatans.nilai_jabatan 
                             FROM
                                 pegawais
                                 LEFT JOIN master_tahun ON master_tahun.id = pegawais.tahun_id
@@ -48,7 +51,10 @@ class Tpp extends Model
                                 opds.kode_opd,
                                 opds.nama_opd,
                                 jenis_jabatans.jenis_jabatan,
-                                indeks.kelas_jabatan
+                                indeks.kelas_jabatan,
+                                indeks.basic_tpp,
+                                indeks.indeks, 
+                                jabatans.nilai_jabatan 
                             ORDER BY
                                 pegawais.id ASC;
                     ");

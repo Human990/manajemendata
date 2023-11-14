@@ -128,9 +128,11 @@ class PegawaibulananController extends Controller
 
     public function penjabaran(Request $request)
     {
-        $datas = Tpp::penjabaran(17);
+        $opd_first = Opd::where('opds.tahun_id', session()->get('tahun_id_session'))->take(1)->value('id');
+        $opd_id = $request->opd_id ?? $opd_first;
+        $datas = Tpp::penjabaran($opd_id);
 
-        return view('admin-kota.laporan.tpp-penjabaran', compact('datas'));
+        return view('admin-kota.laporan.tpp-penjabaran', compact('datas', 'opd_id'));
     }
     
     public function tppperson(Request $request)
