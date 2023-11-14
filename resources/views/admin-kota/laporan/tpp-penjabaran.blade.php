@@ -16,11 +16,17 @@
                             @foreach(\App\Models\Opd::data() as $opd)
                                 <option value="{{ $opd->id }}" @if($opd->id == $opd_id) selected @endif>{{ $opd->nama_opd }}</option>
                             @endforeach
+                            <option value="0" @if($opd->id == $opd_id) selected @endif>SEMUA OPD</option>
                         </select>
                         <div class="input-group-append">
                             <button class="btn btn-info" type="submit">
                                 <i class="fas fa-filter fa-sm"></i> Tampilkan Data
                             </button>
+                        </div>
+                        <div class="input-group-append">
+                            <a href="#" class="btn btn-success" type="button">
+                                <i class="fas fa-file-excel fa-sm"></i> Export Excel
+                            </a>
                         </div>
                     </div></br>
                 </form>
@@ -86,6 +92,8 @@
                             $tot_all_beban_kerja = 0;
                             $tot_all_prestasi_kerja = 0;
                             $tot_all_tunjangan = 0;
+                            $persen_bk = 0;
+                            $persen_pk = 0;
                         @endphp
                         <tbody id="dynamic-row">
                             @foreach($datas as $data)
@@ -98,7 +106,7 @@
                                     
                                     //Beban Kerja
                                     $bk = \App\Models\Rupiah::bk();
-                                    $rp_bulan_beban_kerja = ($data->nilai_jabatan ?? 0) * ($data->indeks ?? 0 ) * $bk;
+                                    $rp_bulan_beban_kerja = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $bk;
                                     $rp_beban_kerja = $rp_bulan_beban_kerja * 13 * ($data->jumlah_pemangku ?? 0);
                                     if($data->basic_tpp > 0){
                                         $persen_bk = ($rp_bulan_beban_kerja / $data->basic_tpp) * 100;
@@ -106,7 +114,7 @@
 
                                     //Prestasi Kerja
                                     $pk = \App\Models\Rupiah::pk();
-                                    $rp_bulan_prestasi_kerja = ($data->nilai_jabatan ?? 0) * ($data->indeks ?? 0 ) * $pk;
+                                    $rp_bulan_prestasi_kerja = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $pk;
                                     $rp_prestasi_kerja = $rp_bulan_prestasi_kerja * 12 * ($data->jumlah_pemangku ?? 0);
                                     if($data->basic_tpp > 0){
                                         $persen_pk = ($rp_bulan_prestasi_kerja / $data->basic_tpp) * 100;
