@@ -157,8 +157,8 @@
                                 <th width="3%">Status Jabatan</th>
                                 <th width="3%">Nilai Jabatan (JV)</th>
                                 <th width="3%">Indeks</th>
-                                <th width="3%">Pangkat</th>
                                 <th width="3%">Golongan PPPK</th>
+                                <th width="3%">Pangkat</th>
                                 <th width="3%">Eselon</th>
                                 <th width="3%">Status Penerimaan TPP</th>
                                 <th width="3%">Sertifikasi Guru</th>
@@ -243,8 +243,8 @@
                                             {{ $data->indeks }}
                                         @endif
                                     </td>
-                                    <td>{{ $data->pangkat }}</td>
                                     <td>{{ $data->golongan }}</td>
+                                    <td>{{ $data->pangkat }}</td> 
                                     <td>{{ $data->eselon }}</td>
                                     <td>{{ $data->tpp }}</td>
                                     <td>{{ $data->sertifikasi_guru }}</td>
@@ -330,6 +330,7 @@
                                                             <option value="PPPK" @if('PPPK' == $data->sts_pegawai) selected @endif>PPPK</option>
                                                             <option value="GURU" @if('GURU' == $data->sts_pegawai) selected @endif>GURU</option>
                                                             <option value="RS" @if('RS' == $data->sts_pegawai) selected @endif>RS</option>
+                                                            <option value="PENSIUN" @if('PENSIUN' == $data->sts_pegawai) selected @endif>PENSIUN</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -370,6 +371,7 @@
                                                     <div class="form-group">
                                                         <label for="pangkat">Pangkat</label>
                                                         <select type="text" name="pangkat" class="form-control @error('pangkat') is-invalid @enderror">
+                                                            <option value="" @if($data->pangkat === null) selected @endif>--Belum dipilih--</option>
                                                             <option value="Juru Muda - I/a" @if('Juru Muda - I/a' == $data->pangkat) selected @endif>Juru Muda - I/a</option>
                                                             <option value="Juru Muda Tk.I - I/b" @if('Juru Muda Tk.I - I/b' == $data->pangkat) selected @endif>Juru Muda Tk.I - I/b</option>
                                                             <option value="Juru Muda Tk.I - I/c" @if('Juru Muda Tk.I - I/c' == $data->pangkat) selected @endif>Juru Muda Tk.I - I/c</option>
@@ -393,6 +395,7 @@
                                                     <div class="form-group">
                                                         <label for="golongan">Golongan PPPK</label>
                                                         <select type="text" name="golongan" class="form-control @error('golongan') is-invalid @enderror">
+                                                            <option value="" @if($data->golongan === null) selected @endif>--Belum dipilih--</option>
                                                             <option value="0" @if('0' == $data->golongan) selected @endif>0</option>
                                                             <option value="I" @if('I' == $data->golongan) selected @endif>I</option>
                                                             <option value="II" @if('II' == $data->golongan) selected @endif>II</option>
@@ -439,12 +442,11 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="pa_kpa">PA/KPA</label>
-                                                        <input type="text" name="pa_kpa"
-                                                            class="form-control @error('pa_kpa') is-invalid @enderror" id="pa_kpa"
-                                                            placeholder="PA / KPA . . ." value="{{ $data->pa_kpa }}">
-                                                        @error('pa_kpa')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="pa_kpa" class="form-control @error('pa_kpa') is-invalid @enderror">
+                                                            <option value="" @if(null === $data->pa_kpa) selected @endif>--Belum dipilih--</option>
+                                                            <option value="PA/KPA" @if('PA/KPA' === $data->pa_kpa) selected @endif>PA/KPA</option>
+                                                            <option value="Bukan PA/KPA" @if('Bukan PA/KPA' === $data->pa_kpa) selected @endif>Bukan PA/KPA</option>
+                                                        </select>
                                                     </div> 
                                                     <div class="form-group">
                                                         <label for="pbj">Sertifikasi PBJ</label>

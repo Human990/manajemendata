@@ -18,38 +18,37 @@
 
         <div class="card-body">
             <div class="row d-flex align-items-center">
-                <div class="col-2">
-                    <div class="alert alert-primary text-center mt-3" role="alert">
-                        Jumlah Pegawai: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->count() }}
+                <div class="col-3">
+                    <div class="alert alert-info text-center mt-3" role="alert">
+                        Jumlah Pegawai: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_pegawai','!=','PENSIUN')->count() }}
                     </div>
-                </div>
-                <div class="col-2">
-                    <div class="alert alert-success text-center mt-3" role="alert">
+                    <div class="alert alert-warning text-center mt-3" role="alert">
                         Jumlah PPPK: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_pegawai', 'PPPK')->count() }}
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-3">
                     <div class="alert alert-info text-center mt-3" role="alert">
                         Jumlah PLT: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'PLT')->count() }}
                     </div>
-                </div>
-                <div class="col-2">
                     <div class="alert alert-warning text-center mt-3" role="alert">
                         Jumlah PLH: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'PLH')->count() }}
                     </div>
                 </div>
-                <div class="col-2">
-                    <div class="alert alert-danger text-center mt-3" role="alert">
+                <div class="col-3">
+                    <div class="alert alert-info text-center mt-3" role="alert">
                         Jumlah Pengganti Sementara: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'Pengganti Sementara')->count() }}
                     </div>
-                </div>
-                <div class="col-2">
-                    <div class="alert alert-secondary text-center mt-3" role="alert">
-                        Jumlah ASN Definitif: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->count() - 
+                    <div class="alert alert-warning text-center mt-3" role="alert">
+                        Total ASN Definitif: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_pegawai','!=','PENSIUN')->count() - 
                             \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_pegawai', 'PPPK')->count() - 
                             \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'PLT')->count() - 
                             \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'PLH')->count() - 
                             \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'Pengganti Sementara')->count() }}
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="alert alert-dark text-center mt-3" role="alert">
+                        Jumlah Pegawai Pensiun: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_pegawai', 'PENSIUN')->count() }}
                     </div>
                 </div>
             </div>

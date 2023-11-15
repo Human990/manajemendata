@@ -21,9 +21,9 @@ class PegawaiController extends Controller
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('pegawais.nip', 'like', "%$search%")
-                    ->orWhere('pegawais.nama_pegawai', 'like', "%$search%")
-                    ->orWhere('opds.nama_opd', 'like', "%$search%")
-                    ->orWhere('jabatans.nama_jabatan', 'LIKE', '%'.$search.'%');
+                    ->orWhere('pegawais.nama_pegawai', 'like', "%$search%");
+                    // ->orWhere('opds.nama_opd', 'like', "%$search%")
+                    // ->orWhere('jabatans.nama_jabatan', 'LIKE', '%'.$search.'%');
             });
         }
 
@@ -49,7 +49,6 @@ class PegawaiController extends Controller
         [
             'nip' => 'required',
             'nama_pegawai' => 'required',
-            'pangkat' => 'required',
         ]);
 
         Pegawai::create([
@@ -84,8 +83,6 @@ class PegawaiController extends Controller
         [
             'nip' => 'required',
             'nama_pegawai' => 'required',
-            'pangkat' => 'required',
-            'eselon' => 'required',
         ]);
         
         $pegawai->update([

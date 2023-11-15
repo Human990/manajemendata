@@ -10,7 +10,7 @@
         <div class="card-body">
             <form action="{{ route('adminjabatan-jabatan') }}" method="GET">
                 <div class="input-group">
-                    <input type="text" name="pencarian" class="form-control " placeholder="Masukkan nama jabatan yang dicari . . ." value="{{ $pencarian ?? '' }}">
+                    <input type="text" name="search" class="form-control " placeholder="Masukkan nama jabatan yang dicari . . ." value="{{ $pencarian ?? '' }}">
                     <div class="input-group-append">
                         <button class="btn btn-warning" type="submit">
                             <i class="fas fa-search fa-sm"></i> Pencarian
@@ -27,6 +27,16 @@
                     <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
                 </select>
             </form>
+            <!-- Tambahkan tombol untuk sorting murni -->
+            <a href="{{ route('adminjabatan-jabatan', ['sorting' => 'murni']) }}" class="btn btn-outline-success">Sort Murni</a>
+
+            <!-- Tambahkan tombol untuk sorting subkoor -->
+            <a href="{{ route('adminjabatan-jabatan', ['sorting' => 'subkoor']) }}" class="btn btn-outline-success">Sort Subkoor</a>
+
+            <!-- Tambahkan tombol untuk sorting koor -->
+            <a href="{{ route('adminjabatan-jabatan', ['sorting' => 'koor']) }}" class="btn btn-outline-success">Sort Koor</a>
+
+            <a href="{{ route('adminjabatan-jabatan') }}" class="btn btn-outline-secondary">Reset</a>
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
                     <thead>
@@ -349,7 +359,7 @@
         </div>
         <div class="text-center">
             <span style="float:right">
-            {{ $datas->appends([ 'pencarian' => $pencarian , 'recordsPerPage' => $pagination ])->links() }}</span>
+            {{ $datas->appends([ 'search' => $search , 'recordsPerPage' => $pagination, 'sorting' => $sorting ])->links() }}</span>
         </div>
         <div class="modal fade" id="createModalIndeks" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
             aria-hidden="true">

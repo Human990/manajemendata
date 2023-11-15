@@ -27,6 +27,16 @@
                         <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
                     </select>
                 </form>
+                <!-- Tambahkan tombol untuk sorting murni -->
+                <a href="{{ route('adminkota-jabatan', ['sorting' => 'murni']) }}" class="btn btn-outline-success">Sort Murni</a>
+
+                <!-- Tambahkan tombol untuk sorting subkoor -->
+                <a href="{{ route('adminkota-jabatan', ['sorting' => 'subkoor']) }}" class="btn btn-outline-success">Sort Subkoor</a>
+
+                <!-- Tambahkan tombol untuk sorting koor -->
+                <a href="{{ route('adminkota-jabatan', ['sorting' => 'koor']) }}" class="btn btn-outline-success">Sort Koor</a>
+
+                <a href="{{ route('adminkota-jabatan') }}" class="btn btn-outline-secondary">Reset</a>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead>
@@ -348,7 +358,7 @@
             </div>
             <div class="text-center">
                 <span style="float:right">
-                {{ $datas->appends([ 'pencarian' => $pencarian , 'recordsPerPage' => $pagination ])->links() }}</span>
+                {{ $datas->appends([ 'search' => $search , 'recordsPerPage' => $pagination, 'sorting' => $sorting ])->links() }}</span>
             </div>
             <div class="modal fade" id="createModalIndeks" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">

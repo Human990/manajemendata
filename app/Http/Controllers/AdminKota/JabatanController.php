@@ -11,16 +11,42 @@ class JabatanController extends Controller
     public function index(Request $request)
     {
         $tahunid = session()->get('tahun_id_session');
-        $pencarian = $request->pencarian;
+        $search = $request->input('search');
         $pagination = $request->input('recordsPerPage', 10);
+        $sorting = $request->input('sorting');
+        $query = Jabatan::daftar();
 
-        if (!empty($request->pencarian)) {
-            $datas= Jabatan::pencarian($pencarian)->paginate($pagination);
-        }else {
-            $datas= Jabatan::daftar()->paginate($pagination);
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('jabatans.nama_jabatan', 'LIKE', '%'.$search.'%');
+            });
         }
 
-        return view('admin-kota.master.master-jabatan',compact('datas', 'pencarian','pagination'));
+        switch ($sorting) {
+            case 'murni':
+                $query->whereNull('jabatans.indeks_id');
+                break;
+            case 'subkoor':
+                $query->whereNull('jabatans.indeks_subkor_penyetaraan_id')
+                      ->whereNull('jabatans.indeks_subkor_non_penyetaraan_id')
+                      ->whereNull('jabatans.nilai_jabatan_subkor_penyetaraan')
+                      ->whereNull('jabatans.nilai_jabatan_subkor_non_penyetaraan');
+                break;
+            case 'koor':
+                $query->whereNull('jabatans.indeks_koor_penyetaraan_id')
+                      ->whereNull('jabatans.indeks_koor_non_penyetaraan_id')
+                      ->whereNull('jabatans.nilai_jabatan_koor_penyetaraan')
+                      ->whereNull('jabatans.nilai_jabatan_koor_non_penyetaraan');
+                break;
+            default:
+                // Default sorting jika tidak ada yang dipilih
+                break;
+        }
+
+        // Memanggil metode data() pada model Pegawai
+        $datas = $query->paginate($pagination);
+
+        return view('admin-kota.master.master-jabatan',compact('datas', 'search','pagination','sorting'));
     }
 
     public function store(Request $request)

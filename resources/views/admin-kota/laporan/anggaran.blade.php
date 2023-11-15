@@ -234,6 +234,11 @@
                         orang </p>
                 </div>
 
+                <div class="text-left">
+                    <p class="ml-3" style="color:black;">Jumlah Pensiun : <b style="color:red;"> {{ number_format($jumlah_pensiun,0) }} </b>
+                        orang </p>
+                </div>
+
                 <div class="text-center">
                     {{-- <h6>jumlah data :{{$jumlah_pegbul}}</h6> --}}
                 </div>

@@ -81,7 +81,7 @@
                                 <th colspan="6" class="merged-cell">Informasi Jabatan</th>
                             
                                 <!-- Informasi Tambahan -->
-                                <th colspan="4" class="merged-cell">Informasi Kepangkatan</th>
+                                <th colspan="3" class="merged-cell">Informasi Kepangkatan</th>
 
                                 <th colspan="4" class="merged-cell">Informasi Sertifikasi</th>
                             
@@ -162,9 +162,22 @@
                                     {{ $catatan->jft }} <br>
                                 </td>
 
-                                <td colspan="4">
-                                    {{ $catatan->pangkat }} <br>
-                                    {{ $catatan->golongan }} <br>
+                                <td colspan="3">
+                                    @if ($catatan->sts_pegawai === 'PPPK')
+                                        @if ($catatan->golongan === null)
+                                        0
+                                        @else
+                                        {{ $catatan->golongan }}
+                                        @endif
+                                    <br>
+                                    @else
+                                        @if ($catatan->pangkat === null)
+                                        --tidak ada--
+                                        @else
+                                        {{ $catatan->pangkat }}
+                                        @endif
+                                        <br>
+                                    @endif
                                     {{ $catatan->eselon }} <br>
                                     {{ $catatan->tpp }} <br>
                                 </td>
@@ -274,6 +287,7 @@
                                                             <option value="PPPK" @if('PPPK' == $catatan->sts_pegawai) selected @endif>PPPK</option>
                                                             <option value="GURU" @if('GURU' == $catatan->sts_pegawai) selected @endif>GURU</option>
                                                             <option value="RS" @if('RS' == $catatan->sts_pegawai) selected @endif>RS</option>
+                                                            <option value="PENSIUN" @if('PENSIUN' == $catatan->sts_pegawai) selected @endif>PENSIUN</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -313,47 +327,49 @@
                                                     <div class="form-group">
                                                         <label for="pangkat">Pangkat</label>
                                                         <select type="text" name="pangkat" class="form-control @error('pangkat') is-invalid @enderror">
-                                                            <option value="Juru Muda - I/a" @if('Juru Muda - I/a' == $catatan->pangkat) selected @endif>Juru Muda - I/a</option>
-                                                            <option value="Juru Muda Tk.I - I/b" @if('Juru Muda Tk.I - I/b' == $catatan->pangkat) selected @endif>Juru Muda Tk.I - I/b</option>
-                                                            <option value="Juru Muda Tk.I - I/c" @if('Juru Muda Tk.I - I/c' == $catatan->pangkat) selected @endif>Juru Muda Tk.I - I/c</option>
-                                                            <option value="Juru Tk.I - I/d" @if('Juru Tk.I - I/d' == $catatan->pangkat) selected @endif>Juru Tk.I - I/d</option>
-                                                            <option value="Pengatur Muda - II/a" @if('Pengatur Muda - II/a' == $catatan->pangkat) selected @endif>Pengatur Muda - II/a</option>
-                                                            <option value="Pengatur Muda Tk.I - II/b" @if('Pengatur Muda Tk.I - II/b' == $catatan->pangkat) selected @endif>Pengatur Muda Tk.I - II/b</option>
-                                                            <option value="Pengatur - II/c" @if('Pengatur - II/c' == $catatan->pangkat) selected @endif>Pengatur - II/c</option>
-                                                            <option value="Pengatu Tk.I - II/d" @if('Pengatu Tk.I - II/d' == $catatan->pangkat) selected @endif>Pengatu Tk.I - II/d</option>
-                                                            <option value="Penata Muda - III/a" @if('Penata Muda - III/a' == $catatan->pangkat) selected @endif>Penata Muda - III/a</option>
-                                                            <option value="Penata Muda Tk.I - III/b" @if('Penata Muda Tk.I - III/b' == $catatan->pangkat) selected @endif>Penata Muda Tk.I - III/b</option>
-                                                            <option value="Penata - III/c" @if('Penata - III/c' == $catatan->pangkat) selected @endif>Penata - III/c</option>
-                                                            <option value="Penata Tk.I - III/d" @if('Penata Tk.I - III/d' == $catatan->pangkat) selected @endif>Penata Tk.I - III/d</option>
-                                                            <option value="Pembina - IV/a" @if('Pembina - IV/a' == $catatan->pangkat) selected @endif>Pembina - IV/a</option>
-                                                            <option value="Pembina Tk.I - IV/b" @if('Pembina Tk.I - IV/b' == $catatan->pangkat) selected @endif>Pembina Tk.I - IV/b</option>
-                                                            <option value="Pembina Utama Muda - IV/c" @if('Pembina Utama Muda - IV/c' == $catatan->pangkat) selected @endif>Pembina Utama Muda - IV/c</option>
-                                                            <option value="Pembina Utama Madya - IV/d" @if('Pembina Utama Madya - IV/d' == $catatan->pangkat) selected @endif>Pembina Utama Madya - IV/d</option>
-                                                            <option value="Pembina Utama - IV/e" @if('Pembina Utama - IV/e' == $catatan->pangkat) selected @endif>Pembina Utama - IV/e</option>
-                                                            <option value="Tidak Ada Pangkat--" @if('--Tidak Ada Pangkat--' == $catatan->pangkat) selected @endif>--Tidak Ada Pangkat--</option>
+                                                            <option value="" @if($catatan->pangkat === null) selected @endif>--Belum dipilih--</option>
+                                                            <option value="Juru Muda - I/a" @if('Juru Muda - I/a' === $catatan->pangkat) selected @endif>Juru Muda - I/a</option>
+                                                            <option value="Juru Muda Tk.I - I/b" @if('Juru Muda Tk.I - I/b' === $catatan->pangkat) selected @endif>Juru Muda Tk.I - I/b</option>
+                                                            <option value="Juru Muda Tk.I - I/c" @if('Juru Muda Tk.I - I/c' === $catatan->pangkat) selected @endif>Juru Muda Tk.I - I/c</option>
+                                                            <option value="Juru Tk.I - I/d" @if('Juru Tk.I - I/d' === $catatan->pangkat) selected @endif>Juru Tk.I - I/d</option>
+                                                            <option value="Pengatur Muda - II/a" @if('Pengatur Muda - II/a' === $catatan->pangkat) selected @endif>Pengatur Muda - II/a</option>
+                                                            <option value="Pengatur Muda Tk.I - II/b" @if('Pengatur Muda Tk.I - II/b' === $catatan->pangkat) selected @endif>Pengatur Muda Tk.I - II/b</option>
+                                                            <option value="Pengatur - II/c" @if('Pengatur - II/c' === $catatan->pangkat) selected @endif>Pengatur - II/c</option>
+                                                            <option value="Pengatu Tk.I - II/d" @if('Pengatu Tk.I - II/d' === $catatan->pangkat) selected @endif>Pengatu Tk.I - II/d</option>
+                                                            <option value="Penata Muda - III/a" @if('Penata Muda - III/a' === $catatan->pangkat) selected @endif>Penata Muda - III/a</option>
+                                                            <option value="Penata Muda Tk.I - III/b" @if('Penata Muda Tk.I - III/b' === $catatan->pangkat) selected @endif>Penata Muda Tk.I - III/b</option>
+                                                            <option value="Penata - III/c" @if('Penata - III/c' === $catatan->pangkat) selected @endif>Penata - III/c</option>
+                                                            <option value="Penata Tk.I - III/d" @if('Penata Tk.I - III/d' === $catatan->pangkat) selected @endif>Penata Tk.I - III/d</option>
+                                                            <option value="Pembina - IV/a" @if('Pembina - IV/a' === $catatan->pangkat) selected @endif>Pembina - IV/a</option>
+                                                            <option value="Pembina Tk.I - IV/b" @if('Pembina Tk.I - IV/b' === $catatan->pangkat) selected @endif>Pembina Tk.I - IV/b</option>
+                                                            <option value="Pembina Utama Muda - IV/c" @if('Pembina Utama Muda - IV/c' === $catatan->pangkat) selected @endif>Pembina Utama Muda - IV/c</option>
+                                                            <option value="Pembina Utama Madya - IV/d" @if('Pembina Utama Madya - IV/d' === $catatan->pangkat) selected @endif>Pembina Utama Madya - IV/d</option>
+                                                            <option value="Pembina Utama - IV/e" @if('Pembina Utama - IV/e' === $catatan->pangkat) selected @endif>Pembina Utama - IV/e</option>
+                                                            <option value="Tidak Ada Pangkat--" @if('--Tidak Ada Pangkat--' === $catatan->pangkat) selected @endif>--Tidak Ada Pangkat--</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="golongan">Golongan PPPK</label>
                                                         <select type="text" name="golongan" class="form-control @error('golongan') is-invalid @enderror">
-                                                            <option value="0" @if('0' == $catatan->golongan) selected @endif>0</option>
-                                                            <option value="I" @if('I' == $catatan->golongan) selected @endif>I</option>
-                                                            <option value="II" @if('II' == $catatan->golongan) selected @endif>II</option>
-                                                            <option value="III" @if('III' == $catatan->golongan) selected @endif>III</option>
-                                                            <option value="IV" @if('IV' == $catatan->golongan) selected @endif>IV</option>
-                                                            <option value="V" @if('V' == $catatan->golongan) selected @endif>V</option>
-                                                            <option value="VI" @if('VI' == $catatan->golongan) selected @endif>VI</option>
-                                                            <option value="VII" @if('VII' == $catatan->golongan) selected @endif>VII</option>
-                                                            <option value="VIII" @if('VIII' == $catatan->golongan) selected @endif>VIII</option>
-                                                            <option value="IX" @if('IX' == $catatan->golongan) selected @endif>IX</option>
-                                                            <option value="X" @if('X' == $catatan->golongan) selected @endif>X</option>
-                                                            <option value="XI" @if('XI' == $catatan->golongan) selected @endif>XI</option>
-                                                            <option value="XII" @if('XII' == $catatan->golongan) selected @endif>XII</option>
-                                                            <option value="XIII" @if('XIII' == $catatan->golongan) selected @endif>XIII</option>
-                                                            <option value="XIV" @if('XIV' == $catatan->golongan) selected @endif>XIV</option>
-                                                            <option value="XV" @if('XV' == $catatan->golongan) selected @endif>XV</option>
-                                                            <option value="XVI" @if('XVI' == $catatan->golongan) selected @endif>XVI</option>
-                                                            <option value="XVII" @if('XVII' == $catatan->golongan) selected @endif>XVII</option>
+                                                            <option value="" @if($catatan->golongan === null) selected @endif>--Belum dipilih--</option>
+                                                            <option value="0" @if('0' === $catatan->golongan) selected @endif>0</option>
+                                                            <option value="I" @if('I' === $catatan->golongan) selected @endif>I</option>
+                                                            <option value="II" @if('II' === $catatan->golongan) selected @endif>II</option>
+                                                            <option value="III" @if('III' === $catatan->golongan) selected @endif>III</option>
+                                                            <option value="IV" @if('IV' === $catatan->golongan) selected @endif>IV</option>
+                                                            <option value="V" @if('V' === $catatan->golongan) selected @endif>V</option>
+                                                            <option value="VI" @if('VI' === $catatan->golongan) selected @endif>VI</option>
+                                                            <option value="VII" @if('VII' === $catatan->golongan) selected @endif>VII</option>
+                                                            <option value="VIII" @if('VIII' === $catatan->golongan) selected @endif>VIII</option>
+                                                            <option value="IX" @if('IX' === $catatan->golongan) selected @endif>IX</option>
+                                                            <option value="X" @if('X' === $catatan->golongan) selected @endif>X</option>
+                                                            <option value="XI" @if('XI' === $catatan->golongan) selected @endif>XI</option>
+                                                            <option value="XII" @if('XII' === $catatan->golongan) selected @endif>XII</option>
+                                                            <option value="XIII" @if('XIII' === $catatan->golongan) selected @endif>XIII</option>
+                                                            <option value="XIV" @if('XIV' === $catatan->golongan) selected @endif>XIV</option>
+                                                            <option value="XV" @if('XV' === $catatan->golongan) selected @endif>XV</option>
+                                                            <option value="XVI" @if('XVI' === $catatan->golongan) selected @endif>XVI</option>
+                                                            <option value="XVII" @if('XVII' === $catatan->golongan) selected @endif>XVII</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -382,12 +398,11 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="pa_kpa">PA/KPA</label>
-                                                        <input type="text" name="pa_kpa"
-                                                            class="form-control @error('pa_kpa') is-invalid @enderror" id="pa_kpa"
-                                                            placeholder="PA / KPA . . ." value="{{ $catatan->pa_kpa }}">
-                                                        @error('pa_kpa')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="pa_kpa" class="form-control @error('pa_kpa') is-invalid @enderror">
+                                                            <option value="" @if(null === $catatan->pa_kpa) selected @endif>--Belum dipilih--</option>
+                                                            <option value="PA/KPA" @if('PA/KPA' === $catatan->pa_kpa) selected @endif>PA/KPA</option>
+                                                            <option value="Bukan PA/KPA" @if('Bukan PA/KPA' === $catatan->pa_kpa) selected @endif>Bukan PA/KPA</option>
+                                                        </select>
                                                     </div> 
                                                     <div class="form-group">
                                                         <label for="pbj">Sertifikasi PBJ</label>

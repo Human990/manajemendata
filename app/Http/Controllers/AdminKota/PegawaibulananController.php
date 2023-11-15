@@ -426,8 +426,9 @@ class PegawaibulananController extends Controller
 
         $rupiah3 = Rupiah::where('tahun_id', $tahun_id)->where('flag', 'pagu_apbd')->first();
         $rupiah4 = Rupiah::where('tahun_id', $tahun_id)->where('flag', 'belanja_pegawai')->first();
-        $jumlah_pegawai = Pegawai::where('pegawais.tahun_id', $tahun_id)->count();
+        $jumlah_pegawai = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('pegawais.sts_pegawai', '!=' ,'PENSIUN')->count();
         $jumlahguru = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','guru')->count();
+        $jumlah_pensiun = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('pegawais.sts_pegawai','PENSIUN')->count();
         $rs = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','rs')->count();
         $pppk = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','pppk')->count();
         $catatans = Catatan_opd::proses()->paginate(10);
@@ -557,6 +558,7 @@ class PegawaibulananController extends Controller
             'pppk', 
             'catatans', 
             'total_tpp',
+            'jumlah_pensiun',
             'pegawais'
             ]))
         ->with('i', ($request->input('page', 1) - 1));
