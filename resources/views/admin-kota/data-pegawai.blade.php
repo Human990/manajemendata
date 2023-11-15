@@ -264,32 +264,10 @@
                                     <td>{{ $data->tpp_tambahan }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-danger" id="deleteButton{{ $i }}" data-toggle="modal" data-target="#hapusModalPegawai{{ $i }}"><i class="fa fa-trash"></i></button>
+                                        <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
-                                <div class="modal fade" id="hapusModalPegawai{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="hapusModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="hapusModalLabel">Hapus Data Pegawai</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Apakah Anda yakin ingin menghapus data pegawai ini?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                                <form action="{{ route('adminkota-pegawai.destroy', $data->id) }}" method="POST" id="deleteForm{{ $i }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="modal fade" id="ubahModalPegawai{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -809,6 +787,12 @@
         </div>
     </div>
 
+    <form action="" method="post" id="deleteForm">
+        @csrf
+        @method("DELETE")
+    <button type="submit" style="display:none">Hapus</button>
+    </form>
+
     <script>
         function toggleColumn(columnIndex, checked) {
             const table = document.getElementById("data-table");
@@ -863,25 +847,33 @@
         });
     </script>
 
-    @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    {{-- <script>
-        function hapusData(index) {
-            Swal.fire({
-                title: 'Apakah Anda yakin?',
-                text: "Data yang dihapus tidak dapat dikembalikan!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Ya, Hapus!'
-            }).then((result) => {
-                if (result.value) {
-                    document.getElementById('deleteForm' + index).submit();
-                }
-            });
-        }
-    </script> --}}
-    @endpush
-    
+    <script>
+        $('button#delete').on('click', function(e){
+                e.preventDefault();
+
+                var href = $(this).attr('href');
+
+                Swal.fire({
+                    title: 'Apakah anda yakin hapus data?',
+                    text: "Data yang dihapus tidak bisa dikembalikan!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Hapus!'
+                    }).then((result) => {
+                    if (result.value) {
+                        document.getElementById('deleteForm').action = href;
+                        document.getElementById('deleteForm').submit();
+
+                        // Swal.fire(
+                        //     'Berhasil!',
+                        //     'Data telah dihapus.',
+                        //     'success'
+                        // )
+                    }
+                })
+            })
+    </script>
 @endsection
