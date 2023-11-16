@@ -5,23 +5,20 @@
     <div class="container-fluid">
         <div class="card card-headline">
             <div class="card-header">
-                <h3 class="card-title">Data Pegawai Tahun {{ session()->get('tahun_session') }} <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalPegawai" style="float:right">Tambah Data</a></h3>
+                <h3 class="card-title">Data Pegawai <b>PENSIUN</b> Tahun {{ session()->get('tahun_session') }} <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalPegawai" style="float:right">Tambah Data</a></h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('adminkota-pegawai') }}" method="GET">
+                <form action="{{ route('adminkota-pensiun') }}" method="GET">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Cari nama atau nip Pegawai . . ." name="search" value="{{ request('search') }}">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">Cari</button>
                         </div>
                         <div class="input-group-append">
-                            <a href="{{ route('adminkota-pegawai') }}" class="btn btn-outline-secondary">Reset</a>
+                            <a href="{{ route('adminkota-pensiun') }}" class="btn btn-outline-secondary">Reset</a>
                         </div>
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFilteropdPegawai" type="button">filter OPD</button>
-                        </div>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFiltersubopdPegawai" type="button">filter SUBOPD</button>
                         </div>
                     </div>
                 </form>
@@ -35,41 +32,13 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="{{ route('adminkota-pegawai') }}" method="GET" enctype="multipart/form-data">
+                            <form action="{{ route('adminkota-pensiun') }}" method="GET" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="filteropd">OPD</label>
                                         <select type="text" name="filteropd" class="form-control @error('filteropd') is-invalid @enderror">
                                             @foreach(\App\Models\Opd::data() as $opd)
                                                 <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="createFiltersubopdPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="createModalLabel">Filter Data Pegawai</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="{{ route('adminkota-pegawai') }}" method="GET" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="filtersubopd">SUB OPD</label>
-                                        <select type="text" name="filtersubopd" class="form-control @error('filtersubopd') is-invalid @enderror">
-                                            @foreach(\App\Models\Subopd::data() as $subopd)
-                                                <option value="{{ $subopd->id }}">{{ $subopd->nama_sub_opd }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -590,8 +559,7 @@
                 {{ $datas->appends([ 
                     'pencarian' => $search ,
                     'pagination' => $pagination, 
-                    'filteropd' => $filteropd,
-                    'filtersubopd' => $filtersubopd
+                    'filteropd' => $filteropd
                     ])->links() }}</span>
                     {{-- {{ $datas->links() }} --}}
             </div>

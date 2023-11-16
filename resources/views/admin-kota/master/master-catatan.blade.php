@@ -183,10 +183,6 @@
                                     <b>Catatan OPD : </b>{{ $catatan->catatan_opd }}</br>
                                     @if(!empty($catatan->catatan_admin)) <b>Catatan Admin : </b>{{ $catatan->catatan_admin }} @endif
                                 </td>
-                                <td width="32%">
-                                    <b>Catatan OPD : </b>{{ $catatan->catatan_opd }}</br>
-                                    @if(!empty($catatan->catatan_admin)) <b>Catatan Admin : </b>{{ $catatan->catatan_admin }} @endif
-                                </td>
                                 <td width="5%">{{ $catatan->status }}</td>
                                 <td width="14%">
                                     @if(!empty($catatan->status))
@@ -355,12 +351,15 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="eselon">Eselon</label>
-                                                        <input type="text" name="eselon"
-                                                            class="form-control @error('eselon') is-invalid @enderror" id="eselon"
-                                                            placeholder="Eselon . . ." value="{{ $catatan->eselon }}">
-                                                        @error('eselon')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="eselon" class="form-control @error('eselon') is-invalid @enderror">
+                                                            <option value="NON ESELON" @if('NON ESELON' == $catatan->eselon) selected @endif>NON ESELON</option>
+                                                            <option value="II.a" @if('II.a' == $catatan->sts_pegawai) selected @endif>II.a</option>
+                                                            <option value="II.b" @if('II.b' == $catatan->sts_pegawai) selected @endif>II.b</option>
+                                                            <option value="III.a" @if('III.a' == $catatan->sts_pegawai) selected @endif>III.a</option>
+                                                            <option value="III.b" @if('III.b' == $catatan->sts_pegawai) selected @endif>III.b</option>
+                                                            <option value="IV.a" @if('IV.a' == $catatan->sts_pegawai) selected @endif>IV.a</option>
+                                                            <option value="IV.b" @if('IV.b' == $catatan->sts_pegawai) selected @endif>IV.b</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="tpp">Status Penerima TPP</label>
@@ -392,6 +391,14 @@
                                                             <option value="" @if(null === $catatan->pbj) selected @endif>--Tidak dipilih--</option>
                                                             <option value="Sudah Memiliki Sertifikat" @if('Sudah Memiliki Sertifikat' === $catatan->pbj) selected @endif>Sudah Memiliki Sertifikat</option>
                                                             <option value="Belum Memiliki Sertifikat" @if('Belum Memiliki Sertifikat' === $catatan->pbj) selected @endif>Belum Memiliki Sertifikat</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="jft">Tipe Jabatan</label>
+                                                        <select type="text" name="jft" class="form-control @error('jft') is-invalid @enderror">
+                                                            <option value="Jabatan Fungsional" @if('Jabatan Fungsional' === $catatan->jft) selected @endif>Jabatan Fungsional</option>
+                                                            <option value="Jabatan Fungsional Belum Diangkat" @if('Jabatan Fungsional Belum Diangkat' === $catatan->jft) selected @endif>Jabatan Fungsional Belum Diangkat</option>
+                                                            <option value="Jabatan Administratif" @if('Jabatan Administratif' === $catatan->jft) selected @endif>Jabatan Administratif</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">

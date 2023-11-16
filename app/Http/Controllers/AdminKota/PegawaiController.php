@@ -108,6 +108,7 @@ class PegawaiController extends Controller
             'sertifikasi_guru' => $request->sertifikasi_guru,
             'pa_kpa' => $request->pa_kpa,
             'pbj' => $request->pbj,
+            'jft' => $request->jft,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');

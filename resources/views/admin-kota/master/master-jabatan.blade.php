@@ -10,7 +10,7 @@
             <div class="card-body">
                 <form action="{{ route('adminkota-jabatan') }}" method="GET">
                     <div class="input-group">
-                        <input type="text" name="pencarian" class="form-control " placeholder="Masukkan nama jabatan yang dicari . . ." value="{{ $pencarian ?? '' }}">
+                        <input type="text" name="search" class="form-control " placeholder="Masukkan nama jabatan yang dicari . . ." value="{{ $pencarian ?? '' }}">
                         <div class="input-group-append">
                             <button class="btn btn-warning" type="submit">
                                 <i class="fas fa-search fa-sm"></i> Pencarian

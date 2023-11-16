@@ -235,8 +235,8 @@
                 </div>
 
                 <div class="text-left">
-                    <p class="ml-3" style="color:black;">Jumlah Pensiun : <b style="color:red;"> {{ number_format($jumlah_pensiun,0) }} </b>
-                        orang </p>
+                    <a href="{{route('adminkota-pensiun')}}" class="ml-3" style="color:black;">Jumlah Pensiun : <b style="color:red;"> {{ number_format($jumlah_pensiun,0) }} </b>
+                        orang </a>
                 </div>
 
                 <div class="text-center">
