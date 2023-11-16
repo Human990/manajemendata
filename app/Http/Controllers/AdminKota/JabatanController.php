@@ -55,7 +55,6 @@ class JabatanController extends Controller
         [
             'nama_jabatan' => 'required',
             'nilai_jabatan' => 'required',
-            'tunjab' => 'required',
         ]);
 
         Jabatan::create([
@@ -93,7 +92,6 @@ class JabatanController extends Controller
         [
             'nama_jabatan' => 'required',
             'nilai_jabatan' => 'required',
-            'tunjab' => 'required',
         ]);
         
         $jabatan->update([

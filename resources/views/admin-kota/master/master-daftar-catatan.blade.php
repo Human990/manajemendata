@@ -58,7 +58,6 @@
                         <option value="10" {{ request('recordsPerPage', 10) == 10 ? 'selected' : '' }}>10</option>
                         <option value="20" {{ request('recordsPerPage', 10) == 20 ? 'selected' : '' }}>20</option>
                         <option value="50" {{ request('recordsPerPage', 10) == 50 ? 'selected' : '' }}>50</option>
-                        <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
                     </select>
                 </form>
                 <div class="table-responsive">
@@ -317,12 +316,12 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="sts_jabatan">Status Jabatan</label>
-                                                        <input type="text" name="sts_jabatan"
-                                                            class="form-control @error('sts_jabatan') is-invalid @enderror" id="sts_jabatan"
-                                                            placeholder="Status Jabatan . . ." value="{{ $catatan->sts_jabatan }}">
-                                                        @error('sts_jabatan')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="sts_jabatan" class="form-control @error('sts_jabatan') is-invalid @enderror">
+                                                            <option value="Utama" @if('Utama' == $catatan->sts_jabatan) selected @endif>Utama</option>
+                                                            <option value="PLT" @if('PLT' == $catatan->sts_jabatan) selected @endif>PLT</option>
+                                                            <option value="PLH" @if('PLH' == $catatan->sts_jabatan) selected @endif>PLH</option>
+                                                            <option value="Pengganti Sementara" @if('Pengganti Sementara' == $catatan->sts_jabatan) selected @endif>Pengganti Sementara</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="pangkat">Pangkat</label>

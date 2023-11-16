@@ -14,8 +14,7 @@ class PegawaiController extends Controller
     {
         $pagination = $request->input('recordsPerPage', 10);
         $search = $request->input('search'); // Data pencarian
-        $filteropd = $request->input('filteropd'); // Data filter
-        $filtersubopd = $request->input('filtersubopd'); // Data filter
+        $filteropd = $request->input('filteropd') ?? $request->session()->get('filteropd'); // Mengambil nilai dari sesi jika tidak ada nilai langsung dari request
         $query = Pegawai::data();
 
         if ($search) {
@@ -32,15 +31,11 @@ class PegawaiController extends Controller
             $query->where('pegawais.opd_id', $filteropd);
             // Tambahkan kondisi filter untuk kolom lainnya
         }
-        if ($filtersubopd) {
-            $query->where('pegawais.subopd_id',$filtersubopd);
-            // Tambahkan kondisi filter untuk kolom lainnya
-        }
 
         // Memanggil metode data() pada model Pegawai
         $datas = $query->paginate($pagination);
 
-        return view('admin-kota.master.data-pegawai', compact('datas', 'pagination', 'search','filteropd','filtersubopd'));
+        return view('admin-kota.master.data-pegawai', compact('datas', 'pagination', 'search','filteropd'));
     }
 
     public function store(Request $request)

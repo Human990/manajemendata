@@ -18,7 +18,7 @@
 <script src="{{ asset('assets/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('assets/js/demo/chart-pie-demo.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
     $('button#delete').on('click', function(e){
