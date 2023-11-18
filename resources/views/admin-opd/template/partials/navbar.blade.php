@@ -32,7 +32,7 @@
                 </div>
 
                 @if(session()->get('tahun_session'))
-                    @if(\App\Models\lock::data() != '1')
+                    @if(\App\Models\Lock::data() != '1')
                         <div class="input-group-append">
                             <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#lockModal">
                                 <i class="fas fa-lock fa-sm"></i> Kunci

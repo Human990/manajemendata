@@ -20,9 +20,6 @@
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFilteropdPegawai" type="button">filter OPD</button>
                         </div>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFiltersubopdPegawai" type="button">filter SUBOPD</button>
-                        </div>
                     </div>
                 </form>
 
@@ -42,34 +39,6 @@
                                         <select type="text" name="filteropd" class="form-control @error('filteropd') is-invalid @enderror">
                                             @foreach(\App\Models\Opd::data() as $opd)
                                                 <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="createFiltersubopdPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="createModalLabel">Filter Data Pegawai</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="{{ route('adminkota-pegawai') }}" method="GET" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="filtersubopd">SUB OPD</label>
-                                        <select type="text" name="filtersubopd" class="form-control @error('filtersubopd') is-invalid @enderror">
-                                            @foreach(\App\Models\Subopd::data() as $subopd)
-                                                <option value="{{ $subopd->id }}">{{ $subopd->nama_sub_opd }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -135,7 +104,7 @@
                         </tr>
                     </table>
                     <form action="{{ route('adminkota-pegawai') }}" method="GET" class="form-inline">
-                        <label for="recordsPerPage" class="mr-2">show:</label>
+                        <label for="recordsPerPage" class="mr-2">Show:</label>
                         <select name="recordsPerPage" id="recordsPerPage" class="form-control mr-2" onchange="this.form.submit()">
                             <option value="10" {{ request('recordsPerPage', 10) == 10 ? 'selected' : '' }}>10</option>
                             <option value="20" {{ request('recordsPerPage', 10) == 20 ? 'selected' : '' }}>20</option>
@@ -157,8 +126,8 @@
                                 <th width="3%">Status Jabatan</th>
                                 <th width="3%">Nilai Jabatan (JV)</th>
                                 <th width="3%">Indeks</th>
-                                <th width="3%">Pangkat</th>
                                 <th width="3%">Golongan PPPK</th>
+                                <th width="3%">Pangkat</th>
                                 <th width="3%">Eselon</th>
                                 <th width="3%">Status Penerimaan TPP</th>
                                 <th width="3%">Sertifikasi Guru</th>
@@ -243,8 +212,8 @@
                                             {{ $data->indeks }}
                                         @endif
                                     </td>
-                                    <td>{{ $data->pangkat }}</td>
                                     <td>{{ $data->golongan }}</td>
+                                    <td>{{ $data->pangkat }}</td> 
                                     <td>{{ $data->eselon }}</td>
                                     <td>{{ $data->tpp }}</td>
                                     <td>{{ $data->sertifikasi_guru }}</td>
@@ -330,6 +299,7 @@
                                                             <option value="PPPK" @if('PPPK' == $data->sts_pegawai) selected @endif>PPPK</option>
                                                             <option value="GURU" @if('GURU' == $data->sts_pegawai) selected @endif>GURU</option>
                                                             <option value="RS" @if('RS' == $data->sts_pegawai) selected @endif>RS</option>
+                                                            <option value="PENSIUN" @if('PENSIUN' == $data->sts_pegawai) selected @endif>PENSIUN</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -352,7 +322,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="kode_jabatanlama">Jabatan</label>
-                                                        <select type="text" name="kode_jabatanlama" class="form-control @error('kode_jabatanlama') is-invalid @enderror">
+                                                        <select type="text" name="kode_jabatanlama" class="form-control select2 @error('kode_jabatanlama') is-invalid @enderror">
                                                             @foreach(\App\Models\Jabatan::data() as $jabatan)
                                                                 <option value="{{ $jabatan->id }}" @if($jabatan->id == $data->kode_jabatanlama) selected @endif>{{ $jabatan->nama_jabatan }}</option>
                                                             @endforeach
@@ -360,16 +330,17 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="sts_jabatan">Status Jabatan</label>
-                                                        <input type="text" name="sts_jabatan"
-                                                            class="form-control @error('sts_jabatan') is-invalid @enderror" id="sts_jabatan"
-                                                            placeholder="Status Jabatan . . ." value="{{ $data->sts_jabatan }}">
-                                                        @error('sts_jabatan')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="sts_jabatan" class="form-control @error('sts_jabatan') is-invalid @enderror">
+                                                            <option value="Utama" @if('Utama' == $data->sts_jabatan) selected @endif>Utama</option>
+                                                            <option value="PLT" @if('PLT' == $data->sts_jabatan) selected @endif>PLT</option>
+                                                            <option value="PLH" @if('PLH' == $data->sts_jabatan) selected @endif>PLH</option>
+                                                            <option value="Pengganti Sementara" @if('Pengganti Sementara' == $data->sts_jabatan) selected @endif>Pengganti Sementara</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="pangkat">Pangkat</label>
                                                         <select type="text" name="pangkat" class="form-control @error('pangkat') is-invalid @enderror">
+                                                            <option value="" @if($data->pangkat === null) selected @endif>--Belum dipilih--</option>
                                                             <option value="Juru Muda - I/a" @if('Juru Muda - I/a' == $data->pangkat) selected @endif>Juru Muda - I/a</option>
                                                             <option value="Juru Muda Tk.I - I/b" @if('Juru Muda Tk.I - I/b' == $data->pangkat) selected @endif>Juru Muda Tk.I - I/b</option>
                                                             <option value="Juru Muda Tk.I - I/c" @if('Juru Muda Tk.I - I/c' == $data->pangkat) selected @endif>Juru Muda Tk.I - I/c</option>
@@ -393,6 +364,7 @@
                                                     <div class="form-group">
                                                         <label for="golongan">Golongan PPPK</label>
                                                         <select type="text" name="golongan" class="form-control @error('golongan') is-invalid @enderror">
+                                                            <option value="" @if($data->golongan === null) selected @endif>--Belum dipilih--</option>
                                                             <option value="0" @if('0' == $data->golongan) selected @endif>0</option>
                                                             <option value="I" @if('I' == $data->golongan) selected @endif>I</option>
                                                             <option value="II" @if('II' == $data->golongan) selected @endif>II</option>
@@ -415,12 +387,15 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="eselon">Eselon</label>
-                                                        <input type="text" name="eselon"
-                                                            class="form-control @error('eselon') is-invalid @enderror" id="eselon"
-                                                            placeholder="Eselon . . ." value="{{ $data->eselon }}">
-                                                        @error('eselon')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="eselon" class="form-control @error('eselon') is-invalid @enderror">
+                                                            <option value="NON ESELON" @if('NON ESELON' == $data->eselon) selected @endif>NON ESELON</option>
+                                                            <option value="II.a" @if('II.a' == $data->sts_pegawai) selected @endif>II.a</option>
+                                                            <option value="II.b" @if('II.b' == $data->sts_pegawai) selected @endif>II.b</option>
+                                                            <option value="III.a" @if('III.a' == $data->sts_pegawai) selected @endif>III.a</option>
+                                                            <option value="III.b" @if('III.b' == $data->sts_pegawai) selected @endif>III.b</option>
+                                                            <option value="IV.a" @if('IV.a' == $data->sts_pegawai) selected @endif>IV.a</option>
+                                                            <option value="IV.b" @if('IV.b' == $data->sts_pegawai) selected @endif>IV.b</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="tpp">Status Penerima TPP</label>
@@ -439,12 +414,11 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="pa_kpa">PA/KPA</label>
-                                                        <input type="text" name="pa_kpa"
-                                                            class="form-control @error('pa_kpa') is-invalid @enderror" id="pa_kpa"
-                                                            placeholder="PA / KPA . . ." value="{{ $data->pa_kpa }}">
-                                                        @error('pa_kpa')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="pa_kpa" class="form-control @error('pa_kpa') is-invalid @enderror">
+                                                            <option value="" @if(null === $data->pa_kpa) selected @endif>--Belum dipilih--</option>
+                                                            <option value="PA/KPA" @if('PA/KPA' === $data->pa_kpa) selected @endif>PA/KPA</option>
+                                                            <option value="Bukan PA/KPA" @if('Bukan PA/KPA' === $data->pa_kpa) selected @endif>Bukan PA/KPA</option>
+                                                        </select>
                                                     </div> 
                                                     <div class="form-group">
                                                         <label for="pbj">Sertifikasi PBJ</label>
@@ -452,6 +426,14 @@
                                                             <option value="" @if(null === $data->pbj) selected @endif>--Tidak dipilih--</option>
                                                             <option value="Sudah Memiliki Sertifikat" @if('Sudah Memiliki Sertifikat' === $data->pbj) selected @endif>Sudah Memiliki Sertifikat</option>
                                                             <option value="Belum Sertifikasi" @if('Belum Memiliki Sertifikat' === $data->pbj) selected @endif>Belum Memiliki Sertifikat</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="jft">Tipe Jabatan</label>
+                                                        <select type="text" name="jft" class="form-control @error('jft') is-invalid @enderror">
+                                                            <option value="Jabatan Fungsional" @if('Jabatan Fungsional' === $data->jft) selected @endif>Jabatan Fungsional</option>
+                                                            <option value="Jabatan Fungsional (Belum Diangkat)" @if('Jabatan Fungsional (Belum Diangkat)' === $data->jft) selected @endif>Jabatan Fungsional (Belum Diangkat)</option>
+                                                            <option value="Jabatan Administratif" @if('Jabatan Administratif' === $data->jft) selected @endif>Jabatan Administratif</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -577,8 +559,7 @@
                 {{ $datas->appends([ 
                     'pencarian' => $search ,
                     'pagination' => $pagination, 
-                    'filteropd' => $filteropd,
-                    'filtersubopd' => $filtersubopd
+                    'filteropd' => $filteropd
                     ])->links() }}</span>
                     {{-- {{ $datas->links() }} --}}
             </div>

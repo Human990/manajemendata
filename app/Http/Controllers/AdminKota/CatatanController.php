@@ -21,7 +21,8 @@ class CatatanController extends Controller
                     ->orWhere('catatan_opds.catatan_admin', 'LIKE', '%'.$pencarian.'%')
                     ->orWhere('pegawais.nip', 'LIKE', '%'.$pencarian.'%')
                     ->orWhere('pegawais.nama_pegawai', 'LIKE', '%'.$pencarian.'%')
-                    ->orWhere('opds.nama_opd', 'LIKE', '%'.$pencarian.'%');
+                    ->orWhere('opds.nama_opd', 'LIKE', '%'.$pencarian.'%')
+                    ->orWhere('jabatans.nama_jabatan', 'LIKE', '%'.$pencarian.'%');
             });
         }
         if ($filteropd) {

@@ -32,6 +32,9 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
     Route::get('/',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'anggaran'])->name('adminkota-dashboard');
     Route::post('/put/session',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'putsession'])->name('adminkota-putsession');
 
+    // data pensiun
+    Route::get('/data-pegawai/pensiun',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'pensiun'])->name('adminkota-pensiun');
+
     // rekap tpp
     Route::get('/pegawai-bulanan/tppperson',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'tppperson'])->name('adminkota-tpp-pegawai');
     Route::get('/pegawai-bulanan/totaltpp',[App\Http\Controllers\AdminKota\PegawaibulananController::class,'totaltpp'])->name('adminkota-tpp-total');

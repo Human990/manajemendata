@@ -5,23 +5,20 @@
     <div class="container-fluid">
         <div class="card card-headline">
             <div class="card-header">
-                <h3 class="card-title">Data Pegawai Tahun {{ session()->get('tahun_session') }} <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalPegawai" style="float:right">Tambah Data</a></h3>
+                <h3 class="card-title">Data Pegawai <b>PENSIUN</b> Tahun {{ session()->get('tahun_session') }} <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalPegawai" style="float:right">Tambah Data</a></h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('adminkota-pegawai') }}" method="GET">
+                <form action="{{ route('adminkota-pensiun') }}" method="GET">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Cari nama atau nip Pegawai . . ." name="search" value="{{ request('search') }}">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">Cari</button>
                         </div>
                         <div class="input-group-append">
-                            <a href="{{ route('adminkota-pegawai') }}" class="btn btn-outline-secondary">Reset</a>
+                            <a href="{{ route('adminkota-pensiun') }}" class="btn btn-outline-secondary">Reset</a>
                         </div>
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFilteropdPegawai" type="button">filter OPD</button>
-                        </div>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFiltersubopdPegawai" type="button">filter SUBOPD</button>
                         </div>
                     </div>
                 </form>
@@ -35,41 +32,13 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="{{ route('adminkota-pegawai') }}" method="GET" enctype="multipart/form-data">
+                            <form action="{{ route('adminkota-pensiun') }}" method="GET" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="filteropd">OPD</label>
                                         <select type="text" name="filteropd" class="form-control @error('filteropd') is-invalid @enderror">
                                             @foreach(\App\Models\Opd::data() as $opd)
                                                 <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="createFiltersubopdPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="createModalLabel">Filter Data Pegawai</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="{{ route('adminkota-pegawai') }}" method="GET" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="filtersubopd">SUB OPD</label>
-                                        <select type="text" name="filtersubopd" class="form-control @error('filtersubopd') is-invalid @enderror">
-                                            @foreach(\App\Models\Subopd::data() as $subopd)
-                                                <option value="{{ $subopd->id }}">{{ $subopd->nama_sub_opd }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -157,8 +126,8 @@
                                 <th width="3%">Status Jabatan</th>
                                 <th width="3%">Nilai Jabatan (JV)</th>
                                 <th width="3%">Indeks</th>
-                                <th width="3%">Pangkat</th>
                                 <th width="3%">Golongan PPPK</th>
+                                <th width="3%">Pangkat</th>
                                 <th width="3%">Eselon</th>
                                 <th width="3%">Status Penerimaan TPP</th>
                                 <th width="3%">Sertifikasi Guru</th>
@@ -243,8 +212,8 @@
                                             {{ $data->indeks }}
                                         @endif
                                     </td>
-                                    <td>{{ $data->pangkat }}</td>
                                     <td>{{ $data->golongan }}</td>
+                                    <td>{{ $data->pangkat }}</td> 
                                     <td>{{ $data->eselon }}</td>
                                     <td>{{ $data->tpp }}</td>
                                     <td>{{ $data->sertifikasi_guru }}</td>
@@ -264,10 +233,32 @@
                                     <td>{{ $data->tpp_tambahan }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-edit"></i></button>
-                                        <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-danger" id="deleteButton{{ $i }}" data-toggle="modal" data-target="#hapusModalPegawai{{ $i }}"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
-
+                                <div class="modal fade" id="hapusModalPegawai{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="hapusModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="hapusModalLabel">Hapus Data Pegawai</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Apakah Anda yakin ingin menghapus data pegawai ini?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                <form action="{{ route('adminkota-pegawai.destroy', $data->id) }}" method="POST" id="deleteForm{{ $i }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="modal fade" id="ubahModalPegawai{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -308,6 +299,7 @@
                                                             <option value="PPPK" @if('PPPK' == $data->sts_pegawai) selected @endif>PPPK</option>
                                                             <option value="GURU" @if('GURU' == $data->sts_pegawai) selected @endif>GURU</option>
                                                             <option value="RS" @if('RS' == $data->sts_pegawai) selected @endif>RS</option>
+                                                            <option value="PENSIUN" @if('PENSIUN' == $data->sts_pegawai) selected @endif>PENSIUN</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -348,6 +340,7 @@
                                                     <div class="form-group">
                                                         <label for="pangkat">Pangkat</label>
                                                         <select type="text" name="pangkat" class="form-control @error('pangkat') is-invalid @enderror">
+                                                            <option value="" @if($data->pangkat === null) selected @endif>--Belum dipilih--</option>
                                                             <option value="Juru Muda - I/a" @if('Juru Muda - I/a' == $data->pangkat) selected @endif>Juru Muda - I/a</option>
                                                             <option value="Juru Muda Tk.I - I/b" @if('Juru Muda Tk.I - I/b' == $data->pangkat) selected @endif>Juru Muda Tk.I - I/b</option>
                                                             <option value="Juru Muda Tk.I - I/c" @if('Juru Muda Tk.I - I/c' == $data->pangkat) selected @endif>Juru Muda Tk.I - I/c</option>
@@ -371,6 +364,7 @@
                                                     <div class="form-group">
                                                         <label for="golongan">Golongan PPPK</label>
                                                         <select type="text" name="golongan" class="form-control @error('golongan') is-invalid @enderror">
+                                                            <option value="" @if($data->golongan === null) selected @endif>--Belum dipilih--</option>
                                                             <option value="0" @if('0' == $data->golongan) selected @endif>0</option>
                                                             <option value="I" @if('I' == $data->golongan) selected @endif>I</option>
                                                             <option value="II" @if('II' == $data->golongan) selected @endif>II</option>
@@ -393,12 +387,15 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="eselon">Eselon</label>
-                                                        <input type="text" name="eselon"
-                                                            class="form-control @error('eselon') is-invalid @enderror" id="eselon"
-                                                            placeholder="Eselon . . ." value="{{ $data->eselon }}">
-                                                        @error('eselon')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="eselon" class="form-control @error('eselon') is-invalid @enderror">
+                                                            <option value="NON ESELON" @if('NON ESELON' == $data->eselon) selected @endif>NON ESELON</option>
+                                                            <option value="II.a" @if('II.a' == $data->sts_pegawai) selected @endif>II.a</option>
+                                                            <option value="II.b" @if('II.b' == $data->sts_pegawai) selected @endif>II.b</option>
+                                                            <option value="III.a" @if('III.a' == $data->sts_pegawai) selected @endif>III.a</option>
+                                                            <option value="III.b" @if('III.b' == $data->sts_pegawai) selected @endif>III.b</option>
+                                                            <option value="IV.a" @if('IV.a' == $data->sts_pegawai) selected @endif>IV.a</option>
+                                                            <option value="IV.b" @if('IV.b' == $data->sts_pegawai) selected @endif>IV.b</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="tpp">Status Penerima TPP</label>
@@ -417,12 +414,11 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="pa_kpa">PA/KPA</label>
-                                                        <input type="text" name="pa_kpa"
-                                                            class="form-control @error('pa_kpa') is-invalid @enderror" id="pa_kpa"
-                                                            placeholder="PA / KPA . . ." value="{{ $data->pa_kpa }}">
-                                                        @error('pa_kpa')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="pa_kpa" class="form-control @error('pa_kpa') is-invalid @enderror">
+                                                            <option value="" @if(null === $data->pa_kpa) selected @endif>--Belum dipilih--</option>
+                                                            <option value="PA/KPA" @if('PA/KPA' === $data->pa_kpa) selected @endif>PA/KPA</option>
+                                                            <option value="Bukan PA/KPA" @if('Bukan PA/KPA' === $data->pa_kpa) selected @endif>Bukan PA/KPA</option>
+                                                        </select>
                                                     </div> 
                                                     <div class="form-group">
                                                         <label for="pbj">Sertifikasi PBJ</label>
@@ -430,6 +426,14 @@
                                                             <option value="" @if(null === $data->pbj) selected @endif>--Tidak dipilih--</option>
                                                             <option value="Sudah Memiliki Sertifikat" @if('Sudah Memiliki Sertifikat' === $data->pbj) selected @endif>Sudah Memiliki Sertifikat</option>
                                                             <option value="Belum Sertifikasi" @if('Belum Memiliki Sertifikat' === $data->pbj) selected @endif>Belum Memiliki Sertifikat</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="jft">Tipe Jabatan</label>
+                                                        <select type="text" name="jft" class="form-control @error('jft') is-invalid @enderror">
+                                                            <option value="Jabatan Fungsional" @if('Jabatan Fungsional' === $data->jft) selected @endif>Jabatan Fungsional</option>
+                                                            <option value="Jabatan Fungsional (Belum Diangkat)" @if('Jabatan Fungsional (Belum Diangkat)' === $data->jft) selected @endif>Jabatan Fungsional (Belum Diangkat)</option>
+                                                            <option value="Jabatan Administratif" @if('Jabatan Administratif' === $data->jft) selected @endif>Jabatan Administratif</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -555,8 +559,7 @@
                 {{ $datas->appends([ 
                     'pencarian' => $search ,
                     'pagination' => $pagination, 
-                    'filteropd' => $filteropd,
-                    'filtersubopd' => $filtersubopd
+                    'filteropd' => $filteropd
                     ])->links() }}</span>
                     {{-- {{ $datas->links() }} --}}
             </div>
@@ -787,12 +790,6 @@
         </div>
     </div>
 
-    <form action="" method="post" id="deleteForm">
-        @csrf
-        @method("DELETE")
-    <button type="submit" style="display:none">Hapus</button>
-    </form>
-
     <script>
         function toggleColumn(columnIndex, checked) {
             const table = document.getElementById("data-table");
@@ -847,33 +844,25 @@
         });
     </script>
 
+    @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script>
-        $('button#delete').on('click', function(e){
-                e.preventDefault();
-
-                var href = $(this).attr('href');
-
-                Swal.fire({
-                    title: 'Apakah anda yakin hapus data?',
-                    text: "Data yang dihapus tidak bisa dikembalikan!",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, Hapus!'
-                    }).then((result) => {
-                    if (result.value) {
-                        document.getElementById('deleteForm').action = href;
-                        document.getElementById('deleteForm').submit();
-
-                        // Swal.fire(
-                        //     'Berhasil!',
-                        //     'Data telah dihapus.',
-                        //     'success'
-                        // )
-                    }
-                })
-            })
-    </script>
+    {{-- <script>
+        function hapusData(index) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Hapus!'
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById('deleteForm' + index).submit();
+                }
+            });
+        }
+    </script> --}}
+    @endpush
+    
 @endsection
