@@ -193,9 +193,9 @@
                             <th width="3%">Jumlah Bulan Penerimaan PK</th>
                             <th width="3%">Tpp Tambahan</th>
                             <th width="3%">Jumlah Tpp</th>
-                            {{-- @if(\App\Models\lock::data() != '1')
+                            @if(\App\Models\Lock::data() != '1')
                                 <th width="6%">Action</th>
-                            @endif --}}
+                            @endif
                             <th width="6%">Action</th>
                         </tr>
                     </thead>
@@ -283,7 +283,7 @@
                                 <td align="center">{{ $data->bulan_pk }}</td>
                                 <td>{{ $data->tpp_tambahan }}</td>
                                 <td>{{ $individual_tpp[$data->id] }}</td>
-                                {{-- @if(\App\Models\lock::data() != '1') --}}
+                                @if(\App\Models\Lock::data() != '1')
                                     <td>
                                         @if(Auth::user()->role_id == 1)
                                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-edit"></i></button>
@@ -319,7 +319,7 @@
                                             </div>
                                         @endif
                                     </td>
-                                {{-- @endif --}}
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

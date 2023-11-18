@@ -20,7 +20,7 @@
         </div> -->
             <div class="input-group">
                 <select name="tahun_id" id="tahun_id" class="form-control">
-                    <option value="-">Pilih Tahun Terlebih Dahulu . . .</option>
+                    <option value="-" selected disabled >Pilih Tahun Terlebih Dahulu . . .</option>
                     @foreach(\App\Models\Tahun::orderBy('tahun', 'ASC')->get() as $tahun)
                         <option value="{{ $tahun->id }}" @if($tahun->id == session()->get('tahun_id_session')) selected @endif>{{ $tahun->tahun }}</option>
                     @endforeach

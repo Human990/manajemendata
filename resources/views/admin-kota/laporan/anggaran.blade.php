@@ -177,7 +177,8 @@
                                 <tr>
                                     <th>APBD</th>
                                     <th>BELANJA PEGAWAI</th>
-                                    <th>TPP</th>
+                                    <th>RAPBD</th>
+                                    <th>PERHITUNGAN APLIKASI TPP 2024</th>
                                 </tr>
                             </thead>
                         <tbody id="dynamic-row">
@@ -190,6 +191,9 @@
                                 </td>
                                 <td>
                                     {{ number_format($rupiah4->jumlah, 0) }}
+                                </td>
+                                <td>
+                                    {{ number_format($rupiah5->jumlah, 0) }}
                                 </td>
                                 <td>
                                     {{ number_format($total_tpp, 0) }}
@@ -256,12 +260,13 @@
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['APBD', 'BELANJA PEGAWAI', 'TPP'],
+                        labels: ['APBD', 'BELANJA PEGAWAI', 'RAPBD' ,'PERHITUNGAN APLIKASI TPP 2024'],
                         datasets: [{
                             label: 'Total Per Tahun',
                             data: [
                                 {{ $rupiah3->jumlah }},
                                 {{ $rupiah4->jumlah }},
+                                {{ $rupiah5->jumlah }},
                                 {{ $total_tpp }}, //nanti ambil dari $total_tpp
                             ],
                             backgroundColor: [

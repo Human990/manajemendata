@@ -342,6 +342,7 @@ class PegawaibulananController extends Controller
 
         $rupiah3 = Rupiah::where('tahun_id', $tahun_id)->where('flag', 'pagu_apbd')->first();
         $rupiah4 = Rupiah::where('tahun_id', $tahun_id)->where('flag', 'belanja_pegawai')->first();
+        $rupiah5 = Rupiah::where('tahun_id', $tahun_id)->where('flag','pagu_rapbd')->first();
         $jumlah_pegawai = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('pegawais.sts_pegawai', '!=' ,'PENSIUN')->count();
         $jumlahguru = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','guru')->count();
         $jumlah_pensiun = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('pegawais.sts_pegawai','PENSIUN')->count();
@@ -469,6 +470,7 @@ class PegawaibulananController extends Controller
             'jumlah_pegawai', 
             'rupiah3', 
             'rupiah4', 
+            'rupiah5',
             'jumlahguru', 
             'rs', 
             'pppk', 

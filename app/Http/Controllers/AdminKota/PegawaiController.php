@@ -7,6 +7,7 @@ use App\Models\Jabatan;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Catatan_opd;
 
 class PegawaiController extends Controller
 {
@@ -14,7 +15,7 @@ class PegawaiController extends Controller
     {
         $pagination = $request->input('recordsPerPage', 10);
         $search = $request->input('search'); // Data pencarian
-        $filteropd = $request->input('filteropd') ?? $request->session()->get('filteropd'); // Mengambil nilai dari sesi jika tidak ada nilai langsung dari request
+        $filteropd = $request->input('filteropd'); // Mengambil nilai dari sesi jika tidak ada nilai langsung dari request
         $query = Pegawai::data();
 
         if ($search) {
@@ -79,6 +80,8 @@ class PegawaiController extends Controller
             'nip' => 'required',
             'nama_pegawai' => 'required',
         ]);
+
+        $catatan = Catatan_opd::firstOrNew(['pegawai_id' => $pegawai->id]);
         
         $pegawai->update([
             'opd_id' => $request->opd_id,
@@ -104,6 +107,11 @@ class PegawaiController extends Controller
             'pa_kpa' => $request->pa_kpa,
             'pbj' => $request->pbj,
             'jft' => $request->jft,
+        ]);
+
+        $catatan->update([
+            'catatan_admin' => $request->catatan_admin,
+            'status' => $request->status,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');

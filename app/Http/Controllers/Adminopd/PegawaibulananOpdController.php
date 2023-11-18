@@ -58,6 +58,8 @@ class PegawaibulananOpdController extends Controller
         }
         $datas = $query->paginate($pagination, ['*'], 'page', $page);
 
+        $total_tpp = 0;
+        
         foreach ($datas as $pegawai) {
             // nilai_jabatan
             if ($pegawai->subkoor == "Subkoor") {
@@ -93,32 +95,36 @@ class PegawaibulananOpdController extends Controller
                 $indeks = (float) $pegawai->indeks;
             }
 
+            dd($indeks);
             // Rest of your calculation remains the same
             $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0);
             $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);
-            $bulan_bk = (float)($pegawai->bulan_bk ?? 0);
-            $bulan_pk = (float)($pegawai->bulan_pk ?? 0);
+            $bulan_bk = (float)$pegawai->bulan_bk;
+            $bulan_pk = (float)$pegawai->bulan_pk;
 
             // Hitung total_tpp untuk pegawai saat ini
             $tpp_pegawai = (($nilai_jabatan * $indeks * $bk) * $bulan_bk) + (($nilai_jabatan * $indeks * $pk) * $bulan_pk);
 
-            if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan' && $pegawai->sts_koor == 'Koordinator Bukan Hasil Penyetaraan') {
+        
+            if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan'){
                 $tpp_pegawai *= 0.85; // 85% adjustment
-            } else {
+            } elseif ($pegawai->sts_koor == 'Koordinator Bukan Hasil Penyetaraan') {
+                $tpp_pegawai *= 0.85; // 100% adjustment
+            } elseif ($pegawai->sts_koor == 'Subkoordinator Hasil Penyetaraan') {
+                $tpp_pegawai *= 1.00; // 100% adjustment
+            } elseif ($pegawai->sts_koor == 'Koordinator Hasil Penyetaraan') {
                 $tpp_pegawai *= 1.00; // 100% adjustment
             }
 
             // Tambahkan nilai total_tpp pegawai ke total_tpp
-            $total_tpp += $tpp_pegawai;
+            $total_tpp = $tpp_pegawai;
 
             // Store total_tpp for each employee in the array
             $individual_tpp[$pegawai->id] = $total_tpp;
 
-            // Reset total_tpp for the next employee
             $total_tpp = 0;
-        
-            
         }
+        
         return view('admin-opd.laporan.tpp-pegawai', compact('datas', 'search','pagination','individual_tpp'));
     }
 

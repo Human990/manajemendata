@@ -38,7 +38,7 @@
                                 <th>Nama Pegawai</th>
                                 <th>Catatan</th>
                                 <th>Status</th>
-                                @if(\App\Models\lock::data() != '1')
+                                @if(\App\Models\Lock::data() != '1')
                                     <th>Aksi</th>
                                 @endif
                             </tr>

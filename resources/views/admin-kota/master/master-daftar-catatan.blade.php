@@ -58,6 +58,7 @@
                         <option value="10" {{ request('recordsPerPage', 10) == 10 ? 'selected' : '' }}>10</option>
                         <option value="20" {{ request('recordsPerPage', 10) == 20 ? 'selected' : '' }}>20</option>
                         <option value="50" {{ request('recordsPerPage', 10) == 50 ? 'selected' : '' }}>50</option>
+                        <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
                     </select>
                 </form>
                 <div class="table-responsive">
@@ -92,7 +93,6 @@
                             
                                 <!-- Catatan -->
                                 <th>Catatan</th>
-                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -202,12 +202,11 @@
                                     <b>Catatan OPD : </b>{{ $catatan->catatan_opd }}</br>
                                     @if(!empty($catatan->catatan_admin)) <b>Catatan Admin : </b>{{ $catatan->catatan_admin }} @endif
                                 </td>
-                                <td width="5%">{{ $catatan->status }}</td>
                                 <td width="14%">
                                     @if(!empty($catatan->status))
                                         
                                     @else
-                                        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalPegawai{{ $i }}"><i class="fa fa-edit"></i> Pegawai</button>
+                                        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalPegawai{{ $i }}"><i class="fa fa-edit"></i> Validasi</button>
                                         <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-plus"></i> Catatan</button>
                                     @endif
                                 </td>
@@ -489,6 +488,17 @@
                                                         @error('tpp_tambahan')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="catatan_admin">Catatan Admin Kota</label>
+                                                        <textarea name="catatan_admin" id="catatan_admin" cols="30" rows="7" class="form-control" placeholder="Masukkan catatan . . .">{{ $catatan->catatan_admin ?? '' }}</textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="status">Status</label>
+                                                        <select name="status" id="status" class="form-control">
+                                                            <option value="Selesai" {{ $catatan->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                                                            <option value="Ditolak" {{ $catatan->status == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
