@@ -172,6 +172,7 @@
                             <th width="3%">Jenis Jabatan</th>
                             <th width="3%">Status Jabatan</th>
                             <th width="3%">Nilai Jabatan (JV)</th>
+                            <th width="3%">Kelas Jabatan</th>
                             <th width="3%">Indeks</th>
                             <th width="3%">Pangkat</th>
                             <th width="3%">Golongan PPPK</th>
@@ -191,12 +192,11 @@
                             <th width="3%">Pensiun</th>
                             <th width="3%">Jumlah Bulan Penerimaan BK</th>
                             <th width="3%">Jumlah Bulan Penerimaan PK</th>
-                            <th width="3%">Tpp Tambahan</th>
-                            <th width="3%">Jumlah Tpp</th>
+                            {{-- <th width="3%">Tpp Tambahan</th> --}}
+                            {{-- <th width="3%">Jumlah Tpp</th> --}}
                             @if(\App\Models\Lock::data() != '1')
                                 <th width="6%">Action</th>
                             @endif
-                            <th width="6%">Action</th>
                         </tr>
                     </thead>
                     <tbody id="dynamic-row">
@@ -218,7 +218,7 @@
                                 </td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor')
-                                            {{ $data->nama_subkoor }}
+                                            {{$data->nama_jabatan}} / {{ $data->nama_subkoor }}
                                         @else
                                             {{ $data->nama_jabatan }}
                                         @endif
@@ -250,6 +250,7 @@
                                             {{ $data->nilai_jabatan }}
                                         @endif
                                     </td>
+                                    <td>{{$data->kelas_jabatan}}</td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                             {{ $data->indeks_subkor_non_penyetaraan }}
@@ -281,8 +282,8 @@
                                 <td>{{ $data->pensiun }}</td>
                                 <td align="center">{{ $data->bulan_bk }}</td>
                                 <td align="center">{{ $data->bulan_pk }}</td>
-                                <td>{{ $data->tpp_tambahan }}</td>
-                                <td>{{ $individual_tpp[$data->id] }}</td>
+                                {{-- <td>{{ $data->tpp_tambahan }}</td> --}}
+                                {{-- <td>{{ $individual_tpp[$data->id] }}</td> --}}
                                 @if(\App\Models\Lock::data() != '1')
                                     <td>
                                         @if(Auth::user()->role_id == 1)

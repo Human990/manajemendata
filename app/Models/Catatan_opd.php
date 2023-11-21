@@ -139,4 +139,9 @@ class Catatan_opd extends Model
 
         return $data;
     }
+
+    public function pegawai()
+{
+    return $this->belongsTo(Pegawai::class, 'pegawai_id');
+}
 }

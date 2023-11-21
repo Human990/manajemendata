@@ -44,7 +44,8 @@ Route::group(['middleware' => ['auth', 'adminkota']], function () {
     Route::get('/adminkota/daftar-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'daftar'])->name('adminkota-daftar-catatan');
     Route::get('/adminkota/history-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'history'])->name('adminkota-history-catatan');
     // Route::post('/data-catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'store'])->name('adminkota-catatan.store');
-    Route::put('/adminkota/data-catatan/{catatan}',[App\Http\Controllers\AdminKota\CatatanController::class,'update'])->name('adminkota-catatan.update');
+    Route::put('/adminkota/data-catatan/{catatan}/pegawai',[App\Http\Controllers\AdminKota\CatatanController::class,'updatepegawai'])->name('adminkota-catatan.update-pegawai');
+    Route::put('/adminkota/data-catatan/{catatan}/catatan',[App\Http\Controllers\AdminKota\CatatanController::class,'updatecatatan'])->name('adminkota-catatan.update-catatan');
     // Route::delete('/data-catatan/{catatan}',[App\Http\Controllers\AdminKota\CatatanController::class,'destroy'])->name('adminkota-catatan.destroy');
 
     // data pegawai
