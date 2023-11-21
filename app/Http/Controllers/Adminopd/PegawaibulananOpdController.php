@@ -95,7 +95,6 @@ class PegawaibulananOpdController extends Controller
                 $indeks = (float) $pegawai->indeks;
             }
 
-            dd($indeks);
             // Rest of your calculation remains the same
             $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0);
             $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);

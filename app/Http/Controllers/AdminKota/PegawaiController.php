@@ -50,10 +50,10 @@ class PegawaiController extends Controller
         Pegawai::create([
 
             'opd_id' => $request->opd_id,
+            'kode_jabatanlama' => $request->kode_jabatanlama,
             'nip' => $request->nip,
             'nama_pegawai' => $request->nama_pegawai,
             'sts_pegawai' => $request->sts_pegawai,
-            'kode_jabatanlama' => $request->kode_jabatanlama,
             'sts_jabatan' => $request->sts_jabatan,
             'golongan' => $request->golongan,
             'pangkat' => $request->pangkat,
@@ -66,7 +66,10 @@ class PegawaiController extends Controller
             'subkoor' => $request->subkoor,
             'nama_subkoor' => $request->nama_subkoor,
             'sts_subkoor' => $request->sts_subkoor,
-            'jft' => '',
+            'sertifikasi_guru' => $request->sertifikasi_guru,
+            'pa_kpa' => $request->pa_kpa,
+            'pbj' => $request->pbj,
+            'jft' => $request->jft,
             'tahun_id' => session()->get('tahun_id_session'),
         ]);
 
@@ -80,16 +83,13 @@ class PegawaiController extends Controller
             'nip' => 'required',
             'nama_pegawai' => 'required',
         ]);
-
-        $catatan = Catatan_opd::firstOrNew(['pegawai_id' => $pegawai->id]);
         
         $pegawai->update([
             'opd_id' => $request->opd_id,
+            'kode_jabatanlama' => $request->kode_jabatanlama,
             'nip' => $request->nip,
             'nama_pegawai' => $request->nama_pegawai,
             'sts_pegawai' => $request->sts_pegawai,
-            'kode_jabatanlama' => $request->kode_jabatanlama,
-            'subopd_id' => $request->subopd_id,
             'sts_jabatan' => $request->sts_jabatan,
             'golongan' => $request->golongan,
             'pangkat' => $request->pangkat,
@@ -98,7 +98,6 @@ class PegawaiController extends Controller
             'bulan_bk' => $request->bulan_bk,
             'bulan_pk' => $request->bulan_pk,
             'tpp' => $request->tpp,
-            // 'tpp' => 'Penerima TPP',
             'tpp_tambahan' => $request->tpp_tambahan,
             'subkoor' => $request->subkoor,
             'nama_subkoor' => $request->nama_subkoor,
@@ -107,11 +106,6 @@ class PegawaiController extends Controller
             'pa_kpa' => $request->pa_kpa,
             'pbj' => $request->pbj,
             'jft' => $request->jft,
-        ]);
-
-        $catatan->update([
-            'catatan_admin' => $request->catatan_admin,
-            'status' => $request->status,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');

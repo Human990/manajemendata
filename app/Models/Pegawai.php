@@ -18,6 +18,11 @@ class Pegawai extends Model
         return $this->belongsTo(Opd::class);
     }
 
+    public function catatan_opd()
+    {
+        return $this->hasOne(Catatan_opd::class, 'pegawai_id');
+    }
+
     public function subopd()
     {
         return $this->belongsTo(Subopd::class);
@@ -124,4 +129,5 @@ class Pegawai extends Model
 
         return $data;
     }
+    
 }
