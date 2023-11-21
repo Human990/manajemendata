@@ -141,6 +141,7 @@ Route::group(['middleware' => ['auth', 'adminjabatan']],function () {
 
     // master jabatan
     Route::get('/admin-jabatan/master-jabatan',[App\Http\Controllers\Adminjabatan\JabatanController::class,'index'])->name('adminjabatan-jabatan');
+    Route::get('/admin-jabatan/master-jabatan/data',[App\Http\Controllers\Adminjabatan\JabatanController::class,'getJabatanData'])->name('adminjabatan-jabatan.data');
     Route::post('/admin-jabatan/master-jabatan',[App\Http\Controllers\Adminjabatan\JabatanController::class,'store'])->name('adminjabatan-jabatan.store');
     Route::put('/admin-jabatan/master-jabatan/{jabatan}',[App\Http\Controllers\Adminjabatan\JabatanController::class,'update'])->name('adminjabatan-jabatan.update');
     Route::delete('/admin-jabatan/master-jabatan/{jabatan}',[App\Http\Controllers\Adminjabatan\JabatanController::class,'destroy'])->name('adminjabatan-jabatan.destroy');
