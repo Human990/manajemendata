@@ -16,7 +16,7 @@
                             @foreach(\App\Models\Opd::data() as $opd)
                                 <option value="{{ $opd->id }}" @if($opd->id == $opd_id) selected @endif>{{ $opd->nama_opd }}</option>
                             @endforeach
-                            <option value="0" @if($opd->id == $opd_id) selected @endif>SEMUA OPD</option>
+                            <option value="0">SEMUA OPD</option>
                         </select>
                         <div class="input-group-append">
                             <button class="btn btn-info" type="submit">
