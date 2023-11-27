@@ -55,9 +55,7 @@ class Tpp extends Model
                                 indeks.kelas_jabatan,
                                 indeks.basic_tpp,
                                 indeks.indeks, 
-                                jabatans.nilai_jabatan 
-                            ORDER BY
-                                pegawais.id ASC;
+                                jabatans.nilai_jabatan;
                     ");            
         }else {
             $data = DB::select("
@@ -100,11 +98,7 @@ class Tpp extends Model
                                 indeks.kelas_jabatan,
                                 indeks.basic_tpp,
                                 indeks.indeks, 
-                                jabatans.nilai_jabatan 
-                                pegawais.id
-                            ORDER BY
-                                opds.nama_opd, 
-                                pegawais.id ASC;
+                                jabatans.nilai_jabatan;
                     ");
         }
 
