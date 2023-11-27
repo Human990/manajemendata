@@ -8,37 +8,8 @@
                 <h3 class="card-title">Master Jabatan Tahun {{ session()->get('tahun_session') }} <a href="#" style="float:right" class="btn btn-info" data-toggle="modal" data-target="#createModalIndeks">Tambah Data</a> </h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('adminkota-jabatan') }}" method="GET">
-                    <div class="input-group">
-                        <input type="text" name="search" class="form-control " placeholder="Masukkan nama jabatan yang dicari . . ." value="{{ $pencarian ?? '' }}">
-                        <div class="input-group-append">
-                            <button class="btn btn-warning" type="submit">
-                                <i class="fas fa-search fa-sm"></i> Pencarian
-                            </button>
-                        </div>
-                    </div>
-                </form></br>
-                <form action="{{ route('adminkota-jabatan') }}" method="GET" class="form-inline">
-                    <label for="recordsPerPage" class="mr-2">show:</label>
-                    <select name="recordsPerPage" id="recordsPerPage" class="form-control mr-2" onchange="this.form.submit()">
-                        <option value="10" {{ request('recordsPerPage', 10) == 10 ? 'selected' : '' }}>10</option>
-                        <option value="20" {{ request('recordsPerPage', 10) == 20 ? 'selected' : '' }}>20</option>
-                        <option value="50" {{ request('recordsPerPage', 10) == 50 ? 'selected' : '' }}>50</option>
-                        <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
-                    </select>
-                </form>
-                <!-- Tambahkan tombol untuk sorting murni -->
-                <a href="{{ route('adminkota-jabatan', ['sorting' => 'murni']) }}" class="btn btn-outline-success">Sort Murni</a>
-
-                <!-- Tambahkan tombol untuk sorting subkoor -->
-                <a href="{{ route('adminkota-jabatan', ['sorting' => 'subkoor']) }}" class="btn btn-outline-success">Sort Subkoor</a>
-
-                <!-- Tambahkan tombol untuk sorting koor -->
-                <a href="{{ route('adminkota-jabatan', ['sorting' => 'koor']) }}" class="btn btn-outline-success">Sort Koor</a>
-
-                <a href="{{ route('adminkota-jabatan') }}" class="btn btn-outline-secondary">Reset</a>
                 <div class="table-responsive">
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-hover table-bordered master-jabatan">
                         <thead>
                             <tr style="background-color:#fff0da">
                                 <td width="1%" rowspan="2" align="center"><b>No</b></td>
@@ -83,7 +54,7 @@
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
-                            @php $i=0; @endphp
+                            {{-- @php $i=0; @endphp
                             @foreach ($datas as $data)
                             @php $i++; $no = ($datas->currentPage() - 1) * ($datas->perPage()) + $i; @endphp
                                 <tr>
@@ -122,12 +93,11 @@
                                     <td align="right">{{ number_format($data->tunjab_koor, 0, ',', '.') }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-info btn-block" data-toggle="modal" data-target="#ubahModalIndeks{{ $i }}">Ubah</button>
-                                        {{-- <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button> --}}
+                                        <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button>
                                     </td>
-                                </tr>
+                                </tr> --}}
 
-                                <div class="modal fade" id="ubahModalIndeks{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
-                aria-hidden="true">
+                                {{-- <div class="modal fade" id="ubahModalIndeks{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -350,15 +320,11 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                </div> --}}
+                            {{-- @endforeach --}}
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div class="text-center">
-                <span style="float:right">
-                {{ $datas->appends([ 'search' => $search , 'recordsPerPage' => $pagination, 'sorting' => $sorting ])->links() }}</span>
             </div>
             <div class="modal fade" id="createModalIndeks" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">
@@ -587,4 +553,49 @@
             </div>
         </div>
     </div>
+@push('scripts')
+    <script type="text/javascript">
+        $(function () {
+            var table = $('.master-jabatan').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('adminkota-jabatan') }}",
+                columns: [
+                    { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                    { data: 'tahun', name: 'master_tahun.tahun'}, // Update the column name here
+                    { data: 'nama_jabatan', name: 'jabatans.nama_jabatan'}, // Update the column name here
+                    { data: 'jenis_jabatan', name: 'jenis_jabatans.jenis_jabatan'}, // Update the column name here
+                    { data: 'kelas_jabatan', name: 'indeks.kelas_jabatan'}, // Update the column name here
+                    { data: 'nilai_jabatan', name: 'jabatans.nilai_jabatan'}, // Update the column name here
+                    { data: 'indeks', name: 'indeks.indeks'}, // Update the column name here
+                    { data: 'prosentase_penerimaan_murni', name: 'jabatans.prosentase_penerimaan_murni'}, // Update the column name here
+                    { data: 'jenis_penyetaraan', name:'jabatans.jenis_penyetaraan'},
+                    { data: 'kelas_jabatan_subkor_penyetaraan', name:'jabatans.kelas_jabatan_subkor_penyetaraan'},
+                    { data: 'nilai_jabatan_subkor_penyetaraan', name:'jabatans.nilai_jabatan_subkor_penyetaraan'},
+                    { data: 'indeks_subkor_penyetaraan', name:'jabatans.indeks_subkor_penyetaraan'},
+                    { data: 'prosentase_penerimaan_subkor_penyetaraan', name:'jabatans.prosentase_penerimaan_subkor_penyetaraan'},
+                    { data: 'jenis_non_penyetaraan', name:'jabatans.jenis_non_penyetaraan'},
+                    { data: 'kelas_jabatan_subkor_non_penyetaraan', name:'jabatans.kelas_jabatan_subkor_non_penyetaraan'},
+                    { data: 'nilai_jabatan_subkor_non_penyetaraan', name:'jabatans.nilai_jabatan_subkor_non_penyetaraan'},
+                    { data: 'indeks_subkor_non_penyetaraan', name:'jabatans.indeks_subkor_non_penyetaraan'},
+                    { data: 'prosentase_penerimaan_subkor_non_penyetaraan', name:'jabatans.prosentase_penerimaan_subkor_non_penyetaraan'},
+                    { data: 'jenis_koor_penyetaraan', name:'jabatans.jenis_koor_penyetaraan'},
+                    { data: 'kelas_jabatan_koor_penyetaraan', name:'jabatans.kelas_jabatan_koor_penyetaraan'},
+                    { data: 'nilai_jabatan_koor_penyetaraan', name:'jabatans.nilai_jabatan_koor_penyetaraan'},
+                    { data: 'indeks_koor_penyetaraan', name:'jabatans.indeks_koor_penyetaraan'},
+                    { data: 'prosentase_penerimaan_koor_penyetaraan', name:'jabatans.prosentase_penerimaan_koor_penyetaraan'},
+                    { data: 'jenis_koor_non_penyetaraan', name:'jabatans.jenis_koor_non_penyetaraan'},
+                    { data: 'kelas_jabatan_koor_non_penyetaraan', name:'jabatans.kelas_jabatan_koor_non_penyetaraan'},
+                    { data: 'nilai_jabatan_koor_non_penyetaraan', name:'jabatans.nilai_jabatan_koor_non_penyetaraan'},
+                    { data: 'indeks_koor_non_penyetaraan', name:'jabatans.indeks_koor_non_penyetaraan'},
+                    { data: 'prosentase_penerimaan_koor_non_penyetaraan', name:'jabatans.prosentase_penerimaan_koor_non_penyetaraan'},
+                    { data: 'tunjab', name: 'jabatans.tunjab' },
+                    { data: 'tunjab_subkor', name: 'jabatans.tunjab_subkor' },
+                    { data: 'tunjab_koor', name: 'jabatans.tunjab_koor' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false },
+                ]
+            });
+        });
+    </script>
+@endpush
 @endsection

@@ -3,50 +3,28 @@
 namespace App\Http\Controllers\AdminKota;
 
 use App\Models\Jabatan;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 
 class JabatanController extends Controller
 {
     public function index(Request $request)
     {
-        $tahunid = session()->get('tahun_id_session');
-        $search = $request->input('search');
-        $pagination = $request->input('recordsPerPage', 10);
-        $sorting = $request->input('sorting');
-        $query = Jabatan::daftar();
-
-        if ($search) {
-            $query->where(function ($q) use ($search) {
-                $q->where('jabatans.nama_jabatan', 'LIKE', '%'.$search.'%');
-            });
+        if ($request->ajax()) {
+            $datas = Jabatan::daftar();
+            $i = 1;
+            return DataTables::of($datas)
+                ->addIndexColumn()
+                ->addColumn('DT_RowIndex', function () use (&$i) {
+                    return $i++;
+                })
+                ->addColumn('action', 'admin-kota.master.action.jabatan-action')
+                ->make(true);
         }
+        $datas = Jabatan::daftar();
 
-        switch ($sorting) {
-            case 'murni':
-                $query->whereNull('jabatans.indeks_id');
-                break;
-            case 'subkoor':
-                $query->whereNull('jabatans.indeks_subkor_penyetaraan_id')
-                      ->whereNull('jabatans.indeks_subkor_non_penyetaraan_id')
-                      ->whereNull('jabatans.nilai_jabatan_subkor_penyetaraan')
-                      ->whereNull('jabatans.nilai_jabatan_subkor_non_penyetaraan');
-                break;
-            case 'koor':
-                $query->whereNull('jabatans.indeks_koor_penyetaraan_id')
-                      ->whereNull('jabatans.indeks_koor_non_penyetaraan_id')
-                      ->whereNull('jabatans.nilai_jabatan_koor_penyetaraan')
-                      ->whereNull('jabatans.nilai_jabatan_koor_non_penyetaraan');
-                break;
-            default:
-                // Default sorting jika tidak ada yang dipilih
-                break;
-        }
-
-        // Memanggil metode data() pada model Pegawai
-        $datas = $query->paginate($pagination);
-
-        return view('admin-kota.master.master-jabatan',compact('datas', 'search','pagination','sorting'));
+        return view('admin-kota.master.master-jabatan',compact('datas'));
     }
 
     public function store(Request $request)

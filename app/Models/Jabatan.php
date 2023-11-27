@@ -84,9 +84,7 @@ class Jabatan extends Model
                             ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_non_penyetaraan', 'jenis_jabatan_subkor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
                             ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_penyetaraan', 'jenis_jabatan_koor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
                             ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_non_penyetaraan', 'jenis_jabatan_koor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
-                            ->where('jabatans.tahun_id', session()->get('tahun_id_session'))
-                            ->orderBy('jabatans.created_at','DESC');
-        
+                            ->where('jabatans.tahun_id', session()->get('tahun_id_session'));
         return $datas;
     }
 
