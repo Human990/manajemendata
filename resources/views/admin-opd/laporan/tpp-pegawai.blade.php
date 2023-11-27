@@ -15,6 +15,45 @@
                 <!-- <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalPegawai" style="float:right">Tambah Data</a> -->
             </h3>
         </div>
+
+        <div class="card-body">
+            <div class="row d-flex align-items-center">
+                <div class="col-3">
+                    <div class="alert alert-info text-center mt-3" role="alert">
+                        Jumlah Pegawai: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_pegawai','!=','PENSIUN')->count() }}
+                    </div>
+                    <div class="alert alert-warning text-center mt-3" role="alert">
+                        Jumlah PPPK: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_pegawai', 'PPPK')->count() }}
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="alert alert-info text-center mt-3" role="alert">
+                        Jumlah PLT: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'PLT')->count() }}
+                    </div>
+                    <div class="alert alert-warning text-center mt-3" role="alert">
+                        Jumlah PLH: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'PLH')->count() }}
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="alert alert-info text-center mt-3" role="alert">
+                        Jumlah Pengganti Sementara: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'Pengganti Sementara')->count() }}
+                    </div>
+                    <div class="alert alert-warning text-center mt-3" role="alert">
+                        Total ASN Definitif: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_pegawai','!=','PENSIUN')->count() - 
+                            \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_pegawai', 'PPPK')->count() - 
+                            \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'PLT')->count() - 
+                            \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'PLH')->count() - 
+                            \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_jabatan', 'Pengganti Sementara')->count() }}
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="alert alert-dark text-center mt-3" role="alert">
+                        Jumlah Pegawai Pensiun: {{ \App\Models\Pegawai::data()->where('pegawais.tahun_id', session()->get('tahun_id_session'))->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd)->where('sts_pegawai', 'PENSIUN')->count() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="card-body">
             <form action="{{ route('adminopd-pegawai') }}" method="GET">
                 <div class="input-group mb-3">
@@ -77,7 +116,7 @@
                         <td>
                             <label><input type="checkbox" class="toggle-column" data-column="10" checked> Indeks</label></br>
                             <label><input type="checkbox" class="toggle-column" data-column="11" checked> Pangkat</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="12" checked> Golongan</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="12" checked> Golongan PPPK</label></br>
                         </td>
                         <td>
                             <label><input type="checkbox" class="toggle-column" data-column="13" checked> Eselon</label></br>
@@ -128,13 +167,15 @@
                             <th width="3%">Nama Pegawai</th>
                             <th width="3%">Status Pegawai</th>
                             <th width="3%">OPD</th>
+                            <th width="3%">Sub OPD</th>
                             <th width="15%">Nama Jabatan</th>
                             <th width="3%">Jenis Jabatan</th>
                             <th width="3%">Status Jabatan</th>
                             <th width="3%">Nilai Jabatan (JV)</th>
+                            <th width="3%">Kelas Jabatan</th>
                             <th width="3%">Indeks</th>
                             <th width="3%">Pangkat</th>
-                            <th width="3%">Golongan</th>
+                            <th width="3%">Golongan PPPK</th>
                             <th width="3%">Eselon</th>
                             <th width="3%">Status Penerimaan TPP</th>
                             <th width="3%">Sertifikasi Guru</th>
@@ -151,8 +192,9 @@
                             <th width="3%">Pensiun</th>
                             <th width="3%">Jumlah Bulan Penerimaan BK</th>
                             <th width="3%">Jumlah Bulan Penerimaan PK</th>
-                            <th width="3%">Tpp Tambahan</th>
-                            @if(\App\Models\lock::data() != '1')
+                            {{-- <th width="3%">Tpp Tambahan</th> --}}
+                            {{-- <th width="3%">Jumlah Tpp</th> --}}
+                            @if(\App\Models\Lock::data() != '1')
                                 <th width="6%">Action</th>
                             @endif
                         </tr>
@@ -167,9 +209,16 @@
                                 <td>{{ $data->nama_pegawai }}</td>
                                 <td>{{ $data->sts_pegawai }}</td>
                                 <td>{{ $data->nama_opd }}</td>
+                                <td>
+                                    @if ($data->subopd_id == null)
+                                        {{ "-" }}
+                                    @else
+                                        {{ $data->nama_sub_opd }}
+                                    @endif
+                                </td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor')
-                                            {{ $data->nama_subkoor }}
+                                            {{$data->nama_jabatan}} / {{ $data->nama_subkoor }}
                                         @else
                                             {{ $data->nama_jabatan }}
                                         @endif
@@ -201,6 +250,7 @@
                                             {{ $data->nilai_jabatan }}
                                         @endif
                                     </td>
+                                    <td>{{$data->kelas_jabatan}}</td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                             {{ $data->indeks_subkor_non_penyetaraan }}
@@ -232,8 +282,9 @@
                                 <td>{{ $data->pensiun }}</td>
                                 <td align="center">{{ $data->bulan_bk }}</td>
                                 <td align="center">{{ $data->bulan_pk }}</td>
-                                <td>{{ $data->tpp_tambahan }}</td>
-                                @if(\App\Models\lock::data() != '1')
+                                {{-- <td>{{ $data->tpp_tambahan }}</td> --}}
+                                {{-- <td>{{ $individual_tpp[$data->id] }}</td> --}}
+                                @if(\App\Models\Lock::data() != '1')
                                     <td>
                                         @if(Auth::user()->role_id == 1)
                                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-edit"></i></button>

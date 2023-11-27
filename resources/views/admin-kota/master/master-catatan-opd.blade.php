@@ -18,7 +18,15 @@
                         </div>
                     </div>
                 </form></br>
-
+                <form action="{{ route('adminopd-catatan') }}" method="GET" class="form-inline">
+                    <label for="recordsPerPage" class="mr-2">show:</label>
+                    <select name="recordsPerPage" id="recordsPerPage" class="form-control mr-2" onchange="this.form.submit()">
+                        <option value="10" {{ request('recordsPerPage', 10) == 10 ? 'selected' : '' }}>10</option>
+                        <option value="20" {{ request('recordsPerPage', 10) == 20 ? 'selected' : '' }}>20</option>
+                        <option value="50" {{ request('recordsPerPage', 10) == 50 ? 'selected' : '' }}>50</option>
+                        <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
+                    </select>
+                </form>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead style="color: black; background-color: #ffe4a0;">
@@ -30,7 +38,7 @@
                                 <th>Nama Pegawai</th>
                                 <th>Catatan</th>
                                 <th>Status</th>
-                                @if(\App\Models\lock::data() != '1')
+                                @if(\App\Models\Lock::data() != '1')
                                     <th>Aksi</th>
                                 @endif
                             </tr>
@@ -94,7 +102,7 @@
                 </div>
                 <div class="text-center">
                     <span style="float:right">
-                    {{ $catatans->appends([ 'pencarian' => $pencarian ])->links() }}</span>
+                    {{ $catatans->appends([ 'pencarian' => $pencarian , 'pagination' => $pagination ])->links() }}</span>
                 </div>
             </div>
 

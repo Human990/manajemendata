@@ -27,7 +27,7 @@ class CatatanController extends Controller
         
         $catatans = $query->paginate($pagination);
 
-        return view('admin-kota.master.master-catatan-opd',compact('catatans', 'pencarian'));
+        return view('admin-kota.master.master-catatan-opd',compact('catatans', 'pencarian','pagination'));
     }
 
     public function store(Request $request)

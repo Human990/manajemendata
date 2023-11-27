@@ -141,36 +141,131 @@
                                 <th>NIP</th>
                                 <th>Nama</th>
                                 <th>OPD</th>
+                                <th>Status Pegawai</th>
+                                <th>Nama Jabatan Murni</th>
                                 <th>Nama Jabatan</th>
+                                <th>Jenis Jabatan Murni</th>
                                 <th>Jenis Jabatan</th>
+                                <th>Kelas Jabatan Murni</th>
                                 <th>Kelas Jabatan</th>
+                                <th>Nilai Jabatan Murni</th>
                                 <th>Nilai Jabatan</th>
+                                <th>Indeks Jabatan Murni</th>
                                 <th>Indeks Jabatan</th>
                                 <th>Total Bulan Penerimaan BK</th>
                                 <th>Total Bulan Penerimaan PK</th>
-                                <th>RP Beban Kerja</th>
                                 <th>RP/BLN Beban Kerja</th>
-                                <th>RP Prestasi Kerja</th>
+                                <th>RP Beban Kerja</th>
                                 <th>RP/BLN Prestasi Kerja</th>
-                                <th>TOTAL/BLN/ALL JAB</th>
-                                <th>TOTAL/THN/ALL JAB</th>
+                                <th>RP Prestasi Kerja</th>
+                                <th>TOTAL/BLN/ALL TPP</th>
+                                <th>TOTAL/THN/ALL TPP</th>
                             </tr>
                         </thead>
+                        @php 
+                        $rumus_bk_tahunan_total = 0;
+                        $rumus_bk_bulanan_total = 0;
+                        $rumus_pk_tahunan_total = 0;
+                        $rumus_pk_bulanan_total = 0;
+                        $rumus_total_tpp_bulanan_total = 0;
+                        $rumus_total_tpp_tahunan_total = 0;
+                        @endphp 
                         <tbody id="dynamic-row">
-                                @php
-                                    $rumus_bk_tahunan_total = 0;
-                                    $rumus_bk_bulanan_total = 0;
-                                    $rumus_pk_tahunan_total = 0;
-                                    $rumus_pk_bulanan_total = 0;
-                                    $rumus_total_tpp_bulanan_total = 0;
-                                    $rumus_total_tpp_tahunan_total = 0;
-                                @endphp
                                 @foreach ($datas as $i => $data)
+                                @php
+                                    $nilai_jabatan = 0;
+                                    $indeks = 0;
+
+                                    if ($data->subkoor == "Subkoor") {
+                                        $nilai_jabatan = ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                            ? (float) $data->nilai_jabatan_subkor_non_penyetaraan
+                                            : (float) $data->nilai_jabatan_subkor_penyetaraan;
+
+                                        $indeks = ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                            ? (float) $data->indeks_subkor_non_penyetaraan
+                                            : (float) $data->indeks_subkor_penyetaraan;
+                                    } elseif ($data->subkoor == "Koor") {
+                                        $nilai_jabatan = ($data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                            ? (float) $data->nilai_jabatan_koor_non_penyetaraan
+                                            : (float) $data->nilai_jabatan_koor_penyetaraan;
+
+                                        $indeks = ($data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                            ? (float) $data->indeks_koor_non_penyetaraan
+                                            : (float) $data->indeks_koor_penyetaraan;
+                                    } else {
+                                        $nilai_jabatan = (float) $data->nilai_jabatan;
+                                        $indeks = (float) $data->indeks;
+                                    }
+
+                                    $bulan_bk = (float)($data->bulan_bk ?? 0);
+                                    $bulan_pk = (float)($data->bulan_pk ?? 0);
+                                    $rumus_bk_tahunan = 0;
+                                    $rumus_bk_bulanan = 0;
+                                    $rumus_pk_tahunan = 0;
+                                    $rumus_pk_bulanan = 0;
+                                    $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
+                                    $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
+                                    $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
+                                    $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
+
+                                    
+                                    // bk
+                                    $bk = \App\Models\Rupiah::bk();
+                                    $rumus_bk_bulanan = ($nilai_jabatan ?? 0) * ($indeks ?? 0 ) * $bk;
+                                    $rumus_bk_tahunan = $rumus_bk_bulanan * $bulan_bk;
+
+                                
+                                    // pk
+                                    if ($data->opd_id == 5) {
+                                        $pk = \App\Models\Rupiah::pk();
+                                        $rumus_pk_bulanan = ($nilai_jabatan ?? 0) * ($indeks ?? 0 ) * $pk * 0;
+                                        $rumus_pk_tahunan = $rumus_pk_bulanan * $bulan_pk;
+                                    } else {
+                                        $pk = \App\Models\Rupiah::pk();
+                                        $rumus_pk_bulanan = ($nilai_jabatan ?? 0) * ($indeks ?? 0 ) * $pk;
+                                        $rumus_pk_tahunan = $rumus_pk_bulanan * $bulan_pk;
+                                    }
+                                    
+
+                                    // total
+                                    $rumus_total_tpp_bulanan = 0;
+                                    $rumus_total_tpp_tahunan = 0;
+                                    if ($data->sts_pegawai == "GURU") {
+                                        if ($data->sertifikasi_guru == "Sudah Sertifikasi") {
+                                            $rumus_total_tpp_bulanan = $tpp_guru_sertifikasi;
+                                            $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * 12;
+                                        } elseif ($data->sertifikasi_guru == "Belum Sertifikasi") {
+                                            $rumus_total_tpp_bulanan = $tpp_guru_belum_sertifikasi;
+                                            $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * 12;
+                                        } else {
+                                            $rumus_total_tpp_bulanan == null;
+                                            $rumus_total_tpp_tahunan == null;
+                                        }
+                                    } elseif ($data->sts_pegawai == "PENGAWAS SEKOLAH") {
+                                        $rumus_total_tpp_bulanan = $tpp_pengawas_sekolah;
+                                        $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * 12;
+                                    } elseif ($data->sts_pegawai == "KEPALA SEKOLAH") {
+                                        $rumus_total_tpp_bulanan = $tpp_kepala_sekolah;
+                                        $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * 12;
+                                    } else {
+                                        $rumus_total_tpp_bulanan = $rumus_bk_bulanan + $rumus_pk_bulanan;
+                                        $rumus_total_tpp_tahunan = $rumus_bk_tahunan + $rumus_pk_tahunan;
+                                    }
+
+                                    $rumus_bk_tahunan_total += $rumus_bk_tahunan;
+                                    $rumus_bk_bulanan_total += $rumus_bk_bulanan;
+                                    $rumus_pk_tahunan_total += $rumus_pk_tahunan;
+                                    $rumus_pk_bulanan_total += $rumus_pk_bulanan;
+                                    $rumus_total_tpp_bulanan_total += $rumus_total_tpp_bulanan;
+                                    $rumus_total_tpp_tahunan_total += $rumus_total_tpp_tahunan;
+                                @endphp
                                 <tr>
                                     <td>{{ $i + 1 + ($datas->currentPage() - 1) * $datas->perPage() }}</td>
                                     <td>{{ $data->nip }}</td>
                                     <td>{{ $data->nama_pegawai }}</td>
                                     <td>{{ $data->nama_opd }}</td>
+                                    <td>{{ $data->sts_pegawai }}</td>
+                                    <td>{{ $data->nama_jabatan }}</td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor')
                                             {{ $data->nama_subkoor }}
@@ -178,6 +273,7 @@
                                             {{ $data->nama_jabatan }}
                                         @endif
                                     </td>
+                                    <td>{{ $data->jenis_jabatan}}</td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                             {{ $data->jenis_non_penyetaraan }}
@@ -194,6 +290,20 @@
                                     <td>{{ $data->kelas_jabatan }}</td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->kelas_jabatan_subkor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                            {{ $data->kelas_jabatan_subkor_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->kelas_jabatan_koor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                            {{ $data->kelas_jabatan_koor_penyetaraan }}
+                                        @else
+                                            {{ $data->kelas_jabatan }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $data->nilai_jabatan }}</td>
+                                    <td>
+                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                             {{ $data->nilai_jabatan_subkor_non_penyetaraan }}
                                         @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
                                             {{ $data->nilai_jabatan_subkor_penyetaraan }}
@@ -205,6 +315,7 @@
                                             {{ $data->nilai_jabatan }}
                                         @endif
                                     </td>
+                                    <td>{{ $data->indeks }}</td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                             {{ $data->indeks_subkor_non_penyetaraan }}
@@ -220,29 +331,42 @@
                                     </td>
                                     <td>{{ $data->bulan_bk}}</td>
                                     <td>{{ $data->bulan_pk}}</td>
-                                    
-                                    {{-- @php
-                                        $rumus_bk_tahunan = $nilai_jabatan * $indeks * $bk * $data->bulan_bk;
-                                        $rumus_bk_bulanan = $nilai_jabatan * $indeks * $bk;
-                                        $rumus_pk_tahunan = $nilai_jabatan * $indeks * $pk * $data->bulan_pk;
-                                        $rumus_pk_bulanan = $nilai_jabatan * $indeks * $pk;
-                                        $rumus_total_tpp_bulanan = $rumus_bk_bulanan + $rumus_pk_bulanan;
-                                        $rumus_total_tpp_tahunan = $rumus_bk_tahunan + $rumus_pk_tahunan;
-                                
-                                        // Menambahkan ke total kolom
-                                        $rumus_bk_tahunan_total += $rumus_bk_tahunan;
-                                        $rumus_bk_bulanan_total += $rumus_bk_bulanan;
-                                        $rumus_pk_tahunan_total += $rumus_pk_tahunan;
-                                        $rumus_pk_bulanan_total += $rumus_pk_bulanan;
-                                        $rumus_total_tpp_bulanan_total += $rumus_total_tpp_bulanan;
-                                        $rumus_total_tpp_tahunan_total += $rumus_total_tpp_tahunan; --}}
-                                    {{-- @endphp --}}
-                                    <td>{{ number_format($data->rumus_bk_tahunan, 0, ',', '.') }}</td>
-                                    <td>{{ number_format($data->rumus_bk_bulanan, 0, ',', '.') }}</td>
-                                    <td>{{ number_format($data->rumus_pk_tahunan, 0, ',', '.') }}</td>
-                                    <td>{{ number_format($data->rumus_pk_bulanan, 0, ',', '.') }}</td>
-                                    <td>{{ number_format($data->rumus_total_tpp_bulanan, 0, ',', '.') }}</td>
-                                    <td>{{ number_format($data->rumus_total_tpp_tahunan, 0, ',', '.') }}</td>
+                                    @if ($data->sts_pegawai == 'GURU'){
+                                        @if ($data->sertifikasi_guru == "Belum Sertifikasi")
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        @elseif ($data->sertifikasi_guru == "Sudah Sertifikasi")
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>  
+                                        @else
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>  
+                                        @endif
+                                    } @elseif ($data->sts_pegawai == 'PENGAWAS SEKOLAH') {
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    } @elseif ($data->sts_pegawai == 'KEPALA SEKOLAH') {
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    } @else {
+                                        <td>{{ number_format($rumus_bk_bulanan, 0, ',', '.') }}</td>
+                                        <td>{{ number_format($rumus_bk_tahunan, 0, ',', '.') }}</td>
+                                        <td>{{ number_format($rumus_pk_bulanan, 0, ',', '.') }}</td>
+                                        <td>{{ number_format($rumus_pk_tahunan, 0, ',', '.') }}</td>
+                                    }
+                                    @endif
+                                    <td>{{ number_format($rumus_total_tpp_bulanan, 0, ',', '.') }}</td>
+                                    <td>{{ number_format($rumus_total_tpp_tahunan, 0, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

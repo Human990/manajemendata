@@ -16,8 +16,42 @@
                                 <i class="fas fa-search fa-sm"></i> Pencarian
                             </button>
                         </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#createFilteropdPegawai" type="button">filter OPD</button>
+                        </div>
+                        <div class="input-group-append">
+                            <a href="{{ route('adminkota-daftar-catatan') }}" class="btn btn-outline-secondary">Reset</a>
+                        </div>
                     </div>
                 </form></br>
+                <div class="modal fade" id="createFilteropdPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="createModalLabel">Filter Data Pegawai</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="{{ route('adminkota-daftar-catatan') }}" method="GET" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="filteropd">OPD</label>
+                                        <select type="text" name="filteropd" class="form-control @error('filteropd') is-invalid @enderror">
+                                            @foreach(\App\Models\Opd::data() as $opd)
+                                                <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <form action="{{ route('adminkota-daftar-catatan') }}" method="GET" class="form-inline">
                     <label for="recordsPerPage" class="mr-2">show:</label>
                     <select name="recordsPerPage" id="recordsPerPage" class="form-control mr-2" onchange="this.form.submit()">
@@ -29,15 +63,36 @@
                 </form>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
+                        <style>
+                            .merged-cell {
+                                border-bottom: 1px solid #ddd; /* Warna garis pemisah */
+                                padding: 8px; /* Beri sedikit padding untuk estetika */
+                            }
+                        </style>
                         <thead style="color: black; background-color: #ffe4a0;">
                             <tr>
                                 <th>No</th>
                                 <th>Tahun</th>
-                                <th>OPD</th>
-                                <th>NIP</th>
-                                <th>Nama Pegawai</th>
+                            
+                                <!-- Informasi Pegawai -->
+                                <th colspan="4" class="merged-cell">Informasi Pegawai</th>
+                            
+                                <!-- Informasi Jabatan -->
+                                <th colspan="6" class="merged-cell">Informasi Jabatan</th>
+                            
+                                <!-- Informasi Tambahan -->
+                                <th colspan="3" class="merged-cell">Informasi Kepangkatan</th>
+
+                                <th colspan="4" class="merged-cell">Informasi Sertifikasi</th>
+                            
+                                <!-- Subkoor -->
+                                <th colspan="3" class="merged-cell">Informasi Subkoor/Koordinator</th>
+                            
+                                <!-- Pensiun -->
+                                <th colspan="4" class="merged-cell">Informasi Tambahan</th>
+                            
+                                <!-- Catatan -->
                                 <th>Catatan</th>
-                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -48,24 +103,116 @@
                             <tr>
                                 <td width="1%">{{ $no }}</td>
                                 <td width="5%">{{ $catatan->tahun }}</td>
-                                <td width="20%">{{ $catatan->nama_opd }}</td>
-                                <td width="8%">{{ $catatan->nip }}</td>
-                                <td width="16%">{{ $catatan->nama_pegawai }}</td>
+                                <td colspan="4" class="merged-cell">
+                                    {{ $catatan->nip }} <br> 
+                                    {{ $catatan->nama_pegawai }} <br> 
+                                    {{ $catatan->sts_pegawai }} <br> 
+                                    {{ $catatan->nama_opd }} <br> 
+                                    {{-- @if ($catatan->subopd_id == null)
+                                        {{ "-" }}
+                                    @else
+                                        {{ $catatan->nama_sub_opd }}
+                                    @endif --}}
+                                </td>
+                                <td colspan ="6">
+                                    @if($catatan->subkoor == 'Subkoor' || $catatan->subkoor == 'Koor')
+                                        {{ $catatan->nama_jabatan }} / {{ $catatan->nama_subkoor }}
+                                    @else
+                                        {{ $catatan->nama_jabatan }}
+                                    @endif <br>
+
+                                    @if($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                        {{ $catatan->jenis_non_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                        {{ $catatan->jenis_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                        {{ $catatan->jenis_koor_non_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                        {{ $catatan->jenis_koor_penyetaraan }}
+                                    @else
+                                        {{ $catatan->jenis_jabatan }}
+                                    @endif <br>
+
+                                    {{ $catatan->sts_jabatan }} <br>
+
+                                    @if($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                        {{ $catatan->nilai_jabatan_subkor_non_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                        {{ $catatan->nilai_jabatan_subkor_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                        {{ $catatan->nilai_jabatan_koor_non_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                        {{ $catatan->nilai_jabatan_koor_penyetaraan }}
+                                    @else
+                                        {{ $catatan->nilai_jabatan }}
+                                    @endif <br>
+
+                                    @if($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                        {{ $catatan->indeks_subkor_non_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                        {{ $catatan->indeks_subkor_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                        {{ $catatan->indeks_koor_non_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                        {{ $catatan->indeks_koor_penyetaraan }}
+                                    @else
+                                        {{ $catatan->indeks }}
+                                    @endif <br>
+                                    {{ $catatan->jft }} <br>
+                                </td>
+
+                                <td colspan="3">
+                                    @if ($catatan->sts_pegawai === 'PPPK')
+                                        @if ($catatan->golongan === null)
+                                        0
+                                        @else
+                                        {{ $catatan->golongan }}
+                                        @endif
+                                    <br>
+                                    @else
+                                        @if ($catatan->pangkat === null)
+                                        --tidak ada--
+                                        @else
+                                        {{ $catatan->pangkat }}
+                                        @endif
+                                        <br>
+                                    @endif
+                                    {{ $catatan->eselon }} <br>
+                                    {{ $catatan->tpp }} <br>
+                                </td>
+                                <td colspan="4">
+                                    {{ $catatan->sertifikasi_guru }} <br>
+                                    {{ $catatan->pa_kpa }} <br>
+                                    {{ $catatan->pbj }} <br>
+                                    
+                                </td>
+
+                                <td colspan="3">
+                                    {{ $catatan->subkoor }} <br>
+                                    {{ $catatan->nama_subkoor }} <br>
+                                    {{ $catatan->sts_subkoor }} <br>
+                                </td>
+                                <td colspan="4">
+                                    <b>Pensiun :</b>{{ $catatan->pensiun }} <br>
+                                    <b>Bulan Penerimaan Beban Kerja :</b>{{ $catatan->bulan_bk }} <br>
+                                    <b>Bulan Penerimaan Prestasi Kerja :</b>{{ $catatan->bulan_pk }} <br>
+                                    <b>Tpp Tambahan :</b>{{ $catatan->tpp_tambahan }} <br>
+                                </td>
                                 <td width="32%">
                                     <b>Catatan OPD : </b>{{ $catatan->catatan_opd }}</br>
                                     @if(!empty($catatan->catatan_admin)) <b>Catatan Admin : </b>{{ $catatan->catatan_admin }} @endif
                                 </td>
-                                <td width="5%">{{ $catatan->status }}</td>
                                 <td width="14%">
                                     @if(!empty($catatan->status))
                                         
                                     @else
-                                        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalPegawai{{ $i }}"><i class="fa fa-edit"></i> Pegawai</button>
+                                        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalPegawai{{ $i }}"><i class="fa fa-edit"></i> Validasi</button>
                                         <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalCatatan{{ $i }}"><i class="fa fa-plus"></i> Catatan</button>
                                     @endif
                                 </td>
                             </tr>
 
+                                {{-- MODALS CATATAN --}}
                                 <div class="modal fade" id="modalCatatan{{ $i }}" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -75,7 +222,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="{{ route('adminkota-catatan.update', $catatan->id) }}" method="post">
+                                            <form action="{{ route('adminkota-catatan.update-catatan', $catatan->id) }}" method="post">
                                                 <div class="modal-body">
                                                     @csrf
                                                     @method('PUT')
@@ -100,6 +247,7 @@
                                     </div>
                                 </div>
 
+                                {{-- MODALS VALIDASI --}}
                                 <div class="modal fade" id="modalPegawai{{ $i }}" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -109,7 +257,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="{{ route('adminkota-pegawai.update', $catatan->pegawai_id) }}" method="post">
+                                            <form action="{{ route('adminkota-catatan.update-pegawai', $catatan->id) }}" method="post">
                                                 <div class="modal-body">
                                                     @csrf
                                                     @method('PUT')
@@ -139,28 +287,32 @@
                                                             <option value="PPPK" @if('PPPK' == $catatan->sts_pegawai) selected @endif>PPPK</option>
                                                             <option value="GURU" @if('GURU' == $catatan->sts_pegawai) selected @endif>GURU</option>
                                                             <option value="RS" @if('RS' == $catatan->sts_pegawai) selected @endif>RS</option>
+                                                            <option value="PENGAWAS SEKOLAH" @if('PENGAWAS SEKOLAH' == $catatan->sts_pegawai) selected @endif>PENGAWAS SEKOLAH</option>
+                                                            <option value="KEPALA SEKOLAH" @if('KEPALA SEKOLAH' == $catatan->sts_pegawai) selected @endif>KEPALA SEKOLAH</option>
+                                                            <option value="PENSIUN" @if('PENSIUN' == $catatan->sts_pegawai) selected @endif>PENSIUN</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="opd_id">OPD</label>
                                                         <select type="text" name="opd_id" class="form-control @error('opd_id') is-invalid @enderror">
-                                                            @foreach(\App\Models\Opd::data() as $opd)
+                                                            @foreach(\App\Models\Opd::where('tahun_id', session()->get('tahun_id_session'))->orderBy('nama_opd', 'ASC')->get() as $opd)
                                                                 <option value="{{ $opd->id }}" @if($opd->id == $catatan->opd_id) selected @endif>{{ $opd->nama_opd }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    <div class="form-group">
+                                                    {{-- <div class="form-group">
                                                         <label for="subopd_id">Sub OPD</label>
                                                         <select type="text" name="subopd_id" class="form-control @error('subopd_id') is-invalid @enderror">
                                                             <option value="" @if($catatan->subopd_id == null) selected @endif>Bukan Sub OPD</option>
-                                                            @foreach(\App\Models\Subopd::data() as $subopd)
+                                                            
+                                                            @foreach(\App\Models\Subopd::orderBy('nama_sub_opd', 'ASC')->get() as $subopd)
                                                                 <option value="{{ $subopd->id }}" @if($subopd->id == $catatan->subopd_id) selected @endif>{{ $subopd->nama_sub_opd }}</option>
                                                             @endforeach
                                                         </select>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="form-group">
                                                         <label for="kode_jabatanlama">Jabatan</label>
-                                                        <select type="text" name="kode_jabatanlama" class="form-control @error('kode_jabatanlama') is-invalid @enderror">
+                                                        <select type="text" name="kode_jabatanlama" class="form-control select2 @error('kode_jabatanlama') is-invalid @enderror">
                                                             @foreach(\App\Models\Jabatan::data() as $jabatan)
                                                                 <option value="{{ $jabatan->id }}" @if($jabatan->id == $catatan->kode_jabatanlama) selected @endif>{{ $jabatan->nama_jabatan }}</option>
                                                             @endforeach
@@ -168,16 +320,17 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="sts_jabatan">Status Jabatan</label>
-                                                        <input type="text" name="sts_jabatan"
-                                                            class="form-control @error('sts_jabatan') is-invalid @enderror" id="sts_jabatan"
-                                                            placeholder="Status Jabatan . . ." value="{{ $catatan->sts_jabatan }}">
-                                                        @error('sts_jabatan')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="sts_jabatan" class="form-control @error('sts_jabatan') is-invalid @enderror">
+                                                            <option value="Utama" @if('Utama' == $catatan->sts_jabatan) selected @endif>Utama</option>
+                                                            <option value="PLT" @if('PLT' == $catatan->sts_jabatan) selected @endif>PLT</option>
+                                                            <option value="PLH" @if('PLH' == $catatan->sts_jabatan) selected @endif>PLH</option>
+                                                            <option value="Pengganti Sementara" @if('Pengganti Sementara' == $catatan->sts_jabatan) selected @endif>Pengganti Sementara</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="pangkat">Pangkat</label>
                                                         <select type="text" name="pangkat" class="form-control @error('pangkat') is-invalid @enderror">
+                                                            <option value="" @if($catatan->pangkat === null) selected @endif>--Belum dipilih--</option>
                                                             <option value="Juru Muda - I/a" @if('Juru Muda - I/a' == $catatan->pangkat) selected @endif>Juru Muda - I/a</option>
                                                             <option value="Juru Muda Tk.I - I/b" @if('Juru Muda Tk.I - I/b' == $catatan->pangkat) selected @endif>Juru Muda Tk.I - I/b</option>
                                                             <option value="Juru Muda Tk.I - I/c" @if('Juru Muda Tk.I - I/c' == $catatan->pangkat) selected @endif>Juru Muda Tk.I - I/c</option>
@@ -201,6 +354,7 @@
                                                     <div class="form-group">
                                                         <label for="golongan">Golongan PPPK</label>
                                                         <select type="text" name="golongan" class="form-control @error('golongan') is-invalid @enderror">
+                                                            <option value="" @if($catatan->golongan === null) selected @endif>--Belum dipilih--</option>
                                                             <option value="0" @if('0' == $catatan->golongan) selected @endif>0</option>
                                                             <option value="I" @if('I' == $catatan->golongan) selected @endif>I</option>
                                                             <option value="II" @if('II' == $catatan->golongan) selected @endif>II</option>
@@ -223,12 +377,15 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="eselon">Eselon</label>
-                                                        <input type="text" name="eselon"
-                                                            class="form-control @error('eselon') is-invalid @enderror" id="eselon"
-                                                            placeholder="Eselon . . ." value="{{ $catatan->eselon }}">
-                                                        @error('eselon')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="eselon" class="form-control @error('eselon') is-invalid @enderror">
+                                                            <option value="NON ESELON" @if('NON ESELON' == $catatan->eselon) selected @endif>NON ESELON</option>
+                                                            <option value="II.a" @if('II.a' == $catatan->sts_pegawai) selected @endif>II.a</option>
+                                                            <option value="II.b" @if('II.b' == $catatan->sts_pegawai) selected @endif>II.b</option>
+                                                            <option value="III.a" @if('III.a' == $catatan->sts_pegawai) selected @endif>III.a</option>
+                                                            <option value="III.b" @if('III.b' == $catatan->sts_pegawai) selected @endif>III.b</option>
+                                                            <option value="IV.a" @if('IV.a' == $catatan->sts_pegawai) selected @endif>IV.a</option>
+                                                            <option value="IV.b" @if('IV.b' == $catatan->sts_pegawai) selected @endif>IV.b</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="tpp">Status Penerima TPP</label>
@@ -247,19 +404,26 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="pa_kpa">PA/KPA</label>
-                                                        <input type="text" name="pa_kpa"
-                                                            class="form-control @error('pa_kpa') is-invalid @enderror" id="pa_kpa"
-                                                            placeholder="PA / KPA . . ." value="{{ $catatan->pa_kpa }}">
-                                                        @error('pa_kpa')
-                                                            <span class="invalid-feedback">{{ $message }}</span>
-                                                        @enderror
+                                                        <select type="text" name="pa_kpa" class="form-control @error('pa_kpa') is-invalid @enderror">
+                                                            <option value="" @if(null === $catatan->pa_kpa) selected @endif>--Belum dipilih--</option>
+                                                            <option value="PA/KPA" @if('PA/KPA' === $catatan->pa_kpa) selected @endif>PA/KPA</option>
+                                                            <option value="Bukan PA/KPA" @if('Bukan PA/KPA' === $catatan->pa_kpa) selected @endif>Bukan PA/KPA</option>
+                                                        </select>
                                                     </div> 
                                                     <div class="form-group">
                                                         <label for="pbj">Sertifikasi PBJ</label>
                                                         <select type="text" name="pbj" class="form-control @error('pbj') is-invalid @enderror">
                                                             <option value="" @if(null === $catatan->pbj) selected @endif>--Tidak dipilih--</option>
                                                             <option value="Sudah Memiliki Sertifikat" @if('Sudah Memiliki Sertifikat' === $catatan->pbj) selected @endif>Sudah Memiliki Sertifikat</option>
-                                                            <option value="Belum Memiliki Sertifikat" @if('Belum Memiliki Sertifikat' === $catatan->pbj) selected @endif>Belum Memiliki Sertifikat</option>
+                                                            <option value="Belum Sertifikasi" @if('Belum Memiliki Sertifikat' === $catatan->pbj) selected @endif>Belum Memiliki Sertifikat</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="jft">Tipe Jabatan</label>
+                                                        <select type="text" name="jft" class="form-control @error('jft') is-invalid @enderror">
+                                                            <option value="Jabatan Fungsional" @if('Jabatan Fungsional' === $catatan->jft) selected @endif>Jabatan Fungsional</option>
+                                                            <option value="Jabatan Fungsional (Belum Diangkat)" @if('Jabatan Fungsional (Belum Diangkat)' === $catatan->jft) selected @endif>Jabatan Fungsional (Belum Diangkat)</option>
+                                                            <option value="Jabatan Administratif" @if('Jabatan Administratif' === $catatan->jft) selected @endif>Jabatan Administratif</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -295,13 +459,50 @@
                                                         @error('nama_opd')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
+                                                    </div> 
+                                                    {{--
+                                                     <div class="form-group">
+                                                        <label for="nama_opd">Nip Atasan Langsung</label>
+                                                        <input type="text" name="nama_opd"
+                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
+                                                            placeholder="Nama OPD . . ." value="{{ $catatan->nama_opd }}">
+                                                        @error('nama_opd')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div> 
+                                                     <div class="form-group">
+                                                        <label for="nama_opd">Nama Atasan Langsung</label>
+                                                        <input type="text" name="nama_opd"
+                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
+                                                            placeholder="Nama OPD . . ." value="{{ $catatan->nama_opd }}">
+                                                        @error('nama_opd')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div> 
+                                                     <div class="form-group">
+                                                        <label for="nama_opd">Nip Atasan Penilai</label>
+                                                        <input type="text" name="nama_opd"
+                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
+                                                            placeholder="Nama OPD . . ." value="{{ $catatan->nama_opd }}">
+                                                        @error('nama_opd')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="pensiun">Pensiun</label>
+                                                        <label for="nama_opd">Nama Atasan Penilai</label>
+                                                        <input type="text" name="nama_opd"
+                                                            class="form-control @error('nama_opd') is-invalid @enderror" id="nama_opd"
+                                                            placeholder="Nama OPD . . ." value="{{ $catatan->nama_opd }}">
+                                                        @error('nama_opd')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div> --}}
+                                                    <div class="form-group">
+                                                        <label for="pensiun">Batas Usia Pensiun</label>
                                                         <select type="text" name="pensiun" class="form-control @error('pensiun') is-invalid @enderror">
-                                                            <option value="58" @if('58' === $catatan->pensiun) selected @endif>58</option>
-                                                            <option value="60" @if('60' === $catatan->pensiun) selected @endif>60</option>
-                                                            <option value="65" @if('65' === $catatan->pensiun) selected @endif>65</option>
+                                                            <option value="58" @if('58' == $catatan->pensiun) selected @endif>58</option>
+                                                            <option value="60" @if('60' == $catatan->pensiun) selected @endif>60</option>
+                                                            <option value="65" @if('65' == $catatan->pensiun) selected @endif>65</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -330,6 +531,17 @@
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="catatan_admin">Catatan Admin Kota</label>
+                                                        <textarea name="catatan_admin" id="catatan_admin" cols="30" rows="7" class="form-control" placeholder="Masukkan catatan . . .">{{ $catatan->catatan_admin ?? '' }}</textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="status">Status</label>
+                                                        <select name="status" id="status" class="form-control">
+                                                            <option value="Selesai" {{ $catatan->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                                                            <option value="Ditolak" {{ $catatan->status == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -345,62 +557,21 @@
                 </div>
                 <div class="text-center">
                     <span style="float:right">
-                    {{ $catatans->appends([ 'pencarian' => $pencarian , 'pagination' => $pagination])->links() }}</span>
-                </div>
-            </div>
-
-            <div class="modal fade" id="createModalIndeks" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="createModalLabel">Tambah Master indeks</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="{{ route('adminkota-indeks.store') }}" method="post" enctype="multipart/form-data">
-                            <div class="modal-body">
-                                @csrf
-                                <input type="hidden" name="tahun_id" value="{{ session()->get('tahun_id_session') }}">
-                                <div class="form-group">
-                                    <label for="jenis_jabatan">Jenis Jabatan</label>
-                                    <select name="jenis_jabatan" id="jenis_jabatan" class="form-control">
-                                        @foreach(\App\Models\Jenis_jabatan::orderBy('id', 'ASC')->get() as $jenis)
-                                            <option value="{{ $jenis->id }}">{{ $jenis->jenis_jabatan }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('jenis_jabatan')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="kelas_jabatan">Kelas Jabatan</label>
-                                    <input type="number" name="kelas_jabatan"
-                                        class="form-control @error('kelas_jabatan') is-invalid @enderror" id="kelas_jabatan"
-                                        placeholder="Kelas Jabatan . . ." value="{{ old('kelas_jabatan') }}">
-                                    @error('kelas_jabatan')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="indeks">Indeks</label>
-                                    <input type="text" name="indeks"
-                                        class="form-control @error('indeks') is-invalid @enderror" id="indeks"
-                                        placeholder="Indeks . . ." value="{{ old('indeks') }}">
-                                    @error('indeks')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </form>
-                    </div>
+                    {{ $catatans->appends([ 
+                        'pencarian' => $pencarian , 
+                        'pagination' => $pagination,
+                        'filteropd' => $filteropd,
+                        ])->links() }}</span>
                 </div>
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.select2').select2();
+            });
+        </script>
+    @endpush
 @endsection

@@ -101,6 +101,7 @@ class Tpp extends Model
                                 indeks.basic_tpp,
                                 indeks.indeks, 
                                 jabatans.nilai_jabatan 
+                                pegawais.id
                             ORDER BY
                                 opds.nama_opd, 
                                 pegawais.id ASC;
