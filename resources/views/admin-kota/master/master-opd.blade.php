@@ -10,7 +10,7 @@
             <div class="card-body">
                 <a href="#" class="btn btn-info" data-toggle="modal" data-target="#createModalIndeks">Tambah Data</a>
             </div>
-            <div class="card-body">
+            {{-- <div class="card-body">
                 <form action="{{ route('adminkota-opd') }}" method="GET">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Cari nama atau nip Pegawai . . ." name="search" value="{{ request('search') }}">
@@ -32,23 +32,22 @@
                         <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
                     </select>
                 </form>
-            </div>
+            </div> --}}
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-hover table-bordered table-opd">
                         <thead>
                             <tr>
                                 <th width="1%">No</th>
                                 <th width="20%">Tahun</th>
                                 <th width="20%">Kode OPD</th>
                                 <th width="20%">Nama OPD</th>
-                                <th width="20%">Nama Sub OPD</th>
                                 <th width="10%">Status</th>
                                 <th width="9%">Action</th>
                             </tr>
                         </thead>
                         <tbody id="dynamic-row">
-                            @php $i = 0; @endphp
+                            {{-- @php $i = 0; @endphp
                             @foreach ($datas as $data)
                             @php $i++; @endphp
                                 <tr>
@@ -58,7 +57,7 @@
                                     <td>{{ $data->nama_opd }}</td>
                                     <td>{{ $data->nama_sub_opd }}</td>
                                     <td>
-                                        @if(\App\Models\lock::status($data->id) == '1')
+                                        @if(\App\Models\Lock::status($data->id) == '1')
                                             <b style="color:red">Locked</b>
                                         @else
                                             <b style="color:green">Open</b>
@@ -66,12 +65,11 @@
                                     </td>
                                     <td>
                                         <button class="btn btn-sm btn-info btn-block" data-toggle="modal" data-target="#ubahModalIndeks{{ $i }}"><i class="fa fa-eye"></i> Ubah</button>
-                                        {{-- <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button> --}}
+                                        <button href="#" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i> Hapus</button>
                                     </td>
-                                </tr>
+                                </tr> --}}
 
-                                <div class="modal fade" id="ubahModalIndeks{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
-                aria-hidden="true">
+                                {{-- <div class="modal fade" id="ubahModalIndeks{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -126,18 +124,18 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                </div> --}}
+                            {{-- @endforeach --}}
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="text-center">
+            {{-- <div class="text-center">
                 {{ $datas->appends([
                     'search' => $search ,
                     'pagination' => $pagination, 
                 ])->links() }}
-            </div>
+            </div> --}}
             <div class="modal fade" id="createModalIndeks" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -161,15 +159,15 @@
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="opd_id">OPD</label>
                                     <select type="text" name="opd_id" class="form-control @error('opd_id') is-invalid @enderror">
-                                        @foreach(\App\Models\Opd::orderBy('nama_opd', 'ASC')->get() as $opd)
-                                            <option value="" disabled>--Belum Dipilih--</option>
+                                        <option value="" disabled>--Belum Dipilih--</option>
+                                        @foreach(\App\Models\Opd::where('tahun_id', session()->get('tahun_id_session'))->orderBy('nama_opd', 'ASC')->get() as $opd)
                                             <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="nama_opd">Nama OPD</label>
                                     <input type="text" name="nama_opd"
@@ -178,15 +176,6 @@
                                     @error('nama_opd')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="subopd_id">Sub OPD</label>
-                                    <select type="text" name="subopd_id" class="form-control @error('subopd_id') is-invalid @enderror">
-                                        <option value=""  selected>--Belum Dipilih----</option>
-                                        @foreach(\App\Models\Subopd::orderBy('nama_sub_opd', 'ASC')->get() as $subopd)
-                                            <option value="{{ $subopd->id }}">{{ $subopd->nama_sub_opd }}</option>
-                                        @endforeach
-                                    </select>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -199,4 +188,23 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+    <script type="text/javascript">
+        $(function () {
+            var table = $('.table-opd').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('adminkota-opd') }}",
+                columns: [
+                    { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                    { data: 'tahun', name: 'master_tahun.tahun'}, // Update the column name here
+                    { data: 'kode_opd', name: 'kode_opd'}, // Update the column name here
+                    { data: 'nama_opd', name: 'nama_opd'}, // Update the column name here
+                    {data: 'status', name: 'status'},
+                    { data: 'action', name: 'action', orderable: false, searchable: false },
+                ]
+            });
+        });
+    </script>
+    @endpush
 @endsection

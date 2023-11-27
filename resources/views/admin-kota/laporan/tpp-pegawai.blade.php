@@ -233,20 +233,20 @@
                                     if ($data->sts_pegawai == "GURU") {
                                         if ($data->sertifikasi_guru == "Sudah Sertifikasi") {
                                             $rumus_total_tpp_bulanan = $tpp_guru_sertifikasi;
-                                            $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * 12;
+                                            $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * $bulan_bk;
                                         } elseif ($data->sertifikasi_guru == "Belum Sertifikasi") {
                                             $rumus_total_tpp_bulanan = $tpp_guru_belum_sertifikasi;
-                                            $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * 12;
+                                            $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * $bulan_bk;
                                         } else {
                                             $rumus_total_tpp_bulanan == null;
                                             $rumus_total_tpp_tahunan == null;
                                         }
                                     } elseif ($data->sts_pegawai == "PENGAWAS SEKOLAH") {
                                         $rumus_total_tpp_bulanan = $tpp_pengawas_sekolah;
-                                        $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * 12;
+                                        $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * $bulan_bk;
                                     } elseif ($data->sts_pegawai == "KEPALA SEKOLAH") {
                                         $rumus_total_tpp_bulanan = $tpp_kepala_sekolah;
-                                        $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * 12;
+                                        $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * $bulan_bk;
                                     } else {
                                         $rumus_total_tpp_bulanan = $rumus_bk_bulanan + $rumus_pk_bulanan;
                                         $rumus_total_tpp_tahunan = $rumus_bk_tahunan + $rumus_pk_tahunan;

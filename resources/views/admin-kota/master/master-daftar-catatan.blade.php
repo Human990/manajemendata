@@ -533,7 +533,10 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="catatan_admin">Catatan Admin Kota</label>
-                                                        <textarea name="catatan_admin" id="catatan_admin" cols="30" rows="7" class="form-control" placeholder="Masukkan catatan . . .">{{ $catatan->catatan_admin ?? '' }}</textarea>
+                                                        <textarea name="catatan_admin" id="catatan_admin" cols="30" rows="7" class="form-control @error('catatan_admin') is-invalid @enderror" placeholder="Masukkan catatan . . .">{{ $catatan->catatan_admin ?? '' }}</textarea>
+                                                        @error('catatan_admin')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="status">Status</label>

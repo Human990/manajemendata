@@ -141,10 +141,10 @@ Route::group(['middleware' => ['auth', 'adminjabatan']],function () {
 
     // master jabatan
     Route::get('/admin-jabatan/master-jabatan',[App\Http\Controllers\Adminjabatan\JabatanController::class,'index'])->name('adminjabatan-jabatan');
-    Route::get('/admin-jabatan/master-jabatan/data',[App\Http\Controllers\Adminjabatan\JabatanController::class,'getJabatanData'])->name('adminjabatan-jabatan.data');
-    Route::post('/admin-jabatan/master-jabatan',[App\Http\Controllers\Adminjabatan\JabatanController::class,'store'])->name('adminjabatan-jabatan.store');
-    Route::put('/admin-jabatan/master-jabatan/{jabatan}',[App\Http\Controllers\Adminjabatan\JabatanController::class,'update'])->name('adminjabatan-jabatan.update');
-    Route::delete('/admin-jabatan/master-jabatan/{jabatan}',[App\Http\Controllers\Adminjabatan\JabatanController::class,'destroy'])->name('adminjabatan-jabatan.destroy');
+    Route::get('/admin-jabatan/undone-jabatan',[App\Http\Controllers\Adminjabatan\JabatanController::class,'undone'])->name('adminjabatan-jabatan.undone');
+    Route::post('/admin-jabatan/master-jabatan/create',[App\Http\Controllers\Adminjabatan\JabatanController::class,'store'])->name('adminjabatan-jabatan.store');
+    Route::put('/admin-jabatan/master-jabatan/{jabatan}/update',[App\Http\Controllers\Adminjabatan\JabatanController::class,'update'])->name('adminjabatan-jabatan.update');
+    Route::delete('/admin-jabatan/master-jabatan/{jabatan}/delete',[App\Http\Controllers\Adminjabatan\JabatanController::class,'destroy'])->name('adminjabatan-jabatan.destroy');
 
     // Master Jabatan Lama
     Route::get('/admin-jabatan/master-jabatanlama',[App\Http\Controllers\Adminjabatan\MasterjabatanlamaController::class,'index'])->name('adminjabatan-jabatanlama');

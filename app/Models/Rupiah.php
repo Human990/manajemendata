@@ -61,4 +61,11 @@ class Rupiah extends Model
 
         return $data;
     }
+    public static function pengaliPppk()
+    {
+        $tahun = session()->get('tahun_id_session');
+        $data = Rupiah::where('flag', 'pengali_tpp_pppk')->where('tahun_id', $tahun)->value('jumlah');
+
+        return $data;
+    }
 }

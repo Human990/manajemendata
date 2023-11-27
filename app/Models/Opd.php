@@ -18,9 +18,7 @@ class Opd extends Model
         $data = Opd::select('opds.*', 'master_tahun.tahun', 'sub_opds.nama_sub_opd')
                 ->leftjoin('master_tahun', 'master_tahun.id', '=', 'opds.tahun_id')
                 ->leftJoin('sub_opds', 'sub_opds.id', '=', 'opds.subopd_id')
-                ->where('opds.tahun_id', session()->get('tahun_id_session'))
-                ->orderBy('opds.nama_opd', 'ASC')
-                ->get();
+                ->where('opds.tahun_id', session()->get('tahun_id_session'));
         return $data;
     }
 

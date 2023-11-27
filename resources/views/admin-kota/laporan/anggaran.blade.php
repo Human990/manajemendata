@@ -81,13 +81,17 @@
                 <h5 class="card-title"><b>Data Pegawai</b></h5>
             </div>
             <div class="card-body">
-                <table class="table">
+                <table class="table table-bordered">
                     <tbody>
+                        <tr>
+                            <td colspan="2"> <b>JUMLAH PEGAWAI</b> </td>
+                            <td colspan="2" style="color:green;"> <b>ANGGARAN RABPD (Minus RSUD)</b> </td>
+                        </tr>
                         <tr>
                             <td style="color:black;">Jumlah pegawai:</td>
                             <td style="color:red;">{{ number_format($jumlah_pegawai, 0) }} orang</td>
-                            <td style="color:black;">Jumlah TPP Pegawai:</td>
-                            <td style="color:red;">{{ number_format($total_all_tpp, 0) }}</td>
+                            <td style="color:blue;">Total TPP Pegawai (minus RSUD):</td>
+                            <td style="color:blue;">{{ number_format($total_all_tpp, 0) }}</td>
                         </tr>
                         <tr>
                             <td style="color:black;">Jumlah Guru Sudah Sertifikasi:</td>
@@ -114,16 +118,21 @@
                             <td style="color:red;">{{ number_format($total_tpp_kepala_sekolah, 0) }}</td>
                         </tr>
                         <tr>
-                            <td style="color:black;">Jumlah rs:</td>
-                            <td style="color:red;">{{ number_format($rs, 0) }} orang</td>
-                        </tr>
-                        <tr>
                             <td style="color:black;">Jumlah pppk:</td>
                             <td style="color:red;">{{ number_format($pppk, 0) }} orang</td>
+                            <td style="color:black;">Jumlah TPP PPPK:</td>
+                            <td style="color:red;">{{ number_format($tpp_pppk, 0) }}</td>
                         </tr>
                         <tr>
                             <td style="color:black;">Jumlah Pensiun:</td>
                             <td style="color:red;"><a href="{{ route('adminkota-pensiun') }}">{{ number_format($jumlah_pensiun, 0) }} orang</a></td>
+                            <td colspan="2" style="color:green;"> <b>ANGGARAN TPP RSUD </b></td>
+                        </tr>
+                        <tr>
+                            <td style="color:black;">Jumlah rsud:</td>
+                            <td style="color:red;">{{ number_format($rs, 0) }} orang</td>
+                            <td style="color:black;">Jumlah TPP RSUD:</td>
+                            <td style="color:red;">{{ number_format($tpp_rsud, 0) }}</td>
                         </tr>
                     </tbody>
                 </table>

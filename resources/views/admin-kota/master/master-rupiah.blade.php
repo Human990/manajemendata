@@ -91,13 +91,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="flag">Flag</label>
-                                    <select name="flag" id="flag" class="form-control">
-                                        <option value="-">-</option>
-                                        <option value="beban_kerja">Beban Kerja</option>
-                                        <option value="prestasi_kerja">Prestasi Kerja</option>
-                                        <option value="pagu_apbd">Pagu APBD</option>
-                                        <option value="belanja_pegawai">Belanja Pegawai</option>
-                                    </select>
+                                    <input type="text" name="flag"
+                                        class="form-control @error('flag') is-invalid @enderror" id="flag"
+                                        placeholder="flag" value="{{ old('flag') }}">
                                     @error('flag')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror

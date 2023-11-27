@@ -105,48 +105,46 @@
                     <tr>
                         <td>
                             <label><input type="checkbox" class="toggle-column" data-column="4" checked> OPD</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="5" checked> SUB OPD</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="6" checked> Nama Jabatan</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="5" checked> Jabatan Murni </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="6"> Jabatan Subkoor/Koor</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="7" checked> Jenis Jabatan</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="8" checked> Status Jabatan</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="9" checked> Nilai Jabatan (JV)</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="7" checked> Jabatan Murni </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="8"> Jenis Jabatan Subkoor/Koor </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="9" checked> Jenis Jabatan Murni</label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="10" checked> Indeks</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="11" checked> Pangkat</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="12" checked> Golongan PPPK</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="10" checked> Jenis Jabatan Subkoor/Koor</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="11" checked> Status Jabatan </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="12" checked> Nilai Jabatan </label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="13" checked> Eselon</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="14" checked> Status Penerimaan TPP</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="15" checked> Sertifikasi Guru</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="13" checked> Kelas Jabatan </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="14" checked> Indeks </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="15" checked> Pangkat </label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="16" checked> PA/KPA</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="17" checked> Sertifikasi PBJ</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="18" checked> Tipe Jabatan</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="16" checked> Golongan PPPK </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="17" checked> Eselon </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="18" checked> Status Penerima TPP </label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="19" checked> Subkoor</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="20" checked> Nama Subkoor</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="21" checked> Status Subkoor</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="19" checked> Sertifiaksi Guru </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="20" checked> PA/KPA</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="21" checked> Sertifikasi PBJ </label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="22"> NIP Penilai</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="23"> Nama Penilai</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="24"> Nip Atasan Penilai</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="22" checked> Tipe Jabatan </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="23" checked> Subkoor / Koordinator </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="24" checked> Nama Subkoor / Koordinator </label></br>
                         </td>
                         <td>
-                            <label><input type="checkbox" class="toggle-column" data-column="25"> Nama Atasan Penilai</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="26" checked> Pensiun</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="27" checked> Jumlah Bulan Penerimaan BK</label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="25" checked> Status Subkoor / Koordinator </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="26" checked> Batas Usia Pensiun </label></br>
+                            <label><input type="checkbox" class="toggle-column" data-column="27" checked> Jumlah Bulan Penerimaan BK </label></br>
                         </td>
                         <td>
                             <label><input type="checkbox" class="toggle-column" data-column="28" checked> Jumlah Bulan Penerimaan PK</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="29" checked> Jumlah Bulan Penerimaan PK</label></br>
-                            <label><input type="checkbox" class="toggle-column" data-column="30" checked> Tpp Tambahan</label></br>
                         </td>
                     </tr>
                 </table>
@@ -163,37 +161,37 @@
                     <thead>
                         <tr>
                             <th width="1%">No</th>
-                            <th width="3%">NIP</th>
-                            <th width="3%">Nama Pegawai</th>
-                            <th width="3%">Status Pegawai</th>
-                            <th width="3%">OPD</th>
-                            <th width="3%">Sub OPD</th>
-                            <th width="15%">Nama Jabatan</th>
-                            <th width="3%">Jenis Jabatan</th>
-                            <th width="3%">Status Jabatan</th>
-                            <th width="3%">Nilai Jabatan (JV)</th>
-                            <th width="3%">Kelas Jabatan</th>
-                            <th width="3%">Indeks</th>
-                            <th width="3%">Pangkat</th>
-                            <th width="3%">Golongan PPPK</th>
-                            <th width="3%">Eselon</th>
-                            <th width="3%">Status Penerimaan TPP</th>
-                            <th width="3%">Sertifikasi Guru</th>
-                            <th width="3%">PA/KPA</th>
-                            <th width="3%">Sertifikasi PBJ</th>
-                            <th width="3%">Tipe Jabatan</th>
-                            <th width="3%">Subkoor</th>
-                            <th width="3%">Nama Subkoor</th>
-                            <th width="3%">Status Subkoor</th>
-                            <th width="3%">Nip Penilai / Atasan Langsung</th>
-                            <th width="3%">Nama Penilai / Atasan Langsung</th>
-                            <th width="3%">Nip Atasan Penilai</th>
-                            <th width="3%">Nama Atasan Penilai</th>
-                            <th width="3%">Pensiun</th>
-                            <th width="3%">Jumlah Bulan Penerimaan BK</th>
-                            <th width="3%">Jumlah Bulan Penerimaan PK</th>
-                            {{-- <th width="3%">Tpp Tambahan</th> --}}
-                            {{-- <th width="3%">Jumlah Tpp</th> --}}
+                                <th width="3%">NIP</th>
+                                <th width="3%">Nama Pegawai</th>
+                                <th width="3%">Status Pegawai</th>
+                                <th width="3%">OPD</th>
+                                {{-- <th width="3%">Sub OPD</th> --}}
+                                <th width="15%">Jabatan Murni</th>
+                                <th width="15%">Jabatan Subkoor/Koor</th>
+                                <th width="3%">Jenis Jabatan Murni</th>
+                                <th width="3%">Jenis Jabatan Subkoor/Koor</th>
+                                <th width="3%">Status Jabatan</th>
+                                <th width="3%">Nilai Jabatan (JV)</th>
+                                <th width="3%">Kelas Jabatan</th>
+                                <th width="3%">Indeks</th>
+                                <th width="3%">Pangkat</th>
+                                <th width="3%">Golongan PPPK</th>
+                                <th width="3%">Eselon</th>
+                                <th width="3%">Status Penerimaan TPP</th>
+                                <th width="3%">Sertifikasi Guru</th>
+                                <th width="3%">PA/KPA</th>
+                                <th width="3%">Sertifikasi PBJ</th>
+                                <th width="3%">Tipe Jabatan</th>
+                                <th width="3%">Subkoor / Koordinator</th>
+                                <th width="3%">Nama Subkoor / Koordinator</th>
+                                <th width="3%">Status Subkoor / Koordinator</th>
+                                {{-- <th width="3%">Nip Penilai / Atasan Langsung</th> --}}
+                                {{-- <th width="3%">Nama Penilai / Atasan Langsung</th> --}}
+                                {{-- <th width="3%">Nip Atasan Penilai</th> --}}
+                                {{-- <th width="3%">Nama Atasan Penilai</th> --}}
+                                <th width="3%">Batas Usia Pensiun</th>
+                                <th width="3%">Jumlah Bulan Penerimaan BK</th>
+                                <th width="3%">Jumlah Bulan Penerimaan PK</th>
                             @if(\App\Models\Lock::data() != '1')
                                 <th width="6%">Action</th>
                             @endif
@@ -209,62 +207,76 @@
                                 <td>{{ $data->nama_pegawai }}</td>
                                 <td>{{ $data->sts_pegawai }}</td>
                                 <td>{{ $data->nama_opd }}</td>
-                                <td>
+                                {{-- <td>
                                     @if ($data->subopd_id == null)
                                         {{ "-" }}
                                     @else
                                         {{ $data->nama_sub_opd }}
                                     @endif
+                                </td> --}}
+                                <td>{{ $data->nama_jabatan }}</td>
+                                <td>
+                                    @if($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor')
+                                        {{ $data->nama_subkoor }}
+                                    @else
+                                        -
+                                    @endif
                                 </td>
-                                    <td>
-                                        @if($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor')
-                                            {{$data->nama_jabatan}} / {{ $data->nama_subkoor }}
-                                        @else
-                                            {{ $data->nama_jabatan }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->jenis_non_penyetaraan }}
-                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
-                                            {{ $data->jenis_penyetaraan }}
-                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->jenis_koor_non_penyetaraan }}
-                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
-                                            {{ $data->jenis_koor_penyetaraan }}
-                                        @else
-                                            {{ $data->jenis_jabatan }}
-                                        @endif
-                                    </td>
-                                    <td>{{ $data->sts_jabatan }}</td>
-                                    <td>
-                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_subkor_non_penyetaraan }}
-                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_subkor_penyetaraan }}
-                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_koor_non_penyetaraan }}
-                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_koor_penyetaraan }}
-                                        @else
-                                            {{ $data->nilai_jabatan }}
-                                        @endif
-                                    </td>
-                                    <td>{{$data->kelas_jabatan}}</td>
-                                    <td>
-                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->indeks_subkor_non_penyetaraan }}
-                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
-                                            {{ $data->indeks_subkor_penyetaraan }}
-                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->indeks_koor_non_penyetaraan }}
-                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
-                                            {{ $data->indeks_koor_penyetaraan }}
-                                        @else
-                                            {{ $data->indeks }}
-                                        @endif
-                                    </td>
-                                <td>{{ $data->pangkat }}</td>
+                                <td>{{ $data->jenis_jabatan }}</td>
+                                <td>
+                                    @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                        {{ $data->jenis_non_penyetaraan }}
+                                    @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                        {{ $data->jenis_penyetaraan }}
+                                    @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                        {{ $data->jenis_koor_non_penyetaraan }}
+                                    @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                        {{ $data->jenis_koor_penyetaraan }}
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td>{{ $data->sts_jabatan }}</td>
+                                <td>
+                                    @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                        {{ $data->nilai_jabatan_subkor_non_penyetaraan }}
+                                    @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                        {{ $data->nilai_jabatan_subkor_penyetaraan }}
+                                    @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                        {{ $data->nilai_jabatan_koor_non_penyetaraan }}
+                                    @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                        {{ $data->nilai_jabatan_koor_penyetaraan }}
+                                    @else
+                                        {{ $data->nilai_jabatan }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                        {{ $data->kelas_jabatan_subkor_non_penyetaraan }}
+                                    @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                        {{ $data->kelas_jabatan_subkor_penyetaraan }}
+                                    @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                        {{ $data->kelas_jabatan_koor_non_penyetaraan }}
+                                    @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                        {{ $data->kelas_jabatan_koor_penyetaraan }}
+                                    @else
+                                        {{ $data->kelas_jabatan }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                        {{ $data->indeks_subkor_non_penyetaraan }}
+                                    @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                        {{ $data->indeks_subkor_penyetaraan }}
+                                    @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                        {{ $data->indeks_koor_non_penyetaraan }}
+                                    @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                        {{ $data->indeks_koor_penyetaraan }}
+                                    @else
+                                        {{ $data->indeks }}
+                                    @endif
+                                </td>
+                                <td>{{ $data->pangkat }}</td> 
                                 <td>{{ $data->golongan }}</td>
                                 <td>{{ $data->eselon }}</td>
                                 <td>{{ $data->tpp }}</td>
@@ -275,10 +287,10 @@
                                 <td>{{ $data->subkoor }}</td>
                                 <td>{{ $data->nama_subkoor }}</td>
                                 <td>{{ $data->sts_subkoor }}</td>
-                                <td>{{ $data->atasan_nip }}</td>
+                                {{-- <td>{{ $data->atasan_nip }}</td>
                                 <td>{{ $data->atasan_nama }}</td>
                                 <td>{{ $data->atasannya_atasan_nip }}</td>
-                                <td>{{ $data->atasannya_atasan_nama }}</td>
+                                <td>{{ $data->atasannya_atasan_nama }}</td> --}}
                                 <td>{{ $data->pensiun }}</td>
                                 <td align="center">{{ $data->bulan_bk }}</td>
                                 <td align="center">{{ $data->bulan_pk }}</td>
@@ -351,10 +363,9 @@
         });
     }
 
-    toggleColumn(22, false);
-    toggleColumn(23, false);
-    toggleColumn(24, false);
-    toggleColumn(25, false);
+    toggleColumn(6, false);
+        toggleColumn(8, false);
+
     //toggleColumn(25, false);
 
     const toggleColumnCheckboxes = document.querySelectorAll(".toggle-column");

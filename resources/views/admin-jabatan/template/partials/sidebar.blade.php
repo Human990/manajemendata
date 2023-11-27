@@ -31,6 +31,10 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Master Jabatan</span>
         </a>
+        <a @if(session()->get('tahun_id_session')) href="{{ route('adminjabatan-jabatan.undone') }}" @endif class="nav-link">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Master Jabatan Belum Selesai</span>
+        </a>
         <a @if(session()->get('tahun_id_session')) href="{{ route('adminjabatan-indeks') }}" @endif class="nav-link">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Master Indeks</span>
