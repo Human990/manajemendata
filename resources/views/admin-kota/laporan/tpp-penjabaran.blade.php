@@ -13,7 +13,7 @@
                 <div class="input-group">
                         <select name="opd_id" id="opd_id" class="form-control">
                             <option value="-">Pilih OPD Terlebih Dahulu . . .</option>
-                            @foreach(\App\Models\Opd::data() as $opd)
+                            @foreach(\App\Models\Opd::data()->get() as $opd)
                                 <option value="{{ $opd->id }}" @if($opd->id == $opd_id) selected @endif>{{ $opd->nama_opd }}</option>
                             @endforeach
                             <option value="0">SEMUA OPD</option>

@@ -75,7 +75,7 @@
                                 <th>Tahun</th>
                             
                                 <!-- Informasi Pegawai -->
-                                <th colspan="4" class="merged-cell">Informasi Pegawai</th>
+                                <th colspan="5" class="merged-cell">Informasi Pegawai</th>
                             
                                 <!-- Informasi Jabatan -->
                                 <th colspan="6" class="merged-cell">Informasi Jabatan</th>
@@ -103,10 +103,11 @@
                             <tr>
                                 <td width="1%">{{ $no }}</td>
                                 <td width="5%">{{ $catatan->tahun }}</td>
-                                <td colspan="4" class="merged-cell">
+                                <td colspan="5" class="merged-cell">
                                     {{ $catatan->nip }} <br> 
                                     {{ $catatan->nama_pegawai }} <br> 
                                     {{ $catatan->sts_pegawai }} <br> 
+                                    {{ $catatan->guru_nonguru }} <br>
                                     {{ $catatan->nama_opd }} <br> 
                                     {{-- @if ($catatan->subopd_id == null)
                                         {{ "-" }}
@@ -285,11 +286,16 @@
                                                             <option value="PNS" @if('PNS' == $catatan->sts_pegawai) selected @endif>PNS</option>
                                                             <option value="CPNS" @if('CPNS' == $catatan->sts_pegawai) selected @endif>CPNS</option>
                                                             <option value="PPPK" @if('PPPK' == $catatan->sts_pegawai) selected @endif>PPPK</option>
-                                                            <option value="GURU" @if('GURU' == $catatan->sts_pegawai) selected @endif>GURU</option>
-                                                            <option value="RS" @if('RS' == $catatan->sts_pegawai) selected @endif>RS</option>
                                                             <option value="PENGAWAS SEKOLAH" @if('PENGAWAS SEKOLAH' == $catatan->sts_pegawai) selected @endif>PENGAWAS SEKOLAH</option>
                                                             <option value="KEPALA SEKOLAH" @if('KEPALA SEKOLAH' == $catatan->sts_pegawai) selected @endif>KEPALA SEKOLAH</option>
                                                             <option value="PENSIUN" @if('PENSIUN' == $catatan->sts_pegawai) selected @endif>PENSIUN</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="guru_nonguru">Guru / Non Guru</label>
+                                                        <select type="text" name="guru_nonguru" class="form-control @error('guru_nonguru') is-invalid @enderror">
+                                                            <option value="guru" @if('guru' == $catatan->guru_nonguru) selected @endif>GURU</option>
+                                                            <option value="non_guru" @if('non_guru' == $catatan->guru_nonguru) selected @endif>NON GURU</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">

@@ -18,6 +18,7 @@ class Catatan_opd extends Model
                                     'pegawais.nip', 
                                     'pegawais.nama_pegawai', 
                                     'pegawais.sts_pegawai', 
+                                    'pegawais.guru_nonguru',
                                     'pegawais.sts_jabatan', 
                                     'pegawais.pangkat', 
                                     'pegawais.eselon', 

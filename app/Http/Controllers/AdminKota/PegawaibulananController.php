@@ -12,6 +12,7 @@ use App\Models\Catatan_opd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 
 class PegawaibulananController extends Controller
 {
@@ -225,6 +226,23 @@ class PegawaibulananController extends Controller
             ]))->with('i', 0);
     }
 
+    // public function tppperson(Request $request)
+    // {
+    //     if ($request->ajax()) {
+    //         $datas = Pegawai::data();
+    //         $i = 1;
+    //         return DataTables::of($datas)
+    //             ->addIndexColumn()
+    //             ->addColumn('DT_RowIndex', function () use (&$i) {
+    //                 return $i++;
+    //             })
+    //             ->make(true);
+    //     }
+    //     $datas = Pegawai::data();
+
+    //     return view('admin-kota.laporan.tpp-pegawai',compact('datas'));
+    // }
+
     public function totaltpp(Request $request)
     {
         $tahun_id = 0;
@@ -264,7 +282,7 @@ class PegawaibulananController extends Controller
         $jumlah_kepala_sekolah = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','KEPALA SEKOLAH')->count();
         $jumlah_pensiun = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('pegawais.sts_pegawai','PENSIUN')->count();
         $rs = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('opds.nama_opd','Rumah Sakit Umum Daerah')->count();
-        $pppk = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','pppk')->count();
+        $pppk = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','pppk')->where('guru_nonguru','non_guru')->count();
         $catatans = Catatan_opd::proses()->paginate(10);
         $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
         $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();

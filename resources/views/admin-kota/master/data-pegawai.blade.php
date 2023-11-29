@@ -118,6 +118,7 @@
                                 <th width="3%">NIP</th>
                                 <th width="3%">Nama Pegawai</th>
                                 <th width="3%">Status Pegawai</th>
+                                <th width="3%">Guru / Non Guru</th>
                                 <th width="3%">OPD</th>
                                 {{-- <th width="3%">Sub OPD</th> --}}
                                 <th width="15%">Jabatan Murni</th>
@@ -159,6 +160,7 @@
                                     <td>{{ $data->nip }}</td>
                                     <td>{{ $data->nama_pegawai }}</td>
                                     <td>{{ $data->sts_pegawai }}</td>
+                                    <td>{{ $data->guru_nonguru }}</td>
                                     <td>{{ $data->nama_opd }}</td>
                                     {{-- <td>
                                         @if ($data->subopd_id == null)
@@ -324,6 +326,13 @@
                                                             <option value="PENGAWAS SEKOLAH" @if('PENGAWAS SEKOLAH' == $data->sts_pegawai) selected @endif>PENGAWAS SEKOLAH</option>
                                                             <option value="KEPALA SEKOLAH" @if('KEPALA SEKOLAH' == $data->sts_pegawai) selected @endif>KEPALA SEKOLAH</option>
                                                             <option value="PENSIUN" @if('PENSIUN' == $data->sts_pegawai) selected @endif>PENSIUN</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="guru_nonguru">Guru / Non Guru</label>
+                                                        <select type="text" name="guru_nonguru" class="form-control @error('guru_nonguru') is-invalid @enderror">
+                                                            <option value="guru" @if('guru' == $data->guru_nonguru) selected @endif>GURU</option>
+                                                            <option value="non_guru" @if('non_guru' == $data->guru_nonguru) selected @endif>NON GURU</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -618,6 +627,13 @@
                                                             <option value="PENGAWAS SEKOLAH" >PENGAWAS SEKOLAH</option>
                                                             <option value="KEPALA SEKOLAH" >KEPALA SEKOLAH</option>
                                                             <option value="PENSIUN" >PENSIUN</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="guru_nonguru">Guru / Non Guru</label>
+                                                        <select type="text" name="guru_nonguru" class="form-control @error('guru_nonguru') is-invalid @enderror">
+                                                            <option value="guru">GURU</option>
+                                                            <option value="non_guru">NON GURU</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
