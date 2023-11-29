@@ -1,36 +1,8 @@
-@extends('admin-kota.template.default')
-@section('title', 'TPP Pegawai Bulanan')
-@section('pegawai-bulanan', 'active')
-@section('content')
-    <div class="container-fluid">
-        <div class="card card-headline">
-            <div class="card-header">
-                <h3 class="card-title">Penjabaran TPP Tahun {{ session()->get('tahun_session') }}</h3>
-            </div>
+                <?php
+                    header ( "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" );
+                    header ( "Content-Disposition: attachment; filename=Penjabaran TPP $datetime.xls" );
+                ?>
 
-            <div class="card-body">
-                <form action="{{ route('adminkota-penjabaran') }}" method="get">
-                <div class="input-group">
-                        <select name="opd_id" id="opd_id" class="form-control">
-                            <option value="-">Pilih OPD Terlebih Dahulu . . .</option>
-                            @foreach(\App\Models\Opd::data() as $opd)
-                                <option value="{{ $opd->id }}" @if($opd->id == $opd_id) selected @endif>{{ $opd->nama_opd }}</option>
-                            @endforeach
-                            <option value="0">SEMUA OPD</option>
-                        </select>
-                        <div class="input-group-append">
-                            <button class="btn btn-info" type="submit">
-                                <i class="fas fa-filter fa-sm"></i> Tampilkan Data
-                            </button>
-                        </div>
-                        <div class="input-group-append">
-                            <a href="{{ route('adminkota-penjabaran-excel', $opd_id) }}" target="_blank" class="btn btn-success" type="button">
-                                <i class="fas fa-file-excel fa-sm"></i> Export Excel
-                            </a>
-                        </div>
-                    </div></br>
-                </form>
-                <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead>
                             <tr>
@@ -64,22 +36,22 @@
                                 <th>RP/BLN Kondisi Kerja</th>
                                 
                                 <!-- Tempat Bertugas -->
-                                <!-- <th>Jenis Evidence Tempat Bertugas</th>
+                                <th>Jenis Evidence Tempat Bertugas</th>
                                 <th>% Tempat Bertugas</th>
                                 <th>RP Tempat Bertugas</th>
-                                <th>RP/BLN Tempat Bertugas</th> -->
+                                <th>RP/BLN Tempat Bertugas</th>
                                 
                                 <!-- Kelangkaan Profesi -->
-                                <!-- <th>Jenis Evidence Kelangkaan Profesi</th>
+                                <th>Jenis Evidence Kelangkaan Profesi</th>
                                 <th>% Kelangkaan Profesi</th>
                                 <th>RP Kelangkaan Profesi</th>
-                                <th>RP/BLN Kelangkaan Profesi</th> -->
+                                <th>RP/BLN Kelangkaan Profesi</th>
 
-                                <!-- <th>RP POL Belanja Insentif ASN atas Pemungutan Pajak Daerah</th>
+                                <th>RP POL Belanja Insentif ASN atas Pemungutan Pajak Daerah</th>
                                 <th>RP POL Belanja bagi ASN atas Insentif Pemungutan Restribusi Daerah</th>
                                 <th>RP POL Belanja Jasa Pelayanan Kesehatan bagi ASN</th>
                                 <th>RP POL Belanja Honorarium</th>
-                                <th>RP POL Belanja Jasa Pengelolaan BMD</th> -->
+                                <th>RP POL Belanja Jasa Pengelolaan BMD</th>
 
                                 <th>TOTAL/BLN/ALL JAB</th>
                                 <th>TOTAL/THN/ALL JAB</th>
@@ -161,22 +133,22 @@
                                     <td></td>
 
                                     <!-- Tempat Bertugas -->
-                                    <!-- <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td> -->
-
-                                    <!-- Kelangkaan Profesi -->
-                                    <!-- <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
 
+                                    <!-- Kelangkaan Profesi -->
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td></td> -->
+
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     
                                     <td align="right">{{ number_format($total_per_bulan, 0, ',', '.') }}</td>
                                     <td align="right">{{ number_format($total_per_tahun, 0, ',', '.') }}</td>
@@ -212,30 +184,25 @@
                                     <td></td>
 
                                     <!-- Tempat Bertugas -->
-                                    <!-- <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td> -->
-
-                                    <!-- Kelangkaan Profesi -->
-                                    <!-- <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
 
+                                    <!-- Kelangkaan Profesi -->
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td></td> -->
+
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     
                                     <td align="right"></td>
                                     <td align="right">{{ number_format($tot_all_tunjangan, 2, ',', '.') }}</td>
                                 </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
