@@ -11,20 +11,21 @@ class JabatanController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            $datas = Jabatan::daftar();
-            $i = 1;
-            return DataTables::of($datas)
-                ->addIndexColumn()
-                ->addColumn('DT_RowIndex', function () use (&$i) {
-                    return $i++;
-                })
-                ->addColumn('action', 'admin-kota.master.action.jabatan-action')
-                ->make(true);
-        }
-        $datas = Jabatan::daftar();
+        $tahunid = session()->get('tahun_id_session');
+        $search = $request->input('search');
+        $pagination = $request->input('recordsPerPage', 10);
+        $query = Jabatan::daftar();
 
-        return view('admin-kota.master.master-jabatan',compact('datas'));
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('jabatans.nama_jabatan', 'LIKE', '%'.$search.'%');
+            });
+        }
+
+        // Memanggil metode data() pada model Pegawai
+        $datas = $query->paginate($pagination);
+
+        return view('admin-kota.master.master-jabatan',compact('datas', 'search','pagination'));
     }
 
     public function store(Request $request)

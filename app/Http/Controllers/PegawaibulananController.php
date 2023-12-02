@@ -419,7 +419,7 @@ class PegawaibulananController extends Controller
         $jumlah_pegawai = Pegawai::where('pegawais.tahun_id', $tahun_id)->count();
         $jumlahguru = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','guru')->count();
         $rs = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','rs')->count();
-        $pppk = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','pppk')->count();
+        $pppk = Pegawai::where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','PPPK')->count();
         $catatans = Catatan_opd::proses()->paginate(10);
         $total_tpp = 0;
         $pegawais = Pegawai::select('pegawais.id',

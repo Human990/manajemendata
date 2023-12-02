@@ -200,7 +200,13 @@
                     { data: 'tahun', name: 'master_tahun.tahun'}, // Update the column name here
                     { data: 'kode_opd', name: 'kode_opd'}, // Update the column name here
                     { data: 'nama_opd', name: 'nama_opd'}, // Update the column name here
-                    {data: 'status', name: 'status'},
+                    { 
+                        data: 'lock', 
+                        name: 'lock',
+                        render: function(data, type, full, meta) {
+                            return (data == 1) ? 'Locked' : 'Open';
+                        }
+                    },
                     { data: 'action', name: 'action', orderable: false, searchable: false },
                 ]
             });

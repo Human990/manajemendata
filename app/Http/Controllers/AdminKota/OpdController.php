@@ -37,9 +37,9 @@ class OpdController extends Controller
                 ->addColumn('DT_RowIndex', function () use (&$i) {
                     return $i++;
                 })
-                ->addColumn('status', function ($model) {
-                    return (\App\Models\Lock::status($model->id) == '1') ? 'Locked' : 'Open';
-                })                
+                // ->addColumn('status', function ($model) {
+                //     return (\App\Models\Lock::status($model->id) == '1') ? 'Locked' : 'Open';
+                // })                
                 ->addColumn('action', 'admin-kota.action.opd-action')
                 ->make(true);
         }

@@ -37,7 +37,7 @@
                                     <div class="form-group">
                                         <label for="filteropd">OPD</label>
                                         <select type="text" name="filteropd" class="form-control @error('filteropd') is-invalid @enderror">
-                                            @foreach(\App\Models\Opd::data() as $opd)
+                                            @foreach(\App\Models\Opd::data()->get() as $opd)
                                                 <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
                                             @endforeach
                                         </select>
@@ -63,7 +63,7 @@
                             </td>
                             <td>
                                 <label><input type="checkbox" class="toggle-column" data-column="7" checked> Jabatan Murni </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="8"> Jenis Jabatan Subkoor/Koor </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="8" checked> Jenis Jabatan Perhitungan Tpp </label></br>
                                 <label><input type="checkbox" class="toggle-column" data-column="9" checked> Jenis Jabatan Murni</label></br>
                             </td>
                             <td>
@@ -124,10 +124,10 @@
                                 <th width="15%">Jabatan Murni</th>
                                 <th width="15%">Jabatan Subkoor/Koor</th>
                                 <th width="3%">Jenis Jabatan Murni</th>
-                                <th width="3%">Jenis Jabatan Subkoor/Koor</th>
+                                <th width="3%">Jenis Jabatan Perhitungan TPP</th>
                                 <th width="3%">Status Jabatan</th>
-                                <th width="3%">Nilai Jabatan (JV)</th>
                                 <th width="3%">Kelas Jabatan</th>
+                                <th width="3%">Nilai Jabatan (JV)</th>
                                 <th width="3%">Indeks</th>
                                 <th width="3%">Pangkat</th>
                                 <th width="3%">Golongan PPPK</th>
@@ -173,38 +173,23 @@
                                     <td>
                                         @if($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor')
                                             {{ $data->nama_subkoor }}
-                                        @else
-                                            {{ $data->nama_jabatan }}
                                         @endif
                                     </td>
                                     <td>{{ $data->jenis_jabatan }}</td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->jenis_subkor_non_penyetaraan }}
+                                            {{ $data->jenis_non_penyetaraan }}
                                         @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
-                                            {{ $data->jenis_subkor_penyetaraan }}
+                                            {{ $data->jenis_penyetaraan }}
                                         @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
                                             {{ $data->jenis_koor_non_penyetaraan }}
                                         @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
                                             {{ $data->jenis_koor_penyetaraan }}
                                         @else
-                                            {{ $data->jenis_jabatan }}
+                                            -
                                         @endif
                                     </td>
                                     <td>{{ $data->sts_jabatan }}</td>
-                                    <td>
-                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_subkor_non_penyetaraan }}
-                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_subkor_penyetaraan }}
-                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_koor_non_penyetaraan }}
-                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_koor_penyetaraan }}
-                                        @else
-                                            {{ $data->nilai_jabatan }}
-                                        @endif
-                                    </td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                             {{ $data->kelas_jabatan_subkor_non_penyetaraan }}
@@ -216,6 +201,19 @@
                                             {{ $data->kelas_jabatan_koor_penyetaraan }}
                                         @else
                                             {{ $data->kelas_jabatan }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_subkor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_subkor_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_koor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_koor_penyetaraan }}
+                                        @else
+                                            {{ $data->nilai_jabatan }}
                                         @endif
                                     </td>
                                     <td>
@@ -826,7 +824,7 @@
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="bulan_pk">Jumlah Bulan Penerimaan BK</label>
+                                                        <label for="bulan_pk">Jumlah Bulan Penerimaan PK</label>
                                                         <input type="text" name="bulan_pk"
                                                             class="form-control @error('bulan_pk') is-invalid @enderror" id="bulan_pk"
                                                             placeholder="Jumlah Bulan Penerimaan . . ." value="">
@@ -886,7 +884,6 @@
         }
 
         toggleColumn(6, false);
-        toggleColumn(8, false);
 
         const toggleColumnCheckboxes = document.querySelectorAll(".toggle-column");
 

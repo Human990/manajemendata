@@ -78,7 +78,7 @@
                                 <th colspan="5" class="merged-cell">Informasi Pegawai</th>
                             
                                 <!-- Informasi Jabatan -->
-                                <th colspan="6" class="merged-cell">Informasi Jabatan</th>
+                                <th colspan="8" class="merged-cell">Informasi Jabatan</th>
                             
                                 <!-- Informasi Tambahan -->
                                 <th colspan="3" class="merged-cell">Informasi Kepangkatan</th>
@@ -146,6 +146,18 @@
                                         {{ $catatan->nilai_jabatan_koor_penyetaraan }}
                                     @else
                                         {{ $catatan->nilai_jabatan }}
+                                    @endif <br>
+
+                                    @if($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                        {{ $catatan->kelas_jabatan_subkor_non_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                        {{ $catatan->kelas_jabatan_subkor_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                        {{ $catatan->kelas_jabatan_koor_non_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                        {{ $catatan->kelas_jabatan_koor_penyetaraan }}
+                                    @else
+                                        {{ $catatan->kelas_jabatan }}
                                     @endif <br>
 
                                     @if($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')

@@ -84,14 +84,26 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td colspan="2"> <b>JUMLAH PEGAWAI</b> </td>
+                            <td colspan="2" style="color:green;"> <b>JUMLAH PEGAWAI</b> </td>
                             <td colspan="2" style="color:green;"> <b>ANGGARAN RABPD (Minus RSUD)</b> </td>
                         </tr>
                         <tr>
-                            <td style="color:black;">Jumlah pegawai:</td>
+                            <td style="color:black;"><b>Jumlah pegawai:</b></td>
                             <td style="color:red;">{{ number_format($jumlah_pegawai, 0) }} orang</td>
-                            <td style="color:blue;">Total TPP Pegawai (minus RSUD):</td>
+                            <td style="color:black;">Total TPP Pegawai (minus RSUD):</td>
                             <td style="color:blue;">{{ number_format($total_all_tpp, 0) }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color:purple;">Jumlah pegawai Guru:</td>
+                            <td style="color:orange;">{{ number_format($jumlah_pegawai_guru, 0) }} orang</td>
+                            <td style="color:purple;">Total TPP Pegawai Guru:</td>
+                            <td style="color:orange;">{{ number_format($total_tpp_guru, 0) }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color:purple;">Jumlah pegawai Non Guru:</td>
+                            <td style="color:orange;">{{ number_format($jumlah_pegawai_non_guru, 0) }} orang</td>
+                            <td style="color:purple;">Total TPP Pegawai Non Guru:</td>
+                            <td style="color:orange;">{{ number_format($total_tpp_non_guru, 0) }}</td>
                         </tr>
                         <tr>
                             <td style="color:black;">Jumlah Guru Sudah Sertifikasi:</td>
@@ -118,9 +130,21 @@
                             <td style="color:red;">{{ number_format($total_tpp_kepala_sekolah, 0) }}</td>
                         </tr>
                         <tr>
-                            <td style="color:black;">Jumlah pppk:</td>
-                            <td style="color:red;">{{ number_format($pppk, 0) }} orang</td>
-                            <td style="color:black;">Jumlah TPP PPPK:</td>
+                            <td style="color:black;">Jumlah pppk Guru Sudah Sertifikasi:</td>
+                            <td style="color:red;">{{ number_format($pppk_guru_sertifikasi, 0) }} orang</td>
+                            <td style="color:black;">Jumlah TPP PPPK GURU Sudah Sertifikasi:</td>
+                            <td style="color:red;">{{ number_format($tpp_pppk_sertifikasi, 0) }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color:black;">Jumlah pppk Guru Belum Sertifikasi:</td>
+                            <td style="color:red;">{{ number_format($pppk_guru_belum_sertifikasi, 0) }} orang</td>
+                            <td style="color:black;">Jumlah TPP PPPK GURU Belum Sertifikasi:</td>
+                            <td style="color:red;">{{ number_format($tpp_pppk_belum_sertifikasi, 0) }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color:black;">Jumlah pppk Non Guru:</td>
+                            <td style="color:red;">{{ number_format($pppk_nonguru, 0) }} orang</td>
+                            <td style="color:black;">Jumlah TPP PPPK NON GURU:</td>
                             <td style="color:red;">{{ number_format($tpp_pppk, 0) }}</td>
                         </tr>
                         <tr>
@@ -129,10 +153,16 @@
                             <td colspan="2" style="color:green;"> <b>ANGGARAN TPP RSUD </b></td>
                         </tr>
                         <tr>
-                            <td style="color:black;">Jumlah rsud:</td>
+                            <td style="color:black;">Jumlah RSUD:</td>
                             <td style="color:red;">{{ number_format($rs, 0) }} orang</td>
                             <td style="color:black;">Jumlah TPP RSUD:</td>
                             <td style="color:red;">{{ number_format($tpp_rsud, 0) }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color:black;">Jumlah PPPK RSUD:</td>
+                            <td style="color:red;">{{ number_format($pppk_rs, 0) }} orang</td>
+                            <td style="color:black;">Jumlah TPP PPPK RSUD:</td>
+                            <td style="color:red;">{{ number_format($tpp_pppk_rsud, 0) }}</td>
                         </tr>
                     </tbody>
                 </table>
