@@ -406,6 +406,17 @@ class PegawaibulananController extends Controller
         $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
         $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
         $pengali_pppk = \App\Models\Rupiah::pengaliPppk();
+        $tpp_pol = \App\Models\Rupiah::tppPol();
+        $tpp_kelangkaan_profesi = \App\Models\Rupiah::tppKelangkaanProfesi();
+        $tpp_bk_2023 = 61025596766;
+        $tpp_pk_2023 = 86727680169;
+        $tpp_pol_2023 = 58873079885;
+        $tpp_kelangkaan_profesi_2023 = 300000000;
+        $tpp_pppk_bk = 0;
+        $tpp_pppk_pk = 0;
+        $tpp_bapenda_bk = 0;
+        $tpp_pns_bk = 0;
+        $tpp_pns_pk = 0;
         $tpp_pppk = 0;
         $total_tpp = 0;
         $total_tpp_guru =0;
@@ -420,6 +431,9 @@ class PegawaibulananController extends Controller
         $total_tpp_pengawas_sekolah = 0;
         $total_tpp_kepala_sekolah = 0;    
         $total_all_tpp = 0;
+        $total_tpp_bk = 0;
+        $total_tpp_pk = 0;
+
         $pegawais = Pegawai::data()
             ->where('pegawais.tahun_id', $tahun_id)
             ->whereIn('sts_pegawai', ['PNS', 'CPNS', 'PENSIUN'])
@@ -603,10 +617,12 @@ class PegawaibulananController extends Controller
             $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);
             $bulan_bk = (float)($data->bulan_bk ?? 0);
             $bulan_pk = (float)($data->bulan_pk ?? 0);
-    
-        
+            $nominal_bk = ($nilai_jabatan * $indeks * $bk) * $bulan_bk;
+            $nominal_pk = ($nilai_jabatan * $indeks * $pk) * $bulan_pk;
+            $tpp_pppk_bk += $nominal_bk;
+            $tpp_pppk_pk += $nominal_pk;
             // Tambahkan nilai total_tpp pegawai ke total_tpp
-            $tpp_pegawai = ((($nilai_jabatan * $indeks * $bk) * $bulan_bk) + (($nilai_jabatan * $indeks * $pk) * $bulan_pk)) * $pengali_pppk;
+            $tpp_pegawai = ($nominal_bk + $nominal_pk) * $pengali_pppk;
             if ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan' && $data->sts_koor == 'Koordinator Bukan Hasil Penyetaraan') {
                 $tpp_pegawai *= 0.85; // 85% adjustment
             } else {
@@ -644,12 +660,8 @@ class PegawaibulananController extends Controller
             // Rest of your calculation remains the same
             $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0);
             $bulan_bk = (float)($data->bulan_bk ?? 0);
-            // $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
-            // $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
-            // $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
-            // $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
-    
-        
+            $nominal_bk = ($nilai_jabatan * $indeks * $bk) * $bulan_bk;
+            $tpp_bapenda_bk += $nominal_bk;
             // Tambahkan nilai total_tpp data ke total_tpp
             $tpp_data = (($nilai_jabatan * $indeks * $bk) * $bulan_bk) + 0 ;
             if ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan' && $data->sts_koor == 'Koordinator Bukan Hasil Penyetaraan') {
@@ -718,11 +730,10 @@ class PegawaibulananController extends Controller
             $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);
             $bulan_bk = (float)($pegawai->bulan_bk ?? 0);
             $bulan_pk = (float)($pegawai->bulan_pk ?? 0);
-            // $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
-            // $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
-            // $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
-            // $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
-    
+            $nominal_bk = ($nilai_jabatan * $indeks * $bk) * $bulan_bk;
+            $nominal_pk = ($nilai_jabatan * $indeks * $pk) * $bulan_pk;
+            $tpp_pns_bk += $nominal_bk;
+            $tpp_pns_pk += $nominal_pk;
         
             // Tambahkan nilai total_tpp pegawai ke total_tpp
             $tpp_pegawai = (($nilai_jabatan * $indeks * $bk) * $bulan_bk) + (($nilai_jabatan * $indeks * $pk) * $bulan_pk);
@@ -739,12 +750,22 @@ class PegawaibulananController extends Controller
         $total_tpp_guru = $tpp_pppk_sertifikasi + $tpp_pppk_belum_sertifikasi + $total_tpp_guru_belum_sertifikasi + $total_tpp_guru_sertifikasi;
         $total_tpp_non_guru = $tpp_pppk + $tpp_bapenda + $total_tpp + $total_tpp_kepala_sekolah + $total_tpp_pengawas_sekolah;
         $total_all_tpp = $tpp_pppk_sertifikasi + $tpp_pppk_belum_sertifikasi + $tpp_pppk + $tpp_bapenda + $total_tpp + $total_tpp_kepala_sekolah + $total_tpp_pengawas_sekolah + $total_tpp_guru_belum_sertifikasi + $total_tpp_guru_sertifikasi;
+        $overall_tpp = $total_all_tpp + $tpp_pol + $tpp_kelangkaan_profesi;
+        $total_tpp_bk = $tpp_pppk_bk + $tpp_bapenda_bk + $total_tpp_guru_sertifikasi + $total_tpp_guru_belum_sertifikasi + $tpp_pppk_sertifikasi + $tpp_pppk_belum_sertifikasi + $total_tpp_pengawas_sekolah + $total_tpp_kepala_sekolah + $tpp_pns_bk;
+        $total_tpp_pk = $tpp_pppk_pk + $tpp_pns_pk;
         return view('admin-kota.laporan.anggaran', compact([
             'total_tpp_guru_sertifikasi',
             'total_tpp_guru_belum_sertifikasi',
             'total_tpp_pengawas_sekolah',
             'total_tpp_kepala_sekolah',
+            'total_tpp_bk',
+            'total_tpp_pk',
             'tpp_pppk',
+            'tpp_pppk_bk',
+            'tpp_pppk_pk',
+            'tpp_pns_bk',
+            'tpp_pns_pk',
+            'tpp_bapenda_bk',
             'tpp_pppk_rsud',
             'tpp_pppk_sertifikasi',
             'tpp_pppk_belum_sertifikasi',
@@ -771,6 +792,13 @@ class PegawaibulananController extends Controller
             'pegawais',
             'total_all_tpp',
             'tpp_rsud',
+            'tpp_pol',
+            'tpp_kelangkaan_profesi',
+            'overall_tpp',
+            'tpp_bk_2023',
+            'tpp_pk_2023',
+            'tpp_kelangkaan_profesi_2023',
+            'tpp_pol_2023',
             ]))
         ->with('i', ($request->input('page', 1) - 1));
     }

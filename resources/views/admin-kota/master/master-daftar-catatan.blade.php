@@ -115,7 +115,7 @@
                                         {{ $catatan->nama_sub_opd }}
                                     @endif --}}
                                 </td>
-                                <td colspan ="6">
+                                <td colspan ="8">
                                     @if($catatan->subkoor == 'Subkoor' || $catatan->subkoor == 'Koor')
                                         {{ $catatan->nama_jabatan }} / {{ $catatan->nama_subkoor }}
                                     @else
@@ -433,7 +433,7 @@
                                                         <select type="text" name="pbj" class="form-control @error('pbj') is-invalid @enderror">
                                                             <option value="" @if(null === $catatan->pbj) selected @endif>--Tidak dipilih--</option>
                                                             <option value="Sudah Memiliki Sertifikat" @if('Sudah Memiliki Sertifikat' === $catatan->pbj) selected @endif>Sudah Memiliki Sertifikat</option>
-                                                            <option value="Belum Sertifikasi" @if('Belum Memiliki Sertifikat' === $catatan->pbj) selected @endif>Belum Memiliki Sertifikat</option>
+                                                            <option value="Belum Memiliki Sertifikat" @if('Belum Memiliki Sertifikat' === $catatan->pbj) selected @endif>Belum Memiliki Sertifikat</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">

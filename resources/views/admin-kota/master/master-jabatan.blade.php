@@ -10,8 +10,8 @@
         <div class="card-body">
             <form action="{{ route('adminkota-jabatan') }}" method="GET">
                 <div>
-                    <label for="search">Cari:</label>
-                    <input class="form-control" type="text" name="search" value="{{ $search ?? '' }}">
+                    <label for="search">tanggal:</label>
+                    <input class="form-control" type="date" name="search" value="{{ $search ?? '' }}">
                 </div>
             
                 <!-- Bagian Records Per Page -->

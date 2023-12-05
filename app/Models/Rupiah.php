@@ -68,4 +68,18 @@ class Rupiah extends Model
 
         return $data;
     }
+
+    public static function tppPol()
+    {
+        $tahun = session()->get('tahun_id_session');
+        $data = Rupiah::where('flag', 'tpp_pol')->where('tahun_id', $tahun)->value('jumlah');
+        return $data;
+    }
+
+    public static function tppKelangkaanProfesi()
+    {
+        $tahun = session()->get('tahun_id_session');
+        $data = Rupiah::where('flag', 'tpp_kelangkaan_profesi')->where('tahun_id', $tahun)->value('jumlah');
+        return $data;
+    }
 }

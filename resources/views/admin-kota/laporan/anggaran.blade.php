@@ -35,14 +35,19 @@
                             style="caption-side: top; text-align: center; font-weight: bold; font-size: 18px; margin-bottom: 10px; margin-top: 20px;">
                             Tabel Perbandingan</caption>
                         <thead style="color: black; background-color: #C5F04A;">
-                            <thead style="color: black; background-color: #C5F04A;">
-                                <tr>
-                                    <th>APBD</th>
-                                    <th>BELANJA PEGAWAI</th>
-                                    <th>RAPBD</th>
-                                    <th>PERHITUNGAN APLIKASI TPP 2024</th>
-                                </tr>
-                            </thead>
+                            <tr>
+                                <th rowspan="2" style="text-align: center; vertical-align: middle;"><b>APBD</b></th>
+                                <th rowspan="2" style="text-align: center; vertical-align: middle;"><b>BELANJA PEGAWAI</b></th>
+                                <th rowspan="2" style="text-align: center; vertical-align: middle;"><b>RAPBD</b></th>
+                                <th colspan="4" style="text-align: center; vertical-align: middle;"><b>PERHITUNGAN APLIKASI TPP 2024</b></th>
+                            </tr>
+                            <tr>
+                                <th style="text-align: center; vertical-align: middle;">TPP BK + PK</th>
+                                <th style="text-align: center; vertical-align: middle;">TPP POL</th>
+                                <th style="text-align: center; vertical-align: middle;">TPP KELANGKAAN PROFESI</th>
+                                <th style="text-align: center; vertical-align: middle;">TOTAL PERHITUNGAN TPP</th>
+                            </tr>
+                        </thead>
                         <tbody id="dynamic-row">
                             
                         </tbody>
@@ -60,8 +65,60 @@
                                 <td>
                                     {{ number_format($total_all_tpp, 0) }}
                                 </td>
+                                <td>
+                                    {{ number_format($tpp_pol, 0) }}
+                                </td>
+                                <td>
+                                    {{ number_format($tpp_kelangkaan_profesi, 0) }}
+                                </td>
+                                <td>
+                                    {{ number_format($overall_tpp, 0) }}
+                                </td>
                             </tr>
                         </tfoot>
+                    </table>
+
+                    <table class="table table-hover table-bordered">
+                        <thead style="color: black; background-color: #00FFFF;">
+                            <tr>
+                                <td><b>URAIAN</b></td>
+                                <td><b>TPP TAHUN 2023</b></td>
+                                <td><b>TPP TAHUN 2024</b></td>
+                                <td><b>SELISIH</b></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>Tambahan Penghasilan berdasarkan Beban Kerja ASN</b></td>
+                                <td>{{ number_format ($tpp_bk_2023,0)}}</td>
+                                <td>{{ number_format ($total_tpp_bk,0)}}</td>
+                                <td>{{ number_format($tpp_bk_2023 - $total_tpp_bk,0) }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Tambahan Penghasilan berdasarkan Kelangkaan Profesi ASN</b></td>
+                                <td>{{ number_format ($tpp_kelangkaan_profesi_2023,0)}}</td>
+                                <td>{{ number_format ($tpp_kelangkaan_profesi,0)}}</td>
+                                <td>{{ number_format($tpp_kelangkaan_profesi_2023 - $tpp_kelangkaan_profesi,0) }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Tambahan Penghasilan berdasarkan Prestasi Kerja ASN</b></td>
+                                <td>{{ number_format ($tpp_pk_2023,0)}}</td>
+                                <td>{{ number_format ($total_tpp_pk,0)}}</td>
+                                <td>{{ number_format($tpp_pk_2023 - $total_tpp_pk,0) }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Tambahan Penghasilan berdasarkan Pertimbangan Objektif Lainnya ASN</b></td>
+                                <td>{{ number_format ($tpp_pol_2023,0)}}</td>
+                                <td>{{ number_format ($tpp_pol,0)}}</td>
+                                <td>{{ number_format($tpp_pol_2023 - $tpp_pol,0) }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>TOTAL</b></td>
+                                <td>{{ number_format ($tpp_bk_2023 + $tpp_kelangkaan_profesi_2023 + $tpp_pk_2023 + $tpp_pol_2023,0)}}</td>
+                                <td>{{ number_format ($total_tpp_bk + $tpp_kelangkaan_profesi + $total_tpp_pk + $tpp_pol,0)}}</td>
+                                <td>{{ number_format(($tpp_bk_2023 + $tpp_kelangkaan_profesi_2023 + $tpp_pk_2023 + $tpp_pol_2023) - ($total_tpp_bk + $tpp_kelangkaan_profesi + $total_tpp_pk + $tpp_pol)) }}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div class="text-center mt-5">
@@ -70,7 +127,7 @@
                         {{ number_format(($rupiah4->jumlah / $rupiah3->jumlah) * 100, 2) }}%</h5>
                     <h5 style="color:black;">Presentase TPP dari Presentase Belanja Pegawai =
                         {{-- rumus presentase disini --}}
-                        {{ number_format(($total_all_tpp / $rupiah4->jumlah) * ($rupiah4->jumlah / $rupiah3->jumlah) * 100, 2) }}%
+                        {{ number_format(($overall_tpp / $rupiah4->jumlah) * ($rupiah4->jumlah / $rupiah3->jumlah) * 100, 2) }}%
                     </h5>
                 </div>
             </div>
@@ -166,12 +223,12 @@
                         </tr>
                     </tbody>
                 </table>
-        
                 <div class="text-center">
                     {{-- <h6>jumlah data :{{$jumlah_pegbul}}</h6> --}}
                 </div>
             </div>
         </div>
+        
 
         @endif
     </div>
@@ -191,7 +248,7 @@
                                 {{ $rupiah3->jumlah }},
                                 {{ $rupiah4->jumlah }},
                                 {{ $rupiah5->jumlah }},
-                                {{ $total_all_tpp }}, //nanti ambil dari $total_tpp
+                                {{ $overall_tpp }}, //nanti ambil dari $total_tpp
                             ],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.5)',

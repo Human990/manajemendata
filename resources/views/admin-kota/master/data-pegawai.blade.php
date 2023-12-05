@@ -57,48 +57,48 @@
                     <table class="table table-borderless">
                         <tr>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="4" checked> OPD</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="5" checked> Jabatan Murni </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="6"> Jabatan Subkoor/Koor</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="5" checked> OPD</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="6" checked> Jabatan Murni </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="7"> Jabatan Subkoor/Koor</label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="7" checked> Jabatan Murni </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="8" checked> Jenis Jabatan Perhitungan Tpp </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="9" checked> Jenis Jabatan Murni</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="8" checked> Jabatan Murni </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="9" checked> Jenis Jabatan Perhitungan Tpp </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="10" checked> Jenis Jabatan Murni</label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="10" checked> Jenis Jabatan Subkoor/Koor</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="11" checked> Status Jabatan </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="12" checked> Nilai Jabatan </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="11" checked> Jenis Jabatan Subkoor/Koor</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="12" checked> Status Jabatan </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="13" checked> Nilai Jabatan </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="13" checked> Kelas Jabatan </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="14" checked> Indeks </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="15" checked> Pangkat </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="14" checked> Kelas Jabatan </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="15" checked> Indeks </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="16" checked> Pangkat </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="16" checked> Golongan PPPK </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="17" checked> Eselon </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="18" checked> Status Penerima TPP </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="17" checked> Golongan PPPK </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="18" checked> Eselon </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="19" checked> Status Penerima TPP </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="19" checked> Sertifiaksi Guru </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="20" checked> PA/KPA</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="21" checked> Sertifikasi PBJ </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="20" checked> Sertifiaksi Guru </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="21" checked> PA/KPA</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="22" checked> Sertifikasi PBJ </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="22" checked> Tipe Jabatan </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="23" checked> Subkoor / Koordinator </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="24" checked> Nama Subkoor / Koordinator </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="23" checked> Tipe Jabatan </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="24" checked> Subkoor / Koordinator </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="25" checked> Nama Subkoor / Koordinator </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="25" checked> Status Subkoor / Koordinator </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="26" checked> Batas Usia Pensiun </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="27" checked> Jumlah Bulan Penerimaan BK </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="26" checked> Status Subkoor / Koordinator </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="27" checked> Batas Usia Pensiun </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="28" checked> Jumlah Bulan Penerimaan BK </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="28" checked> Jumlah Bulan Penerimaan PK</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="29" checked> TPP Tambahan</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="29" checked> Jumlah Bulan Penerimaan PK</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="30" checked> TPP Tambahan</label></br>
                             </td>
                         </tr>
                     </table>
@@ -883,7 +883,7 @@
             });
         }
 
-        toggleColumn(6, false);
+        toggleColumn(7, false);
 
         const toggleColumnCheckboxes = document.querySelectorAll(".toggle-column");
 
