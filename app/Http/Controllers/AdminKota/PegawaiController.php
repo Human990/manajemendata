@@ -54,7 +54,6 @@ class PegawaiController extends Controller
             'nip' => $request->nip,
             'nama_pegawai' => $request->nama_pegawai,
             'sts_pegawai' => $request->sts_pegawai,
-            'guru_nonguru' => $request->guru_nonguru,
             'sts_jabatan' => $request->sts_jabatan,
             'golongan' => $request->golongan,
             'pangkat' => $request->pangkat,
@@ -71,6 +70,7 @@ class PegawaiController extends Controller
             'pa_kpa' => $request->pa_kpa,
             'pbj' => $request->pbj,
             'jft' => $request->jft,
+            'jabatan_atasan' => $request->jabatan_atasan,
             'tahun_id' => session()->get('tahun_id_session'),
         ]);
 
@@ -91,7 +91,6 @@ class PegawaiController extends Controller
             'nip' => $request->nip,
             'nama_pegawai' => $request->nama_pegawai,
             'sts_pegawai' => $request->sts_pegawai,
-            'guru_nonguru' => $request->guru_nonguru,
             'sts_jabatan' => $request->sts_jabatan,
             'golongan' => $request->golongan,
             'pangkat' => $request->pangkat,
@@ -108,6 +107,7 @@ class PegawaiController extends Controller
             'pa_kpa' => $request->pa_kpa,
             'pbj' => $request->pbj,
             'jft' => $request->jft,
+            'jabatan_atasan' => $request->jabatan_atasan,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');

@@ -572,6 +572,15 @@
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="jabatan_atasan">Unit Kerja</label>
+                                                        <input type="text" name="jabatan_atasan"
+                                                            class="form-control @error('jabatan_atasan') is-invalid @enderror" id="jabatan_atasan"
+                                                            placeholder="Unit Kerja . . ." value="{{ $data->jabatan_atasan }}">
+                                                        @error('jabatan_atasan')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -838,6 +847,15 @@
                                                             class="form-control @error('tpp_tambahan') is-invalid @enderror" id="tpp_tambahan"
                                                             placeholder="Tpp Tambahan . . ." value="">
                                                         @error('tpp_tambahan')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="jabatan_atasan">Unit Kerja</label>
+                                                        <input type="text" name="jabatan_atasan"
+                                                            class="form-control @error('jabatan_atasan') is-invalid @enderror" id="jabatan_atasan"
+                                                            placeholder="Unit Kerja . . ." value="">
+                                                        @error('jabatan_atasan')
                                                             <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>

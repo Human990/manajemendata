@@ -11,7 +11,7 @@ class IndeksController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->ajax()) {
+        if ($request->ajax()) { 
             $datas = Indeks::data();
             $i = 1;
             return DataTables::of($datas)
