@@ -15,8 +15,8 @@ class IndeksController extends Controller
                     ->leftjoin('master_tahun', 'master_tahun.id', '=', 'indeks.tahun_id')
                     ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
                     ->where('indeks.tahun_id', session()->get('tahun_id_session'))
+                    ->orderByRaw('CAST(indeks.kelas_jabatan AS SIGNED) ASC')
                     ->orderBy('indeks.jenis_jabatan','ASC')
-                    ->orderBy('indeks.kelas_jabatan','ASC')
                     ->paginate($pagination);
 
         return view('admin-jabatan.master.master-indeks',compact('datas','pagination'));
