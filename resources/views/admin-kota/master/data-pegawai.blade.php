@@ -98,7 +98,8 @@
                             </td>
                             <td>
                                 <label><input type="checkbox" class="toggle-column" data-column="29" checked> Jumlah Bulan Penerimaan PK</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="30" checked> TPP Tambahan</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="30" checked> Unit Kerja</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="31" checked> TPP Tambahan</label></br>
                             </td>
                         </tr>
                     </table>
@@ -147,6 +148,7 @@
                                 <th width="3%">Batas Usia Pensiun</th>
                                 <th width="3%">Jumlah Bulan Penerimaan BK</th>
                                 <th width="3%">Jumlah Bulan Penerimaan PK</th>
+                                <th width="3%">Unit Kerja</th>
                                 <th width="3%">Tpp Tambahan</th>
                                 <th width="6%">Action</th>
                             </tr>
@@ -247,6 +249,7 @@
                                     <td>{{ $data->pensiun }}</td>
                                     <td align="center">{{ $data->bulan_bk }}</td>
                                     <td align="center">{{ $data->bulan_pk }}</td>
+                                    <td>{{ $data->jabatan_atasan }}</td>
                                     <td>{{ $data->tpp_tambahan }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-edit"></i></button>
