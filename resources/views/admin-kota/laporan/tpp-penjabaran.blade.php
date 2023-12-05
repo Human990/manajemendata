@@ -135,8 +135,16 @@
                                     <td>{{ $i }}</td>
                                     <td>{{ $data->nama_jabatan }}</td>
                                     <td>{{ $data->nama_opd }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>
+                                        @if(strpos($data->eselon, 'III') !== false || strpos($data->eselon, 'iii') !== false)
+                                            {{ $data->jabatan_atasan }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(strpos($data->eselon, 'IV') !== false || strpos($data->eselon, 'iv') !== false)
+                                            {{ $data->jabatan_atasan }}
+                                        @endif
+                                    </td>
                                     <td>{{ $data->jenis_jabatan }}</td>
                                     <td>{{ $data->kelas_jabatan }}</td>
                                     <td>{{ $data->jumlah_pemangku }}</td>
