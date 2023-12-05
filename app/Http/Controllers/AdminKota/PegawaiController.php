@@ -70,6 +70,7 @@ class PegawaiController extends Controller
             'pa_kpa' => $request->pa_kpa,
             'pbj' => $request->pbj,
             'jft' => $request->jft,
+            'jabatan_atasan' => $request->jabatan_atasan,
             'tahun_id' => session()->get('tahun_id_session'),
         ]);
 
@@ -106,6 +107,7 @@ class PegawaiController extends Controller
             'pa_kpa' => $request->pa_kpa,
             'pbj' => $request->pbj,
             'jft' => $request->jft,
+            'jabatan_atasan' => $request->jabatan_atasan,
         ]);
 
         return redirect()->back()->with('success','Data Berhasil Diupdate!');
