@@ -9,49 +9,40 @@
             </div>
             <div class="card-body">
                 <form action="{{ route('adminkota-pegawai') }}" method="GET">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Cari nama atau nip Pegawai . . ." name="search" value="{{ request('search') }}">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit">Cari</button>
-                        </div>
-                        <div class="input-group-append">
-                            <a href="{{ route('adminkota-pegawai') }}" class="btn btn-outline-secondary">Reset</a>
-                        </div>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFilteropdPegawai" type="button">filter OPD</button>
-                        </div>
+                    <div>
+                        <label for="search">Cari:</label>
+                        <input class="form-control" type="text" name="search" value="{{ $search ?? '' }}">
+                    </div>
+                
+                    <!-- Bagian Filter OPD -->
+                    <div>
+                        <label for="filteropd">Filter OPD:</label>
+                        <select name="filteropd" class="form-control @error('filteropd') is-invalid @enderror">
+                            <option value="">Semua OPD</option>
+                            @foreach(\App\Models\Opd::data()->get() as $opd)
+                                <option value="{{ $opd->id }}" {{ $filteropd == $opd->id ? 'selected' : '' }}>
+                                    {{ $opd->nama_opd }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                
+                    <!-- Bagian Records Per Page -->
+                    <div>
+                        <label for="recordsPerPage">Records Per Page:</label>
+                        <select class="form-control mr-2" name="recordsPerPage">
+                            <option value="10" {{ $pagination == 10 ? 'selected' : '' }}>10</option>
+                            <option value="25" {{ $pagination == 25 ? 'selected' : '' }}>25</option>
+                            <option value="50" {{ $pagination == 50 ? 'selected' : '' }}>50</option>
+                            <option value="100" {{ $pagination == 100 ? 'selected' : '' }}>100</option>
+                        </select>
+                    </div>
+                
+                    <div>
+                        <button class="btn btn-sm btn-info mt-2" type="submit">Submit</button>
+                        <a href="{{ route('adminkota-pegawai')}}" class="btn btn-sm btn-warning mt-2">reset</a>
                     </div>
                 </form>
-
-                <div class="modal fade" id="createFilteropdPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="createModalLabel">Filter Data Pegawai</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="{{ route('adminkota-pegawai') }}" method="GET" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="filteropd">OPD</label>
-                                        <select type="text" name="filteropd" class="form-control @error('filteropd') is-invalid @enderror">
-                                            @foreach(\App\Models\Opd::data()->get() as $opd)
-                                                <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-borderless">
@@ -103,15 +94,6 @@
                             </td>
                         </tr>
                     </table>
-                    <form action="{{ route('adminkota-pegawai') }}" method="GET" class="form-inline">
-                        <label for="recordsPerPage" class="mr-2">Show:</label>
-                        <select name="recordsPerPage" id="recordsPerPage" class="form-control mr-2" onchange="this.form.submit()">
-                            <option value="10" {{ request('recordsPerPage', 10) == 10 ? 'selected' : '' }}>10</option>
-                            <option value="20" {{ request('recordsPerPage', 10) == 20 ? 'selected' : '' }}>20</option>
-                            <option value="50" {{ request('recordsPerPage', 10) == 50 ? 'selected' : '' }}>50</option>
-                            <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
-                        </select>
-                    </form>
                     <table class="table table-hover table-bordered" id="data-table">
                         <thead>
                             <tr>
@@ -423,12 +405,12 @@
                                                         <label for="eselon">Eselon</label>
                                                         <select type="text" name="eselon" class="form-control @error('eselon') is-invalid @enderror">
                                                             <option value="NON ESELON" @if('NON ESELON' == $data->eselon) selected @endif>NON ESELON</option>
-                                                            <option value="II.a" @if('II.a' == $data->sts_pegawai) selected @endif>II.a</option>
-                                                            <option value="II.b" @if('II.b' == $data->sts_pegawai) selected @endif>II.b</option>
-                                                            <option value="III.a" @if('III.a' == $data->sts_pegawai) selected @endif>III.a</option>
-                                                            <option value="III.b" @if('III.b' == $data->sts_pegawai) selected @endif>III.b</option>
-                                                            <option value="IV.a" @if('IV.a' == $data->sts_pegawai) selected @endif>IV.a</option>
-                                                            <option value="IV.b" @if('IV.b' == $data->sts_pegawai) selected @endif>IV.b</option>
+                                                            <option value="II.a" @if('II.a' == $data->eselon) selected @endif>II.a</option>
+                                                            <option value="II.b" @if('II.b' == $data->eselon) selected @endif>II.b</option>
+                                                            <option value="III.a" @if('III.a' == $data->eselon) selected @endif>III.a</option>
+                                                            <option value="III.b" @if('III.b' == $data->eselon) selected @endif>III.b</option>
+                                                            <option value="IV.a" @if('IV.a' == $data->eselon) selected @endif>IV.a</option>
+                                                            <option value="IV.b" @if('IV.b' == $data->eselon) selected @endif>IV.b</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -874,12 +856,11 @@
                             @endforeach
                         </tbody>
                         <div class="text-center">
-                            {{ $datas->appends([ 
-                                'pencarian' => $search ,
-                                'pagination' => $pagination, 
-                                'filteropd' => $filteropd
-                                ])->links() }}</span>
-                                {{-- {{ $datas->links() }} --}}
+                            {{ $datas->appends([
+                                'search' => $search,
+                                'filteropd' => $filteropd,
+                                'recordsPerPage' => $pagination,
+                            ])->links() }}
                         </div>
                     </table>
                 </div>

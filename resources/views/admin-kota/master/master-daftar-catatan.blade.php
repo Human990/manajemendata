@@ -397,12 +397,12 @@
                                                         <label for="eselon">Eselon</label>
                                                         <select type="text" name="eselon" class="form-control @error('eselon') is-invalid @enderror">
                                                             <option value="NON ESELON" @if('NON ESELON' == $catatan->eselon) selected @endif>NON ESELON</option>
-                                                            <option value="II.a" @if('II.a' == $catatan->sts_pegawai) selected @endif>II.a</option>
-                                                            <option value="II.b" @if('II.b' == $catatan->sts_pegawai) selected @endif>II.b</option>
-                                                            <option value="III.a" @if('III.a' == $catatan->sts_pegawai) selected @endif>III.a</option>
-                                                            <option value="III.b" @if('III.b' == $catatan->sts_pegawai) selected @endif>III.b</option>
-                                                            <option value="IV.a" @if('IV.a' == $catatan->sts_pegawai) selected @endif>IV.a</option>
-                                                            <option value="IV.b" @if('IV.b' == $catatan->sts_pegawai) selected @endif>IV.b</option>
+                                                            <option value="II.a" @if('II.a' == $catatan->eselon) selected @endif>II.a</option>
+                                                            <option value="II.b" @if('II.b' == $catatan->eselon) selected @endif>II.b</option>
+                                                            <option value="III.a" @if('III.a' == $catatan->eselon) selected @endif>III.a</option>
+                                                            <option value="III.b" @if('III.b' == $catatan->eselon) selected @endif>III.b</option>
+                                                            <option value="IV.a" @if('IV.a' == $catatan->eselon) selected @endif>IV.a</option>
+                                                            <option value="IV.b" @if('IV.b' == $catatan->eselon) selected @endif>IV.b</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">

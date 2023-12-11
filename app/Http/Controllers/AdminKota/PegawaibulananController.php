@@ -29,7 +29,7 @@ class PegawaibulananController extends Controller
     public function penjabaran_excel(Request $request)
     {
         $opd_first = Opd::where('opds.tahun_id', session()->get('tahun_id_session'))->take(1)->value('id');
-        $opd_id = $request->opd_id ?? $opd_first;
+        $opd_id = $request->opd ?? $opd_first;
         $datas = Tpp::penjabaran($opd_id);
         $datetime = date('Y-m-d H_i_s');
 
@@ -320,12 +320,6 @@ class PegawaibulananController extends Controller
         $datas = $query->paginate($pagination);
         return view('admin-kota.laporan.tpp-pegawai', compact([
                     'datas',
-                    'rumus_bk_bulanan',
-                    'rumus_bk_tahunan',
-                    'rumus_pk_bulanan',
-                    'rumus_pk_tahunan',
-                    'rumus_total_tpp_bulanan',
-                    'rumus_total_tpp_tahunan',
                     'rumus_bk_tahunan_total',
                     'rumus_bk_bulanan_total',
                     'rumus_pk_tahunan_total',
