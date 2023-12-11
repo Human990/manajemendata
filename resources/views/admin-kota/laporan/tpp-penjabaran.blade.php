@@ -10,7 +10,7 @@
 
             <div class="card-body">
                 <form action="{{ route('adminkota-penjabaran') }}" method="get">
-                <div class="input-group">
+                    <div class="input-group">
                         <select name="opd_id" id="opd_id" class="form-control">
                             <option value="-">Pilih OPD Terlebih Dahulu . . .</option>
                             @foreach(\App\Models\Opd::data() as $opd)
