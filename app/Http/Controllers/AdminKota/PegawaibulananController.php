@@ -22,7 +22,12 @@ class PegawaibulananController extends Controller
         $opd_id = $request->opd_id ?? $opd_first;
         $datas = Tpp::penjabaran($opd_id);
 
-        return view('admin-kota.laporan.tpp-penjabaran', compact('datas', 'opd_id'));
+        $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
+        $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
+        $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
+        $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
+
+        return view('admin-kota.laporan.tpp-penjabaran', compact('datas', 'opd_id', 'tpp_guru_sertifikasi', 'tpp_guru_belum_sertifikasi', 'tpp_pengawas_sekolah', 'tpp_kepala_sekolah'));
     }
 
     public function penjabaran_excel(Request $request)
@@ -32,7 +37,12 @@ class PegawaibulananController extends Controller
         $datas = Tpp::penjabaran($opd_id);
         $datetime = date('Y-m-d H_i_s');
 
-        return view('admin-kota.laporan.tpp-penjabaran-excel', compact('datas', 'opd_id', 'datetime'));
+        $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
+        $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
+        $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
+        $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
+
+        return view('admin-kota.laporan.tpp-penjabaran-excel', compact('datas', 'opd_id', 'datetime', 'tpp_guru_sertifikasi', 'tpp_guru_belum_sertifikasi', 'tpp_pengawas_sekolah', 'tpp_kepala_sekolah'));
     }
     
     public function pensiun(Request $request)

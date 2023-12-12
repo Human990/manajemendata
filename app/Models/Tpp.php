@@ -29,7 +29,10 @@ class Tpp extends Model
                                 COUNT(pegawais.id) AS jumlah_pemangku, 
                                 indeks.indeks, 
                                 jabatans.nilai_jabatan, 
-                                pegawais.jabatan_atasan 
+                                pegawais.jabatan_atasan,
+                                pegawais.guru_nonguru,
+                                pegawais.sertifikasi_guru,
+                                pegawais.sts_pegawai
                             FROM
                                 pegawais
                                 LEFT JOIN master_tahun ON master_tahun.id = pegawais.tahun_id
@@ -59,7 +62,10 @@ class Tpp extends Model
                                 indeks.basic_tpp,
                                 indeks.indeks, 
                                 jabatans.nilai_jabatan,
-                                pegawais.jabatan_atasan;
+                                pegawais.jabatan_atasan,
+                                pegawais.guru_nonguru,
+                                pegawais.sertifikasi_guru,
+                                pegawais.sts_pegawai;
                     ");            
         }else {
             $data = DB::select("
@@ -75,7 +81,10 @@ class Tpp extends Model
                                 COUNT(pegawais.id) AS jumlah_pemangku, 
                                 indeks.indeks, 
                                 jabatans.nilai_jabatan,
-                                pegawais.jabatan_atasan 
+                                pegawais.jabatan_atasan,
+                                pegawais.guru_nonguru,
+                                pegawais.sertifikasi_guru,
+                                pegawais.sts_pegawai 
                             FROM
                                 pegawais
                                 LEFT JOIN master_tahun ON master_tahun.id = pegawais.tahun_id
@@ -106,7 +115,10 @@ class Tpp extends Model
                                 indeks.basic_tpp,
                                 indeks.indeks, 
                                 jabatans.nilai_jabatan,
-                                pegawais.jabatan_atasan;
+                                pegawais.jabatan_atasan,
+                                pegawais.guru_nonguru,
+                                pegawais.sertifikasi_guru,
+                                pegawais.sts_pegawai;
                     ");
         }
 
