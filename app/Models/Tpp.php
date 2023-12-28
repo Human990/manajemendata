@@ -72,6 +72,7 @@ class Tpp extends Model
                                 opds.id,
                                 pegawais.eselon,
                                 pegawais.jabatan_atasan;
+                                pegawais.sts_pegawai;
                     ");            
         }else {
             $data = DB::select("
@@ -90,7 +91,7 @@ class Tpp extends Model
                                 pegawais.jabatan_atasan,
                                 pegawais.guru_nonguru,
                                 pegawais.sertifikasi_guru,
-                                pegawais.sts_pegawai
+                                pegawais.sts_pegawai 
                             FROM
                                 pegawais
                                 LEFT JOIN master_tahun ON master_tahun.id = pegawais.tahun_id
@@ -128,6 +129,7 @@ class Tpp extends Model
                             ORDER BY
                                 pegawais.eselon,
                                 pegawais.jabatan_atasan;
+                                pegawais.sts_pegawai;
                     ");
         }
 
