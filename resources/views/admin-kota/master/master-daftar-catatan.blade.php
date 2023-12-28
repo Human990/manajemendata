@@ -75,10 +75,10 @@
                                 <th>Tahun</th>
                             
                                 <!-- Informasi Pegawai -->
-                                <th colspan="4" class="merged-cell">Informasi Pegawai</th>
+                                <th colspan="5" class="merged-cell">Informasi Pegawai</th>
                             
                                 <!-- Informasi Jabatan -->
-                                <th colspan="6" class="merged-cell">Informasi Jabatan</th>
+                                <th colspan="8" class="merged-cell">Informasi Jabatan</th>
                             
                                 <!-- Informasi Tambahan -->
                                 <th colspan="3" class="merged-cell">Informasi Kepangkatan</th>
@@ -103,10 +103,11 @@
                             <tr>
                                 <td width="1%">{{ $no }}</td>
                                 <td width="5%">{{ $catatan->tahun }}</td>
-                                <td colspan="4" class="merged-cell">
+                                <td colspan="5" class="merged-cell">
                                     {{ $catatan->nip }} <br> 
                                     {{ $catatan->nama_pegawai }} <br> 
                                     {{ $catatan->sts_pegawai }} <br> 
+                                    {{ $catatan->guru_nonguru }} <br>
                                     {{ $catatan->nama_opd }} <br> 
                                     {{-- @if ($catatan->subopd_id == null)
                                         {{ "-" }}
@@ -114,7 +115,7 @@
                                         {{ $catatan->nama_sub_opd }}
                                     @endif --}}
                                 </td>
-                                <td colspan ="6">
+                                <td colspan ="8">
                                     @if($catatan->subkoor == 'Subkoor' || $catatan->subkoor == 'Koor')
                                         {{ $catatan->nama_jabatan }} / {{ $catatan->nama_subkoor }}
                                     @else
@@ -145,6 +146,18 @@
                                         {{ $catatan->nilai_jabatan_koor_penyetaraan }}
                                     @else
                                         {{ $catatan->nilai_jabatan }}
+                                    @endif <br>
+
+                                    @if($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                        {{ $catatan->kelas_jabatan_subkor_non_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                        {{ $catatan->kelas_jabatan_subkor_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                        {{ $catatan->kelas_jabatan_koor_non_penyetaraan }}
+                                    @elseif($catatan->subkoor == 'Koor' && $catatan->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                        {{ $catatan->kelas_jabatan_koor_penyetaraan }}
+                                    @else
+                                        {{ $catatan->kelas_jabatan }}
                                     @endif <br>
 
                                     @if($catatan->subkoor == 'Subkoor' && $catatan->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
@@ -285,11 +298,16 @@
                                                             <option value="PNS" @if('PNS' == $catatan->sts_pegawai) selected @endif>PNS</option>
                                                             <option value="CPNS" @if('CPNS' == $catatan->sts_pegawai) selected @endif>CPNS</option>
                                                             <option value="PPPK" @if('PPPK' == $catatan->sts_pegawai) selected @endif>PPPK</option>
-                                                            <option value="GURU" @if('GURU' == $catatan->sts_pegawai) selected @endif>GURU</option>
-                                                            <option value="RS" @if('RS' == $catatan->sts_pegawai) selected @endif>RS</option>
                                                             <option value="PENGAWAS SEKOLAH" @if('PENGAWAS SEKOLAH' == $catatan->sts_pegawai) selected @endif>PENGAWAS SEKOLAH</option>
                                                             <option value="KEPALA SEKOLAH" @if('KEPALA SEKOLAH' == $catatan->sts_pegawai) selected @endif>KEPALA SEKOLAH</option>
                                                             <option value="PENSIUN" @if('PENSIUN' == $catatan->sts_pegawai) selected @endif>PENSIUN</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="guru_nonguru">Guru / Non Guru</label>
+                                                        <select type="text" name="guru_nonguru" class="form-control @error('guru_nonguru') is-invalid @enderror">
+                                                            <option value="guru" @if('guru' == $catatan->guru_nonguru) selected @endif>GURU</option>
+                                                            <option value="non_guru" @if('non_guru' == $catatan->guru_nonguru) selected @endif>NON GURU</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -379,12 +397,12 @@
                                                         <label for="eselon">Eselon</label>
                                                         <select type="text" name="eselon" class="form-control @error('eselon') is-invalid @enderror">
                                                             <option value="NON ESELON" @if('NON ESELON' == $catatan->eselon) selected @endif>NON ESELON</option>
-                                                            <option value="II.a" @if('II.a' == $catatan->sts_pegawai) selected @endif>II.a</option>
-                                                            <option value="II.b" @if('II.b' == $catatan->sts_pegawai) selected @endif>II.b</option>
-                                                            <option value="III.a" @if('III.a' == $catatan->sts_pegawai) selected @endif>III.a</option>
-                                                            <option value="III.b" @if('III.b' == $catatan->sts_pegawai) selected @endif>III.b</option>
-                                                            <option value="IV.a" @if('IV.a' == $catatan->sts_pegawai) selected @endif>IV.a</option>
-                                                            <option value="IV.b" @if('IV.b' == $catatan->sts_pegawai) selected @endif>IV.b</option>
+                                                            <option value="II.a" @if('II.a' == $catatan->eselon) selected @endif>II.a</option>
+                                                            <option value="II.b" @if('II.b' == $catatan->eselon) selected @endif>II.b</option>
+                                                            <option value="III.a" @if('III.a' == $catatan->eselon) selected @endif>III.a</option>
+                                                            <option value="III.b" @if('III.b' == $catatan->eselon) selected @endif>III.b</option>
+                                                            <option value="IV.a" @if('IV.a' == $catatan->eselon) selected @endif>IV.a</option>
+                                                            <option value="IV.b" @if('IV.b' == $catatan->eselon) selected @endif>IV.b</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -415,7 +433,7 @@
                                                         <select type="text" name="pbj" class="form-control @error('pbj') is-invalid @enderror">
                                                             <option value="" @if(null === $catatan->pbj) selected @endif>--Tidak dipilih--</option>
                                                             <option value="Sudah Memiliki Sertifikat" @if('Sudah Memiliki Sertifikat' === $catatan->pbj) selected @endif>Sudah Memiliki Sertifikat</option>
-                                                            <option value="Belum Sertifikasi" @if('Belum Memiliki Sertifikat' === $catatan->pbj) selected @endif>Belum Memiliki Sertifikat</option>
+                                                            <option value="Belum Memiliki Sertifikat" @if('Belum Memiliki Sertifikat' === $catatan->pbj) selected @endif>Belum Memiliki Sertifikat</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -533,7 +551,10 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="catatan_admin">Catatan Admin Kota</label>
-                                                        <textarea name="catatan_admin" id="catatan_admin" cols="30" rows="7" class="form-control" placeholder="Masukkan catatan . . .">{{ $catatan->catatan_admin ?? '' }}</textarea>
+                                                        <textarea name="catatan_admin" id="catatan_admin" cols="30" rows="7" class="form-control @error('catatan_admin') is-invalid @enderror" placeholder="Masukkan catatan . . .">{{ $catatan->catatan_admin ?? '' }}</textarea>
+                                                        @error('catatan_admin')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="status">Status</label>

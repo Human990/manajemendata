@@ -15,6 +15,26 @@ class Jabatan extends Model
 
     protected $primaryKey = 'kode_jabatanlama';
 
+    public static function undone(){
+        $datas = Jabatan::select('jabatans.kode_jabatanlama AS id', 
+                        'jabatans.nama_jabatan', 
+                        'jabatans.nilai_jabatan', 
+                        'jabatans.indeks_id', 
+                        'jabatans.tunjab',  
+                        'jabatans.prosentase_penerimaan_murni', 
+                        'master_tahun.tahun', 
+                        'indeks.kelas_jabatan', 
+                        'indeks.indeks', 
+                        'jenis_jabatans.jenis_jabatan AS jenis_jabatan') // Alias added here
+                    ->leftjoin('master_tahun', 'master_tahun.id', '=', 'jabatans.tahun_id')
+                    ->leftJoin('indeks', 'indeks.kode_indeks', '=', 'jabatans.indeks_id')
+                    ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
+                    ->where('jabatans.tahun_id', session()->get('tahun_id_session'))
+                    ->whereNull('indeks.kelas_jabatan')
+                    ->orWhereNull('jabatans.nilai_jabatan');
+        return $datas;
+    }
+
     public static function daftar(){
         $datas= Jabatan::select('jabatans.kode_jabatanlama AS id', 
                                     'jabatans.nama_jabatan', 
@@ -22,9 +42,7 @@ class Jabatan extends Model
                                     'jabatans.indeks_id', 
                                     'jabatans.indeks_subkor_penyetaraan_id', 
                                     'jabatans.indeks_subkor_non_penyetaraan_id', 
-                                    'jabatans.tunjab', 
-                                    'jabatans.indeks_subkor_penyetaraan_id', 
-                                    'jabatans.indeks_subkor_non_penyetaraan_id', 
+                                    'jabatans.tunjab',  
                                     'jabatans.nilai_jabatan_subkor_penyetaraan', 
                                     'jabatans.nilai_jabatan_subkor_non_penyetaraan', 
                                     'jabatans.prosentase_penerimaan_murni', 
@@ -66,9 +84,7 @@ class Jabatan extends Model
                             ->leftjoin('jenis_jabatans AS jenis_jabatan_subkor_non_penyetaraan', 'jenis_jabatan_subkor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
                             ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_penyetaraan', 'jenis_jabatan_koor_penyetaraan.id', '=', 'indeks_subkor_penyetaraan.jenis_jabatan_id')
                             ->leftjoin('jenis_jabatans AS jenis_jabatan_koor_non_penyetaraan', 'jenis_jabatan_koor_non_penyetaraan.id', '=', 'indeks_subkor_non_penyetaraan.jenis_jabatan_id')
-                            ->where('jabatans.tahun_id', session()->get('tahun_id_session'))
-                            ->orderBy('jabatans.created_at','DESC');
-        
+                            ->where('jabatans.tahun_id', session()->get('tahun_id_session'));
         return $datas;
     }
 
@@ -80,8 +96,6 @@ class Jabatan extends Model
                                     'jabatans.indeks_subkor_penyetaraan_id', 
                                     'jabatans.indeks_subkor_non_penyetaraan_id', 
                                     'jabatans.tunjab', 
-                                    'jabatans.indeks_subkor_penyetaraan_id', 
-                                    'jabatans.indeks_subkor_non_penyetaraan_id', 
                                     'jabatans.nilai_jabatan_subkor_penyetaraan', 
                                     'jabatans.nilai_jabatan_subkor_non_penyetaraan', 
                                     'jabatans.prosentase_penerimaan_murni', 

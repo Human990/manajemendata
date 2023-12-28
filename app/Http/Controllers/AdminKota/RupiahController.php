@@ -40,6 +40,7 @@ class RupiahController extends Controller
         $requestData = $request->validate([
             'nama' => 'required',
             'jumlah' => 'required',
+            'flag' => 'required',
             'tahun_id' => 'required',
         ]);
 
@@ -83,6 +84,7 @@ class RupiahController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required',
             'jumlah' => 'required',
+            'flag' => '',
         ]);
         Rupiah::findorfail($id)
             ->update($validatedData);

@@ -30,9 +30,10 @@
 
                             // Loop through each pegawai to calculate total pegawai and total tpp per OPD
                             foreach ($pegawais as $pegawai) {
-                                $totalPegawaiOverall = $pegawai->where('tahun_id',session()->get('tahun_id_session'))->count(); // Hitung jumlah pegawai secara keseluruhan
+                                $totalPegawaiOverall = $pegawai->where('tahun_id',session()->get('tahun_id_session'))->where('sts_pegawai','!=','PENSIUN')->count(); // Hitung jumlah pegawai secara keseluruhan
                                 $nilai_jabatan = 0;
                                 $indeks = 0;
+                                $tppPerOpd = 0;
                                 if ($pegawai->subkoor == "Subkoor") {
                                         $nilai_jabatan = ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                             ? (float) $pegawai->nilai_jabatan_subkor_non_penyetaraan
@@ -57,17 +58,32 @@
                                 // Rest of your calculation remains the same
                                 $bk = \App\Models\Rupiah::bk();
                                 $pk = \App\Models\Rupiah::pk();
-                                $tppPerOpd = 0;
+                                $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
+                                $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
+                                $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
+                                $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
+                                $pengali_pppk = \App\Models\Rupiah::pengaliPppk();
                                 $bulan_bk = (float)($pegawai->bulan_bk ?? 0);
                                 $bulan_pk = (float)($pegawai->bulan_pk ?? 0);
-                                // $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
-                                // $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
-                                // $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
-                                // $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
+                                
+                                if($pegawai->guru_nonguru == 'guru' && $pegawai->sertifikasi_guru == 'Sudah Sertifikasi')
+                                {
+                                    $tppPerOpd = $tpp_guru_sertifikasi * $bulan_bk;
+                                } elseif ($pegawai->guru_nonguru == 'guru' && $pegawai->sertifikasi_guru == 'Belum Sertifikasi')
+                                {
+                                    $tppPerOpd = $tpp_guru_belum_sertifikasi * $bulan_bk;
+                                } elseif ($pegawai->sts_pegawai == 'PENGAWAS SEKOLAH' && $pegawai->guru_nonguru == 'non_guru' )
+                                {
+                                    $tppPerOpd = $tpp_pengawas_sekolah * $bulan_bk;
+                                } elseif ($pegawai->sts_pegawai == 'KEPALA SEKOLAH' && $pegawai->guru_nonguru == 'non_guru' )
+                                {
+                                    $tppPerOpd = $tpp_pengawas_sekolah * $bulan_bk;
+                                } else {
+                                    $tppPerOpd = (($nilai_jabatan * $indeks * $bk) * $bulan_bk) + (($nilai_jabatan * $indeks * $pk) * $bulan_pk);
+                                }
 
                                 // Hitung total_tpp untuk pegawai saat ini
-                                $tppPerOpd = (($nilai_jabatan * $indeks * $bk) * $bulan_bk) + (($nilai_jabatan * $indeks * $pk) * $bulan_pk);
-                            
+                                
                                 if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan' && $pegawai->sts_koor == 'Koordinator Bukan Hasil Penyetaraan') {
                                     $tppPerOpd *= 0.85; // 85% adjustment
                                 } else {

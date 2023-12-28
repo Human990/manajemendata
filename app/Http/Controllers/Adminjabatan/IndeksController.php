@@ -5,22 +5,33 @@ namespace App\Http\Controllers\Adminjabatan;
 use App\Models\Indeks;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 
 class IndeksController extends Controller
 {
     public function index(Request $request)
     {
-        $pagination = $request->input('recordsPerPage', 10);
-        $datas= Indeks::select('indeks.*', 'master_tahun.tahun', 'jenis_jabatans.jenis_jabatan AS jenis_jabatan_baru')
-                    ->leftjoin('master_tahun', 'master_tahun.id', '=', 'indeks.tahun_id')
-                    ->leftjoin('jenis_jabatans', 'jenis_jabatans.id', '=', 'indeks.jenis_jabatan_id')
-                    ->where('indeks.tahun_id', session()->get('tahun_id_session'))
-                    ->orderByRaw('CAST(indeks.kelas_jabatan AS SIGNED) ASC')
-                    ->orderBy('indeks.jenis_jabatan','ASC')
-                    ->paginate($pagination);
+        if ($request->ajax()) { 
+            $datas = Indeks::data();
+            $i = 1;
+            return DataTables::of($datas)
+                ->addIndexColumn()
+                ->addColumn('DT_RowIndex', function () use (&$i) {
+                    return $i++;
+                })
+                ->addColumn('action', function ($data) {
+                    $actionBtn = '<button class="btn btn-sm btn-info btn-block" data-toggle="modal" data-target="#ubahModalIndeks' . $data->kode_indeks . '"><i class="fa fa-eye"></i> Ubah</button> 
+                    <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        $datas = Indeks::data();
 
-        return view('admin-jabatan.master.master-indeks',compact('datas','pagination'));
+        return view('admin-jabatan.master.master-indeks',compact('datas'));
     }
+    
 
     public function store(Request $request)
     {

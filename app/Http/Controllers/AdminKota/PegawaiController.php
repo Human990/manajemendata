@@ -15,21 +15,22 @@ class PegawaiController extends Controller
     {
         $pagination = $request->input('recordsPerPage', 10);
         $search = $request->input('search'); // Data pencarian
-        $filteropd = $request->input('filteropd'); // Mengambil nilai dari sesi jika tidak ada nilai langsung dari request
+        $filteropd = $request->input('filteropd'); // Data filter
         $query = Pegawai::data();
 
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('pegawais.nip', 'like', "%$search%")
-                    ->orWhere('pegawais.nama_pegawai', 'like', "%$search%");
-                    // ->orWhere('opds.nama_opd', 'like', "%$search%")
-                    // ->orWhere('jabatans.nama_jabatan', 'LIKE', '%'.$search.'%');
+                    ->orWhere('pegawais.nama_pegawai', 'like', "%$search%")
+                    ->orWhere('opds.nama_opd', 'like', "%$search%");
             });
         }
 
          // Menambahkan kondisi where untuk filter jika ada
         if ($filteropd) {
-            $query->where('pegawais.opd_id', $filteropd);
+            $query->where(function ($q) use ($filteropd){
+                $q->where('pegawais.opd_id', $filteropd);
+            });
             // Tambahkan kondisi filter untuk kolom lainnya
         }
 

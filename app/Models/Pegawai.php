@@ -114,7 +114,7 @@ class Pegawai extends Model
                         ->leftJoin('opds', 'opds.id', '=', 'pegawais.opd_id')
                         ->leftJoin('sub_opds', 'sub_opds.id', '=', 'pegawais.subopd_id')
                         ->where('pegawais.tahun_id', session()->get('tahun_id_session'))
-                        ->orderBy('pegawais.id','ASC');
+                        ->orderBy('pegawais.atasan_nip', 'ASC');
         return $data;
     }
 

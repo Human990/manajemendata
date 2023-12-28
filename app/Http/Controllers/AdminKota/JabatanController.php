@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\AdminKota;
 
 use App\Models\Jabatan;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 
 class JabatanController extends Controller
 {
@@ -13,7 +14,6 @@ class JabatanController extends Controller
         $tahunid = session()->get('tahun_id_session');
         $search = $request->input('search');
         $pagination = $request->input('recordsPerPage', 10);
-        $sorting = $request->input('sorting');
         $query = Jabatan::daftar();
 
         if ($search) {
@@ -22,31 +22,10 @@ class JabatanController extends Controller
             });
         }
 
-        switch ($sorting) {
-            case 'murni':
-                $query->whereNull('jabatans.indeks_id');
-                break;
-            case 'subkoor':
-                $query->whereNull('jabatans.indeks_subkor_penyetaraan_id')
-                      ->whereNull('jabatans.indeks_subkor_non_penyetaraan_id')
-                      ->whereNull('jabatans.nilai_jabatan_subkor_penyetaraan')
-                      ->whereNull('jabatans.nilai_jabatan_subkor_non_penyetaraan');
-                break;
-            case 'koor':
-                $query->whereNull('jabatans.indeks_koor_penyetaraan_id')
-                      ->whereNull('jabatans.indeks_koor_non_penyetaraan_id')
-                      ->whereNull('jabatans.nilai_jabatan_koor_penyetaraan')
-                      ->whereNull('jabatans.nilai_jabatan_koor_non_penyetaraan');
-                break;
-            default:
-                // Default sorting jika tidak ada yang dipilih
-                break;
-        }
-
         // Memanggil metode data() pada model Pegawai
         $datas = $query->paginate($pagination);
 
-        return view('admin-kota.master.master-jabatan',compact('datas', 'search','pagination','sorting'));
+        return view('admin-kota.master.master-jabatan',compact('datas', 'search','pagination'));
     }
 
     public function store(Request $request)

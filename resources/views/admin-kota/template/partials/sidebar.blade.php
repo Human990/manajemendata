@@ -35,7 +35,6 @@
         <div id="collapsePages" class="collapse 
             {{ Request::is('*master-tahun*') ? 'show' : '' }}
             {{ Request::is('*master-opd*') ? 'show' : '' }}
-            {{ Request::is('*master-sub-opd*') ? 'show' : '' }}
             {{ Request::is('*master-indeks*') ? 'show' : '' }}
             {{ Request::is('*master-jabatan*') ? 'show' : '' }}
             {{ Request::is('*master-rupiah*') ? 'show' : '' }}
@@ -50,9 +49,6 @@
                 </a>
                 <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-opd') }}" @endif class="collapse-item {{ Request::is('*master-opd*') ? 'active' : '' }}">
                     <span>Master OPD</span>
-                </a>
-                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-sub-opd') }}" @endif class="collapse-item {{ Request::is('*master-sub-opd*') ? 'active' : '' }}">
-                    <span>Master Sub OPD</span>
                 </a>
                 <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-indeks') }}" @endif class="collapse-item {{ Request::is('*master-indeks*') ? 'active' : '' }}">
                     <span>Master Indeks</span>

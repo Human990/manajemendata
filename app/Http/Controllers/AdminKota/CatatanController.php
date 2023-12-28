@@ -95,6 +95,7 @@ class CatatanController extends Controller
                 'nip' => $request->nip,
                 'nama_pegawai' => $request->nama_pegawai,
                 'sts_pegawai' => $request->sts_pegawai,
+                'guru_nonguru' => $request->guru_nonguru,
                 'kode_jabatanlama' => $request->kode_jabatanlama,
                 'subopd_id' => $request->subopd_id,
                 'sts_jabatan' => $request->sts_jabatan,

@@ -45,7 +45,7 @@ class PegawaibulananOpdController extends Controller
         if (Auth::user()->role_id == 2 && Auth::user()->opd == 'guru'){
             $query = Pegawai::data()->where('pegawais.sts_pegawai', 'GURU');
         } else {
-            $query = Pegawai::data()->where('opds.kode_sub_opd', Auth::user()->kode_sub_opd);
+            $query = Pegawai::data()->where('opds.kode_opd', Auth::user()->kode_opd);
         }
 
         if ($search) {

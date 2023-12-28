@@ -9,108 +9,91 @@
             </div>
             <div class="card-body">
                 <form action="{{ route('adminkota-pegawai') }}" method="GET">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Cari nama atau nip Pegawai . . ." name="search" value="{{ request('search') }}">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit">Cari</button>
-                        </div>
-                        <div class="input-group-append">
-                            <a href="{{ route('adminkota-pegawai') }}" class="btn btn-outline-secondary">Reset</a>
-                        </div>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#createFilteropdPegawai" type="button">filter OPD</button>
-                        </div>
+                    <div>
+                        <label for="search">Cari:</label>
+                        <input class="form-control" type="text" name="search" value="{{ $search ?? '' }}">
+                    </div>
+                
+                    <!-- Bagian Filter OPD -->
+                    <div>
+                        <label for="filteropd">Filter OPD:</label>
+                        <select name="filteropd" class="form-control @error('filteropd') is-invalid @enderror">
+                            <option value="">Semua OPD</option>
+                            @foreach(\App\Models\Opd::data()->get() as $opd)
+                                <option value="{{ $opd->id }}" {{ $filteropd == $opd->id ? 'selected' : '' }}>
+                                    {{ $opd->nama_opd }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                
+                    <!-- Bagian Records Per Page -->
+                    <div>
+                        <label for="recordsPerPage">Records Per Page:</label>
+                        <select class="form-control mr-2" name="recordsPerPage">
+                            <option value="10" {{ $pagination == 10 ? 'selected' : '' }}>10</option>
+                            <option value="25" {{ $pagination == 25 ? 'selected' : '' }}>25</option>
+                            <option value="50" {{ $pagination == 50 ? 'selected' : '' }}>50</option>
+                            <option value="100" {{ $pagination == 100 ? 'selected' : '' }}>100</option>
+                        </select>
+                    </div>
+                
+                    <div>
+                        <button class="btn btn-sm btn-info mt-2" type="submit">Submit</button>
+                        <a href="{{ route('adminkota-pegawai')}}" class="btn btn-sm btn-warning mt-2">reset</a>
                     </div>
                 </form>
-
-                <div class="modal fade" id="createFilteropdPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="createModalLabel">Filter Data Pegawai</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="{{ route('adminkota-pegawai') }}" method="GET" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="filteropd">OPD</label>
-                                        <select type="text" name="filteropd" class="form-control @error('filteropd') is-invalid @enderror">
-                                            @foreach(\App\Models\Opd::data() as $opd)
-                                                <option value="{{ $opd->id }}">{{ $opd->nama_opd }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-borderless">
                         <tr>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="4" checked> OPD</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="5" checked> Jabatan Murni </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="6"> Jabatan Subkoor/Koor</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="5" checked> OPD</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="6" checked> Jabatan Murni </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="7"> Jabatan Subkoor/Koor</label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="7" checked> Jabatan Murni </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="8"> Jenis Jabatan Subkoor/Koor </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="9" checked> Jenis Jabatan Murni</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="8" checked> Jabatan Murni </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="9" checked> Jenis Jabatan Perhitungan Tpp </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="10" checked> Jenis Jabatan Murni</label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="10" checked> Jenis Jabatan Subkoor/Koor</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="11" checked> Status Jabatan </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="12" checked> Nilai Jabatan </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="11" checked> Jenis Jabatan Subkoor/Koor</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="12" checked> Status Jabatan </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="13" checked> Nilai Jabatan </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="13" checked> Kelas Jabatan </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="14" checked> Indeks </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="15" checked> Pangkat </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="14" checked> Kelas Jabatan </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="15" checked> Indeks </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="16" checked> Pangkat </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="16" checked> Golongan PPPK </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="17" checked> Eselon </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="18" checked> Status Penerima TPP </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="17" checked> Golongan PPPK </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="18" checked> Eselon </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="19" checked> Status Penerima TPP </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="19" checked> Sertifiaksi Guru </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="20" checked> PA/KPA</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="21" checked> Sertifikasi PBJ </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="20" checked> Sertifiaksi Guru </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="21" checked> PA/KPA</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="22" checked> Sertifikasi PBJ </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="22" checked> Tipe Jabatan </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="23" checked> Subkoor / Koordinator </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="24" checked> Nama Subkoor / Koordinator </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="23" checked> Tipe Jabatan </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="24" checked> Subkoor / Koordinator </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="25" checked> Nama Subkoor / Koordinator </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="25" checked> Status Subkoor / Koordinator </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="26" checked> Batas Usia Pensiun </label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="27" checked> Jumlah Bulan Penerimaan BK </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="26" checked> Status Subkoor / Koordinator </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="27" checked> Batas Usia Pensiun </label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="28" checked> Jumlah Bulan Penerimaan BK </label></br>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="toggle-column" data-column="28" checked> Jumlah Bulan Penerimaan PK</label></br>
-                                <label><input type="checkbox" class="toggle-column" data-column="29" checked> TPP Tambahan</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="29" checked> Jumlah Bulan Penerimaan PK</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="30" checked> Unit Kerja</label></br>
+                                <label><input type="checkbox" class="toggle-column" data-column="31" checked> TPP Tambahan</label></br>
                             </td>
                         </tr>
                     </table>
-                    <form action="{{ route('adminkota-pegawai') }}" method="GET" class="form-inline">
-                        <label for="recordsPerPage" class="mr-2">Show:</label>
-                        <select name="recordsPerPage" id="recordsPerPage" class="form-control mr-2" onchange="this.form.submit()">
-                            <option value="10" {{ request('recordsPerPage', 10) == 10 ? 'selected' : '' }}>10</option>
-                            <option value="20" {{ request('recordsPerPage', 10) == 20 ? 'selected' : '' }}>20</option>
-                            <option value="50" {{ request('recordsPerPage', 10) == 50 ? 'selected' : '' }}>50</option>
-                            <option value="100" {{ request('recordsPerPage', 10) == 100 ? 'selected' : '' }}>100</option>
-                        </select>
-                    </form>
                     <table class="table table-hover table-bordered" id="data-table">
                         <thead>
                             <tr>
@@ -118,15 +101,16 @@
                                 <th width="3%">NIP</th>
                                 <th width="3%">Nama Pegawai</th>
                                 <th width="3%">Status Pegawai</th>
+                                <th width="3%">Guru / Non Guru</th>
                                 <th width="3%">OPD</th>
                                 {{-- <th width="3%">Sub OPD</th> --}}
                                 <th width="15%">Jabatan Murni</th>
                                 <th width="15%">Jabatan Subkoor/Koor</th>
                                 <th width="3%">Jenis Jabatan Murni</th>
-                                <th width="3%">Jenis Jabatan Subkoor/Koor</th>
+                                <th width="3%">Jenis Jabatan Perhitungan TPP</th>
                                 <th width="3%">Status Jabatan</th>
-                                <th width="3%">Nilai Jabatan (JV)</th>
                                 <th width="3%">Kelas Jabatan</th>
+                                <th width="3%">Nilai Jabatan (JV)</th>
                                 <th width="3%">Indeks</th>
                                 <th width="3%">Pangkat</th>
                                 <th width="3%">Golongan PPPK</th>
@@ -146,6 +130,7 @@
                                 <th width="3%">Batas Usia Pensiun</th>
                                 <th width="3%">Jumlah Bulan Penerimaan BK</th>
                                 <th width="3%">Jumlah Bulan Penerimaan PK</th>
+                                <th width="3%">Unit Kerja</th>
                                 <th width="3%">Tpp Tambahan</th>
                                 <th width="6%">Action</th>
                             </tr>
@@ -159,6 +144,7 @@
                                     <td>{{ $data->nip }}</td>
                                     <td>{{ $data->nama_pegawai }}</td>
                                     <td>{{ $data->sts_pegawai }}</td>
+                                    <td>{{ $data->guru_nonguru }}</td>
                                     <td>{{ $data->nama_opd }}</td>
                                     {{-- <td>
                                         @if ($data->subopd_id == null)
@@ -171,38 +157,23 @@
                                     <td>
                                         @if($data->subkoor == 'Subkoor' || $data->subkoor == 'Koor')
                                             {{ $data->nama_subkoor }}
-                                        @else
-                                            {{ $data->nama_jabatan }}
                                         @endif
                                     </td>
                                     <td>{{ $data->jenis_jabatan }}</td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->jenis_subkor_non_penyetaraan }}
+                                            {{ $data->jenis_non_penyetaraan }}
                                         @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
-                                            {{ $data->jenis_subkor_penyetaraan }}
+                                            {{ $data->jenis_penyetaraan }}
                                         @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
                                             {{ $data->jenis_koor_non_penyetaraan }}
                                         @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
                                             {{ $data->jenis_koor_penyetaraan }}
                                         @else
-                                            {{ $data->jenis_jabatan }}
+                                            -
                                         @endif
                                     </td>
                                     <td>{{ $data->sts_jabatan }}</td>
-                                    <td>
-                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_subkor_non_penyetaraan }}
-                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_subkor_penyetaraan }}
-                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_koor_non_penyetaraan }}
-                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
-                                            {{ $data->nilai_jabatan_koor_penyetaraan }}
-                                        @else
-                                            {{ $data->nilai_jabatan }}
-                                        @endif
-                                    </td>
                                     <td>
                                         @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                                             {{ $data->kelas_jabatan_subkor_non_penyetaraan }}
@@ -214,6 +185,19 @@
                                             {{ $data->kelas_jabatan_koor_penyetaraan }}
                                         @else
                                             {{ $data->kelas_jabatan }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_subkor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Subkoor' && $data->sts_subkoor == 'Subkoordinator Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_subkor_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_koor_non_penyetaraan }}
+                                        @elseif($data->subkoor == 'Koor' && $data->sts_subkoor == 'Koordinator Hasil Penyetaraan')
+                                            {{ $data->nilai_jabatan_koor_penyetaraan }}
+                                        @else
+                                            {{ $data->nilai_jabatan }}
                                         @endif
                                     </td>
                                     <td>
@@ -247,6 +231,7 @@
                                     <td>{{ $data->pensiun }}</td>
                                     <td align="center">{{ $data->bulan_bk }}</td>
                                     <td align="center">{{ $data->bulan_pk }}</td>
+                                    <td>{{ $data->jabatan_atasan }}</td>
                                     <td>{{ $data->tpp_tambahan }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ubahModalPegawai{{ $i }}"><i class="fa fa-edit"></i></button>
@@ -324,6 +309,13 @@
                                                             <option value="PENGAWAS SEKOLAH" @if('PENGAWAS SEKOLAH' == $data->sts_pegawai) selected @endif>PENGAWAS SEKOLAH</option>
                                                             <option value="KEPALA SEKOLAH" @if('KEPALA SEKOLAH' == $data->sts_pegawai) selected @endif>KEPALA SEKOLAH</option>
                                                             <option value="PENSIUN" @if('PENSIUN' == $data->sts_pegawai) selected @endif>PENSIUN</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="guru_nonguru">Guru / Non Guru</label>
+                                                        <select type="text" name="guru_nonguru" class="form-control @error('guru_nonguru') is-invalid @enderror">
+                                                            <option value="guru" @if('guru' == $data->guru_nonguru) selected @endif>GURU</option>
+                                                            <option value="non_guru" @if('non_guru' == $data->guru_nonguru) selected @endif>NON GURU</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -413,12 +405,12 @@
                                                         <label for="eselon">Eselon</label>
                                                         <select type="text" name="eselon" class="form-control @error('eselon') is-invalid @enderror">
                                                             <option value="NON ESELON" @if('NON ESELON' == $data->eselon) selected @endif>NON ESELON</option>
-                                                            <option value="II.a" @if('II.a' == $data->sts_pegawai) selected @endif>II.a</option>
-                                                            <option value="II.b" @if('II.b' == $data->sts_pegawai) selected @endif>II.b</option>
-                                                            <option value="III.a" @if('III.a' == $data->sts_pegawai) selected @endif>III.a</option>
-                                                            <option value="III.b" @if('III.b' == $data->sts_pegawai) selected @endif>III.b</option>
-                                                            <option value="IV.a" @if('IV.a' == $data->sts_pegawai) selected @endif>IV.a</option>
-                                                            <option value="IV.b" @if('IV.b' == $data->sts_pegawai) selected @endif>IV.b</option>
+                                                            <option value="II.a" @if('II.a' == $data->eselon) selected @endif>II.a</option>
+                                                            <option value="II.b" @if('II.b' == $data->eselon) selected @endif>II.b</option>
+                                                            <option value="III.a" @if('III.a' == $data->eselon) selected @endif>III.a</option>
+                                                            <option value="III.b" @if('III.b' == $data->eselon) selected @endif>III.b</option>
+                                                            <option value="IV.a" @if('IV.a' == $data->eselon) selected @endif>IV.a</option>
+                                                            <option value="IV.b" @if('IV.b' == $data->eselon) selected @endif>IV.b</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -630,6 +622,13 @@
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="guru_nonguru">Guru / Non Guru</label>
+                                                        <select type="text" name="guru_nonguru" class="form-control @error('guru_nonguru') is-invalid @enderror">
+                                                            <option value="guru">GURU</option>
+                                                            <option value="non_guru">NON GURU</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="opd_id">OPD</label>
                                                         <select type="text" name="opd_id" class="form-control @error('opd_id') is-invalid @enderror">
                                                             @foreach(\App\Models\Opd::where('tahun_id', session()->get('tahun_id_session'))->orderBy('nama_opd', 'ASC')->get() as $opd)
@@ -819,7 +818,7 @@
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="bulan_pk">Jumlah Bulan Penerimaan BK</label>
+                                                        <label for="bulan_pk">Jumlah Bulan Penerimaan PK</label>
                                                         <input type="text" name="bulan_pk"
                                                             class="form-control @error('bulan_pk') is-invalid @enderror" id="bulan_pk"
                                                             placeholder="Jumlah Bulan Penerimaan . . ." value="">
@@ -857,12 +856,11 @@
                             @endforeach
                         </tbody>
                         <div class="text-center">
-                            {{ $datas->appends([ 
-                                'pencarian' => $search ,
-                                'pagination' => $pagination, 
-                                'filteropd' => $filteropd
-                                ])->links() }}</span>
-                                {{-- {{ $datas->links() }} --}}
+                            {{ $datas->appends([
+                                'search' => $search,
+                                'filteropd' => $filteropd,
+                                'recordsPerPage' => $pagination,
+                            ])->links() }}
                         </div>
                     </table>
                 </div>
@@ -887,8 +885,7 @@
             });
         }
 
-        toggleColumn(6, false);
-        toggleColumn(8, false);
+        toggleColumn(7, false);
 
         const toggleColumnCheckboxes = document.querySelectorAll(".toggle-column");
 

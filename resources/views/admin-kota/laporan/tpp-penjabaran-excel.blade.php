@@ -78,7 +78,6 @@
                                     
                                     //Beban Kerja
                                     $bk = \App\Models\Rupiah::bk();
-
                                     if($data->sts_pegawai == 'PNS' && $data->guru_nonguru == 'non_guru'){
                                         $rp_bulan_beban_kerja = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $bk;
                                         $rp_beban_kerja = $rp_bulan_beban_kerja * 13 * ($data->jumlah_pemangku ?? 0);
@@ -101,7 +100,6 @@
                                         $rp_bulan_beban_kerja = $tpp_guru_belum_sertifikasi;
                                         $rp_beban_kerja = $rp_bulan_beban_kerja * 12;
                                     }
-                                    
                                     if($data->basic_tpp > 0){
                                         $persen_bk = ($rp_bulan_beban_kerja / $data->basic_tpp) * 100;
                                     }
@@ -110,6 +108,7 @@
                                     $pk = \App\Models\Rupiah::pk();
 
                                     $rp_bulan_prestasi_kerja = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $pk;
+
                                     if($data->kode_opd == '5.02.0.00.0.00.03.0000'){
                                         $rp_bulan_prestasi_kerja = 0;
                                     }
