@@ -267,7 +267,7 @@
 
 
                                 {{-- MODALS EDIT --}}
-                                <div class="modal fade" id="ubahModalPegawai{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="ubahModalPegawai{{ $i }}" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -338,7 +338,7 @@
                                                     </div> --}}
                                                     <div class="form-group">
                                                         <label for="kode_jabatanlama">Jabatan</label>
-                                                        <select type="text" name="kode_jabatanlama" class="form-control select2 @error('kode_jabatanlama') is-invalid @enderror">
+                                                        <select type="text" name="kode_jabatanlama" class="form-control select2 @error('kode_jabatanlama') is-invalid @enderror" style="width:100%">
                                                             @foreach(\App\Models\Jabatan::data() as $jabatan)
                                                                 <option value="{{ $jabatan->id }}" @if($jabatan->id == $data->kode_jabatanlama) selected @endif>{{ $jabatan->nama_jabatan }}</option>
                                                             @endforeach
@@ -577,7 +577,7 @@
                                 </div>
 
                                 {{-- MODALS CREATE --}}
-                                <div class="modal fade" id="createModalPegawai" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="createModalPegawai" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -647,7 +647,7 @@
                                                     </div> --}}
                                                     <div class="form-group">
                                                         <label for="kode_jabatanlama">Jabatan</label>
-                                                        <select type="text" name="kode_jabatanlama" class="form-control select2 @error('kode_jabatanlama') is-invalid @enderror">
+                                                        <select type="text" name="kode_jabatanlama" class="form-control select2 @error('kode_jabatanlama') is-invalid @enderror" style="width: 100%;">
                                                             <option value="">--- Pilih Jabatan ---</option>
                                                             @foreach(\App\Models\Jabatan::data() as $jabatan)
                                                             <option value="{{ $jabatan->id }}">{{ $jabatan->nama_jabatan }}</option>

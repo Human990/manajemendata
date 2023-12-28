@@ -23,7 +23,12 @@ class PegawaibulananController extends Controller
         $opd_id = $request->opd_id ?? $opd_first;
         $datas = Tpp::penjabaran($opd_id);
 
-        return view('admin-kota.laporan.tpp-penjabaran', compact('datas', 'opd_id'));
+        $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
+        $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
+        $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
+        $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
+
+        return view('admin-kota.laporan.tpp-penjabaran', compact('datas', 'opd_id', 'tpp_guru_sertifikasi', 'tpp_guru_belum_sertifikasi', 'tpp_pengawas_sekolah', 'tpp_kepala_sekolah'));
     }
 
     public function penjabaran_excel(Request $request)
@@ -33,7 +38,12 @@ class PegawaibulananController extends Controller
         $datas = Tpp::penjabaran($opd_id);
         $datetime = date('Y-m-d H_i_s');
 
-        return view('admin-kota.laporan.tpp-penjabaran-excel', compact('datas', 'opd_id', 'datetime'));
+        $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
+        $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
+        $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
+        $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
+
+        return view('admin-kota.laporan.tpp-penjabaran-excel', compact('datas', 'opd_id', 'datetime', 'tpp_guru_sertifikasi', 'tpp_guru_belum_sertifikasi', 'tpp_pengawas_sekolah', 'tpp_kepala_sekolah'));
     }
     
     public function pensiun(Request $request)
@@ -61,130 +71,6 @@ class PegawaibulananController extends Controller
 
         return view('admin-kota.master.data-pensiun', compact('datas', 'pagination', 'search','filteropd'));
     }
-
-    // public function tppperson(Request $request)
-    // {
-    //     $tahun_id = 0;
-
-    //     try {
-    //         $tahun_id = session()->get('tahun_id_session');
-    //     } catch (\Throwable $th) {
-    //         //throw $th;
-    //     }
-
-    //     $pagination = $request->input('recordsPerPage', 10);
-    //     $search = $request->input('search'); // Data pencarian
-    //     $filteropd = $request->input('filteropd'); // Data filter
-    //     $filtersubopd = $request->input('filtersubopd'); // Data filter
-    //     $query = Pegawai::data();
-
-    //     if ($search) {
-    //         $query->where(function ($q) use ($search) {
-    //             $q->where('pegawais.nip', 'like', "%$search%")
-    //                 ->orWhere('pegawais.nama_pegawai', 'like', "%$search%")
-    //                 ->orWhere('opds.nama_opd', 'like', "%$search%");
-    //         });
-    //     }
-
-    //      // Menambahkan kondisi where untuk filter jika ada
-    //     if ($filteropd) {
-    //         $query->where('pegawais.opd_id', $filteropd);
-    //         // Tambahkan kondisi filter untuk kolom lainnya
-    //     }
-    //     if ($filtersubopd) {
-    //         $query->where('pegawais.subopd_id',$filtersubopd);
-    //         // Tambahkan kondisi filter untuk kolom lainnya
-    //     }
-
-    //     // Memanggil metode data() pada model Pegawai
-    //     $datas = $query->paginate($pagination);
-
-    //     $opds=Opd::all();
-        
-    //     $rumus_bk_tahunan = [];
-    //     $rumus_bk_bulanan = [];
-    //     $rumus_pk_tahunan = [];
-    //     $rumus_pk_bulanan = [];
-    //     $rumus_total_tpp_bulanan = [];
-    //     $rumus_total_tpp_tahunan = [];
-    //     $rumus_bk_tahunan_total = 0;
-    //     $rumus_bk_bulanan_total = 0;
-    //     $rumus_pk_tahunan_total = 0;
-    //     $rumus_pk_bulanan_total = 0;
-    //     $rumus_total_tpp_bulanan_total = 0;
-    //     $rumus_total_tpp_tahunan_total = 0;
-        
-    //     foreach ($query as $pegawai) {
-    //         if ($pegawai->subkoor == "Subkoor") {
-    //             if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
-    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_non_penyetaraan;
-    //             } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
-    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_subkoor_penyetaraan;
-    //             }
-    //         } elseif ($pegawai->subkoor == "Koor") {
-    //             if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
-    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_non_penyetaraan;
-    //             } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
-    //                 $nilai_jabatan = (float) $pegawai->nilai_jabatan_koor_penyetaraan;
-    //             }
-    //         } else {
-    //             $nilai_jabatan = (float) $pegawai->nilai_jabatan;
-    //         }
-        
-    //         // Determine the appropriate indeks
-    //         if ($pegawai->subkoor == "Subkoor") {
-    //             if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan') {
-    //                 $indeks = (float) $pegawai->indeks_subkoor_non_penyetaraan;
-    //             } elseif ($pegawai->sts_subkoor == 'Subkoordinator Hasil Penyetaraan') {
-    //                 $indeks = (float) $pegawai->indeks_subkoor_penyetaraan;
-    //             }
-    //         } elseif ($pegawai->subkoor == "Koor") {
-    //             if ($pegawai->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan') {
-    //                 $indeks = (float) $pegawai->indeks_koor_non_penyetaraan;
-    //             } elseif ($pegawai->sts_subkoor == 'Koordinator Hasil Penyetaraan') {
-    //                 $indeks = (float) $pegawai->indeks_koor_penyetaraan;
-    //             }
-    //         } else {
-    //             $indeks = (float) $pegawai->indeks;
-    //         }
-
-    //         // Rest of your calculation remains the same
-    //         $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0);
-    //         $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);
-    //         $bulan_bk = (float)($pegawai->bulan_bk ?? 0);
-    //         $bulan_pk = (float)($pegawai->bulan_pk ?? 0);
-
-    //         $rumus_bk_tahunan = $nilai_jabatan * $indeks *$bk * $bulan_bk;
-    //         $rumus_bk_bulanan = $nilai_jabatan * $indeks *$bk;
-    //         $rumus_pk_tahunan = $nilai_jabatan * $indeks *$pk * $bulan_pk;
-    //         $rumus_pk_bulanan = $nilai_jabatan * $indeks *$pk;
-    //         $rumus_total_tpp_bulanan = $rumus_bk_bulanan + $rumus_bk_bulanan;
-    //         $rumus_total_tpp_tahunan = $rumus_bk_tahunan + $rumus_pk_tahunan;
-
-    //         $rumus_bk_tahunan_total += $rumus_bk_tahunan;
-    //         $rumus_bk_bulanan_total += $rumus_bk_bulanan;
-    //         $rumus_pk_tahunan_total += $rumus_pk_tahunan;
-    //         $rumus_pk_bulanan_total += $rumus_pk_bulanan;
-    //         $rumus_total_tpp_bulanan_total += $rumus_total_tpp_bulanan;
-    //         $rumus_total_tpp_tahunan_total += $rumus_total_tpp_tahunan;
-    //     }
-        
-    //     return view('admin-kota.laporan.tpp-pegawai', compact([
-    //         'datas',
-    //         'opds',
-    //         'search',
-    //         'filteropd',
-    //         'filtersubopd',
-    //         'pagination',
-    //         'rumus_bk_tahunan',
-    //         'rumus_pk_tahunan',
-    //         'rumus_bk_bulanan',
-    //         'rumus_pk_bulanan',
-    //         'rumus_total_tpp_bulanan',
-    //         'rumus_total_tpp_tahunan',
-    //     ]))->with('i', 0);
-        
-    // }
 
     public function tppperson(Request $request)
     {
@@ -217,118 +103,95 @@ class PegawaibulananController extends Controller
             // Tambahkan kondisi filter untuk kolom lainnya
         }
 
-        // Memanggil metode data() pada model Pegawai
+        // // Memanggil metode data() pada model Pegawai
 
-        $rumus_bk_tahunan_total = 0;
-        $rumus_bk_bulanan_total = 0;
-        $rumus_pk_tahunan_total = 0;
-        $rumus_pk_bulanan_total = 0;
-        $rumus_total_tpp_bulanan_total = 0;
-        $rumus_total_tpp_tahunan_total = 0;
-        foreach ($query as $data){
-            $nilai_jabatan = 0;
-            $indeks = 0;
+        // $rp_bulan_bk = [];
+        // $rp_tahun_bk = [];
+        // $rp_bulan_pk = [];
+        // $rp_tahun_pk = [];
+        // $tpp_bulanan = [];
+        // $tpp_tahunan = [];
+        // $jumlah_rp_bulan_bk = 0;
+        // $jumlah_rp_tahun_bk = 0;
+        // $jumlah_rp_bulan_pk = 0;
+        // $jumlah_rp_tahun_pk = 0;
+        // $total_tpp_bulanan = 0;
+        // $total_tpp_tahunan = 0;
 
-            if ($data->subkoor == "Subkoor") {
-                $nilai_jabatan = ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
-                    ? (float) $data->nilai_jabatan_subkor_non_penyetaraan
-                    : (float) $data->nilai_jabatan_subkor_penyetaraan;
+        // foreach ($query as $data){
 
-                $indeks = ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
-                    ? (float) $data->indeks_subkor_non_penyetaraan
-                    : (float) $data->indeks_subkor_penyetaraan;
-            } elseif ($data->subkoor == "Koor") {
-                $nilai_jabatan = ($data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
-                    ? (float) $data->nilai_jabatan_koor_non_penyetaraan
-                    : (float) $data->nilai_jabatan_koor_penyetaraan;
+        //     $rp_bulan_bk = 0;
+        //     $rp_tahun_bk = 0;
+        //     $rp_bulan_pk = 0;
+        //     $rp_tahun_pk = 0;
+        //     $tpp_bulanan = 0;
+        //     $tpp_tahunan = 0;
+        //     $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
+        //     $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
+        //     $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
+        //     $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
+        
+        //     $nilai_jabatan = (float) $data->{"nilai_jabatan_" . strtolower($data->subkoor) . "_" . strtolower($data->sts_subkoor)};
+        //     $indeks = (float) $data->{"indeks_" . strtolower($data->subkoor) . "_" . strtolower($data->sts_subkoor)};
+        
+        //     // Penyesuaian kondisi bulan_bk dan bulan_pk
+        //     $bulan_bk = (float) ($data->{"bulan_" . strtolower($data->subkoor) . "_bk"} ?? 0);
+        //     $bulan_pk = (float) ($data->{"bulan_" . strtolower($data->subkoor) . "_pk"} ?? 0);
+        
+            // Penyesuaian kondisi rp_bulan_bk dan rp_tahun_bk
+            // //Beban Kerja
+            // $bk = \App\Models\Rupiah::bk();
+            // if ($data->guru_nonguru == 'non_guru' && in_array($data->sts_pegawai, ['PNS', 'PPPK', 'PENSIUN'])) {
+            //     $rp_bulan_bk = ((float)$data -> nilai_jabatan ?? 0) * ((float)$data -> indeks ?? 0) * $bk;
+            //     $rp_tahun_bk = $rp_bulan_bk * $bulan_bk;
+            // }elseif($data->sts_pegawai == 'PENGAWAS SEKOLAH'){
+            //     $rp_bulan_bk = $tpp_pengawas_sekolah;
+            //     $rp_tahun_bk = $rp_bulan_bk * $bulan_bk;
+            // }elseif($data->sts_pegawai == 'KEPALA SEKOLAH'){
+            //     $rp_bulan_bk = $tpp_kepala_sekolah;
+            //     $rp_tahun_bk = $rp_bulan_bk * $bulan_bk;
+            // }elseif($data->guru_nonguru == 'GURU' AND $data->sertifikasi_guru == 'Sudah Sertifikasi'){
+            //     $rp_bulan_bk = $tpp_guru_sertifikasi;
+            //     $rp_tahun_bk = $rp_bulan_bk * $bulan_bk;
+            // }elseif($data->guru_nonguru == 'GURU' AND $data->sertifikasi_guru == 'Belum Sertifikasi'){
+            //     $rp_bulan_bk = $tpp_guru_belum_sertifikasi;
+            //     $rp_tahun_bk = $rp_bulan_bk * $bulan_bk;
+            // }
 
-                $indeks = ($data->sts_subkoor == 'Koordinator Bukan Hasil Penyetaraan')
-                    ? (float) $data->indeks_koor_non_penyetaraan
-                    : (float) $data->indeks_koor_penyetaraan;
-            } else {
-                $nilai_jabatan = (float) $data->nilai_jabatan;
-                $indeks = (float) $data->indeks;
-            }
-
-            $bulan_bk = (float)($data->bulan_bk ?? 0);
-            $bulan_pk = (float)($data->bulan_pk ?? 0);
-            $rumus_bk_tahunan = 0;
-            $rumus_bk_bulanan = 0;
-            $rumus_pk_tahunan = 0;
-            $rumus_pk_bulanan = 0;
-            $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
-            $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
-            $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
-            $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
-
-            if ($data->guru_nonguru == 'guru') {
-                $rumus_bk_bulanan = 0;
-                $rumus_bk_tahunan = $rumus_bk_bulanan * $bulan_bk;
-                $rumus_pk_bulanan = 0;
-                $rumus_pk_tahunan = $rumus_pk_bulanan * $bulan_pk;
-            } elseif ($data->sts_pegawai == 'pengawas sekolah'){
-                $rumus_bk_bulanan = 0;
-                $rumus_bk_tahunan = $rumus_bk_bulanan * $bulan_bk;
-                $rumus_pk_bulanan = 0;
-                $rumus_pk_tahunan = $rumus_pk_bulanan * $bulan_pk;
-            } else {
-                // bk
-                $bk = \App\Models\Rupiah::bk();
-                $rumus_bk_bulanan = ($nilai_jabatan ?? 0) * ($indeks ?? 0 ) * $bk;
-                $rumus_bk_tahunan = $rumus_bk_bulanan * $bulan_bk;
-                // pk
-                if ($data->nama_opd == 'Badan Pendapatan Daerah') {
-                    $pk = \App\Models\Rupiah::pk();
-                    $rumus_pk_bulanan = ($nilai_jabatan ?? 0) * ($indeks ?? 0 ) * $pk * 0;
-                    $rumus_pk_tahunan = $rumus_pk_bulanan * $bulan_pk;
-                } else {
-                    $pk = \App\Models\Rupiah::pk();
-                    $rumus_pk_bulanan = ($nilai_jabatan ?? 0) * ($indeks ?? 0 ) * $pk;
-                    $rumus_pk_tahunan = $rumus_pk_bulanan * $bulan_pk;
-                }
-            }
-            
-            // total
-            $rumus_total_tpp_bulanan = 0;
-            $rumus_total_tpp_tahunan = 0;
-            if ($data->gunu_nonguru == "guru") {
-                if ($data->sertifikasi_guru == "Sudah Sertifikasi") {
-                    $rumus_total_tpp_bulanan = $tpp_guru_sertifikasi;
-                    $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * $bulan_bk;
-                } elseif ($data->sertifikasi_guru == "Belum Sertifikasi") {
-                    $rumus_total_tpp_bulanan = $tpp_guru_belum_sertifikasi;
-                    $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * $bulan_bk;
-                }
-            } elseif ($data->sts_pegawai == "PENGAWAS SEKOLAH") {
-                $rumus_total_tpp_bulanan = $tpp_pengawas_sekolah;
-                $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * $bulan_bk;
-            } elseif ($data->sts_pegawai == "KEPALA SEKOLAH") {
-                $rumus_total_tpp_bulanan = $tpp_kepala_sekolah;
-                $rumus_total_tpp_tahunan = $rumus_total_tpp_bulanan * $bulan_bk;
-            } else {
-                $rumus_total_tpp_bulanan = $rumus_bk_bulanan + $rumus_pk_bulanan;
-                $rumus_total_tpp_tahunan = $rumus_bk_tahunan + $rumus_pk_tahunan;
-            }
-
-            $rumus_bk_tahunan_total += $rumus_bk_tahunan;
-            $rumus_bk_bulanan_total += $rumus_bk_bulanan;
-            $rumus_pk_tahunan_total += $rumus_pk_tahunan;
-            $rumus_pk_bulanan_total += $rumus_pk_bulanan;
-            $rumus_total_tpp_bulanan_total += $rumus_total_tpp_bulanan;
-            $rumus_total_tpp_tahunan_total += $rumus_total_tpp_tahunan;
-        }
+            // //Prestasi Kerja
+            // $pk = \App\Models\Rupiah::pk();
+            // $rp_bulan_pk = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $pk;
+            // if($data->kode_opd == '5.02.0.00.0.00.03.0000'){
+            //     $rp_bulan_pk = 0;
+            // }
+            // $rp_tahun_pk = $rp_bulan_pk * $bulan_pk;
+        
+            // // Penyesuaian kondisi untuk penambahan ke total setiap iterasi
+            // $jumlah_rp_bulan_bk += $rp_bulan_bk;
+            // $jumlah_rp_tahun_bk += $rp_tahun_bk;
+            // $jumlah_rp_bulan_pk += $rp_bulan_pk;
+            // $jumlah_rp_tahun_pk += $rp_tahun_pk;
+            // $total_tpp_bulanan += $tpp_bulanan;
+            // $total_tpp_tahunan += $tpp_tahunan;
+        // }
         $datas = $query->paginate($pagination);
         return view('admin-kota.laporan.tpp-pegawai', compact([
                     'datas',
-                    'rumus_bk_tahunan_total',
-                    'rumus_bk_bulanan_total',
-                    'rumus_pk_tahunan_total',
-                    'rumus_pk_bulanan_total',
-                    'rumus_total_tpp_bulanan_total',
-                    'rumus_total_tpp_tahunan_total',
                     'search',
                     'filteropd',
                     'pagination',
+                    // 'rp_bulan_bk',
+                    // 'rp_bulan_pk',
+                    // 'rp_tahun_bk',
+                    // 'rp_tahun_pk',
+                    // 'tpp_bulanan',
+                    // 'tpp_tahunan',
+                    // 'jumlah_rp_bulan_bk',
+                    // 'jumlah_rp_tahun_bk',
+                    // 'jumlah_rp_bulan_pk',
+                    // 'jumlah_rp_tahun_pk',
+                    // 'total_tpp_bulanan',
+                    // 'total_tpp_tahunan',
             ]))->with('i', 0);
     }
 

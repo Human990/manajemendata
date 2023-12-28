@@ -78,15 +78,41 @@
                                     
                                     //Beban Kerja
                                     $bk = \App\Models\Rupiah::bk();
-                                    $rp_bulan_beban_kerja = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $bk;
-                                    $rp_beban_kerja = $rp_bulan_beban_kerja * 13 * ($data->jumlah_pemangku ?? 0);
+                                    if($data->sts_pegawai == 'PNS' && $data->guru_nonguru == 'non_guru'){
+                                        $rp_bulan_beban_kerja = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $bk;
+                                        $rp_beban_kerja = $rp_bulan_beban_kerja * 13 * ($data->jumlah_pemangku ?? 0);
+                                    }elseif($data->sts_pegawai == 'PENGAWAS SEKOLAH'){
+                                        $rp_bulan_beban_kerja = $tpp_pengawas_sekolah;
+                                        $rp_beban_kerja = $rp_bulan_beban_kerja * 12;
+                                    }elseif($data->sts_pegawai == 'KEPALA SEKOLAH'){
+                                        $rp_bulan_beban_kerja = $tpp_kepala_sekolah;
+                                        $rp_beban_kerja = $rp_bulan_beban_kerja * 12;
+                                    }elseif($data->sts_pegawai == 'GURU' AND $data->sertifikasi_guru == 'Sudah Sertifikasi'){
+                                        $rp_bulan_beban_kerja = $tpp_guru_sertifikasi;
+                                        $rp_beban_kerja = $rp_bulan_beban_kerja * 12;
+                                    }elseif($data->sts_pegawai == 'GURU' AND $data->sertifikasi_guru == 'Belum Sertifikasi'){
+                                        $rp_bulan_beban_kerja = $tpp_guru_belum_sertifikasi;
+                                        $rp_beban_kerja = $rp_bulan_beban_kerja * 12;
+                                    }elseif($data->sts_pegawai == 'PPPK' AND $data->sertifikasi_guru == 'Sudah Sertifikasi'){
+                                        $rp_bulan_beban_kerja = $tpp_guru_sertifikasi;
+                                        $rp_beban_kerja = $rp_bulan_beban_kerja * 12;
+                                    }elseif($data->sts_pegawai == 'PPPK' AND $data->sertifikasi_guru == 'Belum Sertifikasi'){
+                                        $rp_bulan_beban_kerja = $tpp_guru_belum_sertifikasi;
+                                        $rp_beban_kerja = $rp_bulan_beban_kerja * 12;
+                                    }
                                     if($data->basic_tpp > 0){
                                         $persen_bk = ($rp_bulan_beban_kerja / $data->basic_tpp) * 100;
                                     }
 
                                     //Prestasi Kerja
                                     $pk = \App\Models\Rupiah::pk();
+
                                     $rp_bulan_prestasi_kerja = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $pk;
+                                    
+                                    if($data->kode_opd == '5.02.0.00.0.00.03.0000'){
+                                        $rp_bulan_prestasi_kerja = 0;
+                                    }
+
                                     $rp_prestasi_kerja = $rp_bulan_prestasi_kerja * 12 * ($data->jumlah_pemangku ?? 0);
                                     if($data->basic_tpp > 0){
                                         $persen_pk = ($rp_bulan_prestasi_kerja / $data->basic_tpp) * 100;

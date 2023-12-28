@@ -21,6 +21,7 @@ class Tpp extends Model
                                 jabatans.kode_jabatanlama,
                                 jabatans.nama_jabatan,
                                 pegawais.eselon, 
+                                opds.id,
                                 opds.kode_opd,
                                 opds.nama_opd,
                                 jenis_jabatans.jenis_jabatan,
@@ -29,7 +30,10 @@ class Tpp extends Model
                                 COUNT(pegawais.id) AS jumlah_pemangku, 
                                 indeks.indeks, 
                                 jabatans.nilai_jabatan, 
-                                pegawais.jabatan_atasan 
+                                pegawais.jabatan_atasan,
+                                pegawais.guru_nonguru,
+                                pegawais.sertifikasi_guru,
+                                pegawais.sts_pegawai
                             FROM
                                 pegawais
                                 LEFT JOIN master_tahun ON master_tahun.id = pegawais.tahun_id
@@ -49,16 +53,24 @@ class Tpp extends Model
                             WHERE
                                 pegawais.tahun_id = $tahun 
                             GROUP BY
+                                opds.kode_opd,
+                                opds.id,
                                 jabatans.kode_jabatanlama,
                                 jabatans.nama_jabatan,
-                                pegawais.eselon, 
-                                opds.kode_opd,
+                                pegawais.eselon,
                                 opds.nama_opd,
                                 jenis_jabatans.jenis_jabatan,
                                 indeks.kelas_jabatan,
                                 indeks.basic_tpp,
                                 indeks.indeks, 
                                 jabatans.nilai_jabatan,
+                                pegawais.jabatan_atasan,
+                                pegawais.guru_nonguru,
+                                pegawais.sertifikasi_guru,
+                                pegawais.sts_pegawai
+                            ORDER BY
+                                opds.id,
+                                pegawais.eselon,
                                 pegawais.jabatan_atasan;
                     ");            
         }else {
@@ -75,7 +87,10 @@ class Tpp extends Model
                                 COUNT(pegawais.id) AS jumlah_pemangku, 
                                 indeks.indeks, 
                                 jabatans.nilai_jabatan,
-                                pegawais.jabatan_atasan 
+                                pegawais.jabatan_atasan,
+                                pegawais.guru_nonguru,
+                                pegawais.sertifikasi_guru,
+                                pegawais.sts_pegawai
                             FROM
                                 pegawais
                                 LEFT JOIN master_tahun ON master_tahun.id = pegawais.tahun_id
@@ -106,6 +121,12 @@ class Tpp extends Model
                                 indeks.basic_tpp,
                                 indeks.indeks, 
                                 jabatans.nilai_jabatan,
+                                pegawais.jabatan_atasan,
+                                pegawais.guru_nonguru,
+                                pegawais.sertifikasi_guru,
+                                pegawais.sts_pegawai
+                            ORDER BY
+                                pegawais.eselon,
                                 pegawais.jabatan_atasan;
                     ");
         }
