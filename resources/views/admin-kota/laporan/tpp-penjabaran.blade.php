@@ -134,10 +134,12 @@
 
                                     //Prestasi Kerja
                                     $pk = \App\Models\Rupiah::pk();
+
                                     $rp_bulan_prestasi_kerja = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $pk;
                                     if($data->kode_opd == '5.02.0.00.0.00.03.0000'){
                                         $rp_bulan_prestasi_kerja = 0;
                                     }
+
                                     $rp_prestasi_kerja = $rp_bulan_prestasi_kerja * 12 * ($data->jumlah_pemangku ?? 0);
                                     if($data->basic_tpp > 0){
                                         $persen_pk = ($rp_bulan_prestasi_kerja / $data->basic_tpp) * 100;
