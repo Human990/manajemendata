@@ -550,6 +550,15 @@
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="jabatan_atasan">Unit Kerja</label>
+                                                        <input type="text" name="jabatan_atasan"
+                                                            class="form-control @error('jabatan_atasan') is-invalid @enderror" id="jabatan_atasan"
+                                                            placeholder="Unit Kerja . . ." value="{{ $catatan->jabatan_atasan }}">
+                                                        @error('jabatan_atasan')
+                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="catatan_admin">Catatan Admin Kota</label>
                                                         <textarea name="catatan_admin" id="catatan_admin" cols="30" rows="7" class="form-control @error('catatan_admin') is-invalid @enderror" placeholder="Masukkan catatan . . .">{{ $catatan->catatan_admin ?? '' }}</textarea>
                                                         @error('catatan_admin')

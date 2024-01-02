@@ -43,6 +43,7 @@ class Catatan_opd extends Model
                                     'pegawais.atasan_nip',
                                     'pegawais.atasannya_atasan_nip',
                                     'pegawais.atasannya_atasan_nama',
+                                    'pegawais.jabatan_atasan',
                                     'jabatans.kode_jabatanlama', 
                                     'jabatans.nama_jabatan', 
                                     'jabatans.nilai_jabatan', 

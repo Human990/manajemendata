@@ -42,7 +42,8 @@ class Pegawai extends Model
     {
         $data = Pegawai::select('pegawais.id',
                                 'pegawais.nip', 
-                                'pegawais.nama_pegawai', 
+                                'pegawais.nama_pegawai',
+                                'pegawais.guru_nonguru', 
                                 'pegawais.sts_pegawai', 
                                 'pegawais.sts_jabatan', 
                                 'pegawais.pangkat', 
