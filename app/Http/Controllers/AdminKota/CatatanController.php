@@ -115,6 +115,7 @@ class CatatanController extends Controller
                 'pa_kpa' => $request->pa_kpa,
                 'pbj' => $request->pbj,
                 'jft' => $request->jft,
+                'jabatan_atasan' => $request->jabatan_atasan,
             ]);
         }
 
