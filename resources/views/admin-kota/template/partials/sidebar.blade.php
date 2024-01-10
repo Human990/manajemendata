@@ -87,9 +87,9 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-tpp-total') }}" @endif class="collapse-item">
+                {{-- <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-tpp-total') }}" @endif class="collapse-item">
                     <span>Rekap TPP All OPD</span>
-                </a>
+                </a> --}}
                 <a @if(session()->get('tahun_id_session')) href="{{ route('adminkota-tpp-pegawai')}}" @endif class="collapse-item">
                     <span>Rekap TPP Per Person</span>
                 </a>
