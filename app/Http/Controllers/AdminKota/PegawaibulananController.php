@@ -103,114 +103,14 @@ class PegawaibulananController extends Controller
             // Tambahkan kondisi filter untuk kolom lainnya
         }
 
-        // // Memanggil metode data() pada model Pegawai
-
-        // $rp_bulan_bk = [];
-        // $rp_tahun_bk = [];
-        // $rp_bulan_pk = [];
-        // $rp_tahun_pk = [];
-        // $tpp_bulanan = [];
-        // $tpp_tahunan = [];
-        // $jumlah_rp_bulan_bk = 0;
-        // $jumlah_rp_tahun_bk = 0;
-        // $jumlah_rp_bulan_pk = 0;
-        // $jumlah_rp_tahun_pk = 0;
-        // $total_tpp_bulanan = 0;
-        // $total_tpp_tahunan = 0;
-
-        // foreach ($query as $data){
-
-        //     $rp_bulan_bk = 0;
-        //     $rp_tahun_bk = 0;
-        //     $rp_bulan_pk = 0;
-        //     $rp_tahun_pk = 0;
-        //     $tpp_bulanan = 0;
-        //     $tpp_tahunan = 0;
-        //     $tpp_guru_sertifikasi = \App\Models\Rupiah::tppGuruSertifikasi();
-        //     $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
-        //     $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
-        //     $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
-        
-        //     $nilai_jabatan = (float) $data->{"nilai_jabatan_" . strtolower($data->subkoor) . "_" . strtolower($data->sts_subkoor)};
-        //     $indeks = (float) $data->{"indeks_" . strtolower($data->subkoor) . "_" . strtolower($data->sts_subkoor)};
-        
-        //     // Penyesuaian kondisi bulan_bk dan bulan_pk
-        //     $bulan_bk = (float) ($data->{"bulan_" . strtolower($data->subkoor) . "_bk"} ?? 0);
-        //     $bulan_pk = (float) ($data->{"bulan_" . strtolower($data->subkoor) . "_pk"} ?? 0);
-        
-            // Penyesuaian kondisi rp_bulan_bk dan rp_tahun_bk
-            // //Beban Kerja
-            // $bk = \App\Models\Rupiah::bk();
-            // if ($data->guru_nonguru == 'non_guru' && in_array($data->sts_pegawai, ['PNS', 'PPPK', 'PENSIUN'])) {
-            //     $rp_bulan_bk = ((float)$data -> nilai_jabatan ?? 0) * ((float)$data -> indeks ?? 0) * $bk;
-            //     $rp_tahun_bk = $rp_bulan_bk * $bulan_bk;
-            // }elseif($data->sts_pegawai == 'PENGAWAS SEKOLAH'){
-            //     $rp_bulan_bk = $tpp_pengawas_sekolah;
-            //     $rp_tahun_bk = $rp_bulan_bk * $bulan_bk;
-            // }elseif($data->sts_pegawai == 'KEPALA SEKOLAH'){
-            //     $rp_bulan_bk = $tpp_kepala_sekolah;
-            //     $rp_tahun_bk = $rp_bulan_bk * $bulan_bk;
-            // }elseif($data->guru_nonguru == 'GURU' AND $data->sertifikasi_guru == 'Sudah Sertifikasi'){
-            //     $rp_bulan_bk = $tpp_guru_sertifikasi;
-            //     $rp_tahun_bk = $rp_bulan_bk * $bulan_bk;
-            // }elseif($data->guru_nonguru == 'GURU' AND $data->sertifikasi_guru == 'Belum Sertifikasi'){
-            //     $rp_bulan_bk = $tpp_guru_belum_sertifikasi;
-            //     $rp_tahun_bk = $rp_bulan_bk * $bulan_bk;
-            // }
-
-            // //Prestasi Kerja
-            // $pk = \App\Models\Rupiah::pk();
-            // $rp_bulan_pk = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $pk;
-            // if($data->kode_opd == '5.02.0.00.0.00.03.0000'){
-            //     $rp_bulan_pk = 0;
-            // }
-            // $rp_tahun_pk = $rp_bulan_pk * $bulan_pk;
-        
-            // // Penyesuaian kondisi untuk penambahan ke total setiap iterasi
-            // $jumlah_rp_bulan_bk += $rp_bulan_bk;
-            // $jumlah_rp_tahun_bk += $rp_tahun_bk;
-            // $jumlah_rp_bulan_pk += $rp_bulan_pk;
-            // $jumlah_rp_tahun_pk += $rp_tahun_pk;
-            // $total_tpp_bulanan += $tpp_bulanan;
-            // $total_tpp_tahunan += $tpp_tahunan;
-        // }
         $datas = $query->paginate($pagination);
         return view('admin-kota.laporan.tpp-pegawai', compact([
                     'datas',
                     'search',
                     'filteropd',
                     'pagination',
-                    // 'rp_bulan_bk',
-                    // 'rp_bulan_pk',
-                    // 'rp_tahun_bk',
-                    // 'rp_tahun_pk',
-                    // 'tpp_bulanan',
-                    // 'tpp_tahunan',
-                    // 'jumlah_rp_bulan_bk',
-                    // 'jumlah_rp_tahun_bk',
-                    // 'jumlah_rp_bulan_pk',
-                    // 'jumlah_rp_tahun_pk',
-                    // 'total_tpp_bulanan',
-                    // 'total_tpp_tahunan',
             ]))->with('i', 0);
     }
-
-    // public function tppperson(Request $request)
-    // {
-    //     if ($request->ajax()) {
-    //         $datas = Pegawai::data();
-    //         $i = 1;
-    //         return DataTables::of($datas)
-    //             ->addIndexColumn()
-    //             ->addColumn('DT_RowIndex', function () use (&$i) {
-    //                 return $i++;
-    //             })
-    //             ->make(true);
-    //     }
-    //     $datas = Pegawai::data();
-
-    //     return view('admin-kota.laporan.tpp-pegawai',compact('datas'));
-    // }
 
     public function totaltpp(Request $request)
     {
@@ -245,8 +145,8 @@ class PegawaibulananController extends Controller
         $rupiah4 = Rupiah::where('tahun_id', $tahun_id)->where('flag', 'belanja_pegawai')->first();
         $rupiah5 = Rupiah::where('tahun_id', $tahun_id)->where('flag','pagu_rapbd')->first();
         $jumlah_pegawai = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('pegawais.sts_pegawai', '!=' ,'PENSIUN')->where('opds.nama_opd','!=','Rumah Sakit Umum Daerah')->count();
-        $jumlah_pegawai_guru = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('pegawais.sts_pegawai', '!=' ,'PENSIUN')->where('guru_nonguru','guru')->where('opds.nama_opd','!=','Rumah Sakit Umum Daerah')->count();
-        $jumlah_pegawai_non_guru = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('pegawais.sts_pegawai', '!=' ,'PENSIUN')->where('guru_nonguru','non_guru')->where('opds.nama_opd','!=','Rumah Sakit Umum Daerah')->count();
+        $jumlah_pegawai_guru = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('guru_nonguru','guru')->where('pegawais.sts_pegawai', '!=' ,'PENSIUN')->where('pegawais.sts_pegawai', '!=' ,'PPPK')->where('opds.nama_opd','!=','Rumah Sakit Umum Daerah')->count();
+        $jumlah_pegawai_non_guru = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('guru_nonguru','non_guru')->where('pegawais.sts_pegawai', '!=' ,'PENSIUN')->where('pegawais.sts_pegawai', '!=' ,'PPPK')->where('opds.nama_opd','!=','Rumah Sakit Umum Daerah')->count();
         $jumlah_guru_sertifikasi = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('guru_nonguru','guru')->where('sts_pegawai','!=','PPPK')->where('sertifikasi_guru','Sudah Sertifikasi')->count();
         $jumlah_guru_belum_sertifikasi = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('guru_nonguru','guru')->where('sts_pegawai','!=','PPPK')->where('sertifikasi_guru','Belum Sertifikasi')->count();
         $jumlah_pengawas_sekolah = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','PENGAWAS SEKOLAH')->count();
@@ -254,6 +154,7 @@ class PegawaibulananController extends Controller
         $jumlah_pensiun = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('pegawais.sts_pegawai','PENSIUN')->count();
         $rs = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('opds.nama_opd','Rumah Sakit Umum Daerah')->where('sts_pegawai','!=','PPPK')->count();
         $pppk_rs = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('opds.nama_opd','Rumah Sakit Umum Daerah')->where('sts_pegawai','=','PPPK')->count();
+        $pppk_guru = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','=','pppk')->where('guru_nonguru','guru')->where('opds.nama_opd','!=','Rumah Sakit Umum Daerah')->count();
         $pppk_nonguru = Pegawai::data()->where('pegawais.tahun_id', $tahun_id)->where('sts_pegawai','=','pppk')->where('guru_nonguru','non_guru')->where('opds.nama_opd','!=','Rumah Sakit Umum Daerah')->count();
         $pppk_guru_sertifikasi = Pegawai::where('tahun_id', $tahun_id)->where('sts_pegawai','=','pppk')->where('guru_nonguru','guru')->where('sertifikasi_guru','Sudah Sertifikasi')->count();
         $pppk_guru_belum_sertifikasi = Pegawai::where('tahun_id', $tahun_id)->where('sts_pegawai','=','pppk')->where('guru_nonguru','guru')->where('sertifikasi_guru','Belum Sertifikasi')->count();
@@ -265,6 +166,11 @@ class PegawaibulananController extends Controller
         $pengali_pppk = \App\Models\Rupiah::pengaliPppk();
         $tpp_pol = \App\Models\Rupiah::tppPol();
         $tpp_kelangkaan_profesi = \App\Models\Rupiah::tppKelangkaanProfesi();
+        $indeks_tambahan = 0;
+        $indeks_inspektorat = Rupiah::where('flag', 'indeks_inspektorat')->where('tahun_id', $tahun_id)->value('jumlah');
+        $indeks_non_inspektorat = Rupiah::where('flag', 'indeks_non_inspektorat')->where('tahun_id', $tahun_id)->value('jumlah');
+        $indeks_inspektur = Rupiah::where('flag', 'indeks_inspektur')->where('tahun_id', $tahun_id)->value('jumlah');
+        $indeks_kabkad = Rupiah::where('flag', 'indeks_kabkad')->where('tahun_id', $tahun_id)->value('jumlah');
         $tpp_bk_2023 = 61025596766;
         $tpp_pk_2023 = 86727680169;
         $tpp_pol_2023 = 58873079885;
@@ -434,7 +340,7 @@ class PegawaibulananController extends Controller
     
         
             // Tambahkan nilai total_tpp pegawai ke total_tpp
-            $tpp_pegawai = ((($nilai_jabatan * $indeks * $bk) * $bulan_bk) + (($nilai_jabatan * $indeks * $pk) * $bulan_pk)) * $pengali_pppk;
+            $tpp_pegawai = ($nilai_jabatan * $indeks * $bk * $bulan_bk * $pengali_pppk ) + ($nilai_jabatan * $indeks * $pk * $bulan_pk * $pengali_pppk);
             if ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan' && $data->sts_koor == 'Koordinator Bukan Hasil Penyetaraan') {
                 $tpp_pegawai *= 0.85; // 85% adjustment
             } else {
@@ -448,6 +354,7 @@ class PegawaibulananController extends Controller
         foreach ($tpppppk as $data){
             $nilai_jabatan = 0;
             $indeks = 0;
+            $indeks_tambahan = 0;
             if ($data->subkoor == "Subkoor") {
                 $nilai_jabatan = ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                     ? (float) $data->nilai_jabatan_subkor_non_penyetaraan
@@ -472,14 +379,40 @@ class PegawaibulananController extends Controller
             // Rest of your calculation remains the same
             $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0);
             $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);
+            $indeks_inspektorat = \App\Models\Rupiah::where('flag', 'indeks_inspektorat')->where('tahun_id', $tahun_id)->value('jumlah');
+            $indeks_non_inspektorat = \App\Models\Rupiah::where('flag', 'indeks_non_inspektorat')->where('tahun_id', $tahun_id)->value('jumlah');
+            $indeks_inspektur = \App\Models\Rupiah::where('flag', 'indeks_inspektur')->where('tahun_id', $tahun_id)->value('jumlah');
+            $indeks_kabkad = \App\Models\Rupiah::where('flag', 'indeks_kabkad')->where('tahun_id', $tahun_id)->value('jumlah');
             $bulan_bk = (float)($data->bulan_bk ?? 0);
             $bulan_pk = (float)($data->bulan_pk ?? 0);
-            $nominal_bk = ($nilai_jabatan * $indeks * $bk) * $bulan_bk;
-            $nominal_pk = ($nilai_jabatan * $indeks * $pk) * $bulan_pk;
+            $nominal_bk = ($nilai_jabatan * $indeks * $bk) * $bulan_bk  * $pengali_pppk;
+            $nominal_pk = ($nilai_jabatan * $indeks * $pk) * $bulan_pk  * $pengali_pppk;
+            if ($data->kode_opd == '6.01.0.00.0.00.01.0000' && $data->kode_jabatanlama != '3640') {
+                // Case 1
+                $indeks_tambahan = $indeks_inspektorat * $nominal_pk;
+                } elseif ($data->kode_jabatanlama == '3640') {
+                    // Case 2
+                    $indeks_tambahan = $indeks_inspektur * $nominal_pk;
+                } elseif ($data->kode_jabatanlama == '4399') {
+                    // Case 4
+                    $indeks_tambahan = $indeks_kabkad * $nominal_pk;
+                }
+                elseif (
+                    in_array($data->kode_opd, ['5.01.5.05.0.00.02.0000', '5.02.0.00.0.00.02.0000', '2.16.2.20.2.21.04.0000']) ||
+                    $data->kode_jabatanlama != '4399'
+                ) {
+                    // Case 3
+                    $indeks_tambahan = $indeks_non_inspektorat * $nominal_pk;
+                } 
+                else {
+                    // Default case
+                    $indeks_tambahan = 0;
+                }
+            $rp_jumlah_pk = $nominal_pk + $indeks_tambahan;
             $tpp_pppk_bk += $nominal_bk;
-            $tpp_pppk_pk += $nominal_pk;
+            $tpp_pppk_pk += $rp_jumlah_pk;
             // Tambahkan nilai total_tpp pegawai ke total_tpp
-            $tpp_pegawai = ($nominal_bk + $nominal_pk) * $pengali_pppk;
+            $tpp_pegawai = ($nominal_bk + $rp_jumlah_pk);
             if ($data->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan' && $data->sts_koor == 'Koordinator Bukan Hasil Penyetaraan') {
                 $tpp_pegawai *= 0.85; // 85% adjustment
             } else {
@@ -561,6 +494,7 @@ class PegawaibulananController extends Controller
         foreach ($pegawais as $pegawai) {
             $nilai_jabatan = 0;
             $indeks = 0;
+            $indeks_tambahan = 0;
             if ($pegawai->subkoor == "Subkoor") {
                 $nilai_jabatan = ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan')
                     ? (float) $pegawai->nilai_jabatan_subkor_non_penyetaraan
@@ -585,15 +519,41 @@ class PegawaibulananController extends Controller
             // Rest of your calculation remains the same
             $bk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'beban_kerja')->value('jumlah') ?? 0);
             $pk = (float)(Rupiah::where('tahun_id', $tahun_id)->where('flag', 'prestasi_kerja')->value('jumlah') ?? 0);
+            $indeks_inspektorat = \App\Models\Rupiah::where('flag', 'indeks_inspektorat')->where('tahun_id', $tahun_id)->value('jumlah');
+            $indeks_non_inspektorat = \App\Models\Rupiah::where('flag', 'indeks_non_inspektorat')->where('tahun_id', $tahun_id)->value('jumlah');
+            $indeks_inspektur = \App\Models\Rupiah::where('flag', 'indeks_inspektur')->where('tahun_id', $tahun_id)->value('jumlah');
+            $indeks_kabkad = \App\Models\Rupiah::where('flag', 'indeks_kabkad')->where('tahun_id', $tahun_id)->value('jumlah');
             $bulan_bk = (float)($pegawai->bulan_bk ?? 0);
             $bulan_pk = (float)($pegawai->bulan_pk ?? 0);
             $nominal_bk = ($nilai_jabatan * $indeks * $bk) * $bulan_bk;
             $nominal_pk = ($nilai_jabatan * $indeks * $pk) * $bulan_pk;
+
+            if ($pegawai->kode_opd == '6.01.0.00.0.00.01.0000' && $pegawai->kode_jabatanlama != '3640') {
+                // Case 1
+                $indeks_tambahan = $indeks_inspektorat * $nominal_pk;
+                } elseif ($pegawai->kode_jabatanlama == '3640') {
+                    // Case 2
+                    $indeks_tambahan = $indeks_inspektur * $nominal_pk;
+                } elseif ($pegawai->kode_jabatanlama == '4399') {
+                    // Case 4
+                    $indeks_tambahan = $indeks_kabkad * $nominal_pk;
+                }elseif (
+                    in_array($pegawai->kode_opd, ['5.01.5.05.0.00.02.0000', '5.02.0.00.0.00.02.0000', '2.16.2.20.2.21.04.0000']) ||
+                    $pegawai->kode_jabatanlama != '4399'
+                ) {
+                    // Case 3
+                    $indeks_tambahan = $indeks_non_inspektorat * $nominal_pk;
+                } else {
+                    // Default case
+                    $indeks_tambahan = 0;
+                }
+
+            $rp_jumlah_pk = $nominal_pk + $indeks_tambahan;
             $tpp_pns_bk += $nominal_bk;
-            $tpp_pns_pk += $nominal_pk;
+            $tpp_pns_pk += $rp_jumlah_pk;
         
             // Tambahkan nilai total_tpp pegawai ke total_tpp
-            $tpp_pegawai = (($nilai_jabatan * $indeks * $bk) * $bulan_bk) + (($nilai_jabatan * $indeks * $pk) * $bulan_pk);
+            $tpp_pegawai = (($nilai_jabatan * $indeks * $bk) * $bulan_bk) + ((($nilai_jabatan * $indeks * $pk) * $bulan_pk)+$indeks_tambahan);
             if ($pegawai->sts_subkoor == 'Subkoordinator Bukan Hasil Penyetaraan' && $pegawai->sts_koor == 'Koordinator Bukan Hasil Penyetaraan') {
                 $tpp_pegawai *= 0.85; // 85% adjustment
             } else {
@@ -638,6 +598,7 @@ class PegawaibulananController extends Controller
             'jumlah_pengawas_sekolah', 
             'rs', 
             'pppk_rs',
+            'pppk_guru',
             'pppk_nonguru', 
             'pppk_guru_sertifikasi', 
             'pppk_guru_belum_sertifikasi', 

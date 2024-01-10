@@ -72,6 +72,8 @@
                                 <th>Total Bulan Penerimaan PK</th>
                                 <th>RP/BLN Beban Kerja</th>
                                 <th>RP Beban Kerja</th>
+                                <th>TPP Prestasi Kerja Tambahan</th>
+                                <th>Nominal Prestasi Kerja</th>
                                 <th>RP/BLN Prestasi Kerja</th>
                                 <th>RP Prestasi Kerja</th>
                                 <th>TOTAL/BLN/ALL TPP</th>
@@ -85,11 +87,13 @@
                         $jumlah_rp_bulan_pk = 0;
                         $total_tpp_bulanan = 0;
                         $total_tpp_tahunan = 0;
+                        $indeks_tambahan = 0;
                         @endphp 
                         <tbody id="dynamic-row">
                                 @foreach ($datas as $i => $data)
                                 @php
                                     $nilai_jabatan = 0;
+                                    $tahun = session()->get('tahun_id_session');
                                     $indeks = 0;
                                     $rp_bulan_bk = 0;
                                     $rp_tahun_bk = 0;
@@ -101,6 +105,10 @@
                                     $tpp_guru_belum_sertifikasi = \App\Models\Rupiah::tppGuruBelumSertifikasi();
                                     $tpp_pengawas_sekolah = \App\Models\Rupiah::tppPengawasSekolah();
                                     $tpp_kepala_sekolah = \App\Models\Rupiah::tppKepalaSekolah();
+                                    $indeks_inspektorat = \App\Models\Rupiah::where('flag', 'indeks_inspektorat')->where('tahun_id', $tahun)->value('jumlah');
+                                    $indeks_non_inspektorat = \App\Models\Rupiah::where('flag', 'indeks_non_inspektorat')->where('tahun_id', $tahun)->value('jumlah');
+                                    $indeks_inspektur = \App\Models\Rupiah::where('flag', 'indeks_inspektur')->where('tahun_id', $tahun)->value('jumlah');
+                                    $indeks_kabkad = \App\Models\Rupiah::where('flag', 'indeks_kabkad')->where('tahun_id', $tahun)->value('jumlah');
                                     $bulan_bk = (float)($data->bulan_bk ?? 0);
                                     $bulan_pk = (float)($data->bulan_pk ?? 0);
 
@@ -142,19 +150,48 @@
 
                                     //Prestasi Kerja
                                     $pk = \App\Models\Rupiah::pk();
+                                    // $tambahan_pk = 0;
                                     $rp_bulan_pk = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $pk;
                                     if($data->kode_opd == '5.02.0.00.0.00.03.0000'){
                                         $rp_bulan_pk = 0;
                                     }
+                                    //  elseif ($data->kode_opd == '6.01.0.00.0.00.01.0000' && $data->kode_jabatanlama != '3640'){
+                                    //     $pk_person = ((float)$data->nilai_jabatan ?? 0) * ((float)$data->indeks ?? 0 ) * $pk;
+                                    //     $persentase_pk = $pk_person * $indeks_inspektorat;
+                                    //     $tambahan_pk += $presentase_pk;
+                                    //     $rp_bulan_pk = $pk_person + $pesentase_pk;
+                                    // }
                                     $rp_tahun_pk = $rp_bulan_pk * $bulan_pk;
                                     
                                     // Penyesuaian kondisi untuk penambahan ke total setiap iterasi
-                                    $tpp_bulanan = $rp_bulan_bk + $rp_bulan_pk;
-                                    $tpp_tahunan = $rp_tahun_bk + $rp_tahun_pk;
+                                    if ($data->kode_opd == '6.01.0.00.0.00.01.0000' && $data->kode_jabatanlama != '3640') {
+                                    // Case 1
+                                    $indeks_tambahan = $indeks_inspektorat * $rp_bulan_pk;
+                                    } elseif ($data->kode_jabatanlama == '3640') {
+                                        // Case 2
+                                        $indeks_tambahan = $indeks_inspektur * $rp_bulan_pk;
+                                    } elseif ($data->kode_jabatanlama == '4399') {
+                                        // Case 4
+                                        $indeks_tambahan = $indeks_kabkad * $rp_bulan_pk;
+                                    }elseif ($data->kode_opd =='5.01.5.05.0.00.02.0000') {
+                                        // Case 3
+                                        $indeks_tambahan = $indeks_non_inspektorat * $rp_bulan_pk;
+                                    } elseif ($data->kode_opd =='5.02.0.00.0.00.02.0000') {
+                                        // Case 3
+                                        $indeks_tambahan = $indeks_non_inspektorat * $rp_bulan_pk;
+                                    } else {
+                                        // Default case
+                                        $indeks_tambahan = 0;
+                                    }
+
+                                    $pk_bulan_setelah_tambahan = $indeks_tambahan + $rp_bulan_pk;
+                                    $pk_tahun_setelah_tambahan = $pk_bulan_setelah_tambahan * $bulan_pk;
+                                    $tpp_bulanan = $rp_bulan_bk + $pk_bulan_setelah_tambahan;
+                                    $tpp_tahunan = $rp_tahun_bk + $pk_tahun_setelah_tambahan;
                                     $jumlah_rp_bulan_bk += $rp_bulan_bk;
                                     $jumlah_rp_tahun_bk += $rp_tahun_bk;
-                                    $jumlah_rp_bulan_pk += $rp_bulan_pk;
-                                    $jumlah_rp_tahun_pk += $rp_tahun_pk;
+                                    $jumlah_rp_bulan_pk += $pk_bulan_setelah_tambahan;
+                                    $jumlah_rp_tahun_pk += $pk_tahun_setelah_tambahan;
                                     $total_tpp_bulanan += $tpp_bulanan;
                                     $total_tpp_tahunan += $tpp_tahunan;
                                 @endphp
@@ -222,8 +259,10 @@
                                     <td>{{ $data->bulan_pk}}</td>
                                     <td>{{ number_format($rp_bulan_bk, 0, ',', '.') }}</td>
                                     <td>{{ number_format($rp_tahun_bk, 0, ',', '.') }}</td>
+                                    <td>{{ number_format($indeks_tambahan, 0, ',', '.') }}</td>
                                     <td>{{ number_format($rp_bulan_pk, 0, ',', '.') }}</td>
-                                    <td>{{ number_format($rp_tahun_pk, 0, ',', '.') }}</td>
+                                    <td>{{ number_format($pk_bulan_setelah_tambahan, 0, ',', '.') }}</td>
+                                    <td>{{ number_format($pk_tahun_setelah_tambahan, 0, ',', '.') }}</td>
                                     <td>{{ number_format($tpp_bulanan, 0, ',', '.') }}</td>
                                     <td>{{ number_format($tpp_tahunan, 0, ',', '.') }}</td>
 

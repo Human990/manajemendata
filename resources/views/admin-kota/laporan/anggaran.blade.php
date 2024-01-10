@@ -92,31 +92,31 @@
                                 <td><b>Tambahan Penghasilan berdasarkan Beban Kerja ASN</b></td>
                                 <td>{{ number_format ($tpp_bk_2023,0)}}</td>
                                 <td>{{ number_format ($total_tpp_bk,0)}}</td>
-                                <td>{{ number_format($tpp_bk_2023 - $total_tpp_bk,0) }}</td>
+                                <td>{{ number_format($total_tpp_bk - $tpp_bk_2023,0) }}</td>
                             </tr>
                             <tr>
                                 <td><b>Tambahan Penghasilan berdasarkan Kelangkaan Profesi ASN</b></td>
                                 <td>{{ number_format ($tpp_kelangkaan_profesi_2023,0)}}</td>
                                 <td>{{ number_format ($tpp_kelangkaan_profesi,0)}}</td>
-                                <td>{{ number_format($tpp_kelangkaan_profesi_2023 - $tpp_kelangkaan_profesi,0) }}</td>
+                                <td>{{ number_format($tpp_kelangkaan_profesi - $tpp_kelangkaan_profesi_2023,0) }}</td>
                             </tr>
                             <tr>
                                 <td><b>Tambahan Penghasilan berdasarkan Prestasi Kerja ASN</b></td>
                                 <td>{{ number_format ($tpp_pk_2023,0)}}</td>
                                 <td>{{ number_format ($total_tpp_pk,0)}}</td>
-                                <td>{{ number_format($tpp_pk_2023 - $total_tpp_pk,0) }}</td>
+                                <td>{{ number_format($total_tpp_pk - $tpp_pk_2023 ,0) }}</td>
                             </tr>
                             <tr>
                                 <td><b>Tambahan Penghasilan berdasarkan Pertimbangan Objektif Lainnya ASN</b></td>
                                 <td>{{ number_format ($tpp_pol_2023,0)}}</td>
                                 <td>{{ number_format ($tpp_pol,0)}}</td>
-                                <td>{{ number_format($tpp_pol_2023 - $tpp_pol,0) }}</td>
+                                <td>{{ number_format($tpp_pol - $tpp_pol_2023,0) }}</td>
                             </tr>
                             <tr>
                                 <td><b>TOTAL</b></td>
                                 <td>{{ number_format ($tpp_bk_2023 + $tpp_kelangkaan_profesi_2023 + $tpp_pk_2023 + $tpp_pol_2023,0)}}</td>
                                 <td>{{ number_format ($total_tpp_bk + $tpp_kelangkaan_profesi + $total_tpp_pk + $tpp_pol,0)}}</td>
-                                <td>{{ number_format(($tpp_bk_2023 + $tpp_kelangkaan_profesi_2023 + $tpp_pk_2023 + $tpp_pol_2023) - ($total_tpp_bk + $tpp_kelangkaan_profesi + $total_tpp_pk + $tpp_pol)) }}</td>
+                                <td>{{ number_format(($total_tpp_bk + $tpp_kelangkaan_profesi + $total_tpp_pk + $tpp_pol) - ($tpp_bk_2023 + $tpp_kelangkaan_profesi_2023 + $tpp_pk_2023 + $tpp_pol_2023)) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -203,6 +203,10 @@
                             <td style="color:red;">{{ number_format($pppk_nonguru, 0) }} orang</td>
                             <td style="color:black;">Jumlah TPP PPPK NON GURU:</td>
                             <td style="color:red;">{{ number_format($tpp_pppk, 0) }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color:black;">Jumlah pppk Guru:</td>
+                            <td style="color:red;">{{ number_format($pppk_guru, 0) }} orang</td>
                         </tr>
                         <tr>
                             <td style="color:black;">Jumlah Pensiun:</td>
