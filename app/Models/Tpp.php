@@ -71,7 +71,7 @@ class Tpp extends Model
                             ORDER BY
                                 opds.id,
                                 pegawais.eselon,
-                                pegawais.jabatan_atasan;
+                                pegawais.jabatan_atasan,
                                 pegawais.sts_pegawai;
                     ");            
         }else {
@@ -128,7 +128,7 @@ class Tpp extends Model
                                 pegawais.sts_pegawai
                             ORDER BY
                                 pegawais.eselon,
-                                pegawais.jabatan_atasan;
+                                pegawais.jabatan_atasan,
                                 pegawais.sts_pegawai;
                     ");
         }

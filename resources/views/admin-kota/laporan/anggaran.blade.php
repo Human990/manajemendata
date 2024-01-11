@@ -39,10 +39,11 @@
                                 <th rowspan="2" style="text-align: center; vertical-align: middle;"><b>APBD</b></th>
                                 <th rowspan="2" style="text-align: center; vertical-align: middle;"><b>BELANJA PEGAWAI</b></th>
                                 <th rowspan="2" style="text-align: center; vertical-align: middle;"><b>RAPBD</b></th>
-                                <th colspan="4" style="text-align: center; vertical-align: middle;"><b>PERHITUNGAN APLIKASI TPP 2024</b></th>
+                                <th colspan="5" style="text-align: center; vertical-align: middle;"><b>PERHITUNGAN APLIKASI TPP 2024</b></th>
                             </tr>
                             <tr>
                                 <th style="text-align: center; vertical-align: middle;">TPP BK + PK</th>
+                                <th style="text-align: center; vertical-align: middle;">TPP Penjabaran</th>
                                 <th style="text-align: center; vertical-align: middle;">TPP POL</th>
                                 <th style="text-align: center; vertical-align: middle;">TPP KELANGKAAN PROFESI</th>
                                 <th style="text-align: center; vertical-align: middle;">TOTAL PERHITUNGAN TPP</th>
@@ -64,6 +65,9 @@
                                 </td>
                                 <td>
                                     {{ number_format($total_all_tpp, 0) }}
+                                </td>
+                                <td>
+                                    {{ number_format(($tot_all_beban_kerja + $tot_all_prestasi_kerja), 0) }}
                                 </td>
                                 <td>
                                     {{ number_format($tpp_pol, 0) }}
