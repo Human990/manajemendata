@@ -13,7 +13,7 @@ class Tpp extends Model
 
     public static function penjabaran($opd)
     {
-        $tahun = session()->get('tahun_id_session');
+        $tahun = session()->get('tahun_id_session') ?? 1;
 
         if ($opd == 0) {
             $data = DB::select("
